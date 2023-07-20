@@ -14,6 +14,11 @@ public class Controls
                         where entry.Name == name
                         select entry;
 
+            if (!query.Any())
+            {
+                throw new System.ArgumentException("No registered key value.");
+            }
+
             return query.First().KeyCode;
         }
     }
