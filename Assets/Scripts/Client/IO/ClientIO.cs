@@ -1,4 +1,5 @@
 using Core.GameManagment;
+using Core.InputManagment;
 using System;
 using UnityEngine;
 
@@ -7,42 +8,39 @@ public class ClientIO :
     Core.Car.IControls,
     Core.Player.IControls
 {
-    [Header("Character controls")]
-    [SerializeField] private KeyCode _forwardKey = KeyCode.W;
-    [SerializeField] private KeyCode _backKey = KeyCode.S;
-    [SerializeField] private KeyCode _rightKey = KeyCode.D;
-    [SerializeField] private KeyCode _leftKey = KeyCode.A;
-    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
-    [SerializeField] private KeyCode _runKey = KeyCode.LeftControl;
-    [SerializeField] private KeyCode _leaveKey = KeyCode.LeftShift;
+    private readonly string _forwardKey = "forward";
+    private readonly string _backKey = "back";
+    private readonly string _rightKey = "right";
+    private readonly string _leftKey = "left";
+    private readonly string _jumpKey = "jump";
+    private readonly string _runKey = "run";
+    private readonly string _leaveKey = "leave";
+    private readonly string _gasKey = "gas";
+    private readonly string _breakKey = "break";
+    private readonly string _setDrivingModeKey = "driving";
+    private readonly string _setParkingModeKey = "parking";
+    private readonly string _setReverseModeKey = "reverse";
+    private readonly string _setNeutralModeKey = "neutral";
+    private readonly string _steerRightKey = "right_steer";
+    private readonly string _steerLeftKey = "left_steer";
+    private readonly string _engineSwitchKey = "ignition";
+    private readonly string _parkingBreakKey = "parking_break";
+    private readonly string _addPowerKey = "power";
+    private readonly string _leftTurnKey = "left_blinker";
+    private readonly string _rightTurnKey = "right_blinker";
+    private readonly string _emergencyKey = "emergency";
+    private readonly string _headLightKey = "head_light";
+    private readonly string _interactKey = "interact";
+    private readonly string _switchViewKey = "next_view";
+
     [SerializeField] private float _mouseSensitivity = 2;
-
-    [Header("Car controls")]
-    [SerializeField] private KeyCode _gasKey = KeyCode.W;
-    [SerializeField] private KeyCode _breakKey = KeyCode.Q;
-    [SerializeField] private KeyCode _setDrivingModeKey = KeyCode.O;
-    [SerializeField] private KeyCode _setParkingModeKey = KeyCode.P;
-    [SerializeField] private KeyCode _setReverseModeKey = KeyCode.U;
-    [SerializeField] private KeyCode _setNeutralModeKey = KeyCode.I;
-    [SerializeField] private KeyCode _steerRightKey = KeyCode.D;
-    [SerializeField] private KeyCode _steerLeftKey = KeyCode.A;
-    [SerializeField] private KeyCode _engineSwitchKey = KeyCode.T;
-    [SerializeField] private KeyCode _parkingBreakKey = KeyCode.R;
-    [SerializeField] private KeyCode _addPowerKey = KeyCode.LeftControl;
-    [SerializeField] private KeyCode _leftTurnKey = KeyCode.Comma;
-    [SerializeField] private KeyCode _rightTurnKey = KeyCode.Period;
-    [SerializeField] private KeyCode _emergencyKey = KeyCode.F;
-    [SerializeField] private KeyCode _headLightKey = KeyCode.Tab;
-
-    [Header("Other controls")]
-    [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
-    [SerializeField] private KeyCode _interactKey = KeyCode.E;
-    [SerializeField] private KeyCode _switchViewKey = KeyCode.V;
+    private readonly KeyCode _pauseKey = KeyCode.Escape;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f, 0.6f);
 
     private GameState _gameState;
+    private Controls _controls;
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
 
@@ -73,10 +71,12 @@ public class ClientIO :
     public bool Leave { get; private set; }
 
     public void Initialize(GameState gameState, 
+        Controls controls,
         InteractiveRaycast interactiveRaycast, 
         ViewSwitcher viewSwitcher)
     {
         this._gameState = gameState;
+        this._controls = controls;
         this._interactiveRaycast = interactiveRaycast;
         this._viewSwitcher = viewSwitcher;
 
@@ -97,18 +97,18 @@ public class ClientIO :
         RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
-        MoveForward = Input.GetKey(_forwardKey);
-        MoveBack = Input.GetKey(_backKey);
-        MoveRight = Input.GetKey(_rightKey);
-        MoveLeft = Input.GetKey(_leftKey);
-        IsRunning = Input.GetKey(_runKey);
-        IsJumping = Input.GetKey(_jumpKey);
-        Leave = Input.GetKeyDown(_leaveKey);
+        MoveForward = Input.GetKey(_controls[_forwardKey]);
+        MoveBack = Input.GetKey(_controls[_backKey]);
+        MoveRight = Input.GetKey(_controls[_rightKey]);
+        MoveLeft = Input.GetKey(_controls[_leftKey]);
+        IsRunning = Input.GetKey(_controls[_runKey]);
+        IsJumping = Input.GetKey(_controls[_jumpKey]);
+        Leave = Input.GetKeyDown(_controls[_leaveKey]);
     }
 
     private void HandleCarInput()
     {
-        if (Input.GetKey(_gasKey))
+        if (Input.GetKey(_controls[_gasKey]))
         {
             gasSmoothPressing.Press();
         }
@@ -117,7 +117,7 @@ public class ClientIO :
             gasSmoothPressing.Release();
         }
 
-        if (Input.GetKey(_breakKey))
+        if (Input.GetKey(_controls[_breakKey]))
         {
             breakSmoothPressing.Press();
         }
@@ -128,27 +128,27 @@ public class ClientIO :
 
         gasSmoothPressing.FullPush =
             breakSmoothPressing.FullPush =
-            Input.GetKey(_addPowerKey);
+            Input.GetKey(_controls[_addPowerKey]);
 
         Gas = gasSmoothPressing.Value;
         Break = breakSmoothPressing.Value;
 
-        var rightSteering = Input.GetKey(_steerRightKey) ?
+        var rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
             Time.deltaTime : 0.0f;
-        var leftSteering = Input.GetKey(_steerLeftKey) ?
+        var leftSteering = Input.GetKey(_controls[_steerLeftKey]) ?
             Time.deltaTime : 0.0f;
         SteerDelta = rightSteering - leftSteering;
 
-        SetDrivingMode = Input.GetKeyDown(_setDrivingModeKey);
-        SetReverseMode = Input.GetKeyDown(_setReverseModeKey);
-        SetParkingMode = Input.GetKeyDown(_setParkingModeKey);
-        SetNeutralMode = Input.GetKeyDown(_setNeutralModeKey);
-        LeftTurnSwitch = Input.GetKeyDown(_leftTurnKey);
-        RightTurnSwitch = Input.GetKeyDown(_rightTurnKey);
-        EmergencySwitch = Input.GetKeyDown(_emergencyKey);
-        HeadLightSwitch = Input.GetKeyDown(_headLightKey);
-        EngineSwitch = Input.GetKeyDown(_engineSwitchKey);
-        ParkingBreakSwitch = Input.GetKeyDown(_parkingBreakKey);
+        SetDrivingMode = Input.GetKeyDown(_controls[_setDrivingModeKey]);
+        SetReverseMode = Input.GetKeyDown(_controls[_setReverseModeKey]);
+        SetParkingMode = Input.GetKeyDown(_controls[_setParkingModeKey]);
+        SetNeutralMode = Input.GetKeyDown(_controls[_setNeutralModeKey]);
+        LeftTurnSwitch = Input.GetKeyDown(_controls[_leftTurnKey]);
+        RightTurnSwitch = Input.GetKeyDown(_controls[_rightTurnKey]);
+        EmergencySwitch = Input.GetKeyDown(_controls[_emergencyKey]);
+        HeadLightSwitch = Input.GetKeyDown(_controls[_headLightKey]);
+        EngineSwitch = Input.GetKeyDown(_controls[_engineSwitchKey]);
+        ParkingBreakSwitch = Input.GetKeyDown(_controls[_parkingBreakKey]);
     }
 
     private void HandlePauseSwitch()
@@ -158,9 +158,10 @@ public class ClientIO :
             _gameState.SwitchPauseState();
         }
     }
+
     private void HandleInteract()
     {
-        if (Input.GetKeyDown(_interactKey) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(_controls[_interactKey]) || Input.GetMouseButtonDown(0))
         {
             _interactiveRaycast.TryInteract();
         }
@@ -168,7 +169,7 @@ public class ClientIO :
 
     private void HandleViewSwitching()
     {
-        if (Input.GetKeyDown(_switchViewKey))
+        if (Input.GetKeyDown(_controls[_switchViewKey]))
         {
             _viewSwitcher.Switch();
         }

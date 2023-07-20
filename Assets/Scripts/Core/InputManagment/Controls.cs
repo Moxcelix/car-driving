@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.InputManagment
 {
-    public class Controls
+    public class Controls : MonoBehaviour
     {
         [SerializeField] private List<KeyValue> _keyValues;
 
@@ -18,7 +18,7 @@ namespace Core.InputManagment
 
                 if (!query.Any())
                 {
-                    throw new System.ArgumentException("No registered key value.");
+                    throw new System.ArgumentException($"No registered key value: {name}.");
                 }
 
                 return query.First().KeyCode;

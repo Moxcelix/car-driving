@@ -1,5 +1,6 @@
 using Core.Car;
 using Core.GameManagment;
+using Core.InputManagment;
 using Core.Player;
 using Core.Raycasting;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Bootstrap : MonoBehaviour
     private const float c_rayLength = 3.0f;
 
     // Serializable members.
+    [SerializeField] private Controls _controls;
     [SerializeField] private PlayerBody _playerBody;
     [SerializeField] private ClientUI _clientUI;
     [SerializeField] private ClientIO _clientIO;
@@ -50,7 +52,8 @@ public class Bootstrap : MonoBehaviour
         _viewSwitcher.Initialize(_userController);
 
         // Client IO set up.
-        _clientIO.Initialize(_gameState, _interactiveRaycast, _viewSwitcher);
+        _clientIO.Initialize(_gameState, _controls, 
+            _interactiveRaycast, _viewSwitcher);
         _clientUI.Initialize(_gameState, _interactiveRaycast);
     }
 
