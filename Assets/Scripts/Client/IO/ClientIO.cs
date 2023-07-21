@@ -70,9 +70,9 @@ public class ClientIO :
     public bool IsJumping { get; private set; }
     public bool Leave { get; private set; }
 
-    public void Initialize(GameState gameState, 
+    public void Initialize(GameState gameState,
         Controls controls,
-        InteractiveRaycast interactiveRaycast, 
+        InteractiveRaycast interactiveRaycast,
         ViewSwitcher viewSwitcher)
     {
         this._gameState = gameState;

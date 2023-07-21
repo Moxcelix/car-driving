@@ -16,6 +16,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private ClientUI _clientUI;
     [SerializeField] private ClientIO _clientIO;
     [SerializeField] private ViewSwitcher _viewSwitcher;
+    [SerializeField] private InputSettings _inputSettings;
 
     // Non-serialized members.
     private GameState _gameState;
@@ -55,6 +56,9 @@ public class Bootstrap : MonoBehaviour
         _clientIO.Initialize(_gameState, _controls, 
             _interactiveRaycast, _viewSwitcher);
         _clientUI.Initialize(_gameState, _interactiveRaycast);
+
+        // Input settings set up.
+        _inputSettings.Initialize(_controls);
     }
 
     /// <summary>
