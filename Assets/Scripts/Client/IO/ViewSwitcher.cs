@@ -16,6 +16,14 @@ public class ViewSwitcher
         _userController = userController;
     }
 
+    public void Enable(bool state)
+    {
+        for (int i = 0; i < _cameras.Length; i++)
+        {
+            _cameras[i].SetMovable(state);
+        }
+    }
+
     public void Switch()
     {
         _currentCameraIndex++;

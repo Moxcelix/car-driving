@@ -161,7 +161,13 @@ public class ClientIO :
 
     private void HandleInteract()
     {
-        if (Input.GetKeyDown(_controls[_interactKey]) || Input.GetMouseButtonDown(0))
+        if (_gameState.IsPause)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(_controls[_interactKey]) ||
+            Input.GetMouseButtonDown(0))
         {
             _interactiveRaycast.TryInteract();
         }
@@ -169,6 +175,8 @@ public class ClientIO :
 
     private void HandleViewSwitching()
     {
+        _viewSwitcher.Enable(_gameState.IsUnpause);
+
         if (Input.GetKeyDown(_controls[_switchViewKey]))
         {
             _viewSwitcher.Switch();

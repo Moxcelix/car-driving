@@ -100,7 +100,7 @@ namespace Core.Car
             var resistance = GetResistanceForce();
             var wheelsRPM = GetWheelsRPM();
 
-            _transmission.Lock = !_engine.Enabled;
+            _transmission.Lock = !_engine.Enabled || !_breakPedal.IsPressed;
             _frontLeftWheel.TransmitTorque(
                 _transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(

@@ -55,7 +55,8 @@ public class Bootstrap : MonoBehaviour
         // Client IO set up.
         _clientIO.Initialize(_gameState, _controls, 
             _interactiveRaycast, _viewSwitcher);
-        _clientUI.Initialize(_gameState, _interactiveRaycast);
+        _clientUI.Initialize(_gameState, _controls,
+            _interactiveRaycast);
 
         // Input settings set up.
         _inputSettings.Initialize(_controls);
