@@ -17,6 +17,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private ClientIO _clientIO;
     [SerializeField] private ViewSwitcher _viewSwitcher;
     [SerializeField] private InputSettings _inputSettings;
+    [SerializeField] private Help _help;
 
     // Non-serialized members.
     private GameState _gameState;
@@ -60,6 +61,9 @@ public class Bootstrap : MonoBehaviour
 
         // Input settings set up.
         _inputSettings.Initialize(_controls);
+
+        // Help set up.
+        _help.Initialize(_controls);
     }
 
     /// <summary>

@@ -37,7 +37,7 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
-    private readonly SmoothPressing breakSmoothPressing = new(1f, 5.0f, 0.6f);
+    private readonly SmoothPressing breakSmoothPressing = new(1f, 1.5f, 0.6f);
 
     private GameState _gameState;
     private Controls _controls;

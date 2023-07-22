@@ -34,7 +34,8 @@ namespace Core.Car
 
         public bool Lock { get; set; }
         public TransmissionMode Mode { get; private set; }
-        public float Torque { get; private set; }
+        public float Torque
+        { get; private set; }
         public float RPM { get; private set; }
         public float Load { get; private set; }
         public float Break { get; private set; }
