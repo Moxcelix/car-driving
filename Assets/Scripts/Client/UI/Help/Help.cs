@@ -7,6 +7,10 @@ public class Help : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _carInstructionText;
     [SerializeField] private TextMeshProUGUI _engineInstructionText;
     [SerializeField] private TextMeshProUGUI _transmissionInstructionText;
+    [SerializeField] private TextMeshProUGUI _lightingInstructionText;
+    [SerializeField] private TextMeshProUGUI _startingInstructionText;
+    [SerializeField] private TextMeshProUGUI _maneuveringInstructionText;
+    [SerializeField] private TextMeshProUGUI _endingInstructionText;
 
     private Controls _controls;
 
@@ -17,14 +21,68 @@ public class Help : MonoBehaviour
 
     private void Update()
     {
-        _carInstructionText.text = GetCarInstruction() + "\n ";
-        _engineInstructionText.text = GetEngineInstruction() + "\n ";
-        _transmissionInstructionText.text = GetTransmissionInstruction() + "\n ";
+        _carInstructionText.text = "\t" + GetCarInstruction() + "\n ";
+        _engineInstructionText.text = "\t" + GetEngineInstruction() + "\n ";
+        _transmissionInstructionText.text = "\t" + GetTransmissionInstruction() + "\n ";
+        _lightingInstructionText.text = "\t" + GetLightingInstruction() + "\n ";
+        _startingInstructionText.text = "\t" + GetStartingInstruction() + "\n ";
+        _maneuveringInstructionText.text = "\t" + GetManeuveringInstruction() + "\n ";
+        _endingInstructionText.text = "\t" + GetEndingInstruction() + "\n ";
+    }
+
+    private string GetEndingInstruction()
+    {
+        return
+            $"Чтобы закончить движение, нужно полностью остановить автомобиль " +
+            $"с помощью педали тормоза [{_controls["break"]}]. Затем, не " +
+            $"отпуская тормоз, перевести коробку передач в положение P " +
+            $"[{_controls["parking"]}]. Pекомендуется поднять стояночный " +
+            $"тормоз [{_controls["parking_break"]}]. После чего можно отпустить педаль " +
+            $"тормоза. В случае необходимости можно заглушить двигатель " +
+            $"[{_controls["ignition"]}].";
+    }
+
+    private string GetLightingInstruction()
+    {
+        return
+            $"Габаритные огни и фары ближнего света включаются автоматически с " +
+            $"запуском двигателя [{_controls["ignition"]}]. Чтобы включить " +
+            $"дальний свет фар, нужно нажать [{_controls["head_light"]}]. " +
+            $"Чтобы включить левый указатель " +
+            $"поворота, нужно нажать [{_controls["left_blinker"]}], чтобы включить правый – " +
+            $"[{_controls["right_blinker"]}]. Чтобы включить аварийную сигнализацию, " +
+            $"используется клавиша [{_controls["emergency"]}].";
+    }
+
+    private string GetStartingInstruction()
+    {
+        return 
+            $"Перед началом движения рекомендуется включить левый указатель поворота " +
+            $"[{_controls["left_blinker"]}]. Нужно опустить ручной тормоз, нажав " +
+            $"[{_controls["parking_break"]}], затем нужно выжать педаль тормоза " +
+            $"[{_controls["break"]}], перевести коробку передач в положение D " +
+            $"[{_controls["driving"]}], отпустить педаль тормоза. После того, как " +
+            $"автомобиль тронется с места, отключить указатель поворота " +
+            $"[{_controls["left_blinker"]}]. Для ускорения следует нажать педаль газа " +
+            $"[{_controls["gas"]}].";
+    }
+
+    private string GetManeuveringInstruction()
+    {
+        return 
+            $"Для управлением скоростью и направлением автомобиля используются " +
+            $"педали тормоза и газа и руль, соответсвенно.  Чтобы тормозить, нужно " +
+            $"нажать и удерживать [{_controls["break"]}]. Чтобы набрать скорость, " +
+            $"нужно нажать и удерживать [{_controls["gas"]}]. Для вращения руля " +
+            $"вправо следует удерживать [{_controls["right_steer"]}], для врещения " +
+            $"руля влево - [{_controls["left_steer"]}]. Чтобы нажать педаль сильнее, " +
+            $"следует удерживать [{_controls["power"]}].";
     }
 
     private string GetCarInstruction()
     {
-        return $"Чтобы воспользоваться автомобилем, подойти к выбранной машине, " +
+        return 
+            $"Чтобы воспользоваться автомобилем, подойти к выбранной машине, " +
             $"навести камеру на водительскую дверь. Нажать клавишу " +
             $"[{_controls["interact"]}], чтобы открыть дверь. После открытия двери " +
             $"навести камеру на сиденье, нажать [{_controls["interact"]}], " +
@@ -36,7 +94,7 @@ public class Help : MonoBehaviour
     {
         return
             $"Чтобы завести или заглушить двигатель, " +
-            $"нужно нажать [{_controls["ignition"]}]";
+            $"нужно нажать [{_controls["ignition"]}].";
     }
 
     private string GetTransmissionInstruction()
