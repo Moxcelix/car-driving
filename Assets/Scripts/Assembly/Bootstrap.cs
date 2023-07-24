@@ -18,6 +18,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private ViewSwitcher _viewSwitcher;
     [SerializeField] private InputSettings _inputSettings;
     [SerializeField] private Help _help;
+    [SerializeField] private PauseMenu _pauseMenu;
 
     // Non-serialized members.
     private GameState _gameState;
@@ -54,8 +55,8 @@ public class Bootstrap : MonoBehaviour
         _viewSwitcher.Initialize(_userController);
 
         // Client IO set up.
-        _clientIO.Initialize(_gameState, _controls, 
-            _interactiveRaycast, _viewSwitcher);
+        _clientIO.Initialize(_gameState, _controls,
+            _pauseMenu, _interactiveRaycast, _viewSwitcher);
         _clientUI.Initialize(_gameState, _controls,
             _interactiveRaycast);
 
@@ -64,6 +65,9 @@ public class Bootstrap : MonoBehaviour
 
         // Help set up.
         _help.Initialize(_controls);
+
+        // Pause menu set up.
+        _pauseMenu.Initialize(_gameState);
     }
 
     /// <summary>

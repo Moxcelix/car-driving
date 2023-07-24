@@ -35,11 +35,13 @@ public class ClientIO :
 
     [SerializeField] private float _mouseSensitivity = 2;
     private readonly KeyCode _pauseKey = KeyCode.Escape;
+    private readonly KeyCode _helpKey = KeyCode.F1;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
     private readonly SmoothPressing breakSmoothPressing = new(1f, 1.5f, 0.6f);
 
     private GameState _gameState;
+    private PauseMenu _pauseMenu;
     private Controls _controls;
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
@@ -71,12 +73,13 @@ public class ClientIO :
     public bool Leave { get; private set; }
 
     public void Initialize(GameState gameState,
-        Controls controls,
+        Controls controls, PauseMenu pauseMenu,
         InteractiveRaycast interactiveRaycast,
         ViewSwitcher viewSwitcher)
     {
         this._gameState = gameState;
         this._controls = controls;
+        this._pauseMenu = pauseMenu;
         this._interactiveRaycast = interactiveRaycast;
         this._viewSwitcher = viewSwitcher;
 
@@ -90,6 +93,7 @@ public class ClientIO :
         HandlePlayerInput();
         HandleCarInput();
         HandleInteract();
+        HandleHelpOpen();
     }
 
     private void HandlePlayerInput()
@@ -156,6 +160,15 @@ public class ClientIO :
         if (Input.GetKeyDown(_pauseKey))
         {
             _gameState.SwitchPauseState();
+        }
+    }
+
+    private void HandleHelpOpen()
+    {
+        if (Input.GetKeyDown(_helpKey))
+        {
+            _gameState.Pause();
+            _pauseMenu.OpenHelp();
         }
     }
 
