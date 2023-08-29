@@ -7,7 +7,6 @@ public class UserController
     public CarController CarController { get; private set; }
     public PlayerController PlayerController { get; private set; }
 
-    private readonly GameState _gameState;
 
     public UserController(GameState gameState,
         CarController carController,
@@ -15,8 +14,6 @@ public class UserController
     {
         CarController = carController;
         PlayerController = playerController;
-
-        this._gameState = gameState;
     }
 
     public void SetMoveAbility(bool state)
@@ -27,8 +24,6 @@ public class UserController
 
     public void Update()
     {
-        SetMoveAbility(_gameState.IsUnpause);
-
         CarController.Update();
         PlayerController.Update();
     }

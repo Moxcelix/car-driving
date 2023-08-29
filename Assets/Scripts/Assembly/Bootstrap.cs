@@ -79,5 +79,7 @@ public class Bootstrap : MonoBehaviour
         _clientIO.Update();
         _userController.Update();
         _viewSwitcher.Update();
+
+        _userController.SetMoveAbility(_gameState.IsUnpause);
     }
 }
