@@ -13,31 +13,31 @@ public class DriverSeat : MonoBehaviour
     {
         _seatable = GetComponent<Seatable>();
 
-        _seatable.OnUserSitting += ProvideCarHandling;
-        _seatable.OnUserLeaving += DepriveCarHandling;
+        _seatable.OnAvatarSitting += ProvideCarHandling;
+        _seatable.OnAvatarLeaving += DepriveCarHandling;
 
     }
 
     private void OnDestroy()
     {
-        _seatable.OnUserSitting -= ProvideCarHandling;
-        _seatable.OnUserLeaving -= DepriveCarHandling;
+        _seatable.OnAvatarSitting -= ProvideCarHandling;
+        _seatable.OnAvatarLeaving -= DepriveCarHandling;
     }
 
-    private void ProvideCarHandling(UserController userController)
+    private void ProvideCarHandling(AvatarController avatarController)
     {
-        Debug.Log($"[{DateTime.Now}] -> {userController}" +
+        Debug.Log($"[{DateTime.Now}] -> {avatarController}" +
             $" has access to control {_car}");
 
-        userController.CarController.SetCar(_car);
+        avatarController.CarController.SetCar(_car);
     }
 
-    private void DepriveCarHandling(UserController userController)
+    private void DepriveCarHandling(AvatarController avatarController)
     {
-        Debug.Log($"[{DateTime.Now}] -> {userController}" +
+        Debug.Log($"[{DateTime.Now}] -> {avatarController}" +
             $" has lost to control {_car}");
 
-        userController.CarController.RemoveCar();
+        avatarController.CarController.RemoveCar();
     }
 
 }

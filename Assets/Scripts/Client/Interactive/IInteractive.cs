@@ -2,6 +2,6 @@ public interface IInteractive
 {
     public string Hint { get; }
 
-    public bool IsInteractable (UserController userController);
-    public void Interact(UserController userController);
+    public bool IsInteractable (AvatarController userController);
+    public void Interact(AvatarController userController);
 }

@@ -24,12 +24,12 @@ public class Openable : MonoBehaviour, IInteractive
         _interactive = GetComponent<Core.Car.IOpenable>();
     }
 
-    public bool IsInteractable(UserController userController)
+    public bool IsInteractable(AvatarController userController)
     {
         return _interactive.IsInteractable;
     }
 
-    public void Interact(UserController userController)
+    public void Interact(AvatarController userController)
     {
         Debug.Log($"[{DateTime.Now}] -> {userController} opens {this}.");
 

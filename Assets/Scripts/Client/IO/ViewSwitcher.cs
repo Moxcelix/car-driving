@@ -8,12 +8,12 @@ public class ViewSwitcher
     [SerializeField] private MovableCamera[] _cameras;
     [SerializeField] private int _mainCameraIndex;
 
-    private UserController _userController;
+    private AvatarController _avatarController;
     private int _currentCameraIndex;
 
-    public void Initialize(UserController userController)
+    public void Initialize(AvatarController avatarController)
     {
-        _userController = userController;
+        _avatarController = avatarController;
     }
 
     public void Enable(bool state)
@@ -36,7 +36,7 @@ public class ViewSwitcher
 
     public void Update()
     {
-        if(!_userController.PlayerController.PlayerBody.IsSitting)
+        if(!_avatarController.EntityController.EntityBody.IsSitting)
         {
             _currentCameraIndex = _mainCameraIndex;
         }

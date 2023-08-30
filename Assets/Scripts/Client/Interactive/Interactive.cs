@@ -15,14 +15,14 @@ public class Interactive : MonoBehaviour, IInteractive
         _interactive = GetComponent<Core.Car.IInteractive>();
     }
 
-    public void Interact(UserController userController)
+    public void Interact(AvatarController userController)
     {
         Debug.Log($"[{DateTime.Now}] -> {userController} interacts {this}.");
 
         _interactive.Interact();
     }
 
-    public bool IsInteractable(UserController userController)
+    public bool IsInteractable(AvatarController userController)
     {
         return _interactive.IsInteractable;
     }

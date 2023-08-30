@@ -1,25 +1,25 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Core.Player.SeatPlace))]
+[RequireComponent(typeof(Core.Entity.SeatPlace))]
 [RequireComponent(typeof(Core.Car.Seat))]
 public class Seatable : MonoBehaviour, IInteractive
 {
     [SerializeField] private Core.Car.Door _door;
     [SerializeField] private string _hintText;
 
-    private Core.Player.SeatPlace _playerSeat;
+    private Core.Entity.SeatPlace _playerSeat;
     private Core.Car.Seat _carSeat;
-    private UserController _userControler;
+    private AvatarController _avatarControler;
 
-    public Action<UserController> OnUserSitting;
-    public Action<UserController> OnUserLeaving;
+    public Action<AvatarController> OnAvatarSitting;
+    public Action<AvatarController> OnAvatarLeaving;
 
     public string Hint => _hintText;
 
     private void Awake()
     {
-        _playerSeat = GetComponent<Core.Player.SeatPlace>();
+        _playerSeat = GetComponent<Core.Entity.SeatPlace>();
         _carSeat = GetComponent<Core.Car.Seat>();
 
         _playerSeat.OnSitting += Refresh;
@@ -42,28 +42,28 @@ public class Seatable : MonoBehaviour, IInteractive
     {
         _carSeat.IsTaken = _playerSeat.IsTaken;
 
-        if (_userControler is not null && !_playerSeat.IsTaken)
+        if (_avatarControler is not null && !_playerSeat.IsTaken)
         {
-            OnUserLeaving?.Invoke(_userControler);
+            OnAvatarLeaving?.Invoke(_avatarControler);
 
-            _userControler = null;
+            _avatarControler = null;
         }
     }
 
-    public bool IsInteractable(UserController user)
+    public bool IsInteractable(AvatarController avatarController)
     {
         return _playerSeat.IsInteractable(
-            user.PlayerController.PlayerBody);
+            avatarController.EntityController.EntityBody);
     }
 
-    public void Interact(UserController userController)
+    public void Interact(AvatarController avatarController)
     {
-        if (_playerSeat.Take(userController.
-            PlayerController.PlayerBody))
+        if (_playerSeat.Take(avatarController.
+            EntityController.EntityBody))
         {
-            _userControler = userController;
+            _avatarControler = avatarController;
 
-            OnUserSitting?.Invoke(_userControler);
+            OnAvatarSitting?.Invoke(_avatarControler);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class ClientIO :
     Core.Car.IControls,
-    Core.Player.IControls
+    Core.Entity.IControls
 {
     private readonly string _forwardKey = "forward";
     private readonly string _backKey = "back";

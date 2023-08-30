@@ -1,30 +1,30 @@
-namespace Core.Player
+namespace Core.Entity
 {
-    public class PlayerController
+    public class EntityController
     {
         private readonly IControls _controls;
 
-        private PlayerBody _playerBody;
+        private EntityBody _entityBody;
 
         public bool IsAvailable { get; set; }
 
-        public PlayerBody PlayerBody => _playerBody;
+        public EntityBody EntityBody => _entityBody;
 
-        public PlayerController(IControls controls)
+        public EntityController(IControls controls)
         {
             this._controls = controls;
 
             IsAvailable = true;
         }
 
-        public void SetPlayerBody(PlayerBody playerBody)
+        public void SetEntityBody(EntityBody playerBody)
         {
-            this._playerBody = playerBody;
+            this._entityBody = playerBody;
         }
 
         public void Update()
         {
-            if(_playerBody == null) return;
+            if(_entityBody == null) return;
 
             var forward = IsAvailable && _controls.MoveForward ?
                 Movement.POSITIVE :
@@ -45,21 +45,21 @@ namespace Core.Player
             var horizontal = (Movement)((int)right + (int)left);
             var vertical = (Movement)((int)forward + (int)back);
 
-            _playerBody.Move(horizontal, vertical);
+            _entityBody.Move(horizontal, vertical);
 
-            _playerBody.IsRunning = IsAvailable && _controls.IsRunning;
-            _playerBody.IsJumping = IsAvailable && _controls.IsJumping;
+            _entityBody.IsRunning = IsAvailable && _controls.IsRunning;
+            _entityBody.IsJumping = IsAvailable && _controls.IsJumping;
 
             var rotationDelta = new UnityEngine.Vector3(
                 IsAvailable ? _controls.RotationDeltaX : 0.0f,
                 IsAvailable ? _controls.RotationDeltaY : 0.0f
             );
 
-            _playerBody.UpdateView(rotationDelta);
+            _entityBody.UpdateView(rotationDelta);
 
             if (IsAvailable && _controls.Leave)
             {
-                _playerBody.IsSitting = false;
+                _entityBody.IsSitting = false;
             }
         }
     }

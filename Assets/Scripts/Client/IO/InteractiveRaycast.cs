@@ -2,7 +2,7 @@ using Core.Raycasting;
 
 public class InteractiveRaycast
 {
-    private readonly UserController _userController;
+    private readonly AvatarController _userController;
     private readonly Raycaster _raycaster;
 
     private IInteractive _interactive;
@@ -11,7 +11,7 @@ public class InteractiveRaycast
     public bool IsFocused { get; private set; }
 
     public InteractiveRaycast(Raycaster raycaster,
-        UserController userController)
+        AvatarController userController)
     {
         _userController = userController;
         _raycaster = raycaster;

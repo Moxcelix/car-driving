@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Core.Player
+namespace Core.Entity
 {
     public class SeatPlace : MonoBehaviour
     {

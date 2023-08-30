@@ -1,7 +1,7 @@
 using Core.Car;
 using Core.GameManagment;
 using Core.InputManagment;
-using Core.Player;
+using Core.Entity;
 using Core.Raycasting;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class Bootstrap : MonoBehaviour
 
     // Serializable members.
     [SerializeField] private Controls _controls;
-    [SerializeField] private PlayerBody _playerBody;
+    [SerializeField] private EntityBody _playerBody;
     [SerializeField] private ClientUI _clientUI;
     [SerializeField] private ClientIO _clientIO;
     [SerializeField] private ViewSwitcher _viewSwitcher;
@@ -22,7 +22,7 @@ public class Bootstrap : MonoBehaviour
 
     // Non-serialized members.
     private GameState _gameState;
-    private UserController _userController;
+    private AvatarController _avatarController;
     private InteractiveRaycast _interactiveRaycast;
 
     /// <summary>
@@ -32,8 +32,8 @@ public class Bootstrap : MonoBehaviour
     {
         // User Controller data.
         var carController = new CarController(_clientIO);
-        var playerController = new PlayerController(_clientIO);
-        playerController.SetPlayerBody(_playerBody);
+        var entityController = new EntityController(_clientIO);
+        entityController.SetEntityBody(_playerBody);
 
         // Client IO data.
         var rayCaster = new Raycaster(
@@ -42,17 +42,17 @@ public class Bootstrap : MonoBehaviour
         // Game state set up.
         _gameState = new GameState();
 
-        // User controller set up.
-        _userController = new UserController( 
-            _gameState, carController, playerController);
-        _userController.SetMoveAbility(true);
+        // User's avatar controller set up.
+        _avatarController = new AvatarController(
+            carController, entityController);
+        _avatarController.SetMoveAbility(true);
 
         // Interactive raycasting set up.
-        _interactiveRaycast = 
-            new InteractiveRaycast(rayCaster, _userController);
+        _interactiveRaycast =
+            new InteractiveRaycast(rayCaster, _avatarController);
 
         // View switcher set up.
-        _viewSwitcher.Initialize(_userController);
+        _viewSwitcher.Initialize(_avatarController);
 
         // Client IO set up.
         _clientIO.Initialize(_gameState, _controls,
@@ -77,9 +77,9 @@ public class Bootstrap : MonoBehaviour
     {
         _interactiveRaycast.Update();
         _clientIO.Update();
-        _userController.Update();
+        _avatarController.Update();
         _viewSwitcher.Update();
 
-        _userController.SetMoveAbility(_gameState.IsUnpause);
+        _avatarController.SetMoveAbility(_gameState.IsUnpause);
     }
 }

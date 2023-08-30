@@ -1,4 +1,4 @@
-namespace Core.Player
+namespace Core.Entity
 {
     public enum Movement : int
     {
