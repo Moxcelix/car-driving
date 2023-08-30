@@ -58,6 +58,11 @@ public class Seatable : MonoBehaviour, IInteractive
 
     public void Interact(AvatarController avatarController)
     {
+        if (_carSeat.IsTaken)
+        {
+            return;
+        }
+
         if (_playerSeat.Take(avatarController.
             EntityController.EntityBody))
         {

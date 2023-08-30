@@ -47,6 +47,7 @@ namespace Core.Entity
             if (IsLocked)
             {
                 _sitting.SitDown(_placePoint);
+
                 return;
             }
 
