@@ -1,15 +1,7 @@
 namespace Core.Car
 {
-    public enum BlinkerState
-    {
-        None,
-        Left,
-        Rigth
-    }
-
     public interface IControls
     {
-        
         public float Gas { get; }
         public float Break { get; }
         public float SteerDelta { get; }
