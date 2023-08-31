@@ -43,8 +43,6 @@ namespace Core.Car
             _car.SteeringWheel.Steer(_controls.SteerDelta);
             _car.Transmission.SwitchMode(_controls.TransmissionMode);
             _car.ParkingBreak.Switch(_controls.ParkingBreakSwitch);
-            //_car.TurnLights.SwitchLeft(_controls.BlinkerState == BlinkerState.Left);
-            //_car.TurnLights.SwitchRight(_controls.BlinkerState == BlinkerState.Rigth);
             _car.TurnLights.SwitchBlinker(_controls.BlinkerState);
             _car.TurnLights.SwitchEmergency(_controls.EmergencySwitch);
             _car.HeadLights.SwitchHighLight(_controls.HighLightSwitch);
