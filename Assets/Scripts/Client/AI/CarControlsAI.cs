@@ -10,52 +10,34 @@ public class CarControlsAI : IControls
 
     public float SteerDelta { get; private set; }
 
-    public bool SetDrivingMode { get; private set; }
-
-    public bool SetParkingMode { get; private set; }
-
-    public bool SetReverseMode { get; private set; }
-
-    public bool SetNeutralMode { get; private set; }
-
-    public bool EngineSwitch { get; private set; }
-
     public bool ParkingBreakSwitch { get; private set; }
 
     public bool EmergencySwitch { get; private set; }
 
-    public bool LeftTurnSwitch { get; private set; }
+    public bool HighLightSwitch { get; private set; }
 
-    public bool RightTurnSwitch { get; private set; }
+    public bool EngineState { get; private set; }
 
-    public bool HeadLightSwitch { get; private set; }
+    public TransmissionMode TransmissionMode { get; private set; }
+
+    public BlinkerState BlinkerState { get; private set; }
 
     public IEnumerator TESTAI()
     {
-        EngineSwitch = true;
-
-        yield return new WaitForEndOfFrame();
-
-        EngineSwitch = false;
+        EngineState = true;
         Break = 1;
-        ParkingBreakSwitch = true;
+        ParkingBreakSwitch = false;
         SteerDelta = 0;
 
-        yield return new WaitForEndOfFrame();
-
-        ParkingBreakSwitch = false;
-
         yield return new WaitForSeconds(2.0f);
 
-        SetDrivingMode = true;
+        TransmissionMode = TransmissionMode.DRIVING;
 
         yield return new WaitForSeconds(2.0f);
-
-        SetDrivingMode = false;
 
         float t = 0.0f;
 
-        while (t < 1.0f) 
+        while (t < 1.0f)
         {
             t += 0.02f;
 

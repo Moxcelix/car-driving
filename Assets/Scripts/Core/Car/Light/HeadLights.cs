@@ -27,13 +27,9 @@ namespace Core.Car
             _highLight.SetLight(State == HeadLightState.HIGH);
         }
 
-        public void Switch()
+        public void SwitchHighLight(bool state)
         {
-            var state = (int)State;
-            var lastState = Enum.GetValues(typeof(HeadLightState)).
-                Cast<int>().Last();
-
-            State = (HeadLightState)((state + 1) % (lastState + 1));
+            State = state ? HeadLightState.HIGH : HeadLightState.DIPPED;
         }
     }
 }

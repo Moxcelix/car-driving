@@ -41,56 +41,14 @@ namespace Core.Car
             _car.GasPedal.Value = _controls.Gas;
             _car.BreakPedal.Value = _controls.Break;
             _car.SteeringWheel.Steer(_controls.SteerDelta);
-
-            if (_controls.SetDrivingMode)
-            {
-                _car.Transmission.SwitchMode(TransmissionMode.DRIVING);
-            }
-
-            if (_controls.SetParkingMode)
-            {
-                _car.Transmission.SwitchMode(TransmissionMode.PARKING);
-            }
-
-            if (_controls.SetReverseMode)
-            {
-                _car.Transmission.SwitchMode(TransmissionMode.REVERSE);
-            }
-
-            if (_controls.SetNeutralMode)
-            {
-                _car.Transmission.SwitchMode(TransmissionMode.NEUTRAL);
-            }
-
-            if (_controls.ParkingBreakSwitch)
-            {
-                _car.ParkingBreak.Switch();
-            }
-
-            if (_controls.LeftTurnSwitch)
-            {
-                _car.TurnLights.SwitchLeft();
-            }
-
-            if (_controls.RightTurnSwitch)
-            {
-                _car.TurnLights.SwitchRight();
-            }
-
-            if (_controls.EmergencySwitch)
-            {
-                _car.TurnLights.SwitchEmergency();
-            }
-
-            if (_controls.HeadLightSwitch)
-            {
-                _car.HeadLights.Switch();
-            }
-
-            if (_controls.EngineSwitch)
-            {
-                _car.Engine.Starter.SwitchState();
-            }
+            _car.Transmission.SwitchMode(_controls.TransmissionMode);
+            _car.ParkingBreak.Switch(_controls.ParkingBreakSwitch);
+            //_car.TurnLights.SwitchLeft(_controls.BlinkerState == BlinkerState.Left);
+            //_car.TurnLights.SwitchRight(_controls.BlinkerState == BlinkerState.Rigth);
+            _car.TurnLights.SwitchBlinker(_controls.BlinkerState);
+            _car.TurnLights.SwitchEmergency(_controls.EmergencySwitch);
+            _car.HeadLights.SwitchHighLight(_controls.HighLightSwitch);
+            _car.Engine.Starter.SwitchState(_controls.EngineState);
         }
     }
 }

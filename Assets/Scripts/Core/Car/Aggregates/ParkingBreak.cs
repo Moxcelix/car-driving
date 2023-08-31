@@ -45,18 +45,21 @@ namespace Core.Car
             Break = State == ParkingBreakState.LOWERED ? 0.0f : 1.0f;
         }
 
-        public void Switch()
+        public void Switch(bool isUp)
         {
-            switch (State)
+            if (isUp)
             {
-                case ParkingBreakState.LOWERED:
+                if (State == ParkingBreakState.LOWERED)
+                {
                     Raise();
-                    break;
-                case ParkingBreakState.RAISED:
+                }
+            }
+            else 
+            {
+                if (State == ParkingBreakState.RAISED)
+                {
                     Lower();
-                    break;
-                default:
-                    break;
+                }
             }
         }
 

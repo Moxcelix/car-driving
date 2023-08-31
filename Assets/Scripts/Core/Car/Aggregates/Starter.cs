@@ -22,7 +22,7 @@ namespace Core.Car
 
         public EngineState State { get; private set; } = EngineState.STOPED;
         public float RPMValue => _runningValue;
-        public bool IsStarting => 
+        public bool IsStarting =>
             State == EngineState.STARTED &&
             _runningTransition > 0.0f &&
             _runningTransition < 1.0f;
@@ -31,6 +31,11 @@ namespace Core.Car
 
         public void SetState(EngineState state)
         {
+            if (State == state)
+            {
+                return;
+            }
+
             if (_runningTransition > 0.0f &&
                 _runningTransition < 1.0f)
             {
@@ -42,14 +47,11 @@ namespace Core.Car
             OnChangeState?.Invoke(State);
         }
 
-        public void SwitchState()
+        public void SwitchState(bool state)
         {
-            var state = 
-                State == EngineState.STARTED ?
-                EngineState.STOPED:
-                EngineState.STARTED;
-
-            SetState(state);
+            SetState(state ?
+                EngineState.STARTED :
+                EngineState.STOPED);
         }
 
         public void Update()

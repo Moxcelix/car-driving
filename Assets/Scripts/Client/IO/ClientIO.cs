@@ -1,3 +1,4 @@
+using Core.Car;
 using Core.GameManagment;
 using Core.InputManagment;
 using System;
@@ -47,30 +48,44 @@ public class ClientIO :
     private ViewSwitcher _viewSwitcher;
 
     // Car controls.
-    public float Gas { get; private set; }
-    public float Break { get; private set; }
-    public float SteerDelta { get; private set; }
-    public bool SetDrivingMode { get; private set; }
-    public bool SetParkingMode { get; private set; }
-    public bool SetReverseMode { get; private set; }
-    public bool SetNeutralMode { get; private set; }
-    public bool EngineSwitch { get; private set; }
-    public bool ParkingBreakSwitch { get; private set; }
-    public bool EmergencySwitch { get; private set; }
-    public bool LeftTurnSwitch { get; private set; }
-    public bool RightTurnSwitch { get; private set; }
-    public bool HeadLightSwitch { get; private set; }
+    public float Gas { get; private set; } = 0;
+
+    public float Break { get; private set; } = 0;
+
+    public float SteerDelta { get; private set; } = 0;
+
+    public bool ParkingBreakSwitch { get; private set; } = true;
+
+    public bool EmergencySwitch { get; private set; } = false;
+
+    public bool HighLightSwitch { get; private set; } = false;
+
+    public bool EngineState { get; private set; } = false;
+
+    public TransmissionMode TransmissionMode { get; private set; } = TransmissionMode.PARKING;
+
+    public BlinkerState BlinkerState { get; private set; } = BlinkerState.None;
+
 
     // Character controls.
     public float RotationDeltaX { get; private set; }
+
     public float RotationDeltaY { get; private set; }
+
     public bool MoveForward { get; private set; }
+
     public bool MoveBack { get; private set; }
+
     public bool MoveRight { get; private set; }
+
     public bool MoveLeft { get; private set; }
+
     public bool IsRunning { get; private set; }
+
     public bool IsJumping { get; private set; }
+
     public bool Leave { get; private set; }
+
 
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
@@ -143,16 +158,63 @@ public class ClientIO :
             Time.deltaTime : 0.0f;
         SteerDelta = rightSteering - leftSteering;
 
-        SetDrivingMode = Input.GetKeyDown(_controls[_setDrivingModeKey]);
-        SetReverseMode = Input.GetKeyDown(_controls[_setReverseModeKey]);
-        SetParkingMode = Input.GetKeyDown(_controls[_setParkingModeKey]);
-        SetNeutralMode = Input.GetKeyDown(_controls[_setNeutralModeKey]);
-        LeftTurnSwitch = Input.GetKeyDown(_controls[_leftTurnKey]);
-        RightTurnSwitch = Input.GetKeyDown(_controls[_rightTurnKey]);
-        EmergencySwitch = Input.GetKeyDown(_controls[_emergencyKey]);
-        HeadLightSwitch = Input.GetKeyDown(_controls[_headLightKey]);
-        EngineSwitch = Input.GetKeyDown(_controls[_engineSwitchKey]);
-        ParkingBreakSwitch = Input.GetKeyDown(_controls[_parkingBreakKey]);
+        if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
+        {
+            TransmissionMode = TransmissionMode.DRIVING;
+        }
+
+        if (Input.GetKeyDown(_controls[_setReverseModeKey]))
+        {
+            TransmissionMode = TransmissionMode.REVERSE;
+        }
+
+        if (Input.GetKeyDown(_controls[_setParkingModeKey]))
+        {
+            TransmissionMode = TransmissionMode.PARKING;
+        }
+
+        if (Input.GetKeyDown(_controls[_setNeutralModeKey]))
+        {
+            TransmissionMode = TransmissionMode.NEUTRAL;
+        }
+
+        // Toggle-sus
+        void Toggle(BlinkerState state)
+        {
+            BlinkerState =
+                BlinkerState == state ?
+                BlinkerState.None : state;
+        }
+
+        if (Input.GetKeyDown(_controls[_leftTurnKey]))
+        {
+            Toggle(BlinkerState.Left);
+        }
+
+        if (Input.GetKeyDown(_controls[_rightTurnKey]))
+        {
+            Toggle(BlinkerState.Rigth);
+        }
+
+        if (Input.GetKeyDown(_controls[_emergencyKey]))
+        {
+            EmergencySwitch = !EmergencySwitch;
+        }
+
+        if (Input.GetKeyDown(_controls[_headLightKey]))
+        {
+            HighLightSwitch = !HighLightSwitch;
+        }
+
+        if (Input.GetKeyDown(_controls[_engineSwitchKey]))
+        {
+            EngineState = !EngineState;
+        }
+
+        if (Input.GetKeyDown(_controls[_parkingBreakKey]))
+        {
+            ParkingBreakSwitch = !ParkingBreakSwitch;
+        }
     }
 
     private void HandlePauseSwitch()

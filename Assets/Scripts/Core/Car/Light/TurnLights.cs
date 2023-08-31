@@ -7,7 +7,7 @@ namespace Core.Car
     public class TurnLights
     {
         [Flags]
-        public enum State
+        private enum LightState
         {
             NONE = 0,
             LEFT = 1,
@@ -22,13 +22,13 @@ namespace Core.Car
         private float _turnLightsPhasa = 0;
         private bool _blinkState = false;
 
-        public State LightState { get; private set; }
+        private LightState _lightState = LightState.NONE;
 
         public Action<bool> OnBlinkerSwitch;
 
         public void Update()
         {
-            if(LightState == State.NONE) 
+            if(_lightState == LightState.NONE) 
             {
                 ClearPhasa();
             }
@@ -38,39 +38,35 @@ namespace Core.Car
                 SetBlinkState((int)_turnLightsPhasa % 2 == 0);
             }
 
-            ControlFlashing(_rightLights, State.RIGHT);
-            ControlFlashing(_leftLights, State.LEFT);
+            ControlFlashing(_rightLights, LightState.RIGHT);
+            ControlFlashing(_leftLights, LightState.LEFT);
         }
 
-        public void SwitchLeft()
+        public void SwitchBlinker(BlinkerState blinkerState)
         {
-            if (State.RIGHT == (State.RIGHT & LightState))
+
+            _lightState = (LightState)blinkerState | (_lightState & LightState.BOTH);
+        }
+
+        public void SwitchEmergency(bool state)
+        {
+            if (StateEquals(state, LightState.BOTH))
             {
-                LightState ^= State.RIGHT;
+                return;
             }
 
-            LightState ^= State.LEFT;
+            _lightState ^= LightState.BOTH;
         }
 
-        public void SwitchRight()
+        private bool StateEquals(bool turnState, LightState targetState)
         {
-            if (State.LEFT == (State.LEFT & LightState))
-            {
-                LightState ^= State.LEFT;
-            }
-
-            LightState ^= State.RIGHT;
+            return turnState == ((_lightState & targetState) == targetState);
         }
 
-        public void SwitchEmergency()
+        private void ControlFlashing(LightGroup lightGroup, LightState state)
         {
-            LightState ^= State.BOTH;
-        }
-
-        private void ControlFlashing(LightGroup lightGroup, State state)
-        {
-            if ((LightState & state) == state ||
-                (LightState & State.BOTH) == State.BOTH)
+            if ((_lightState & state) == state ||
+                (_lightState & LightState.BOTH) == LightState.BOTH)
             {
                 Flashing(lightGroup);
             }
