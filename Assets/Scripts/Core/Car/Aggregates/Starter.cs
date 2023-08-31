@@ -36,12 +36,6 @@ namespace Core.Car
                 return;
             }
 
-            if (_runningTransition > 0.0f &&
-                _runningTransition < 1.0f)
-            {
-                return;
-            }
-
             State = state;
 
             OnChangeState?.Invoke(State);

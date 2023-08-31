@@ -47,6 +47,8 @@ public class EngineSound
     {
         if (state == EngineState.STOPED)
         {
+            _audioSource.Stop();
+
             return;
         }
 
