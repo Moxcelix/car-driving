@@ -6,15 +6,6 @@ namespace Core.Car
     [Serializable]
     public class TurnLights
     {
-        [Flags]
-        private enum LightState
-        {
-            NONE = 0,
-            LEFT = 1,
-            RIGHT = 2,
-            BOTH = 4
-        }
-
         [SerializeField] private LightGroup _leftLights;
         [SerializeField] private LightGroup _rightLights;
 
@@ -22,13 +13,14 @@ namespace Core.Car
         private float _turnLightsPhasa = 0;
         private bool _blinkState = false;
 
-        private LightState _lightState = LightState.NONE;
-
         public Action<bool> OnBlinkerSwitch;
+
+        private BlinkerState _blinkerState = BlinkerState.None;
+        private bool _emergencyState = false;
 
         public void Update()
         {
-            if(_lightState == LightState.NONE) 
+            if(_blinkerState == BlinkerState.None && !_emergencyState) 
             {
                 ClearPhasa();
             }
@@ -38,35 +30,23 @@ namespace Core.Car
                 SetBlinkState((int)_turnLightsPhasa % 2 == 0);
             }
 
-            ControlFlashing(_rightLights, LightState.RIGHT);
-            ControlFlashing(_leftLights, LightState.LEFT);
+            ControlFlashing(_rightLights, BlinkerState.Rigth);
+            ControlFlashing(_leftLights, BlinkerState.Left);
         }
 
         public void SwitchBlinker(BlinkerState blinkerState)
         {
-
-            _lightState = (LightState)blinkerState | (_lightState & LightState.BOTH);
+            _blinkerState = blinkerState;
         }
 
         public void SwitchEmergency(bool state)
         {
-            if (StateEquals(state, LightState.BOTH))
-            {
-                return;
-            }
-
-            _lightState ^= LightState.BOTH;
+            _emergencyState = state;
         }
 
-        private bool StateEquals(bool turnState, LightState targetState)
+        private void ControlFlashing(LightGroup lightGroup, BlinkerState blinkerState)
         {
-            return turnState == ((_lightState & targetState) == targetState);
-        }
-
-        private void ControlFlashing(LightGroup lightGroup, LightState state)
-        {
-            if ((_lightState & state) == state ||
-                (_lightState & LightState.BOTH) == LightState.BOTH)
+            if (_blinkerState == blinkerState || _emergencyState)
             {
                 Flashing(lightGroup);
             }
