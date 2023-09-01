@@ -11,8 +11,7 @@ public class CarDriverAI : MonoBehaviour
     private void Awake()
     {
         _carControls = new CarControlsAI();
-        _carController = new CarController(_carControls);
-        _carController.SetCar(_car);
+        _carController = new CarController(_carControls, _car);
         _carController.IsAvailable = true;
     }
 

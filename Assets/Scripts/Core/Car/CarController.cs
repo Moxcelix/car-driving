@@ -4,32 +4,18 @@ namespace Core.Car
     {
         private readonly IControls _controls;
 
-        private Car _car;
-
-        public bool IsAvailable { get; set; }
+        private readonly Car _car;
 
         public Car Car => _car;
 
-        public CarController(IControls _controls)
+        public bool IsAvailable { get; set; }
+
+        public CarController(IControls _controls, Car _car)
         {
             this._controls = _controls;
+            this._car = _car;
 
             IsAvailable = true;
-        }
-
-        public void SetCar(Car car)
-        {
-            if(car == null)
-            {
-                throw new System.NullReferenceException();
-            }
-
-            this._car = car;
-        }
-
-        public void RemoveCar()
-        {
-            this._car = null;
         }
 
         public void Update()

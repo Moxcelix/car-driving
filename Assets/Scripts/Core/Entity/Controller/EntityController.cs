@@ -4,22 +4,18 @@ namespace Core.Entity
     {
         private readonly IControls _controls;
 
-        private EntityBody _entityBody;
-
-        public bool IsAvailable { get; set; }
+        private readonly EntityBody _entityBody;
 
         public EntityBody EntityBody => _entityBody;
 
-        public EntityController(IControls controls)
+        public bool IsAvailable { get; set; }
+
+        public EntityController(IControls controls, EntityBody entityBody)
         {
             this._controls = controls;
+            this._entityBody = entityBody;
 
             IsAvailable = true;
-        }
-
-        public void SetEntityBody(EntityBody playerBody)
-        {
-            this._entityBody = playerBody;
         }
 
         public void Update()

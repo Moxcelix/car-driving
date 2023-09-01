@@ -29,7 +29,7 @@ public class DriverSeat : MonoBehaviour
         Debug.Log($"[{DateTime.Now}] -> {avatarController}" +
             $" has access to control {_car}");
 
-        avatarController.CarController.SetCar(_car);
+        avatarController.ProvideCarHandling(_car);
     }
 
     private void DepriveCarHandling(AvatarController avatarController)
@@ -37,7 +37,7 @@ public class DriverSeat : MonoBehaviour
         Debug.Log($"[{DateTime.Now}] -> {avatarController}" +
             $" has lost to control {_car}");
 
-        avatarController.CarController.RemoveCar();
+        avatarController.DepriveCarHandling();
     }
 
 }

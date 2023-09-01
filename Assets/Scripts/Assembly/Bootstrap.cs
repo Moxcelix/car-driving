@@ -30,11 +30,6 @@ public class Bootstrap : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        // User Controller data.
-        var carController = new CarController(_clientIO);
-        var entityController = new EntityController(_clientIO);
-        entityController.SetEntityBody(_playerBody);
-
         // Client IO data.
         var rayCaster = new Raycaster(
             _playerBody.HeadTransform, c_rayLength);
@@ -44,8 +39,9 @@ public class Bootstrap : MonoBehaviour
 
         // User's avatar controller set up.
         _avatarController = new AvatarController(
-            carController, entityController);
-        _avatarController.SetMoveAbility(true);
+            entityControls : _clientIO,
+            carControls: _clientIO);
+        _avatarController.ProvideEntityHandling(_playerBody);
 
         // Interactive raycasting set up.
         _interactiveRaycast =
