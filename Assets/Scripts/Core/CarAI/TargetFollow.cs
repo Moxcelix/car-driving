@@ -9,6 +9,7 @@ namespace Core.CarAI
         private Transform _target;
 
         private readonly float _reachedDistance = 10f;
+        private readonly float _maxAngle = 30.0f;
 
         public float ForwardAmount { get; private set; }
 
@@ -28,8 +29,6 @@ namespace Core.CarAI
             var forwardAmount = 0.0f;
             var turnAmount = 0.0f;
 
-            Debug.Log($"Пожилое расстояние {distance}");
-
             if (distance > _reachedDistance)
             {
                 var directionToMovePosition = (_target.position - _carBody.position).normalized;
@@ -39,7 +38,7 @@ namespace Core.CarAI
                     Vector3.SignedAngle(_carBody.forward, directionToMovePosition, Vector3.up);
 
                 forwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
-                turnAmount = angleToDirection > 0 ? 1.0f : -1.0f;
+                turnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);
             }
 
             ForwardAmount = forwardAmount;

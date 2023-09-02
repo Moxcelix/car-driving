@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class CarControlsAI : IControls
 {
-    private TargetFollow _targetFollow;
+    private readonly TargetFollow _targetFollow;
+
+    private readonly float _steerSpeed = 1f;
+    private readonly Car _car;
 
     public float Gas { get; private set; }
 
@@ -25,9 +28,10 @@ public class CarControlsAI : IControls
 
     public BlinkerState BlinkerState { get; private set; }
 
-    public CarControlsAI(TargetFollow targetFollow)
+    public CarControlsAI(TargetFollow targetFollow, Car car)
     {
         _targetFollow = targetFollow;
+        _car = car;
     }
 
     public IEnumerator TESTAI()
@@ -47,8 +51,17 @@ public class CarControlsAI : IControls
 
         while (true)
         {
-            SteerDelta = _targetFollow.TurnAmount;
-            Gas = Mathf.Abs(_targetFollow.ForwardAmount);
+            SteerDelta =
+                (_targetFollow.TurnAmount - _car.SteeringWheel.SteerAngle / 30.0f) *
+                Time.unscaledDeltaTime * _steerSpeed;
+
+                /*Mathf.Lerp(
+                    SteerDelta,
+                    _targetFollow.TurnAmount,
+                    Time.unscaledDeltaTime * _steerSpeed);*/
+            Gas = Mathf.Abs(_targetFollow.ForwardAmount) * 0.1f;
+
+            Debug.Log($"Steer delta = {_car.SteeringWheel.SteerAngle}");
 
             if(_targetFollow.ForwardAmount < 0 && TransmissionMode == TransmissionMode.DRIVING)
             {
