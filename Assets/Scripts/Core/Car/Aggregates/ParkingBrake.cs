@@ -4,7 +4,7 @@ using System;
 
 namespace Core.Car
 {
-    public enum ParkingBreakState
+    public enum ParkingBrakeState
     {
         RAISED,
         LOWERED,
@@ -12,7 +12,7 @@ namespace Core.Car
         SWITCHING_DOWN
     }
 
-    public class ParkingBreak : MonoBehaviour
+    public class ParkingBrake : MonoBehaviour
     {
         [SerializeField] private Vector3 _startAngle;
         [SerializeField] private Vector3 _endAngle;
@@ -21,49 +21,49 @@ namespace Core.Car
         private Vector3_LinearAnimation _lowerAnimation;
         private Vector3_LinearAnimation _raiseAnimation;
 
-        public float Break { get; private set; }
+        public float Brake { get; private set; }
         public Vector3 StartAngle => _startAngle;
         public Vector3 EndAngle => _endAngle;
-        public ParkingBreakState State { get; private set; }
+        public ParkingBrakeState State { get; private set; }
 
-        public Action<ParkingBreakState> OnBreakSwitch;
+        public Action<ParkingBrakeState> OnBrakeSwitch;
 
         private void Awake()
         {
-            State = ParkingBreakState.RAISED;
+            State = ParkingBrakeState.RAISED;
 
             _lowerAnimation = new(StartAngle, EndAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => SetState(ParkingBreakState.LOWERED));
+                () => SetState(ParkingBrakeState.LOWERED));
             _raiseAnimation = new(EndAngle, StartAngle, _openSpeed,
                 angles => transform.localEulerAngles = angles,
-                () => SetState(ParkingBreakState.RAISED));
+                () => SetState(ParkingBrakeState.RAISED));
         }
 
         private void Update()
         {
-            Break = State == ParkingBreakState.LOWERED ? 0.0f : 1.0f;
+            Brake = State == ParkingBrakeState.LOWERED ? 0.0f : 1.0f;
         }
 
         public void Switch(bool isUp)
         {
             if (isUp)
             {
-                if (State == ParkingBreakState.LOWERED)
+                if (State == ParkingBrakeState.LOWERED)
                 {
                     Raise();
                 }
             }
             else 
             {
-                if (State == ParkingBreakState.RAISED)
+                if (State == ParkingBrakeState.RAISED)
                 {
                     Lower();
                 }
             }
         }
 
-        private void SetState(ParkingBreakState state)
+        private void SetState(ParkingBrakeState state)
         {
             if(State == state)
             {
@@ -72,29 +72,29 @@ namespace Core.Car
 
             State = state;
 
-            OnBreakSwitch?.Invoke(State);
+            OnBrakeSwitch?.Invoke(State);
         }
 
         private void Lower()
         {
-            if (State != ParkingBreakState.RAISED)
+            if (State != ParkingBrakeState.RAISED)
             {
                 return;
             }
 
-            SetState(ParkingBreakState.SWITCHING_DOWN);
+            SetState(ParkingBrakeState.SWITCHING_DOWN);
 
             StartCoroutine(_lowerAnimation.GetAnimationCoroutine());
         }
 
         private void Raise()
         {
-            if (State != ParkingBreakState.LOWERED)
+            if (State != ParkingBrakeState.LOWERED)
             {
                 return;
             }
 
-            SetState(ParkingBreakState.SWITCHING_UP);
+            SetState(ParkingBrakeState.SWITCHING_UP);
 
             StartCoroutine(_raiseAnimation.GetAnimationCoroutine());
         }

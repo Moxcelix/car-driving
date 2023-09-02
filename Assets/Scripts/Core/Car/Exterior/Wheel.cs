@@ -32,7 +32,7 @@ namespace Core.Car
             _collider.motorTorque = force;
         }
 
-        public void Break(float force)
+        public void Brake(float force)
         {
             _collider.brakeTorque = force;
         }

@@ -38,7 +38,7 @@ namespace Core.Car
         { get; private set; }
         public float RPM { get; private set; }
         public float Load { get; private set; }
-        public float Break { get; private set; }
+        public float Brake { get; private set; }
         public int CurrentGear => _currentGear;
 
         public void Initialize()
@@ -88,12 +88,12 @@ namespace Core.Car
 
             UpdateTorque(inputTorque, inputRPM, outputRPM);
             UpdateGearShifting(outputRPM);
-            UpdateBreak();
+            UpdateBrake();
         }
 
-        private void UpdateBreak()
+        private void UpdateBrake()
         {
-            Break = Mode == TransmissionMode.PARKING ? 1.0f : 0.0f;
+            Brake = Mode == TransmissionMode.PARKING ? 1.0f : 0.0f;
         }
 
         private void UpdateTorque(float inputTorque,

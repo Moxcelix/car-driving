@@ -717,7 +717,7 @@ MonoBehaviour:
     _keyCode: 116
   - _name: gas
     _keyCode: 119
-  - _name: break
+  - _name: brake
     _keyCode: 32
   - _name: left_steer
     _keyCode: 97
@@ -731,7 +731,7 @@ MonoBehaviour:
     _keyCode: 117
   - _name: parking
     _keyCode: 112
-  - _name: parking_break
+  - _name: parking_brake
     _keyCode: 114
   - _name: power
     _keyCode: 306

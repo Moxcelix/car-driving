@@ -15,11 +15,11 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     public float Gas { get; private set; }
 
-    public float Break { get; private set; }
+    public float Brake { get; private set; }
 
     public float SteerDelta { get; private set; }
 
-    public bool ParkingBreakSwitch { get; private set; }
+    public bool ParkingBrakeSwitch { get; private set; }
 
     public bool EmergencySwitch { get; private set; }
 
@@ -56,8 +56,8 @@ public class CarDriverAI : MonoBehaviour, IControls
     private IEnumerator TESTAI()
     {
         EngineState = true;
-        Break = 1;
-        ParkingBreakSwitch = false;
+        Brake = 1;
+        ParkingBrakeSwitch = false;
         SteerDelta = 0;
 
         yield return new WaitForSeconds(2.0f);
@@ -66,7 +66,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         yield return new WaitForSeconds(2.0f);
 
-        Break = 0;
+        Brake = 0;
 
         while (true)
         {
@@ -78,24 +78,24 @@ public class CarDriverAI : MonoBehaviour, IControls
 
             if (_targetFollow.ForwardAmount < 0 && TransmissionMode == TransmissionMode.DRIVING)
             {
-                Break = 1;
+                Brake = 1;
 
                 yield return new WaitForSeconds(2.0f);
 
                 TransmissionMode = TransmissionMode.REVERSE;
 
-                Break = 0;
+                Brake = 0;
             }
 
             if (_targetFollow.ForwardAmount >= 0 && TransmissionMode != TransmissionMode.DRIVING)
             {
-                Break = 1;
+                Brake = 1;
 
                 yield return new WaitForSeconds(2.0f);
 
                 TransmissionMode = TransmissionMode.DRIVING;
 
-                Break = 0;
+                Brake = 0;
             }
 
             yield return new WaitForEndOfFrame();

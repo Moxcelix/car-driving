@@ -6702,14 +6702,14 @@ MonoBehaviour:
   _frontLeftWheel: {fileID: 2999128742715924400}
   _rearRightWheel: {fileID: 2999128742713849449}
   _rearLeftWheel: {fileID: 2999128743268032819}
-  _breakForce: 1200
+  _BrakeForce: 1200
   _maxSpeed: 150
   _steeringWheel: {fileID: 2999128743423336540}
   _tachometer: {fileID: 2999128744439697376}
   _speedometer: {fileID: 2999128742621986751}
-  _parkingBreak: {fileID: 6268357643585858183}
+  _parkingBrake: {fileID: 6268357643585858183}
   _gasPedal: {fileID: 6083729377056806400}
-  _breakPedal: {fileID: 7964725488763241511}
+  _BrakePedal: {fileID: 7964725488763241511}
   _turnLights:
     _leftLights:
       _lights:
@@ -7021,7 +7021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _signalLamp: {fileID: 1908558248}
-  _parkingBreak: {fileID: 6268357643585858183}
+  _parkingBrake: {fileID: 6268357643585858183}
 --- !u!114 &66013930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7427,10 +7427,10 @@ MonoBehaviour:
   _transmissionSound:
     _audioSource: {fileID: 558757359}
     _modeShift: {fileID: 8300000, guid: d3aac7a0eca0fe2419bc7d2bccd2c852, type: 3}
-  _parkingBreakSound:
-    _audioSource: {fileID: 558757359}
-    _parkingBreakOn: {fileID: 8300000, guid: 891b2baa746ef42429b6c9c15ebd38f8, type: 3}
-    _parkingBreakOff: {fileID: 8300000, guid: 2256ffb0e946e52479580ba2b99aa06e, type: 3}
+  _parkingBrakeSound:
+    _audioSource: {fileID: 558757357}
+    _parkingBrakeOn: {fileID: 8300000, guid: 891b2baa746ef42429b6c9c15ebd38f8, type: 3}
+    _parkingBrakeOff: {fileID: 8300000, guid: 2256ffb0e946e52479580ba2b99aa06e, type: 3}
   _doorSound:
     _doorSystemAudioSource: {fileID: 558757357}
     _audioSource: {fileID: 558757359}

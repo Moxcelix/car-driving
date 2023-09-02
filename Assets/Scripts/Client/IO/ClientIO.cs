@@ -17,7 +17,7 @@ public class ClientIO :
     private readonly string _runKey = "run";
     private readonly string _leaveKey = "leave";
     private readonly string _gasKey = "gas";
-    private readonly string _breakKey = "break";
+    private readonly string _brakeKey = "brake";
     private readonly string _setDrivingModeKey = "driving";
     private readonly string _setParkingModeKey = "parking";
     private readonly string _setReverseModeKey = "reverse";
@@ -25,7 +25,7 @@ public class ClientIO :
     private readonly string _steerRightKey = "right_steer";
     private readonly string _steerLeftKey = "left_steer";
     private readonly string _engineSwitchKey = "ignition";
-    private readonly string _parkingBreakKey = "parking_break";
+    private readonly string _parkingBrakeKey = "parking_brake";
     private readonly string _addPowerKey = "power";
     private readonly string _leftTurnKey = "left_blinker";
     private readonly string _rightTurnKey = "right_blinker";
@@ -39,7 +39,7 @@ public class ClientIO :
     private readonly KeyCode _helpKey = KeyCode.F1;
 
     private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
-    private readonly SmoothPressing breakSmoothPressing = new(1f, 1.5f, 0.6f);
+    private readonly SmoothPressing BrakeSmoothPressing = new(1f, 1.5f, 0.6f);
 
     private GameState _gameState;
     private PauseMenu _pauseMenu;
@@ -50,11 +50,11 @@ public class ClientIO :
     // Car controls.
     public float Gas { get; private set; } = 0;
 
-    public float Break { get; private set; } = 0;
+    public float Brake { get; private set; } = 0;
 
     public float SteerDelta { get; private set; } = 0;
 
-    public bool ParkingBreakSwitch { get; private set; } = true;
+    public bool ParkingBrakeSwitch { get; private set; } = true;
 
     public bool EmergencySwitch { get; private set; } = false;
 
@@ -136,21 +136,21 @@ public class ClientIO :
             gasSmoothPressing.Release();
         }
 
-        if (Input.GetKey(_controls[_breakKey]))
+        if (Input.GetKey(_controls[_brakeKey]))
         {
-            breakSmoothPressing.Press();
+            BrakeSmoothPressing.Press();
         }
         else
         {
-            breakSmoothPressing.Release();
+            BrakeSmoothPressing.Release();
         }
 
         gasSmoothPressing.FullPush =
-            breakSmoothPressing.FullPush =
+            BrakeSmoothPressing.FullPush =
             Input.GetKey(_controls[_addPowerKey]);
 
         Gas = gasSmoothPressing.Value;
-        Break = breakSmoothPressing.Value;
+        Brake = BrakeSmoothPressing.Value;
 
         var rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
             Time.deltaTime : 0.0f;
@@ -211,9 +211,9 @@ public class ClientIO :
             EngineState = !EngineState;
         }
 
-        if (Input.GetKeyDown(_controls[_parkingBreakKey]))
+        if (Input.GetKeyDown(_controls[_parkingBrakeKey]))
         {
-            ParkingBreakSwitch = !ParkingBreakSwitch;
+            ParkingBrakeSwitch = !ParkingBrakeSwitch;
         }
     }
 

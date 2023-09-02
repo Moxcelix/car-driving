@@ -25,10 +25,10 @@ namespace Core.Car
             if(_car == null) return;
 
             _car.GasPedal.Value = _controls.Gas;
-            _car.BreakPedal.Value = _controls.Break;
+            _car.BrakePedal.Value = _controls.Brake;
             _car.SteeringWheel.Steer(_controls.SteerDelta);
             _car.Transmission.SwitchMode(_controls.TransmissionMode);
-            _car.ParkingBreak.Switch(_controls.ParkingBreakSwitch);
+            _car.ParkingBrake.Switch(_controls.ParkingBrakeSwitch);
             _car.TurnLights.SwitchBlinker(_controls.BlinkerState);
             _car.TurnLights.SwitchEmergency(_controls.EmergencySwitch);
             _car.HeadLights.SwitchHighLight(_controls.HighLightSwitch);

@@ -8,7 +8,7 @@ public class CarSound : MonoBehaviour
     [SerializeField] private EngineSound _engineSound;
     [SerializeField] private BlinkerSound _blinkerSound;
     [SerializeField] private TransmissionSound _transmissionSound;
-    [SerializeField] private ParkingBreakSound _parkingBreakSound;
+    [SerializeField] private ParkingBrakeSound _parkingBrakeSound;
     [SerializeField] private DoorSound _doorSound;
 
     private void Awake()
@@ -16,7 +16,7 @@ public class CarSound : MonoBehaviour
         _engineSound.Initialize(_car.Engine);
         _blinkerSound.Initialize(_car.TurnLights);
         _transmissionSound.Initialize(_car.Transmission);
-        _parkingBreakSound.Initialize(_car.ParkingBreak);
+        _parkingBrakeSound.Initialize(_car.ParkingBrake);
         _doorSound.Initialize();
     }
 
@@ -25,7 +25,7 @@ public class CarSound : MonoBehaviour
         _engineSound.Destroy();
         _blinkerSound.Destroy();
         _transmissionSound.Destroy();
-        _parkingBreakSound.Destroy();
+        _parkingBrakeSound.Destroy();
         _doorSound.Destroy();
     }
 

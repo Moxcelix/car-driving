@@ -1,41 +1,39 @@
 
 using Core.Car;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ParkingBreakSound
+public class ParkingBrakeSound
 {
     [SerializeField] private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip _parkingBreakOn;
-    [SerializeField] private AudioClip _parkingBreakOff;
+    [SerializeField] private AudioClip _parkingBrakeOn;
+    [SerializeField] private AudioClip _parkingBrakeOff;
 
-    private ParkingBreak _parkingBreak;
+    private ParkingBrake _parkingBrake;
 
-    public void Initialize(ParkingBreak parkingBreak)
+    public void Initialize(ParkingBrake parkingBrake)
     {
-        _parkingBreak = parkingBreak;
+        _parkingBrake = parkingBrake;
 
-        _parkingBreak.OnBreakSwitch += PlayParkingBreakSound;
+        _parkingBrake.OnBrakeSwitch += PlayParkingBrakeSound;
     }
 
     public void Destroy()
     {
-        _parkingBreak.OnBreakSwitch -= PlayParkingBreakSound;
+        _parkingBrake.OnBrakeSwitch -= PlayParkingBrakeSound;
     }
 
-    private void PlayParkingBreakSound(ParkingBreakState state)
+    private void PlayParkingBrakeSound(ParkingBrakeState state)
     {
         switch (state)
         {
-            case ParkingBreakState.SWITCHING_UP:
-                _audioSource.PlayOneShot(_parkingBreakOn);
+            case ParkingBrakeState.SWITCHING_UP:
+                _audioSource.PlayOneShot(_parkingBrakeOn);
                 break;
-            case ParkingBreakState.SWITCHING_DOWN:
-                _audioSource.PlayOneShot(_parkingBreakOff);
+            case ParkingBrakeState.SWITCHING_DOWN:
+                _audioSource.PlayOneShot(_parkingBrakeOff);
                 break;
             default:
                 break;

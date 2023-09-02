@@ -12,16 +12,16 @@ namespace Core.Car
         [SerializeField] private Wheel _frontLeftWheel;
         [SerializeField] private Wheel _rearRightWheel;
         [SerializeField] private Wheel _rearLeftWheel;
-        [SerializeField] private float _breakForce;
+        [SerializeField] private float _BrakeForce;
         [SerializeField] private float _maxSpeed;
 
         [Header("Controls")]
         [SerializeField] private SteeringWheel _steeringWheel;
         [SerializeField] private Tachometer _tachometer;
         [SerializeField] private Speedometer _speedometer;
-        [SerializeField] private ParkingBreak _parkingBreak;
+        [SerializeField] private ParkingBrake _parkingBrake;
         [SerializeField] private Pedal _gasPedal;
-        [SerializeField] private Pedal _breakPedal;
+        [SerializeField] private Pedal _BrakePedal;
 
         [Header("Lighting")]
         [SerializeField] private TurnLights _turnLights;
@@ -36,8 +36,8 @@ namespace Core.Car
         private Rigidbody _rigidbody;
 
         public Pedal GasPedal => _gasPedal;
-        public Pedal BreakPedal => _breakPedal;
-        public ParkingBreak ParkingBreak => _parkingBreak;
+        public Pedal BrakePedal => _BrakePedal;
+        public ParkingBrake ParkingBrake => _parkingBrake;
         public SteeringWheel SteeringWheel => _steeringWheel;
         public Engine Engine => _engine;
         public Transmission Transmission => _transmission;
@@ -58,7 +58,7 @@ namespace Core.Car
             HandleSteering();
             HandleEngine();
             HandleDashboard();
-            HandleBreaking();
+            HandleBrakeing();
             HandleLighs();
         }
 
@@ -100,7 +100,7 @@ namespace Core.Car
             var resistance = GetResistanceForce();
             var wheelsRPM = GetWheelsRPM();
 
-            _transmission.Lock = !_engine.Enabled || !_breakPedal.IsPressed;
+            _transmission.Lock = !_engine.Enabled || !_BrakePedal.IsPressed;
             _frontLeftWheel.TransmitTorque(
                 _transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(
@@ -122,20 +122,20 @@ namespace Core.Car
             _tachometer.UpdateValue(_engine.RPM);
         }
 
-        private void HandleBreaking()
+        private void HandleBrakeing()
         {
-            var frontBreakValue =
-                (_breakPedal.Value +
-                _transmission.Break) * _breakForce;
+            var frontBrakeValue =
+                (_BrakePedal.Value +
+                _transmission.Brake) * _BrakeForce;
 
-            var rearBreakValue =
-                (_breakPedal.Value +
-                _parkingBreak.Break) * _breakForce;
+            var rearBrakeValue =
+                (_BrakePedal.Value +
+                _parkingBrake.Brake) * _BrakeForce;
 
-            _frontRightWheel.Break(frontBreakValue);
-            _frontLeftWheel.Break(frontBreakValue);
-            _rearRightWheel.Break(rearBreakValue);
-            _rearLeftWheel.Break(rearBreakValue);
+            _frontRightWheel.Brake(frontBrakeValue);
+            _frontLeftWheel.Brake(frontBrakeValue);
+            _rearRightWheel.Brake(rearBrakeValue);
+            _rearLeftWheel.Brake(rearBrakeValue);
         }
 
         private void HandleLighs()
@@ -148,7 +148,7 @@ namespace Core.Car
 
             _headLights.Update();
             _turnLights.Update();
-            _stopLights.SetLight(BreakPedal.Value > 0);
+            _stopLights.SetLight(BrakePedal.Value > 0);
             _backLights.SetLight(
                 _engine.Enabled &&
                 Transmission.Mode == TransmissionMode.REVERSE);
