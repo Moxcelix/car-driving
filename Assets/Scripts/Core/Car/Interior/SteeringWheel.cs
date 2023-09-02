@@ -10,6 +10,8 @@ namespace Core.Car
 
         public float SteerAngle { get; private set; } = 0;
 
+        public float TurnAmount => SteerAngle / c_maxSteerAngle;
+
         private void Update()
         {
             _wheelTransform.localEulerAngles = 

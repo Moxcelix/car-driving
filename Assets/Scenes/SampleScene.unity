@@ -2140,6 +2140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _car: {fileID: 658211637}
+  _target: {fileID: 1117676125}
 --- !u!114 &658211637 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1392951274247384964, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
@@ -3908,6 +3909,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuSwitcher: {fileID: 1060450250}
+--- !u!4 &1117676125 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1738127090978469169, guid: 91f9d9306321b5b4185ed4cd2e3abec4, type: 3}
+  m_PrefabInstance: {fileID: 1612229669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1119622136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3959,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119622136}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1119622139
 Camera:
   m_ObjectHideFlags: 0
