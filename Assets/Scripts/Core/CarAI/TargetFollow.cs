@@ -8,6 +8,8 @@ namespace Core.CarAI
 
         private Transform _target;
 
+        private readonly float _reachedDistance = 10f;
+
         public float ForwardAmount { get; private set; }
 
         public float TurnAmount { get; private set; }
@@ -21,15 +23,24 @@ namespace Core.CarAI
 
         public void Update()
         {
-            var directionToMovePosition = (_target.position - _carBody.position).normalized;
-            var dot = Vector3.Dot(_carBody.forward, directionToMovePosition);
+            var distance = Vector3.Distance(_carBody.position, _target.position);
 
+            var forwardAmount = 0.0f;
+            var turnAmount = 0.0f;
 
-            var angleToDirection =
-                Vector3.SignedAngle(_carBody.forward, directionToMovePosition, Vector3.up);
+            Debug.Log($"Пожилое расстояние {distance}");
 
-            var forwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
-            var turnAmount = angleToDirection > 0 ? 1.0f : -1.0f;
+            if (distance > _reachedDistance)
+            {
+                var directionToMovePosition = (_target.position - _carBody.position).normalized;
+                var dot = Vector3.Dot(_carBody.forward, directionToMovePosition);
+
+                var angleToDirection =
+                    Vector3.SignedAngle(_carBody.forward, directionToMovePosition, Vector3.up);
+
+                forwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
+                turnAmount = angleToDirection > 0 ? 1.0f : -1.0f;
+            }
 
             ForwardAmount = forwardAmount;
             TurnAmount = turnAmount;

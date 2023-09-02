@@ -1,9 +1,12 @@
 using Core.Car;
+using Core.CarAI;
 using System.Collections;
 using UnityEngine;
 
 public class CarControlsAI : IControls
 {
+    private TargetFollow _targetFollow;
+
     public float Gas { get; private set; }
 
     public float Break { get; private set; }
@@ -22,6 +25,11 @@ public class CarControlsAI : IControls
 
     public BlinkerState BlinkerState { get; private set; }
 
+    public CarControlsAI(TargetFollow targetFollow)
+    {
+        _targetFollow = targetFollow;
+    }
+
     public IEnumerator TESTAI()
     {
         EngineState = true;
@@ -35,17 +43,36 @@ public class CarControlsAI : IControls
 
         yield return new WaitForSeconds(2.0f);
 
-        float t = 0.0f;
-
-        while (t < 1.0f)
-        {
-            t += 0.02f;
-
-            SteerDelta = t;
-
-            yield return new WaitForSeconds(0.02f);
-        }
-
         Break = 0;
+
+        while (true)
+        {
+            SteerDelta = _targetFollow.TurnAmount;
+            Gas = Mathf.Abs(_targetFollow.ForwardAmount);
+
+            if(_targetFollow.ForwardAmount < 0 && TransmissionMode == TransmissionMode.DRIVING)
+            {
+                Break = 1;
+
+                yield return new WaitForSeconds(2.0f);
+
+                TransmissionMode = TransmissionMode.REVERSE;
+
+                Break = 0;
+            }
+
+            if (_targetFollow.ForwardAmount >= 0 && TransmissionMode != TransmissionMode.DRIVING)
+            {
+                Break = 1;
+
+                yield return new WaitForSeconds(2.0f);
+
+                TransmissionMode = TransmissionMode.DRIVING;
+
+                Break = 0;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
