@@ -8,37 +8,40 @@ namespace Core.CarAI
 
         private Transform _target;
 
-        private readonly float _reachedDistance = 10f;
         private readonly float _maxAngle = 30.0f;
 
         public float ForwardAmount { get; private set; }
 
         public float TurnAmount { get; private set; }
 
+        public bool TargetReached { get; private set; }
+
         public bool UseReverse { get; set; } = false;
+
 
         public TargetFollow(Transform carBody)
         {
             _carTransform = carBody;
         }
 
-        public void Update()
+        public void Update(float reachedDistance)
         {
             var distance = Vector3.Distance(_carTransform.position, _target.position);
 
-            var forwardAmount = 0.0f;
-            var turnAmount = 0.0f;
-
-            if (distance > _reachedDistance)
-            {
-                var directionToMovePosition = (_target.position - _carTransform.position).normalized;
-                var dot = Vector3.Dot(_carTransform.forward, directionToMovePosition);
-
-                var angleToDirection =
+            var directionToMovePosition = (_target.position - _carTransform.position).normalized;
+            var angleToDirection =
                     Vector3.SignedAngle(_carTransform.forward, directionToMovePosition, Vector3.up);
 
+            var turnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);
+            var forwardAmount = 0.0f;
+
+            TargetReached = distance < reachedDistance;
+
+            if (!TargetReached)
+            {
+                var dot = Vector3.Dot(_carTransform.forward, directionToMovePosition);
+
                 forwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
-                turnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);
             }
 
             ForwardAmount = forwardAmount;

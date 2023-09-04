@@ -17,12 +17,13 @@ namespace Core.CarAI
             _targetFollow = targetFollow;
         }
 
-        public void Update()
+        public void Update(float speed)
         {
-            _targetFollow.Update();
+            _targetFollow.Update(speed * 0.5f + 7.0f);
 
             TurnAmount = _targetFollow.TurnAmount;
-            Acceleration = _targetFollow.ForwardAmount;
+            Brake = _targetFollow.TargetReached ? 1.0f : 0.0f;
+            Acceleration = Brake > 0 ? _targetFollow.ForwardAmount * 0.2f : 0.0f;
         }
     }
 }

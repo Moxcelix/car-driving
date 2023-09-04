@@ -6,10 +6,14 @@ namespace Core.CarAI
     {
         public float TurnAmount { get; }
 
+
         public float ForwardAmount { get; }
+
+
+        public bool TargetReached { get; }  
 
         public void SetTarget(Transform target);
 
-        public void Update();
+        public void Update(float reachedDistance);
     }
 }

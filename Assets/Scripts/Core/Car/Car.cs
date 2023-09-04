@@ -62,6 +62,11 @@ namespace Core.Car
             HandleLighs();
         }
 
+        public float GetSpeed()
+        {
+            return _rigidbody.velocity.magnitude;
+        }
+
         public float GetVelocity()
         {
             var project = Vector3.Project(_rigidbody.velocity,

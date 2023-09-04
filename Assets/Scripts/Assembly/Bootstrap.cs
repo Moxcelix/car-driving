@@ -1,7 +1,6 @@
-using Core.Car;
+using Core.Entity;
 using Core.GameManagment;
 using Core.InputManagment;
-using Core.Entity;
 using Core.Raycasting;
 using UnityEngine;
 
@@ -39,7 +38,7 @@ public class Bootstrap : MonoBehaviour
 
         // User's avatar controller set up.
         _avatarController = new AvatarController(
-            entityControls : _clientIO,
+            entityControls: _clientIO,
             carControls: _clientIO);
         _avatarController.ProvideEntityHandling(_playerBody);
 
