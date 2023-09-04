@@ -1,4 +1,4 @@
-namespace Core.CarAI
+namespace Core.CarAI.Agent
 {
     public class Driver
     {
