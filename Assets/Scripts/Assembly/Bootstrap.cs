@@ -71,8 +71,9 @@ public class Bootstrap : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        _clientIO.Update(Time.deltaTime);
+
         _interactiveRaycast.Update();
-        _clientIO.Update();
         _avatarController.Update();
         _viewSwitcher.Update();
 

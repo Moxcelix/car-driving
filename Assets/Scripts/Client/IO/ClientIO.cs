@@ -38,8 +38,11 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing gasSmoothPressing = new(0.5f, 0.5f, 0.5f);
-    private readonly SmoothPressing BrakeSmoothPressing = new(1f, 1.5f, 0.6f);
+    private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 0.5f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(1f, 1.5f);
+
+    private readonly float _gasMiddleValue = 0.5f;
+    private readonly float _brakeMiddleValue = 0.6f;
 
     private GameState _gameState;
     private PauseMenu _pauseMenu;
@@ -101,12 +104,13 @@ public class ClientIO :
         MouseController.SetVisibility(false);
     }
 
-    public void Update()
+    public void Update(float deltaTime)
     {
+        HandleCarInput(deltaTime);
+
         HandleViewSwitching();
         HandlePauseSwitch();
         HandlePlayerInput();
-        HandleCarInput();
         HandleInteract();
         HandleHelpOpen();
     }
@@ -125,37 +129,35 @@ public class ClientIO :
         Leave = Input.GetKeyDown(_controls[_leaveKey]);
     }
 
-    private void HandleCarInput()
+    private void HandleCarInput(float deltaTime)
     {
+        var fullPush = Input.GetKey(_controls[_addPowerKey]);
+
         if (Input.GetKey(_controls[_gasKey]))
         {
-            gasSmoothPressing.Press();
+            _gasSmoothPressing.Press(fullPush ? 1.0f : _gasMiddleValue, deltaTime);
         }
         else
         {
-            gasSmoothPressing.Release();
+            _gasSmoothPressing.Release(deltaTime);
         }
 
         if (Input.GetKey(_controls[_brakeKey]))
         {
-            BrakeSmoothPressing.Press();
+            _brakeSmoothPressing.Press(fullPush ? 1.0f : _brakeMiddleValue, deltaTime);
         }
         else
         {
-            BrakeSmoothPressing.Release();
+            _brakeSmoothPressing.Release(deltaTime);
         }
 
-        gasSmoothPressing.FullPush =
-            BrakeSmoothPressing.FullPush =
-            Input.GetKey(_controls[_addPowerKey]);
-
-        Gas = gasSmoothPressing.Value;
-        Brake = BrakeSmoothPressing.Value;
+        Gas = _gasSmoothPressing.Value;
+        Brake = _brakeSmoothPressing.Value;
 
         var rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
-            Time.deltaTime : 0.0f;
+            deltaTime : 0.0f;
         var leftSteering = Input.GetKey(_controls[_steerLeftKey]) ?
-            Time.deltaTime : 0.0f;
+            deltaTime : 0.0f;
         SteerDelta = rightSteering - leftSteering;
 
         if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
