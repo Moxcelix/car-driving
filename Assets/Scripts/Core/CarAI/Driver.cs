@@ -1,10 +1,8 @@
-using UnityEngine;
-
 namespace Core.CarAI
 {
     public class Driver
     {
-        private readonly TargetFollow _targetFollow;
+        private readonly ITargetFollow _targetFollow;
 
         public float Acceleration { get; private set; }
 
@@ -14,9 +12,17 @@ namespace Core.CarAI
 
         public float SteerSpeed { get; private set; }
 
-        public Driver(Transform carBody) 
+        public Driver(ITargetFollow targetFollow)
         {
-            _targetFollow = new TargetFollow(carBody);
+            _targetFollow = targetFollow;
+        }
+
+        public void Update()
+        {
+            _targetFollow.Update();
+
+            TurnAmount = _targetFollow.TurnAmount;
+            Acceleration = _targetFollow.ForwardAmount;
         }
     }
 }

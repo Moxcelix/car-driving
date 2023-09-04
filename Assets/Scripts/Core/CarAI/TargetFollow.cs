@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.CarAI
 {
-    public class TargetFollow
+    public class TargetFollow : ITargetFollow
     {
         private readonly Transform _carTransform;
 

@@ -5,13 +5,16 @@ using System.Collections;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
+    private readonly float _steerSpeed = 1f;
+    private readonly SmoothPressing _smoothPressing = new(0.5f, 0.5f);
+
     [SerializeField] private Car _car;
     [SerializeField] private Transform _target;
 
     private CarController _carController;
     private TargetFollow _targetFollow;
+    private Driver _driver;
 
-    private readonly float _steerSpeed = 1f;
 
     public float Gas { get; private set; }
 
@@ -37,8 +40,11 @@ public class CarDriverAI : MonoBehaviour, IControls
         _targetFollow.SetTarget(_target);
         _targetFollow.UseReverse = false;
 
+        _driver = new Driver(_targetFollow);
+
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;
+
     }
 
     private void Start()
@@ -50,7 +56,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private void Update()
     {
         _carController.Update();
-        _targetFollow.Update();
+        _driver.Update();
     }
 
     private IEnumerator TESTAI()
@@ -71,12 +77,12 @@ public class CarDriverAI : MonoBehaviour, IControls
         while (true)
         {
             SteerDelta =
-                (_targetFollow.TurnAmount - _car.SteeringWheel.TurnAmount) *
+                (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
                 Time.unscaledDeltaTime * _steerSpeed;
 
-            Gas = Mathf.Abs(_targetFollow.ForwardAmount) * 0.1f;
+            Gas = Mathf.Abs(_driver.Acceleration) * 0.1f;
 
-            if (_targetFollow.ForwardAmount < 0 && TransmissionMode == TransmissionMode.DRIVING)
+            if (_driver.Acceleration < 0 && TransmissionMode == TransmissionMode.DRIVING)
             {
                 Brake = 1;
 
@@ -87,7 +93,7 @@ public class CarDriverAI : MonoBehaviour, IControls
                 Brake = 0;
             }
 
-            if (_targetFollow.ForwardAmount >= 0 && TransmissionMode != TransmissionMode.DRIVING)
+            if (_driver.Acceleration >= 0 && TransmissionMode != TransmissionMode.DRIVING)
             {
                 Brake = 1;
 
