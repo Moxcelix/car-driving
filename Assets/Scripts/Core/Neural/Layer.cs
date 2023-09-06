@@ -4,22 +4,26 @@ namespace Core.Neural
 {
     public class Layer
     {
-        private readonly int _numberOfInputs; 
+        private readonly int _numberOfInputs;
         private readonly int _numberOfOuputs;
+        private readonly float _learningRate;
 
-        private readonly float[] _outputs; 
+        private readonly float[] _outputs;
         private readonly float[,] _weights;
-        private readonly float[,] _weightsDelta; 
-        private readonly float[] _gamma; 
-        private readonly float[] _error; 
-        private float[] _inputs; 
+        private readonly float[,] _weightsDelta;
+        private readonly float[] _gamma;
+        private readonly float[] _error;
 
-        private static readonly Random s_random = new (); 
+        private float[] _inputs;
 
-        public Layer(int numberOfInputs, int numberOfOuputs)
+        public Layer(
+            int numberOfInputs,
+            int numberOfOuputs,
+            float learningRate = 0.033f)
         {
             this._numberOfInputs = numberOfInputs;
             this._numberOfOuputs = numberOfOuputs;
+            this._learningRate = learningRate;
 
             _outputs = new float[numberOfOuputs];
             _inputs = new float[numberOfInputs];
@@ -27,17 +31,15 @@ namespace Core.Neural
             _weightsDelta = new float[numberOfOuputs, numberOfInputs];
             _gamma = new float[numberOfOuputs];
             _error = new float[numberOfOuputs];
-
-            InitilizeWeights();
         }
 
-        public void InitilizeWeights()
+        public void InitilizeWeights(IWeightProvider weightProvider)
         {
             for (int i = 0; i < _numberOfOuputs; i++)
             {
                 for (int j = 0; j < _numberOfInputs; j++)
                 {
-                    _weights[i, j] = (float)s_random.NextDouble() - 0.5f;
+                    _weights[i, j] = (float)weightProvider.GetWeight(i, j);
                 }
             }
         }
@@ -116,7 +118,7 @@ namespace Core.Neural
             {
                 for (int j = 0; j < _numberOfInputs; j++)
                 {
-                    _weights[i, j] -= _weightsDelta[i, j] * 0.033f;
+                    _weights[i, j] -= _weightsDelta[i, j] * _learningRate;
                 }
             }
         }
