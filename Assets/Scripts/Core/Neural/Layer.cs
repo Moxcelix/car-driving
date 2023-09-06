@@ -16,6 +16,10 @@ namespace Core.Neural
 
         private float[] _inputs;
 
+        public float[] Outputs => _outputs;
+        public float[] Gamma => _gamma;
+        public float[,] Weights => _weights;
+
         public Layer(
             int numberOfInputs,
             int numberOfOuputs,
