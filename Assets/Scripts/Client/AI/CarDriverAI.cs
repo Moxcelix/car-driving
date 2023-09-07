@@ -44,7 +44,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         _targetFollow.SetTarget(_target);
         _targetFollow.UseReverse = true;
 
-        _driver = new Driver(_targetFollow);
+        _driver = new Driver(_targetFollow, null);
 
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;

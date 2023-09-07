@@ -1,10 +1,10 @@
 namespace Core.Neural
 {
-    public class Network
+    public class NeuralNetwork
     {
         private readonly Layer[] _layers; 
 
-        public Network(int[] layer)
+        public NeuralNetwork(int[] layer)
         {
             _layers = new Layer[layer.Length - 1];
 
