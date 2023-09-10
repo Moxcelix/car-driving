@@ -1,24 +1,67 @@
 using Core.CarAI.Navigation;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace Core.CarAI
 {
     public class PathFinder
     {
-        public void CreatePath(Node startNode, Node endNode)
+        /// <summary>
+        /// Temporarily returns the length of the shortest path.
+        /// </summary>
+        /// <param name="startNode"></param>
+        /// <param name="endNode"></param>
+        /// <returns></returns>
+        public float CreatePath(Node startNode, Node endNode)
         {
-            var queue = new List<Node>();
+            var nodes = GetAllNodes(startNode);
+            var s = new List<Node>() { startNode };
+            var weights = new Dictionary<Node, float>() { { startNode, 0.0f } };
 
+            while (s.Count < nodes.Count)
+            {
+                var currentNode = s.Last();
+                var minNode = (Node)null;
 
+                foreach (var node in nodes)
+                {
+                    if (s.Contains(node))
+                    {
+                        continue;
+                    }
 
+                    var weight = GetWeight(currentNode, node);
 
+                    weights[node] = weights.ContainsKey(node) ?
+                        Mathf.Min(weights[node], weight + weights[currentNode]) :
+                        weight + weights[currentNode];
+
+                    Debug.Log($"{currentNode}, {node} = {weights[node]}");
+
+                    if (minNode == null ||
+                        weights[node] < weights[currentNode] + GetWeight(currentNode, minNode))
+                    {
+                        minNode = node;
+                    }
+                }
+
+                s.Add(minNode);
+            }
+
+            return weights.ContainsKey(endNode) ?
+                weights[endNode] :
+                float.PositiveInfinity;
         }
 
         public float GetWeight(Node a, Node b)
         {
-            return Vector3.Distance(a.transform.position, b.transform.position);
+            if (a.Nodes.Contains(b))
+            {
+                return Vector3.Distance(a.transform.position, b.transform.position);
+            }
+
+            return float.PositiveInfinity;
         }
 
         private List<Node> GetAllNodes(Node node)
