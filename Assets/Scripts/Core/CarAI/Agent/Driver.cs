@@ -26,7 +26,7 @@ namespace Core.CarAI.Agent
 
             TurnAmount = _targetFollow.TurnAmount;
             Brake = _targetFollow.TargetReached ? 1.0f : 0.0f;
-            Acceleration = Brake > 0 ? _targetFollow.ForwardAmount * 0.2f : 0.0f;
+            Acceleration = Brake > 0 ? 0.0f : _targetFollow.ForwardAmount * 0.2f;
         }
     }
 }
