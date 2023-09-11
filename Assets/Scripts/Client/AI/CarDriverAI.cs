@@ -70,6 +70,15 @@ public class CarDriverAI : MonoBehaviour, IControls
             _brakeSmoothPressing.Release(Time.deltaTime);
         }
 
+        if (_gas > 0)
+        {
+            _gasSmoothPressing.Press(_gas, Time.deltaTime);
+        }
+        else
+        {
+            _gasSmoothPressing.Release(Time.deltaTime);
+        }
+
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
     }
@@ -99,15 +108,6 @@ public class CarDriverAI : MonoBehaviour, IControls
             _brake = _driver.Brake;
 
             _gas = Mathf.Abs(_driver.Acceleration);
-
-            if (_gas > 0)
-            {
-                _gasSmoothPressing.Press(_gas, Time.unscaledDeltaTime);
-            }
-            else
-            {
-                _gasSmoothPressing.Release(Time.unscaledDeltaTime);
-            } 
 
             if (_driver.Acceleration < 0 && TransmissionMode == TransmissionMode.DRIVING)
             {
