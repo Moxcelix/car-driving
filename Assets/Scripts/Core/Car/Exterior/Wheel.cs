@@ -18,8 +18,12 @@ namespace Core.Car
         {
             _collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             _wheel.SetPositionAndRotation(pos, rot);
-            _support.localEulerAngles = new Vector3(0, SteerAngle, 0);
-            _support.position = pos;
+
+            if (_support != null)
+            {
+                _support.localEulerAngles = new Vector3(0, SteerAngle, 0);
+                _support.position = pos;
+            }
 
             _collider.steerAngle = SteerAngle;
             _collider.steerAngle = SteerAngle;
