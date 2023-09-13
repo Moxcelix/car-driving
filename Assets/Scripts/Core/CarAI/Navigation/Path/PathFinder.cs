@@ -134,6 +134,21 @@ namespace Core.CarAI
             }
         }
 
+        private void RecalculateMinInputNodes()
+        {
+            foreach (var node in _nodes)
+            {
+                foreach (var nextNode in node.Nodes)
+                {
+                    if (!_minInputNode.ContainsKey(nextNode) ||
+                        _marks[node] < _marks[_minInputNode[nextNode]])
+                    {
+                        _minInputNode[nextNode] = node;
+                    }
+                }
+            }
+        }
+
         private List<Node> GetAllNodes(Node node)
         {
             var nodes = new List<Node>();
