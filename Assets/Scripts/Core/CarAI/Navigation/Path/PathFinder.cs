@@ -7,6 +7,10 @@ namespace Core.CarAI
 {
     public class PathFinder
     {
+        private List<Node> _nodes;
+        private Dictionary<Node, float> _marks;
+        private Dictionary<Node, Node> _minInputNode;
+
         /// <summary>
         /// Temporarily returns the length of the shortest path.
         /// </summary>
@@ -15,17 +19,18 @@ namespace Core.CarAI
         /// <returns></returns>
         public float CreatePath(Node startNode, Node endNode)
         {
-            var nodes = GetAllNodes(startNode);
             var s = new List<Node>() { startNode };
-            var weights = new Dictionary<Node, float>() { { startNode, 0.0f } };
-            var minInputNode = new Dictionary<Node, Node>();
 
-            while (s.Count < nodes.Count)
+            _nodes = GetAllNodes(startNode);
+            _marks = new Dictionary<Node, float>() { { startNode, 0.0f } };
+            _minInputNode = new Dictionary<Node, Node>();
+
+            while (s.Count < _nodes.Count)
             {
                 var currentNode = s.Last();
                 var minNode = (Node)null;
 
-                foreach (var node in nodes)
+                foreach (var node in _nodes)
                 {
                     if (s.Contains(node))
                     {
@@ -34,14 +39,14 @@ namespace Core.CarAI
 
                     var weight = GetWeight(currentNode, node);
 
-                    weights[node] = weights.ContainsKey(node) ?
-                        Mathf.Min(weights[node], weight + weights[currentNode]) :
-                        weight + weights[currentNode];
+                    _marks[node] = _marks.ContainsKey(node) ?
+                        Mathf.Min(_marks[node], weight + _marks[currentNode]) :
+                        weight + _marks[currentNode];
 
-                    Debug.Log($"{currentNode}, {node} = {weights[node]}");
+                    Debug.Log($"{currentNode}, {node} = {_marks[node]}");
 
                     if (minNode == null ||
-                        weights[node] < weights[currentNode] + GetWeight(currentNode, minNode))
+                        _marks[node] < _marks[currentNode] + GetWeight(currentNode, minNode))
                     {
                         minNode = node;
                     }
@@ -50,14 +55,14 @@ namespace Core.CarAI
                 s.Add(minNode);
             }
 
-            foreach(var node in nodes)
+            foreach(var node in _nodes)
             {
                 foreach (var nextNode in node.Nodes)
                 {
-                    if (!minInputNode.ContainsKey(nextNode) ||
-                        weights[node] < weights[minInputNode[nextNode]])
+                    if (!_minInputNode.ContainsKey(nextNode) ||
+                        _marks[node] < _marks[_minInputNode[nextNode]])
                     {
-                        minInputNode[nextNode] = node;
+                        _minInputNode[nextNode] = node;
 
                         Debug.Log(node);
                     }
@@ -66,7 +71,7 @@ namespace Core.CarAI
 
             var path = new List<Node>();
 
-            for (var node = endNode; node != startNode; node = minInputNode[node])
+            for (var node = endNode; node != startNode; node = _minInputNode[node])
             {
                 path.Insert(0, node);
             }
@@ -75,8 +80,8 @@ namespace Core.CarAI
 
             Debug.Log(path.Count);
 
-            return weights.ContainsKey(endNode) ?
-                weights[endNode] :
+            return _marks.ContainsKey(endNode) ?
+                _marks[endNode] :
                 float.PositiveInfinity;
         }
 
