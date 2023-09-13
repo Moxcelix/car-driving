@@ -149,6 +149,20 @@ namespace Core.CarAI
             }
         }
 
+        private List<Node> MakeMinPath(Node startNode, Node endNode)
+        {
+            var path = new List<Node>();
+
+            for (var node = endNode; node != startNode; node = _minInputNode[node])
+            {
+                path.Insert(0, node);
+            }
+
+            path.Insert(0, startNode);
+
+            return path;
+        }
+
         private List<Node> GetAllNodes(Node node)
         {
             var nodes = new List<Node>();
