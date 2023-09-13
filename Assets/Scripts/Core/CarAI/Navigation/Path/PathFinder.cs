@@ -18,6 +18,7 @@ namespace Core.CarAI
             var nodes = GetAllNodes(startNode);
             var s = new List<Node>() { startNode };
             var weights = new Dictionary<Node, float>() { { startNode, 0.0f } };
+            var minInputNode = new Dictionary<Node, Node>();
 
             while (s.Count < nodes.Count)
             {
@@ -48,6 +49,31 @@ namespace Core.CarAI
 
                 s.Add(minNode);
             }
+
+            foreach(var node in nodes)
+            {
+                foreach (var nextNode in node.Nodes)
+                {
+                    if (!minInputNode.ContainsKey(nextNode) ||
+                        weights[node] < weights[minInputNode[nextNode]])
+                    {
+                        minInputNode[nextNode] = node;
+
+                        Debug.Log(node);
+                    }
+                }
+            }
+
+            var path = new List<Node>();
+
+            for (var node = endNode; node != startNode; node = minInputNode[node])
+            {
+                path.Insert(0, node);
+            }
+
+            path.Insert(0, startNode);
+
+            Debug.Log(path.Count);
 
             return weights.ContainsKey(endNode) ?
                 weights[endNode] :
