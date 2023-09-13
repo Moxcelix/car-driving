@@ -95,6 +95,45 @@ namespace Core.CarAI
             return float.PositiveInfinity;
         }
 
+        private void RecalculateMarks(Node startNode)
+        {
+            var s = new List<Node>() { startNode };
+
+            _nodes = GetAllNodes(startNode);
+            _marks = new Dictionary<Node, float>() { { startNode, 0.0f } };
+            _minInputNode = new Dictionary<Node, Node>();
+
+            while (s.Count < _nodes.Count)
+            {
+                var currentNode = s.Last();
+                var minNode = (Node)null;
+
+                foreach (var node in _nodes)
+                {
+                    if (s.Contains(node))
+                    {
+                        continue;
+                    }
+
+                    var weight = GetWeight(currentNode, node);
+
+                    _marks[node] = _marks.ContainsKey(node) ?
+                        Mathf.Min(_marks[node], weight + _marks[currentNode]) :
+                        weight + _marks[currentNode];
+
+                    Debug.Log($"{currentNode}, {node} = {_marks[node]}");
+
+                    if (minNode == null ||
+                        _marks[node] < _marks[currentNode] + GetWeight(currentNode, minNode))
+                    {
+                        minNode = node;
+                    }
+                }
+
+                s.Add(minNode);
+            }
+        }
+
         private List<Node> GetAllNodes(Node node)
         {
             var nodes = new List<Node>();
