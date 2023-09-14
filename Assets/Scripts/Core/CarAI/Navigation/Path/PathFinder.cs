@@ -11,12 +11,6 @@ namespace Core.CarAI
         private Dictionary<Node, float> _marks;
         private Dictionary<Node, Node> _minInputNode;
 
-        /// <summary>
-        /// Temporarily returns the length of the shortest path.
-        /// </summary>
-        /// <param name="startNode"></param>
-        /// <param name="endNode"></param>
-        /// <returns></returns>
         public float CreatePath(Node startNode, Node endNode)
         {
             RecalculateMarks(startNode);
