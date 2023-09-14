@@ -11,7 +11,7 @@ namespace Core.CarAI
         private Dictionary<Node, float> _marks;
         private Dictionary<Node, Node> _minInputNode;
 
-        public float CreatePath(Node startNode, Node endNode)
+        public List<Node> CreatePath(Node startNode, Node endNode)
         {
             RecalculateMarks(startNode);
             RecalculateMinInputNodes();
@@ -20,9 +20,7 @@ namespace Core.CarAI
 
             Debug.Log(path.Count);
 
-            return _marks.ContainsKey(endNode) ?
-                _marks[endNode] :
-                float.PositiveInfinity;
+            return _marks.ContainsKey(endNode) ? path : null;
         }
 
         public float GetWeight(Node a, Node b)
