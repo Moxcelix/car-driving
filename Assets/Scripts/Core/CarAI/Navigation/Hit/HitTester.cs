@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.CarAI.Navigation
 {
-    public class HitTester
+    public class HitTester : IHitTester
     {
         private readonly Transform _transform;
         private readonly Vector3 _hitRay;
