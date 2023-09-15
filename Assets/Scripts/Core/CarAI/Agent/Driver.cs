@@ -6,7 +6,7 @@ namespace Core.CarAI.Agent
 
         private readonly ITargetFinder _targetFinder;
 
-        private readonly IHitTester _hitTester;
+        private readonly IHitTester[] _hitTesters;
 
         public float Acceleration { get; private set; }
 
@@ -19,11 +19,11 @@ namespace Core.CarAI.Agent
         public Driver(
             ITargetFollow targetFollow,
             ITargetFinder targetFinder,
-            IHitTester hitTester)
+            IHitTester[] hitTesters)
         {
             _targetFollow = targetFollow;
             _targetFinder = targetFinder;
-            _hitTester = hitTester;
+            _hitTesters = hitTesters;
         }
 
         public void Update(float speed)

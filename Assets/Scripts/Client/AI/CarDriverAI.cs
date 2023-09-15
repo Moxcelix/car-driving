@@ -1,5 +1,6 @@
 using Core.Car;
 using Core.CarAI.Agent;
+using Core.CarAI.Navigation;
 using UnityEngine;
 using System.Collections;
 
@@ -44,7 +45,21 @@ public class CarDriverAI : MonoBehaviour, IControls
         _targetFollow.SetTarget(_target);
         _targetFollow.UseReverse = true;
 
-        _driver = new Driver(_targetFollow, null, null);
+        var hitTesters = new HitTester[]
+        {
+            new HitTester(_car.transform, new(0,0,1), 1),
+            new HitTester(_car.transform, new (0.5f, 0, 1), 1),
+            new HitTester(_car.transform, new (-0.5f, 0, 1), 1),
+            new HitTester(_car.transform, new (1, 0, 1), 1),
+            new HitTester(_car.transform, new (-1, 0, 1), 1),
+            new HitTester(_car.transform, new (1, 0, 0), 1),
+            new HitTester(_car.transform, new (-1, 0,0), 1),
+            new HitTester(_car.transform, new (0,0, -1), 1),
+            new HitTester(_car.transform, new (-1, 0, -1), 1),
+            new HitTester(_car.transform, new (1, 0, -1), 1),
+        };
+
+        _driver = new Driver(_targetFollow, null, hitTesters);
 
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;
@@ -61,7 +76,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         _carController.Update();
         _driver.Update(_car.GetSpeed());
 
-        if(_brake > 0)
+        if (_brake > 0)
         {
             _brakeSmoothPressing.Press(_brake, Time.deltaTime);
         }
