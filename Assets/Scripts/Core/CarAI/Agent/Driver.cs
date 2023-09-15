@@ -6,6 +6,8 @@ namespace Core.CarAI.Agent
 
         private readonly ITargetFinder _targetFinder;
 
+        private readonly IHitTester _hitTester;
+
         public float Acceleration { get; private set; }
 
         public float Brake { get; private set; }
@@ -14,10 +16,14 @@ namespace Core.CarAI.Agent
 
         public float SteerSpeed { get; private set; }
 
-        public Driver(ITargetFollow targetFollow, ITargetFinder targetFinder)
+        public Driver(
+            ITargetFollow targetFollow,
+            ITargetFinder targetFinder,
+            IHitTester hitTester)
         {
             _targetFollow = targetFollow;
             _targetFinder = targetFinder;
+            _hitTester = hitTester;
         }
 
         public void Update(float speed)
