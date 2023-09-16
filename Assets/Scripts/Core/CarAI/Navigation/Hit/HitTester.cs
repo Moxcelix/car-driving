@@ -10,11 +10,14 @@ namespace Core.CarAI.Navigation
 
         public bool IsHited { get; private set; }
 
+        public float HitDistance { get; private set; }
 
         private void Update()
         {
             IsHited = Physics.Raycast(transform.position,
                 transform.forward, out _hit, _rayLength);
+
+            HitDistance = IsHited ? _hit.distance : float.PositiveInfinity;
         }
 
         public float GetHit<T>()

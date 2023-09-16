@@ -5,5 +5,7 @@ namespace Core.CarAI
         public float GetHit<T>();
 
         public bool IsHited { get; }
+
+        public float HitDistance { get; }
     }
 }
