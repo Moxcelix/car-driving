@@ -7,12 +7,13 @@ namespace Core.CarAI.Navigation
         [SerializeField] private float _rayLength;
 
         private RaycastHit _hit;
-        private bool _isHit = false;
+
+        public bool IsHited { get; private set; }
 
 
         private void Update()
         {
-            _isHit = Physics.Raycast(transform.position,
+            IsHited = Physics.Raycast(transform.position,
                 transform.forward, out _hit, _rayLength);
         }
 
@@ -37,9 +38,9 @@ namespace Core.CarAI.Navigation
             const float arrowHeadLength = 0.5f;
             const float arrowHeadAngle = 30f;
 
-            float length = _isHit ? _hit.distance : _rayLength;
+            float length = IsHited ? _hit.distance : _rayLength;
 
-            Gizmos.color = _isHit ? Color.green : Color.red;
+            Gizmos.color = IsHited ? Color.green : Color.red;
 
             Gizmos.DrawLine(transform.position,
                 transform.position + transform.forward.normalized * length);

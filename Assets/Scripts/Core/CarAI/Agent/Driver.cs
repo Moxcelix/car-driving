@@ -37,6 +37,7 @@ namespace Core.CarAI.Agent
 
         public void Update(float speed)
         {
+            
             switch (Mode)
             {
                 case Mode.Driving:
