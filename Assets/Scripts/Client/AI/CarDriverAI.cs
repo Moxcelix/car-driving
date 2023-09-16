@@ -4,6 +4,7 @@ using Core.CarAI.Navigation;
 
 using UnityEngine;
 using System.Collections;
+using Core.Damage;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
@@ -13,6 +14,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private readonly SmoothPressing _brakeSmoothPressing = new(1f, 1.5f);
 
     [SerializeField] private Car _car;
+    [SerializeField] private Damageable _damageable;
     [SerializeField] private Transform _target;
     [SerializeField] private HitTester[] _hitTesters;
 
@@ -111,6 +113,11 @@ public class CarDriverAI : MonoBehaviour, IControls
             _brake = _driver.Brake;
 
             _gas = Mathf.Abs(_driver.Acceleration);
+
+            if (_damageable.IsDamaged)
+            {
+                _driver.MakeAccident();
+            }
 
             switch (_driver.Mode)
             {

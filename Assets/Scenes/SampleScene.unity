@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _car: {fileID: 535313630}
+  _damageable: {fileID: 1680982533}
   _target: {fileID: 1968049383}
   _hitTesters:
   - {fileID: 2004161538}
@@ -6169,6 +6170,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+--- !u!114 &1680982533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2100919630, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 1680982532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577b5a2635f494a46b9abb61a8428feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731962455
 GameObject:
   m_ObjectHideFlags: 0
@@ -6514,7 +6526,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789380079}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ae0991001843db149ba93962c32f2b8f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
