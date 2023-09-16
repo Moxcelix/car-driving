@@ -48,14 +48,16 @@ namespace Core.CarAI.Agent
                     break;
                 case Mode.Idling:
                     Acceleration = 0;
+                    TurnAmount = 0;
                     Brake = speed > 0 ? 1.0f : 0.0f;
                     break;
                 case Mode.Accident:
                     Acceleration = 0;
-                    UnityEngine.Debug.Log(speed);
+                    TurnAmount = 0;
                     Brake = speed > 0.1f + float.Epsilon ? 1.0f : 0.0f;
                     break;
                 case Mode.Parking:
+                    TurnAmount = 0;
                     Acceleration = 0;
                     break;
             }
