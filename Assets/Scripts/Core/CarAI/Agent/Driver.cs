@@ -16,6 +16,8 @@ namespace Core.CarAI.Agent
 
         public float SteerSpeed { get; private set; }
 
+        public Mode Mode { get; private set; }
+
         public Driver(
             ITargetFollow targetFollow,
             ITargetFinder targetFinder,
@@ -24,15 +26,30 @@ namespace Core.CarAI.Agent
             _targetFollow = targetFollow;
             _targetFinder = targetFinder;
             _hitTesters = hitTesters;
+
+            Mode = Mode.Driving;
         }
 
         public void Update(float speed)
         {
-            _targetFollow.Update(speed * 0.5f + 7.0f);
+            switch (Mode)
+            {
+                case Mode.Driving:
+                    _targetFollow.Update(speed * 0.5f + 7.0f);
 
-            TurnAmount = _targetFollow.TurnAmount;
-            Brake = _targetFollow.TargetReached ? 1.0f : 0.0f;
-            Acceleration = Brake > 0 ? 0.0f : _targetFollow.ForwardAmount * 0.2f;
+                    TurnAmount = _targetFollow.TurnAmount;
+                    Brake = _targetFollow.TargetReached ? 1.0f : 0.0f;
+                    Acceleration = Brake > 0 ? 0.0f : _targetFollow.ForwardAmount * 0.2f;
+                    break;
+                case Mode.Idling:
+                    Acceleration = 0;
+                    Brake = 0;
+                    break;
+                case Mode.Accident:
+                    break;
+                case Mode.Parking:
+                    break;
+            }
         }
     }
 }
