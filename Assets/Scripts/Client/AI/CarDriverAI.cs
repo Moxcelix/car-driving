@@ -111,27 +111,35 @@ public class CarDriverAI : MonoBehaviour, IControls
 
             _gas = Mathf.Abs(_driver.Acceleration);
 
-            if (_driver.Acceleration < 0 && TransmissionMode == TransmissionMode.DRIVING)
+            switch (_driver.Mode)
             {
-                _brake = 1;
+                case Mode.Driving:
+                    if (
+                        _driver.Acceleration < 0 &&
+                        TransmissionMode == TransmissionMode.DRIVING)
+                    {
+                        _brake = 1;
+                        yield return new WaitForSeconds(2.0f);
+                        TransmissionMode = TransmissionMode.REVERSE;
+                        _brake = 0;
+                    }
 
-                yield return new WaitForSeconds(2.0f);
-
-                TransmissionMode = TransmissionMode.REVERSE;
-
-                _brake = 0;
+                    if (_driver.Acceleration >= 0
+                        && TransmissionMode != TransmissionMode.DRIVING)
+                    {
+                        _brake = 1;
+                        yield return new WaitForSeconds(2.0f);
+                        TransmissionMode = TransmissionMode.DRIVING;
+                        _brake = 0;
+                    }
+                    break;
+                case Mode.Accident:
+                    TransmissionMode = TransmissionMode.PARKING;
+                    EmergencySwitch = true;
+                    break;
             }
 
-            if (_driver.Acceleration >= 0 && TransmissionMode != TransmissionMode.DRIVING)
-            {
-                _brake = 1;
 
-                yield return new WaitForSeconds(2.0f);
-
-                TransmissionMode = TransmissionMode.DRIVING;
-
-                _brake = 0;
-            }
 
             yield return new WaitForEndOfFrame();
         }

@@ -43,11 +43,14 @@ namespace Core.CarAI.Agent
                     break;
                 case Mode.Idling:
                     Acceleration = 0;
-                    Brake = 0;
+                    Brake = speed > 0 ? 1.0f : 0.0f;
                     break;
                 case Mode.Accident:
+                    Acceleration = 0;
+                    Brake = speed > 0 ? 1.0f : 0.0f;
                     break;
                 case Mode.Parking:
+                    Acceleration = 0;
                     break;
             }
         }
