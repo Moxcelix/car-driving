@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Core.CarAI.Agent
 {
     public class Driver
@@ -30,21 +32,24 @@ namespace Core.CarAI.Agent
             Mode = Mode.Driving;
         }
 
-        public void MakeAccident() 
+        public void MakeAccident()
         {
             Mode = Mode.Accident;
         }
 
         public void Update(float speed)
         {
-            
+            var hits = from item in _hitTesters
+                       where item.IsHited
+                       select item;
+
             switch (Mode)
             {
                 case Mode.Driving:
                     _targetFollow.Update(speed * 0.5f + 7.0f);
 
                     TurnAmount = _targetFollow.TurnAmount;
-                    Brake = _targetFollow.TargetReached ? 1.0f : 0.0f;
+                    Brake = _targetFollow.TargetReached || hits.Count() > 0 ? 1.0f : 0.0f;
                     Acceleration = Brake > 0 ? 0.0f : _targetFollow.ForwardAmount * 0.2f;
                     break;
                 case Mode.Idling:
