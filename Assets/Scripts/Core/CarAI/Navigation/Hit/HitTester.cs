@@ -2,37 +2,55 @@ using UnityEngine;
 
 namespace Core.CarAI.Navigation
 {
-    public class HitTester : IHitTester
+    public class HitTester : MonoBehaviour, IHitTester
     {
-        private readonly Transform _transform;
-        private readonly Vector3 _hitRay;
-        private readonly float _rayLength;
+        [SerializeField] private float _rayLength;
 
-        public HitTester(Transform transform, Vector3 hitRay, float rayLength)
+        private RaycastHit _hit;
+        private bool _isHit;
+
+        private void Update()
         {
-            this._transform = transform;
-            this._hitRay = hitRay;
-            this._rayLength = rayLength;
+            _isHit = Physics.Raycast(transform.position,
+                transform.forward, out _hit, _rayLength);
         }
 
         public float GetHit<T>()
         {
-            if (Physics.Raycast(_transform.position,
-                _hitRay, out RaycastHit hit, _rayLength))
-            {
-                var tempMonoArray = hit.collider.
-                    gameObject.GetComponents<MonoBehaviour>();
+            var tempMonoArray = _hit.collider.
+                gameObject.GetComponents<MonoBehaviour>();
 
-                foreach (var monoBehaviour in tempMonoArray)
+            foreach (var monoBehaviour in tempMonoArray)
+            {
+                if (monoBehaviour is T)
                 {
-                    if (monoBehaviour is T)
-                    {
-                        return hit.distance;
-                    }
+                    return _hit.distance;
                 }
             }
 
             return float.PositiveInfinity;
+        }
+
+        private void OnDrawGizmos()
+        {
+            const float arrowHeadLength = 0.5f;
+            const float arrowHeadAngle = 30f;
+
+            float length = _isHit ? _hit.distance : _rayLength;
+
+            Gizmos.color = _isHit ? Color.green : Color.red;
+
+            Gizmos.DrawLine(transform.position,
+                transform.position + transform.forward.normalized * length);
+
+            var right = Quaternion.LookRotation(transform.forward) *
+                Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * new Vector3(0, 0, 1);
+            var left = Quaternion.LookRotation(transform.forward) *
+                Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
+            Gizmos.DrawRay(transform.position + transform.forward.normalized * length,
+                right * arrowHeadLength);
+            Gizmos.DrawRay(transform.position + transform.forward.normalized * length,
+                left * arrowHeadLength);
         }
     }
 }

@@ -13,6 +13,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     [SerializeField] private Car _car;
     [SerializeField] private Transform _target;
+    [SerializeField] private HitTester[] _hitTesters;
 
     private CarController _carController;
     private TargetFollow _targetFollow;
@@ -45,21 +46,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         _targetFollow.SetTarget(_target);
         _targetFollow.UseReverse = true;
 
-        var hitTesters = new HitTester[]
-        {
-            new HitTester(_car.transform, new(0,0,1), 1),
-            new HitTester(_car.transform, new (0.5f, 0, 1), 1),
-            new HitTester(_car.transform, new (-0.5f, 0, 1), 1),
-            new HitTester(_car.transform, new (1, 0, 1), 1),
-            new HitTester(_car.transform, new (-1, 0, 1), 1),
-            new HitTester(_car.transform, new (1, 0, 0), 1),
-            new HitTester(_car.transform, new (-1, 0,0), 1),
-            new HitTester(_car.transform, new (0,0, -1), 1),
-            new HitTester(_car.transform, new (-1, 0, -1), 1),
-            new HitTester(_car.transform, new (1, 0, -1), 1),
-        };
-
-        _driver = new Driver(_targetFollow, null, hitTesters);
+        _driver = new Driver(_targetFollow, null, _hitTesters);
 
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;
