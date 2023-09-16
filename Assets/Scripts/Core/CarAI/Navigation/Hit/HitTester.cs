@@ -7,7 +7,8 @@ namespace Core.CarAI.Navigation
         [SerializeField] private float _rayLength;
 
         private RaycastHit _hit;
-        private bool _isHit;
+        private bool _isHit = false;
+
 
         private void Update()
         {

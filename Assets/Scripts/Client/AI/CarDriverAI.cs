@@ -1,6 +1,7 @@
 using Core.Car;
 using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
+
 using UnityEngine;
 using System.Collections;
 
@@ -138,8 +139,6 @@ public class CarDriverAI : MonoBehaviour, IControls
                     EmergencySwitch = true;
                     break;
             }
-
-
 
             yield return new WaitForEndOfFrame();
         }

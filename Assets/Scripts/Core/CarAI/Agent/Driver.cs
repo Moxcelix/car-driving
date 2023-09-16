@@ -30,6 +30,11 @@ namespace Core.CarAI.Agent
             Mode = Mode.Driving;
         }
 
+        public void MakeAccident() 
+        {
+            Mode = Mode.Accident;
+        }
+
         public void Update(float speed)
         {
             switch (Mode)
@@ -47,7 +52,8 @@ namespace Core.CarAI.Agent
                     break;
                 case Mode.Accident:
                     Acceleration = 0;
-                    Brake = speed > 0 ? 1.0f : 0.0f;
+                    UnityEngine.Debug.Log(speed);
+                    Brake = speed > 0.1f + float.Epsilon ? 1.0f : 0.0f;
                     break;
                 case Mode.Parking:
                     Acceleration = 0;
