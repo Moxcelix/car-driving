@@ -15,7 +15,24 @@ namespace Core.Car
             this._controls = _controls;
             this._car = _car;
 
+            _controls.TransmissionModeSwitch += _car.Transmission.SwitchMode;
+            _controls.ParkingBrakeSwitch += _car.ParkingBrake.Switch;
+            _controls.BlinkerStateSwitch += _car.TurnLights.SwitchBlinker;
+            _controls.EmergencySwitch += _car.TurnLights.SwitchEmergency;
+            _controls.HighLightSwitch += _car.HeadLights.SwitchHighLight;
+            _controls.EngineSwitch += _car.Engine.Starter.SwitchState;
+
             IsAvailable = true;
+        }
+
+        ~CarController()
+        {
+            _controls.TransmissionModeSwitch -= _car.Transmission.SwitchMode;
+            _controls.ParkingBrakeSwitch -= _car.ParkingBrake.Switch;
+            _controls.BlinkerStateSwitch -= _car.TurnLights.SwitchBlinker;
+            _controls.EmergencySwitch -= _car.TurnLights.SwitchEmergency;
+            _controls.HighLightSwitch -= _car.HeadLights.SwitchHighLight;
+            _controls.EngineSwitch -= _car.Engine.Starter.SwitchState;
         }
 
         public void Update()
@@ -27,12 +44,6 @@ namespace Core.Car
             _car.GasPedal.Value = _controls.Gas;
             _car.BrakePedal.Value = _controls.Brake;
             _car.SteeringWheel.Steer(_controls.SteerDelta);
-            _car.Transmission.SwitchMode(_controls.TransmissionMode);
-            _car.ParkingBrake.Switch(_controls.ParkingBrakeSwitch);
-            _car.TurnLights.SwitchBlinker(_controls.BlinkerState);
-            _car.TurnLights.SwitchEmergency(_controls.EmergencySwitch);
-            _car.HeadLights.SwitchHighLight(_controls.HighLightSwitch);
-            _car.Engine.Starter.SwitchState(_controls.EngineState);
         }
     }
 }

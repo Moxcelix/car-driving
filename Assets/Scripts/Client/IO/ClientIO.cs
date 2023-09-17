@@ -2,6 +2,7 @@ using Core.Car;
 using Core.GameManagment;
 using Core.InputManagment;
 using System;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -50,25 +51,25 @@ public class ClientIO :
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
 
+    private bool _engineState = false;
+    private bool _emergencyState = false;
+    private bool _highLightState = false;
+    private bool _parkingBrakeState = true;
+    private BlinkerState _blinkerState = BlinkerState.None;
+
+    public event IControls.ToogleSwitchDelegate EngineSwitch;
+    public event IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch;
+    public event IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch;
+    public event IControls.ToogleSwitchDelegate HighLightSwitch;
+    public event IControls.ToogleSwitchDelegate EmergencySwitch;
+    public event IControls.ToogleSwitchDelegate ParkingBrakeSwitch;
+
     // Car controls.
     public float Gas { get; private set; } = 0;
 
     public float Brake { get; private set; } = 0;
 
     public float SteerDelta { get; private set; } = 0;
-
-    public bool ParkingBrakeSwitch { get; private set; } = true;
-
-    public bool EmergencySwitch { get; private set; } = false;
-
-    public bool HighLightSwitch { get; private set; } = false;
-
-    public bool EngineState { get; private set; } = false;
-
-    public TransmissionMode TransmissionMode { get; private set; } = TransmissionMode.PARKING;
-
-    public BlinkerState BlinkerState { get; private set; } = BlinkerState.None;
-
 
     // Character controls.
     public float RotationDeltaX { get; private set; }
@@ -162,30 +163,32 @@ public class ClientIO :
 
         if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
         {
-            TransmissionMode = TransmissionMode.DRIVING;
+            TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
         }
 
         if (Input.GetKeyDown(_controls[_setReverseModeKey]))
         {
-            TransmissionMode = TransmissionMode.REVERSE;
+            TransmissionModeSwitch?.Invoke(TransmissionMode.REVERSE);
         }
 
         if (Input.GetKeyDown(_controls[_setParkingModeKey]))
         {
-            TransmissionMode = TransmissionMode.PARKING;
+            TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
         }
 
         if (Input.GetKeyDown(_controls[_setNeutralModeKey]))
         {
-            TransmissionMode = TransmissionMode.NEUTRAL;
+            TransmissionModeSwitch?.Invoke(TransmissionMode.NEUTRAL);
         }
 
         // Toggle-sus
         void Toggle(BlinkerState state)
         {
-            BlinkerState =
-                BlinkerState == state ?
+            _blinkerState =
+                _blinkerState == state ?
                 BlinkerState.None : state;
+
+            BlinkerStateSwitch?.Invoke(_blinkerState);
         }
 
         if (Input.GetKeyDown(_controls[_leftTurnKey]))
@@ -200,22 +203,30 @@ public class ClientIO :
 
         if (Input.GetKeyDown(_controls[_emergencyKey]))
         {
-            EmergencySwitch = !EmergencySwitch;
+            _emergencyState = !_emergencyState;
+
+            EmergencySwitch?.Invoke(_emergencyState);
         }
 
         if (Input.GetKeyDown(_controls[_headLightKey]))
         {
-            HighLightSwitch = !HighLightSwitch;
+            _highLightState = !_highLightState;
+
+            HighLightSwitch?.Invoke(_highLightState);
         }
 
         if (Input.GetKeyDown(_controls[_engineSwitchKey]))
         {
-            EngineState = !EngineState;
+            _engineState = !_engineState;
+
+            EngineSwitch?.Invoke(_engineState);
         }
 
         if (Input.GetKeyDown(_controls[_parkingBrakeKey]))
         {
-            ParkingBrakeSwitch = !ParkingBrakeSwitch;
+            _parkingBrakeState = !_parkingBrakeState;
+
+            ParkingBrakeSwitch?.Invoke(_parkingBrakeState);
         }
     }
 

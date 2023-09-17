@@ -25,23 +25,21 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
+    public event IControls.ToogleSwitchDelegate EngineSwitch;
+    public event IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch;
+    public event IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch;
+    public event IControls.ToogleSwitchDelegate HighLightSwitch;
+    public event IControls.ToogleSwitchDelegate EmergencySwitch;
+    public event IControls.ToogleSwitchDelegate ParkingBrakeSwitch;
+
     public float Gas { get; private set; }
 
     public float Brake { get; private set; }
 
     public float SteerDelta { get; private set; }
 
-    public bool ParkingBrakeSwitch { get; private set; }
-
-    public bool EmergencySwitch { get; private set; }
-
-    public bool HighLightSwitch { get; private set; }
-
     public bool EngineState { get; private set; }
 
-    public TransmissionMode TransmissionMode { get; private set; }
-
-    public BlinkerState BlinkerState { get; private set; }
 
     private void Awake()
     {
@@ -91,14 +89,14 @@ public class CarDriverAI : MonoBehaviour, IControls
     private IEnumerator TESTAI()
     {
         EngineState = true;
-        ParkingBrakeSwitch = false;
+        ParkingBrakeSwitch?.Invoke(false);
         SteerDelta = 0;
 
         _brake = 1;
 
         yield return new WaitForSeconds(2.0f);
 
-        TransmissionMode = TransmissionMode.DRIVING;
+        TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
 
         yield return new WaitForSeconds(2.0f);
 
@@ -124,26 +122,26 @@ public class CarDriverAI : MonoBehaviour, IControls
                 case Mode.Driving:
                     if (
                         _driver.Acceleration < 0 &&
-                        TransmissionMode == TransmissionMode.DRIVING)
+                        _car.Transmission.Mode == TransmissionMode.DRIVING)
                     {
                         _brake = 1;
                         yield return new WaitForSeconds(2.0f);
-                        TransmissionMode = TransmissionMode.REVERSE;
+                        TransmissionModeSwitch?.Invoke(TransmissionMode.REVERSE);
                         _brake = 0;
                     }
 
                     if (_driver.Acceleration >= 0
-                        && TransmissionMode != TransmissionMode.DRIVING)
+                        && _car.Transmission.Mode != TransmissionMode.DRIVING)
                     {
                         _brake = 1;
                         yield return new WaitForSeconds(2.0f);
-                        TransmissionMode = TransmissionMode.DRIVING;
+                        TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
                         _brake = 0;
                     }
                     break;
                 case Mode.Accident:
-                    TransmissionMode = TransmissionMode.PARKING;
-                    EmergencySwitch = true;
+                    TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
+                    EmergencySwitch?.Invoke(true);
                     break;
             }
 
