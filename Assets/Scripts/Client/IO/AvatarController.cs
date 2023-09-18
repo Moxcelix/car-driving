@@ -50,6 +50,8 @@ public class AvatarController
 
     public void DepriveCarHandling()
     {
+        CarController.Close();
+
         CarController = null;
     }
 

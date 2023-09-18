@@ -25,12 +25,12 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
-    public event IControls.ToogleSwitchDelegate EngineSwitch;
-    public event IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch;
-    public event IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch;
-    public event IControls.ToogleSwitchDelegate HighLightSwitch;
-    public event IControls.ToogleSwitchDelegate EmergencySwitch;
-    public event IControls.ToogleSwitchDelegate ParkingBrakeSwitch;
+    public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
+    public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
+    public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
+    public IControls.ToogleSwitchDelegate HighLightSwitch { get; set; }
+    public IControls.ToogleSwitchDelegate EmergencySwitch { get; set; }
+    public IControls.ToogleSwitchDelegate ParkingBrakeSwitch { get; set; }
 
     public float Gas { get; private set; }
 
@@ -81,7 +81,10 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             _gasSmoothPressing.Release(Time.deltaTime);
         }
+    }
 
+    void IControls.Update()
+    {
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
     }

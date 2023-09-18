@@ -6,15 +6,17 @@ namespace Core.Car
         public delegate void BlinkerStateSwitchDelegate(BlinkerState state);
         public delegate void TransmissionModeSwitchDelegate(TransmissionMode mode);
 
-        public event ToogleSwitchDelegate EngineSwitch;
-        public event ToogleSwitchDelegate HighLightSwitch;
-        public event ToogleSwitchDelegate EmergencySwitch;
-        public event ToogleSwitchDelegate ParkingBrakeSwitch;
-        public event BlinkerStateSwitchDelegate BlinkerStateSwitch;
-        public event TransmissionModeSwitchDelegate TransmissionModeSwitch;
+        public ToogleSwitchDelegate EngineSwitch { set; }
+        public  ToogleSwitchDelegate HighLightSwitch { set; }
+        public  ToogleSwitchDelegate EmergencySwitch { set; }
+        public  ToogleSwitchDelegate ParkingBrakeSwitch { set; }
+        public  BlinkerStateSwitchDelegate BlinkerStateSwitch { set; }
+        public  TransmissionModeSwitchDelegate TransmissionModeSwitch { set; }
 
         public float Gas { get; }
         public float Brake { get; }
         public float SteerDelta { get; }
+
+        public void Update();
     }
 }

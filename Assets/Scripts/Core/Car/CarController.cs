@@ -6,40 +6,54 @@ namespace Core.Car
 
         private readonly Car _car;
 
+        private bool _closed = false;
+
         public Car Car => _car;
 
         public bool IsAvailable { get; set; }
 
-        public CarController(IControls _controls, Car _car)
+        public CarController(IControls controls, Car car)
         {
-            this._controls = _controls;
-            this._car = _car;
+            this._controls = controls;
+            this._car = car;
 
-            _controls.TransmissionModeSwitch += _car.Transmission.SwitchMode;
-            _controls.ParkingBrakeSwitch += _car.ParkingBrake.Switch;
-            _controls.BlinkerStateSwitch += _car.TurnLights.SwitchBlinker;
-            _controls.EmergencySwitch += _car.TurnLights.SwitchEmergency;
-            _controls.HighLightSwitch += _car.HeadLights.SwitchHighLight;
-            _controls.EngineSwitch += _car.Engine.Starter.SwitchState;
+            controls.TransmissionModeSwitch = car.Transmission.SwitchMode;
+            controls.ParkingBrakeSwitch = car.ParkingBrake.Switch;
+            controls.BlinkerStateSwitch = car.TurnLights.SwitchBlinker;
+            controls.EmergencySwitch = car.TurnLights.SwitchEmergency;
+            controls.HighLightSwitch = car.HeadLights.SwitchHighLight;
+            controls.EngineSwitch = car.Engine.Starter.SwitchState;
 
             IsAvailable = true;
         }
 
         ~CarController()
         {
-            _controls.TransmissionModeSwitch -= _car.Transmission.SwitchMode;
-            _controls.ParkingBrakeSwitch -= _car.ParkingBrake.Switch;
-            _controls.BlinkerStateSwitch -= _car.TurnLights.SwitchBlinker;
-            _controls.EmergencySwitch -= _car.TurnLights.SwitchEmergency;
-            _controls.HighLightSwitch -= _car.HeadLights.SwitchHighLight;
-            _controls.EngineSwitch -= _car.Engine.Starter.SwitchState;
+            if (_closed)
+            {
+                return;
+            }
+
+            Close();
+        }
+
+        public void Close()
+        {
+            _controls.TransmissionModeSwitch = null;
+            _controls.ParkingBrakeSwitch = null;
+            _controls.BlinkerStateSwitch = null;
+            _controls.EmergencySwitch = null;
+            _controls.HighLightSwitch = null;
+            _controls.EngineSwitch = null;
+
+            _closed = true;
         }
 
         public void Update()
         {
             if (!IsAvailable) return;
 
-            if(_car == null) return;
+            _controls.Update();
 
             _car.GasPedal.Value = _controls.Gas;
             _car.BrakePedal.Value = _controls.Brake;

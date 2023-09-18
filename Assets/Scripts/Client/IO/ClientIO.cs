@@ -1,8 +1,8 @@
 using Core.Car;
 using Core.GameManagment;
 using Core.InputManagment;
+
 using System;
-using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -55,14 +55,16 @@ public class ClientIO :
     private bool _emergencyState = false;
     private bool _highLightState = false;
     private bool _parkingBrakeState = true;
+    private float _leftSteering = 0;
+    private float _rightSteering = 0;
     private BlinkerState _blinkerState = BlinkerState.None;
 
-    public event IControls.ToogleSwitchDelegate EngineSwitch;
-    public event IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch;
-    public event IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch;
-    public event IControls.ToogleSwitchDelegate HighLightSwitch;
-    public event IControls.ToogleSwitchDelegate EmergencySwitch;
-    public event IControls.ToogleSwitchDelegate ParkingBrakeSwitch;
+    public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
+    public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
+    public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
+    public IControls.ToogleSwitchDelegate HighLightSwitch { get; set; }
+    public IControls.ToogleSwitchDelegate EmergencySwitch { get; set; }
+    public IControls.ToogleSwitchDelegate ParkingBrakeSwitch { get; set; }
 
     // Car controls.
     public float Gas { get; private set; } = 0;
@@ -107,7 +109,7 @@ public class ClientIO :
 
     public void Update(float deltaTime)
     {
-        HandleCarInput(deltaTime);
+        UpdateCarInput(deltaTime);
 
         HandleViewSwitching();
         HandlePauseSwitch();
@@ -116,50 +118,12 @@ public class ClientIO :
         HandleHelpOpen();
     }
 
-    private void HandlePlayerInput()
+    void Core.Car.IControls.Update()
     {
-        RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-        RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
-
-        MoveForward = Input.GetKey(_controls[_forwardKey]);
-        MoveBack = Input.GetKey(_controls[_backKey]);
-        MoveRight = Input.GetKey(_controls[_rightKey]);
-        MoveLeft = Input.GetKey(_controls[_leftKey]);
-        IsRunning = Input.GetKey(_controls[_runKey]);
-        IsJumping = Input.GetKey(_controls[_jumpKey]);
-        Leave = Input.GetKeyDown(_controls[_leaveKey]);
-    }
-
-    private void HandleCarInput(float deltaTime)
-    {
-        var fullPush = Input.GetKey(_controls[_addPowerKey]);
-
-        if (Input.GetKey(_controls[_gasKey]))
-        {
-            _gasSmoothPressing.Press(fullPush ? 1.0f : _gasMiddleValue, deltaTime);
-        }
-        else
-        {
-            _gasSmoothPressing.Release(deltaTime);
-        }
-
-        if (Input.GetKey(_controls[_brakeKey]))
-        {
-            _brakeSmoothPressing.Press(fullPush ? 1.0f : _brakeMiddleValue, deltaTime);
-        }
-        else
-        {
-            _brakeSmoothPressing.Release(deltaTime);
-        }
-
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
 
-        var rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
-            deltaTime : 0.0f;
-        var leftSteering = Input.GetKey(_controls[_steerLeftKey]) ?
-            deltaTime : 0.0f;
-        SteerDelta = rightSteering - leftSteering;
+        SteerDelta = _rightSteering - _leftSteering;
 
         if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
         {
@@ -228,6 +192,48 @@ public class ClientIO :
 
             ParkingBrakeSwitch?.Invoke(_parkingBrakeState);
         }
+    }
+
+    private void HandlePlayerInput()
+    {
+        RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+        RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+
+        MoveForward = Input.GetKey(_controls[_forwardKey]);
+        MoveBack = Input.GetKey(_controls[_backKey]);
+        MoveRight = Input.GetKey(_controls[_rightKey]);
+        MoveLeft = Input.GetKey(_controls[_leftKey]);
+        IsRunning = Input.GetKey(_controls[_runKey]);
+        IsJumping = Input.GetKey(_controls[_jumpKey]);
+        Leave = Input.GetKeyDown(_controls[_leaveKey]);
+    }
+
+    private void UpdateCarInput(float deltaTime)
+    {
+        var fullPush = Input.GetKey(_controls[_addPowerKey]);
+
+        if (Input.GetKey(_controls[_gasKey]))
+        {
+            _gasSmoothPressing.Press(fullPush ? 1.0f : _gasMiddleValue, deltaTime);
+        }
+        else
+        {
+            _gasSmoothPressing.Release(deltaTime);
+        }
+
+        if (Input.GetKey(_controls[_brakeKey]))
+        {
+            _brakeSmoothPressing.Press(fullPush ? 1.0f : _brakeMiddleValue, deltaTime);
+        }
+        else
+        {
+            _brakeSmoothPressing.Release(deltaTime);
+        }
+
+        _rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
+            deltaTime : 0.0f;
+        _leftSteering = Input.GetKey(_controls[_steerLeftKey]) ?
+            deltaTime : 0.0f;
     }
 
     private void HandlePauseSwitch()
