@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Core.Car
 {
@@ -8,11 +7,11 @@ namespace Core.Car
     public class LightFixture : MonoBehaviour
     {
         [SerializeField, ColorUsage(true, true)] private Color _color;
-        [SerializeField] private float _minLight;
-        [SerializeField] private float _maxLight;
-        [SerializeField] private int _index;
-        [SerializeField] private float _flashSpeed = 5f;
-        [SerializeField] private float _fadeSpeed = 5f;
+        [SerializeField] protected float _minLight;
+        [SerializeField] protected float _maxLight;
+        [SerializeField] protected int _index;
+        [SerializeField] protected float _flashSpeed = 5f;
+        [SerializeField] protected float _fadeSpeed = 5f;
 
         private MeshRenderer _renderer;
         private bool _state = false;
@@ -30,17 +29,17 @@ namespace Core.Car
 
         private void FixedUpdate()
         {
-            UpdateTransition();
-            UpdateLight();
+            UpdateTransition(Time.fixedDeltaTime);
+            UpdateLight(_minLight, _maxLight);
         }
 
-        private void UpdateTransition()
+        private void UpdateTransition(float deltaTime)
         {
             if (_state)
             {
                 if (_transition < 1f)
                 {
-                    _transition += _flashSpeed * Time.deltaTime;
+                    _transition += _flashSpeed * deltaTime;
                 }
                 else
                 {
@@ -51,7 +50,7 @@ namespace Core.Car
             {
                 if (_transition > 0f)
                 {
-                    _transition -= _fadeSpeed * Time.deltaTime;
+                    _transition -= _fadeSpeed * deltaTime;
                 }
                 else
                 {
@@ -60,9 +59,9 @@ namespace Core.Car
             }
         }
 
-        private void UpdateLight()
+        private void UpdateLight(float minLight, float maxLight)
         {
-            var t = Mathf.Lerp(_minLight, _maxLight, _transition);
+            var t = Mathf.Lerp(minLight, maxLight, _transition);
             var factor = Mathf.Pow(2, (t + 1));
 
             _renderer.materials[_index].SetColor("_EmissionColor", _color * factor);
