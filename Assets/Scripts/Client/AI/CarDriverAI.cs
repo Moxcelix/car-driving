@@ -26,10 +26,15 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _brake = 0.0f;
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
+
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
+
     public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
+
     public IControls.ToogleSwitchDelegate HighLightSwitch { get; set; }
+
     public IControls.ToogleSwitchDelegate EmergencySwitch { get; set; }
+
     public IControls.ToogleSwitchDelegate ParkingBrakeSwitch { get; set; }
 
     public float Gas { get; private set; }
@@ -37,8 +42,6 @@ public class CarDriverAI : MonoBehaviour, IControls
     public float Brake { get; private set; }
 
     public float SteerDelta { get; private set; }
-
-    public bool EngineState { get; private set; }
 
 
     private void Awake()
@@ -91,8 +94,16 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private IEnumerator TESTAI()
     {
-        EngineState = true;
-        ParkingBrakeSwitch?.Invoke();
+        if(_car.Engine.Starter.State == EngineState.STOPED)
+        {
+            EngineSwitch?.Invoke();
+        }
+
+        if(_car.ParkingBrake.State == ParkingBrakeState.RAISED)
+        {
+            ParkingBrakeSwitch?.Invoke();
+        }
+
         SteerDelta = 0;
 
         _brake = 1;
