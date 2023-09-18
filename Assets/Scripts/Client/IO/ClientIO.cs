@@ -86,8 +86,7 @@ public class ClientIO :
 
     public bool IsJumping { get; private set; }
 
-    public bool Leave { get; private set; }
-
+    public Core.Entity.IControls.SingleActionDelegate Leave { private get; set; }
 
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
@@ -193,7 +192,11 @@ public class ClientIO :
         MoveLeft = Input.GetKey(_controls[_leftKey]);
         IsRunning = Input.GetKey(_controls[_runKey]);
         IsJumping = Input.GetKey(_controls[_jumpKey]);
-        Leave = Input.GetKeyDown(_controls[_leaveKey]);
+
+        if (Input.GetKeyDown(_controls[_leaveKey]))
+        {
+            Leave?.Invoke();
+        }
     }
 
     private void UpdateCarInput(float deltaTime)

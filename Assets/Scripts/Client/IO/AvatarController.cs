@@ -50,13 +50,15 @@ public class AvatarController
 
     public void DepriveCarHandling()
     {
-        CarController.Close();
+        CarController?.Close();
 
         CarController = null;
     }
 
     public void DepriveEntityHandling()
     {
+        EntityController?.Close();
+
         EntityController = null;
     }
 }

@@ -6,6 +6,8 @@ namespace Core.Entity
 
         private readonly EntityBody _entityBody;
 
+        private bool _closed = false;
+
         public EntityBody EntityBody => _entityBody;
 
         public bool IsAvailable { get; set; }
@@ -15,7 +17,16 @@ namespace Core.Entity
             this._controls = controls;
             this._entityBody = entityBody;
 
+            _controls.Leave = Leave;
+
             IsAvailable = true;
+        }
+
+        public void Close()
+        {
+            _controls.Leave = null;
+
+            _closed = true;
         }
 
         public void Update()
@@ -52,11 +63,25 @@ namespace Core.Entity
             );
 
             _entityBody.UpdateView(rotationDelta);
+        }
 
-            if (IsAvailable && _controls.Leave)
+        private void Leave()
+        {
+            if (IsAvailable)
             {
                 _entityBody.IsSitting = false;
             }
         }
+
+        ~EntityController()
+        {
+            if (_closed)
+            {
+                return;
+            }
+
+            Close();
+        }
+
     }
 }
