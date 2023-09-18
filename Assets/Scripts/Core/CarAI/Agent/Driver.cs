@@ -39,7 +39,7 @@ namespace Core.CarAI.Agent
 
         public void Update(float speed)
         {
-            var minBrakeDistance = speed / 2.0f;
+            var minBrakeDistance = speed / 2.0f + 5.0f;
             var hits = from item in _hitTesters
                        where item.HitDistance < minBrakeDistance
                        select item;
