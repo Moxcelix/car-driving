@@ -15,12 +15,12 @@ namespace Core.Car
 
         public Action<bool> OnBlinkerSwitch;
 
-        private BlinkerState _blinkerState = BlinkerState.None;
-        private bool _emergencyState = false;
+        public BlinkerState BlinkerState { get; private set; } = BlinkerState.None;
+        public bool EmergencyState { get; private set; } = false;
 
         public void Update()
         {
-            if(_blinkerState == BlinkerState.None && !_emergencyState) 
+            if(BlinkerState == BlinkerState.None && !EmergencyState) 
             {
                 ClearPhasa();
             }
@@ -36,17 +36,17 @@ namespace Core.Car
 
         public void SwitchBlinker(BlinkerState blinkerState)
         {
-            _blinkerState = blinkerState;
+            BlinkerState = blinkerState;
         }
 
-        public void SwitchEmergency(bool state)
+        public void SwitchEmergency()
         {
-            _emergencyState = state;
+            EmergencyState = !EmergencyState;
         }
 
         private void ControlFlashing(LightGroup lightGroup, BlinkerState blinkerState)
         {
-            if (_blinkerState == blinkerState || _emergencyState)
+            if (BlinkerState == blinkerState || EmergencyState)
             {
                 Flashing(lightGroup);
             }

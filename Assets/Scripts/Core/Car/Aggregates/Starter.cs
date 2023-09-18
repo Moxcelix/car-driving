@@ -41,9 +41,9 @@ namespace Core.Car
             OnChangeState?.Invoke(State);
         }
 
-        public void SwitchState(bool state)
+        public void SwitchState()
         {
-            SetState(state ?
+            SetState(State == EngineState.STOPED ?
                 EngineState.STARTED :
                 EngineState.STOPED);
         }

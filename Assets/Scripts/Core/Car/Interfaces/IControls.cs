@@ -2,7 +2,7 @@ namespace Core.Car
 {
     public interface IControls
     {
-        public delegate void ToogleSwitchDelegate(bool state);
+        public delegate void ToogleSwitchDelegate();
         public delegate void BlinkerStateSwitchDelegate(BlinkerState state);
         public delegate void TransmissionModeSwitchDelegate(TransmissionMode mode);
 

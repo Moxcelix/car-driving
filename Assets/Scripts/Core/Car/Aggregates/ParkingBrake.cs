@@ -45,27 +45,21 @@ namespace Core.Car
             Brake = State == ParkingBrakeState.LOWERED ? 0.0f : 1.0f;
         }
 
-        public void Switch(bool isUp)
+        public void Switch()
         {
-            if (isUp)
+            if (State == ParkingBrakeState.LOWERED)
             {
-                if (State == ParkingBrakeState.LOWERED)
-                {
-                    Raise();
-                }
+                Raise();
             }
-            else 
+            else if (State == ParkingBrakeState.RAISED)
             {
-                if (State == ParkingBrakeState.RAISED)
-                {
-                    Lower();
-                }
+                Lower();
             }
         }
 
         private void SetState(ParkingBrakeState state)
         {
-            if(State == state)
+            if (State == state)
             {
                 return;
             }

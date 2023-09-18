@@ -92,7 +92,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private IEnumerator TESTAI()
     {
         EngineState = true;
-        ParkingBrakeSwitch?.Invoke(false);
+        ParkingBrakeSwitch?.Invoke();
         SteerDelta = 0;
 
         _brake = 1;
@@ -143,8 +143,15 @@ public class CarDriverAI : MonoBehaviour, IControls
                     }
                     break;
                 case Mode.Accident:
-                    TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
-                    EmergencySwitch?.Invoke(true);
+                    if (_car.Transmission.Mode != TransmissionMode.PARKING)
+                    {
+                        TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
+                    }
+                    if (!_car.TurnLights.EmergencyState)
+                    {
+                        EmergencySwitch?.Invoke();
+                    }
+
                     break;
             }
 

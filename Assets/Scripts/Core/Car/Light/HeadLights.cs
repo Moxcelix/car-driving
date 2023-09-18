@@ -25,9 +25,11 @@ namespace Core.Car
             _highLight.SetLight(State == HeadLightState.HIGH);
         }
 
-        public void SwitchHighLight(bool state)
+        public void SwitchHighLight()
         {
-            State = state ? HeadLightState.HIGH : HeadLightState.DIPPED;
+            State = State == HeadLightState.DIPPED ?
+                HeadLightState.HIGH :
+                HeadLightState.DIPPED;
         }
     }
 }

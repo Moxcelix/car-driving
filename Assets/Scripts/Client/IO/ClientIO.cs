@@ -51,10 +51,6 @@ public class ClientIO :
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
 
-    private bool _engineState = false;
-    private bool _emergencyState = false;
-    private bool _highLightState = false;
-    private bool _parkingBrakeState = true;
     private float _leftSteering = 0;
     private float _rightSteering = 0;
     private BlinkerState _blinkerState = BlinkerState.None;
@@ -167,30 +163,22 @@ public class ClientIO :
 
         if (Input.GetKeyDown(_controls[_emergencyKey]))
         {
-            _emergencyState = !_emergencyState;
-
-            EmergencySwitch?.Invoke(_emergencyState);
+            EmergencySwitch?.Invoke();
         }
 
         if (Input.GetKeyDown(_controls[_headLightKey]))
         {
-            _highLightState = !_highLightState;
-
-            HighLightSwitch?.Invoke(_highLightState);
+            HighLightSwitch?.Invoke();
         }
 
         if (Input.GetKeyDown(_controls[_engineSwitchKey]))
         {
-            _engineState = !_engineState;
-
-            EngineSwitch?.Invoke(_engineState);
+            EngineSwitch?.Invoke();
         }
 
         if (Input.GetKeyDown(_controls[_parkingBrakeKey]))
         {
-            _parkingBrakeState = !_parkingBrakeState;
-
-            ParkingBrakeSwitch?.Invoke(_parkingBrakeState);
+            ParkingBrakeSwitch?.Invoke();
         }
     }
 
