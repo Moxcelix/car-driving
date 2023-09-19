@@ -18,7 +18,6 @@ namespace Core.Car
 
         public bool Enabled { get; set; } = false;
 
-
         public void Update()
         {
             _highLight.SetRange(LightState == HeadLightState.HIGH ?

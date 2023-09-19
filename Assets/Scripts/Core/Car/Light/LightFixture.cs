@@ -35,28 +35,10 @@ namespace Core.Car
 
         protected virtual void UpdateTransition(float deltaTime)
         {
-            if (_state)
-            {
-                if (_transition < 1f)
-                {
-                    _transition += _flashSpeed * deltaTime;
-                }
-                else
-                {
-                    _transition = 1f;
-                }
-            }
-            else
-            {
-                if (_transition > 0f)
-                {
-                    _transition -= _fadeSpeed * deltaTime;
-                }
-                else
-                {
-                    _transition = 0f;
-                }
-            }
+            var range = _state ? 1.0f : 0.0f;
+            var speed = _transition < range ? _flashSpeed : _fadeSpeed;
+
+            _transition = Mathf.Lerp(_transition, range, deltaTime * speed);
         }
 
         protected void UpdateLight(float minLight, float maxLight)

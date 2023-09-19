@@ -15,34 +15,10 @@ namespace Core.Car
 
         protected override void UpdateTransition(float deltaTime)
         {
-            if (_state)
-            {
-                if (_transition < _range)
-                {
-                    _transition += _flashSpeed * deltaTime;
-                }
-                else if (_transition > _range + _flashSpeed * deltaTime * 2.0f)
-                {
-                    _transition -= _fadeSpeed * deltaTime;
-                }
-                else
-                {
-                    _transition = _range;
-                }
-            }
-            else
-            {
-                if (_transition > 0f)
-                {
-                    _transition -= _fadeSpeed * deltaTime;
-                }
-                else
-                {
-                    _transition = 0f;
-                }
-            }
+            var range = _state ? _range : 0.0f;
+            var speed = _transition < range ? _flashSpeed : _fadeSpeed;
 
-            Debug.Log(_transition);
+            _transition = Mathf.Lerp(_transition, range, deltaTime * speed);
         }
     }
 }
