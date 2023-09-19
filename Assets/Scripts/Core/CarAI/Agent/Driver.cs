@@ -50,8 +50,13 @@ namespace Core.CarAI.Agent
                 case Mode.Driving:
                     _targetFollow.Update(speed * 0.5f + 7.0f);
 
+                    var determinatedDirection = DeterminateDirection(
+                        new Vector3(
+                            _targetFollow.TurnAmount, 0,
+                            _targetFollow.ForwardAmount));
+
                     TurnAmount = _targetFollow.TurnAmount;
-                    Brake = _targetFollow.TargetReached || hits.Count() > 0 ? 1.0f : 0.0f;
+                    Brake = _targetFollow.TargetReached || determinatedDirection ? 1.0f : 0.0f;
                     Acceleration = Brake > 0 ? 0.0f : _targetFollow.ForwardAmount * 0.2f;
                     break;
                 case Mode.Idling:
