@@ -3081,7 +3081,8 @@ MonoBehaviour:
       - {fileID: 95110990125226962}
       - {fileID: 95110990417544084}
   _headLights:
-    _highLight: {fileID: 95110990542278541}
+    _highLight: {fileID: 200798021085037613}
+    _dippedLightRange: 0.7
   _stopLights:
     _lights:
     - {fileID: 95110991075956878}
@@ -6072,7 +6073,7 @@ GameObject:
   - component: {fileID: 95110990542278540}
   - component: {fileID: 95110990542278643}
   - component: {fileID: 95110990542278642}
-  - component: {fileID: 95110990542278541}
+  - component: {fileID: 200798021085037613}
   m_Layer: 3
   m_Name: "\u0440\u0435\u0444\u043B\u0435\u043A\u0442\u043E\u0440"
   m_TagString: Untagged
@@ -6145,7 +6146,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &95110990542278541
+--- !u!114 &200798021085037613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6154,14 +6155,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 95110990542278543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69ecfc45ac3b2641b4456b592a3165f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c8f9941aa616fb4192bfc45dd1d81c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _color: {r: 1, g: 1, b: 1, a: 1}
   _minLight: -10
   _maxLight: 3
   _index: 0
-  _flashSpeed: 15
+  _flashSpeed: 7
   _fadeSpeed: 3
 --- !u!1 &95110990558140675
 GameObject:

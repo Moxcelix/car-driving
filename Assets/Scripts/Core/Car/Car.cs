@@ -145,11 +145,7 @@ namespace Core.Car
 
         private void HandleLighs()
         {
-            if (!_engine.Enabled &&
-                _headLights.State == HeadLightState.HIGH)
-            {
-                _headLights.State = HeadLightState.DIPPED;
-            }
+            _headLights.Enabled = _engine.Enabled;
 
             _headLights.Update();
             _turnLights.Update();

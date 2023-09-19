@@ -9,7 +9,7 @@ namespace Core.Car
         public override bool Check()
         {
             return _car.Engine.Enabled
-                && _car.HeadLights.State == HeadLightState.DIPPED;
+                && _car.HeadLights.LightState == HeadLightState.DIPPED;
         }
     }
 }

@@ -11,23 +11,24 @@ namespace Core.Car
     [System.Serializable]
     public class HeadLights
     {
-        [SerializeField] private LightFixture _highLight;
+        [SerializeField] private RangeLightFixture _highLight;
+        [SerializeField] private float _dippedLightRange = 0.655f;
 
-        public HeadLightState State { get; set; }
+        public HeadLightState LightState { get; private set; } = HeadLightState.DIPPED;
 
-        public HeadLights()
-        {
-            State = HeadLightState.DIPPED;
-        }
+        public bool Enabled { get; set; } = false;
+
 
         public void Update()
         {
-            _highLight.SetLight(State == HeadLightState.HIGH);
+            _highLight.SetRange(LightState == HeadLightState.HIGH ?
+                1.0f : _dippedLightRange);
+            _highLight.SetLight(Enabled);
         }
 
         public void SwitchHighLight()
         {
-            State = State == HeadLightState.DIPPED ?
+            LightState = LightState == HeadLightState.DIPPED ?
                 HeadLightState.HIGH :
                 HeadLightState.DIPPED;
         }

@@ -8,7 +8,7 @@ namespace Core.Car
 
         public override bool Check()
         {
-            return _car.HeadLights.State == HeadLightState.HIGH;
+            return _car.HeadLights.LightState == HeadLightState.HIGH;
         }
     }
 }

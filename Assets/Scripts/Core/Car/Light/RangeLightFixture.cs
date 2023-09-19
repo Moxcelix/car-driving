@@ -21,7 +21,7 @@ namespace Core.Car
                 {
                     _transition += _flashSpeed * deltaTime;
                 }
-                else if (_transition >= _range + _flashSpeed * deltaTime * 2.0f)
+                else if (_transition > _range + _flashSpeed * deltaTime * 2.0f)
                 {
                     _transition -= _fadeSpeed * deltaTime;
                 }
@@ -41,6 +41,8 @@ namespace Core.Car
                     _transition = 0f;
                 }
             }
+
+            Debug.Log(_transition);
         }
     }
 }
