@@ -6,16 +6,16 @@ namespace Core.Car
     [RequireComponent(typeof(MeshRenderer))]
     public class LightFixture : MonoBehaviour
     {
-        [SerializeField, ColorUsage(true, true)] private Color _color;
+        [SerializeField, ColorUsage(true, true)] protected Color _color;
         [SerializeField] protected float _minLight;
         [SerializeField] protected float _maxLight;
         [SerializeField] protected int _index;
         [SerializeField] protected float _flashSpeed = 5f;
         [SerializeField] protected float _fadeSpeed = 5f;
 
-        private MeshRenderer _renderer;
-        private bool _state = false;
-        private float _transition = 0f;
+        protected MeshRenderer _renderer;
+        protected bool _state = false;
+        protected float _transition = 0f;
 
         public void SetLight(bool state)
         {
@@ -33,7 +33,7 @@ namespace Core.Car
             UpdateLight(_minLight, _maxLight);
         }
 
-        private void UpdateTransition(float deltaTime)
+        protected virtual void UpdateTransition(float deltaTime)
         {
             if (_state)
             {
@@ -59,7 +59,7 @@ namespace Core.Car
             }
         }
 
-        private void UpdateLight(float minLight, float maxLight)
+        protected void UpdateLight(float minLight, float maxLight)
         {
             var t = Mathf.Lerp(minLight, maxLight, _transition);
             var factor = Mathf.Pow(2, (t + 1));
