@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Core.CarAI
 {
     public interface IHitTester
@@ -7,5 +9,7 @@ namespace Core.CarAI
         public bool IsHited { get; }
 
         public float HitDistance { get; }
+
+        public Vector3 Direction { get; }
     }
 }

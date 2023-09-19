@@ -12,12 +12,16 @@ namespace Core.CarAI.Navigation
 
         public float HitDistance { get; private set; }
 
+        public Vector3 Direction { get; private set; }
+
         private void Update()
         {
             IsHited = Physics.Raycast(transform.position,
                 transform.forward, out _hit, _rayLength);
 
             HitDistance = IsHited ? _hit.distance : float.PositiveInfinity;
+
+            Direction = transform.forward;
         }
 
         public float GetHit<T>()

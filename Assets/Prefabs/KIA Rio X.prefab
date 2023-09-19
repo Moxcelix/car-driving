@@ -3082,7 +3082,7 @@ MonoBehaviour:
       - {fileID: 95110990417544084}
   _headLights:
     _highLight: {fileID: 200798021085037613}
-    _dippedLightRange: 0.7
+    _dippedLightRange: 0.677
   _stopLights:
     _lights:
     - {fileID: 95110991075956878}

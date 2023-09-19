@@ -1,4 +1,5 @@
 using System.Linq;
+using UnityEngine;
 
 namespace Core.CarAI.Agent
 {
@@ -68,6 +69,11 @@ namespace Core.CarAI.Agent
                     Acceleration = 0;
                     break;
             }
+        }
+
+        private void DeterminateDirection(Vector3 direction)
+        {
+
         }
     }
 }
