@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Core.CarAI.Navigation
 {
@@ -14,14 +15,17 @@ namespace Core.CarAI.Navigation
 
         public Vector3 Direction { get; private set; }
 
+        private void Awake()
+        {
+            Direction = transform.parent.worldToLocalMatrix.MultiplyVector(transform.forward);
+        }
+
         private void Update()
         {
             IsHited = Physics.Raycast(transform.position,
                 transform.forward, out _hit, _rayLength);
 
             HitDistance = IsHited ? _hit.distance : float.PositiveInfinity;
-
-            Direction = transform.forward;
         }
 
         public float GetHit<T>()
