@@ -71,9 +71,19 @@ namespace Core.CarAI.Agent
             }
         }
 
-        private void DeterminateDirection(Vector3 direction)
+        private bool DeterminateDirection(Vector3 direction)
         {
+            var minAngle = 30.0f;
 
+            foreach(var item in _hitTesters)
+            {
+                if (item.IsHited && Vector3.Angle(item.Direction, direction) <= minAngle) 
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
