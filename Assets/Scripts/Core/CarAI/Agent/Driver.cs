@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.CarAI.Agent
 {
-    public class Driver
+    public class Driver : IDriver
     {
         private readonly ITargetFollow _targetFollow;
 
@@ -40,7 +40,7 @@ namespace Core.CarAI.Agent
 
         public void Update(float speed)
         {
-            var minBrakeDistance = speed / 2.0f + 5.0f;
+            var minBrakeDistance = speed / 2.0f + 2.0f;
             var hits = from item in _hitTesters
                        where item.HitDistance < minBrakeDistance
                        select item;
