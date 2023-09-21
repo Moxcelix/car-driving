@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Core.CarAI.Navigation
 {
     public class PathFinder
-
     {
         private List<Node> _nodes;
         private Dictionary<Node, float> _marks;

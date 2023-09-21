@@ -8,7 +8,7 @@ using Core.Damage;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
-    private readonly float _steerSpeed = 1f;
+    private readonly float _steerSpeed = 2f;
 
     private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 0.5f);
     private readonly SmoothPressing _brakeSmoothPressing = new(1f, 1.5f);

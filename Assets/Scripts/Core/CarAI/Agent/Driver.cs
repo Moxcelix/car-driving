@@ -48,7 +48,7 @@ namespace Core.CarAI.Agent
             switch (Mode)
             {
                 case Mode.Driving:
-                    _targetFollow.Update(speed * 0.5f + 7.0f);
+                    _targetFollow.Update(minBrakeDistance);
 
                     var determinatedDirection = DeterminateDirection(
                         new Vector3(
