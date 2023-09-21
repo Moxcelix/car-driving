@@ -45,6 +45,8 @@ namespace Core.CarAI.Agent
                        where item.HitDistance < minBrakeDistance
                        select item;
 
+            _targetFollow.SetTarget(_targetFinder.GetTarget());
+
             switch (Mode)
             {
                 case Mode.Driving:

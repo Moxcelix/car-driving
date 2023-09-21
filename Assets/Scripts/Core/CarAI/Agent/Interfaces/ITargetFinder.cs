@@ -6,6 +6,5 @@ namespace Core.CarAI.Agent
     {
         public Transform GetTarget();
 
-        public void NextTarget();
     }
 }

@@ -1,4 +1,5 @@
 using Core.Car;
+using Core.CarAI;
 using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
 
@@ -15,11 +16,14 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     [SerializeField] private Car _car;
     [SerializeField] private Damageable _damageable;
-    [SerializeField] private Transform _target;
     [SerializeField] private HitTester[] _hitTesters;
+    // Test
+    [SerializeField] private Node _startNode;
+    [SerializeField] private Node _endNode;
 
     private CarController _carController;
     private TargetFollow _targetFollow;
+    private TargetFinder _targetFinder;
     private Driver _driver;
 
     private float _gas = 0.0f;
@@ -47,10 +51,11 @@ public class CarDriverAI : MonoBehaviour, IControls
     private void Awake()
     {
         _targetFollow = new TargetFollow(_car.transform);
-        _targetFollow.SetTarget(_target);
-        _targetFollow.UseReverse = true;
+        _targetFinder = new TargetFinder();
+        _targetFinder.SetDestination(_startNode, _endNode);
+        _targetFollow.UseReverse = false;
 
-        _driver = new Driver(_targetFollow, null, _hitTesters);
+        _driver = new Driver(_targetFollow, _targetFinder, _hitTesters);
 
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;
@@ -64,8 +69,18 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Update()
     {
+        var speed = _car.GetSpeed();
+        var destinationDistance = speed / 2.0f + 2.0f;
+
+        if (Vector3.Distance(
+            _targetFinder.GetTarget().position, 
+            _car.transform.position) < destinationDistance)
+        {
+            _targetFinder.NextTarget();
+        }
+
         _carController.Update();
-        _driver.Update(_car.GetSpeed());
+        _driver.Update(speed);
 
         if (_brake > 0)
         {
