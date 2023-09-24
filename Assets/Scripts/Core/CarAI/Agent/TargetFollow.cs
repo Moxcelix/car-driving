@@ -6,9 +6,9 @@ namespace Core.CarAI.Agent
     {
         private readonly Transform _carTransform;
 
-        private Transform _target;
-
         private readonly float _maxAngle = 30.0f;
+
+        private Transform _target;
 
         public float ForwardAmount { get; private set; }
 

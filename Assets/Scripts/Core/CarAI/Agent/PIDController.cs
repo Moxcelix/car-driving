@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.CarAI.Agent
 {
@@ -25,6 +26,20 @@ namespace Core.CarAI.Agent
         private float _integrationStored;
         private float _velocity;
         private bool _derivativeInitialized;
+
+        public PIDController(
+            float proportionalGain, 
+            float integralGain, 
+            float derivativeGain, 
+            float integralSaturation, 
+            DerivativeMeasurement derivativeMeasurement)
+        {
+            _proportionalGain = proportionalGain;
+            _integralGain = integralGain;
+            _derivativeGain = derivativeGain;
+            _integralSaturation = integralSaturation;
+            _derivativeMeasurement = derivativeMeasurement;
+        }
 
         public void Reset()
         {

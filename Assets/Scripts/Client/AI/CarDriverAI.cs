@@ -29,6 +29,11 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
+    // PID Test.
+    private readonly PIDController _pidController = 
+        new PIDController(0.5f, 0.5f, 0.5f, 0.5f, // magig 0.5f's
+            PIDController.DerivativeMeasurement.Velocity);
+
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
 
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
@@ -133,9 +138,12 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         while (true)
         {
-            SteerDelta =
-                (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
-                Time.unscaledDeltaTime * _steerSpeed;
+            SteerDelta = _steerSpeed * Time.unscaledDeltaTime * _pidController.Update(
+                Time.unscaledDeltaTime,
+                _car.SteeringWheel.TurnAmount,
+                _driver.TurnAmount);
+                //(_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
+                //Time.unscaledDeltaTime * _steerSpeed;
 
             _brake = _driver.Brake;
 
