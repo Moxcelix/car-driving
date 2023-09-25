@@ -4,6 +4,8 @@ namespace Core.Neural
     {
         private readonly Layer[] _layers; 
 
+        public Layer[] Layers => _layers;
+
         public NeuralNetwork(int[] layer)
         {
             _layers = new Layer[layer.Length - 1];
