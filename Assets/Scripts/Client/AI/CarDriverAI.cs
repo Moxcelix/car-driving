@@ -60,7 +60,6 @@ public class CarDriverAI : MonoBehaviour, IControls
         _targetFinder = new TargetFinder();
         _targetFinder.SetDestination(_startNode, _endNode);
         _targetFollow.UseReverse = false;
-        //_targetFollow.SetTarget(_target);
 
         _driver = new Driver(_targetFollow, _targetFinder, _hitTesters);
 

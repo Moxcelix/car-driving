@@ -21,12 +21,12 @@ namespace Core.Neural
             stream.Close();
         }
 
-        public void Save(string path, NeuralNetwork neuralNetwork)
+        public void Save(string path, float[,] weights)
         {
             var stream = new FileStream(path, FileMode.OpenOrCreate);
             var binaryFormatter = new BinaryFormatter();
 
-            binaryFormatter.Serialize(stream, _weights);
+            binaryFormatter.Serialize(stream, weights);
 
             stream.Close();
         }
