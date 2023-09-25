@@ -2,10 +2,12 @@ using Core.Car;
 using Core.CarAI;
 using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
+using Core.Damage;
+using Core.Neural;
 
 using UnityEngine;
 using System.Collections;
-using Core.Damage;
+using System.IO;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
@@ -30,10 +32,8 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
-    // PID Test.
-    private readonly PIDController _pidController = 
-        new PIDController(1.0f, 0.6f, 0.6f, 1.0f, // magig numbers
-            PIDController.DerivativeMeasurement.Velocity);
+    // Neural test
+    private readonly NeuralNetwork _neuralNetwork = new NeuralNetwork(new int[] {2, 10, 10, 2 });
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
 
@@ -111,6 +111,49 @@ public class CarDriverAI : MonoBehaviour, IControls
     {
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
+    }
+
+    private void TESTSaveNeural()
+    {
+        var path = "nrl/weight";
+        var extension = ".w";
+
+        for (int i = 0; i < _neuralNetwork.Layers.Length; i++)
+        {
+            var saver = new WeightSave();
+
+            saver.Save(path + i + extension, _neuralNetwork.Layers[i].Weights);
+        }
+    }
+
+    private void TESTLoadNeural()
+    {
+        var path = "nrl/weight";
+        var extension = ".w";
+
+        if (!Directory.Exists("nrl"))
+        {
+            Directory.CreateDirectory("nrl");
+        }
+
+        for (int i = 0; i < _neuralNetwork.Layers.Length; i++)
+        {
+            var name = path + i + extension;
+            if (File.Exists(name))
+            {
+                var saver = new WeightSave();
+
+                saver.Load(path + i + extension);
+
+                _neuralNetwork.Layers[i].InitilizeWeights(saver);
+            }
+            else
+            {
+                var weightsProvider = new RandomWeightProvider();
+
+                _neuralNetwork.Layers[i].InitilizeWeights(weightsProvider);
+            }
+        }
     }
 
     private IEnumerator TESTAI()
