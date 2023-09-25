@@ -82,9 +82,9 @@ namespace Core.CarAI.Agent
         {
             var minAngle = 30.0f;
 
-            foreach(var item in _hitTesters)
+            foreach (var item in _hitTesters)
             {
-                if (item.IsHited && Vector3.Angle(item.Direction, direction) <= minAngle) 
+                if (item.IsHited && Vector3.Angle(item.Direction, direction) <= minAngle)
                 {
                     return true;
                 }

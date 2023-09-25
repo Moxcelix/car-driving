@@ -245,6 +245,7 @@ MonoBehaviour:
   - {fileID: 1905685098}
   - {fileID: 1632489550}
   - {fileID: 1669561246}
+  _target: {fileID: 806107332}
   _startNode: {fileID: 956185350}
   _endNode: {fileID: 421763503}
 --- !u!1 &44477788
@@ -3219,7 +3220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672895528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.47, y: 1.17, z: -17.84}
+  m_LocalPosition: {x: -19.36, y: 1.17, z: -17.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3927,6 +3928,11 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &806107332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 95110991145400754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &808159221
 GameObject:
   m_ObjectHideFlags: 0
@@ -11367,6 +11373,7 @@ MonoBehaviour:
   - {fileID: 847578561}
   - {fileID: 1573024223}
   - {fileID: 1958481285}
+  _target: {fileID: 0}
   _startNode: {fileID: 2083575392}
   _endNode: {fileID: 1102859283}
 --- !u!1 &2046007082
@@ -12305,7 +12312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.19
+      value: -15.440001
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12313,7 +12320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -16.679998
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalRotation.w

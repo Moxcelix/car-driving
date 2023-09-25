@@ -18,11 +18,12 @@ public class CarDriverAI : MonoBehaviour, IControls
     [SerializeField] private Damageable _damageable;
     [SerializeField] private HitTester[] _hitTesters;
     // Test
+    [SerializeField] private Transform _target;
     [SerializeField] private Node _startNode;
     [SerializeField] private Node _endNode;
 
     private CarController _carController;
-    private TargetFollow _targetFollow;
+    private TargetFollowPID _targetFollow;
     private TargetFinder _targetFinder;
     private Driver _driver;
 
@@ -31,7 +32,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     // PID Test.
     private readonly PIDController _pidController = 
-        new PIDController(0.5f, 0.5f, 0.5f, 0.5f, // magig 0.5f's
+        new PIDController(1.0f, 0.6f, 0.6f, 1.0f, // magig numbers
             PIDController.DerivativeMeasurement.Velocity);
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
@@ -55,10 +56,11 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Awake()
     {
-        _targetFollow = new TargetFollow(_car.transform);
+        _targetFollow = new TargetFollowPID(_car.transform);
         _targetFinder = new TargetFinder();
         _targetFinder.SetDestination(_startNode, _endNode);
         _targetFollow.UseReverse = false;
+        //_targetFollow.SetTarget(_target);
 
         _driver = new Driver(_targetFollow, _targetFinder, _hitTesters);
 
@@ -138,12 +140,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         while (true)
         {
-            SteerDelta = _steerSpeed * Time.unscaledDeltaTime * _pidController.Update(
-                Time.unscaledDeltaTime,
-                _car.SteeringWheel.TurnAmount,
-                _driver.TurnAmount);
-                //(_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
-                //Time.unscaledDeltaTime * _steerSpeed;
+            SteerDelta = (_driver.TurnAmount - _car.SteeringWheel.TurnAmount)
+                * Time.unscaledDeltaTime * _steerSpeed;
 
             _brake = _driver.Brake;
 
