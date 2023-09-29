@@ -8,6 +8,7 @@ using Core.Neural;
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using static UnityEditor.Progress;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
@@ -18,7 +19,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     [SerializeField] private Car _car;
     [SerializeField] private Damageable _damageable;
-    [SerializeField] private HitTester[] _hitTesters;
+    [SerializeField] private DynamicHitTester[] _hitTesters;
     // Test
     [SerializeField] private Transform _target;
     [SerializeField] private Node _startNode;
@@ -118,6 +119,13 @@ public class CarDriverAI : MonoBehaviour, IControls
         else
         {
             _gasSmoothPressing.Release(Time.deltaTime);
+        }
+
+        foreach(var hitTester in _hitTesters)
+        {
+            hitTester.Coefficient = Vector3.Dot(
+                hitTester.transform.forward,
+                _car.GetComponent<Rigidbody>().velocity);
         }
     }
 

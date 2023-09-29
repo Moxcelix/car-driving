@@ -1,13 +1,14 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Core.CarAI.Navigation
 {
-    public class HitTester : MonoBehaviour, IHitTester
+    public class DynamicHitTester : MonoBehaviour, IHitTester
     {
         [SerializeField] private float _rayLength;
 
         private RaycastHit _hit;
+
+        public float Coefficient { get; set; } = 1;
 
         public bool IsHited { get; private set; }
 
@@ -23,7 +24,7 @@ namespace Core.CarAI.Navigation
         private void Update()
         {
             IsHited = Physics.Raycast(transform.position,
-                transform.forward, out _hit, _rayLength);
+                transform.forward, out _hit, _rayLength * Coefficient);
 
             HitDistance = IsHited ? _hit.distance : float.PositiveInfinity;
         }
@@ -49,7 +50,9 @@ namespace Core.CarAI.Navigation
             const float arrowHeadLength = 0.5f;
             const float arrowHeadAngle = 30f;
 
-            float length = IsHited ? _hit.distance : _rayLength;
+            var coefficient = Coefficient < 0 ? 0 : Coefficient;
+
+            float length = IsHited ? _hit.distance : _rayLength * coefficient;
 
             Gizmos.color = IsHited ? Color.green : Color.red;
 
