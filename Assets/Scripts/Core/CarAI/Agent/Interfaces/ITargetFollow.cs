@@ -14,6 +14,6 @@ namespace Core.CarAI.Agent
 
         public void SetTarget(Transform target);
 
-        public void Update(float reachedDistance);
+        public void Update(float turnAmount, float reachedDistance);
     }
 }

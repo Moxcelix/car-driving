@@ -15,7 +15,7 @@ namespace Core.CarAI.Agent
             PIDController.DerivativeMeasurement.Velocity);
 
         private readonly PIDController _turnController =
-            new PIDController(1.0f, 0.2f, 0.2f, 0.2f, // magig numbers
+            new PIDController(1.0f, 0.4f, 0.4f, 1.0f, // magig numbers
             PIDController.DerivativeMeasurement.Velocity);
 
         public float ForwardAmount { get; private set; }
@@ -31,15 +31,26 @@ namespace Core.CarAI.Agent
             _carTransform = carBody;
         }
 
-        public void Update(float reachedDistance)
+        public void Update(float steerAngle, float reachedDistance)
         {
             var distance = Vector3.Distance(_carTransform.position, _target.position);
 
             var directionToMovePosition = (_target.position - _carTransform.position).normalized;
             var angleToDirection =
-                    Vector3.SignedAngle(_carTransform.forward, directionToMovePosition, Vector3.up);
+                Mathf.Clamp(
+                    Vector3.SignedAngle(
+                     _carTransform.forward,
+                        directionToMovePosition,
+                        Vector3.up) + steerAngle,
+                    -_maxAngle,
+                    _maxAngle);
 
-            var turnAmount = _turnController.UpdateAngle(Time.unscaledDeltaTime, 0, angleToDirection);
+            Debug.Log(angleToDirection);
+
+            var turnAmount = _turnController.UpdateAngle(
+                Time.unscaledDeltaTime,
+                -angleToDirection / _maxAngle,
+                0);
             var forwardAmount = 0.0f;
 
             TargetReached = distance < reachedDistance;
@@ -50,7 +61,7 @@ namespace Core.CarAI.Agent
 
                 forwardAmount = -Mathf.Clamp(
                     _forwardController.Update(
-                        Time.unscaledDeltaTime, 
+                        Time.unscaledDeltaTime,
                         dot, 0), -1.0f, 1.0f);
 
                 if (!UseReverse)
@@ -67,6 +78,9 @@ namespace Core.CarAI.Agent
 
         public void SetTarget(Transform target)
         {
+            _turnController.Reset();
+            _forwardController.Reset();
+
             _target = target;
         }
     }

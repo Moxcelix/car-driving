@@ -35,12 +35,12 @@ namespace Test
             _carTransform = target;
         }
 
-        public void Update(float reachedDistance)
+        public void Update(float steerAngle, float reachedDistance)
         {
             var distance = Vector3.Distance(_carTransform.position, _target.position);
 
             var directionToMovePosition = (_target.position - _carTransform.position).normalized;
-            var angleToDirection =
+            var angleToDirection = steerAngle +
                     Vector3.SignedAngle(_carTransform.forward, directionToMovePosition, Vector3.up);
 
             var turnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);

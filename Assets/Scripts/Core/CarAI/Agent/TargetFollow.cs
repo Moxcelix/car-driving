@@ -24,16 +24,16 @@ namespace Core.CarAI.Agent
             _carTransform = carBody;
         }
 
-        public void Update(float reachedDistance)
+        public void Update(float turnAmount, float reachedDistance)
         {
             var distance = Vector3.Distance(_carTransform.position, _target.position);
 
             var directionToMovePosition = (_target.position - _carTransform.position).normalized;
-            var angleToDirection =
+            var angleToDirection = -turnAmount * _maxAngle +
                     Vector3.SignedAngle(_carTransform.forward, directionToMovePosition, Vector3.up);
 
-            var turnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);
-            var forwardAmount = 0.0f;
+            TurnAmount = Mathf.Clamp(angleToDirection / _maxAngle, -1.0f, 1.0f);
+            ForwardAmount = 0.0f;
 
             TargetReached = distance < reachedDistance;
 
@@ -41,11 +41,8 @@ namespace Core.CarAI.Agent
             {
                 var dot = Vector3.Dot(_carTransform.forward, directionToMovePosition);
 
-                forwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
+                ForwardAmount = dot > 0 || !UseReverse ? 1.0f : -1.0f;
             }
-
-            ForwardAmount = forwardAmount;
-            TurnAmount = turnAmount;
         }
 
         public void SetTarget(Transform target)

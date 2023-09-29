@@ -45,7 +45,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     // Ouput:
     // 0 - forward amount
     // 1 - turn amount
-    private readonly NeuralNetwork _neuralNetwork = new NeuralNetwork(new int[] {4, 10, 10, 2 });
+    private readonly NeuralNetwork _neuralNetwork = new NeuralNetwork(new int[] { 4, 10, 10, 2 });
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
 
@@ -90,17 +90,17 @@ public class CarDriverAI : MonoBehaviour, IControls
     private void Update()
     {
         var speed = _car.GetSpeed();
-        var destinationDistance = speed / 2.0f + 2.0f;
+        var destinationDistance = speed * speed / 2.0f + 2.0f;
 
         if (Vector3.Distance(
-            _targetFinder.GetTarget().position, 
+            _targetFinder.GetTarget().position,
             _car.transform.position) < destinationDistance)
         {
             _targetFinder.NextTarget();
         }
 
         _carController.Update();
-        _driver.Update(speed);
+        _driver.Update(_car.SteeringWheel.TurnAmount, speed);
 
         if (_brake > 0)
         {
@@ -177,12 +177,12 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private IEnumerator TESTAI()
     {
-        if(_car.Engine.Starter.State == EngineState.STOPED)
+        if (_car.Engine.Starter.State == EngineState.STOPED)
         {
             EngineSwitch?.Invoke();
         }
 
-        if(_car.ParkingBrake.State == ParkingBrakeState.RAISED)
+        if (_car.ParkingBrake.State == ParkingBrakeState.RAISED)
         {
             ParkingBrakeSwitch?.Invoke();
         }
@@ -201,8 +201,9 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         while (true)
         {
-            SteerDelta = (_driver.TurnAmount - _car.SteeringWheel.TurnAmount);
-                //* Time.unscaledDeltaTime * _steerSpeed;
+            SteerDelta =
+                (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
+                Time.unscaledDeltaTime * _steerSpeed;
 
             _brake = _driver.Brake;
 

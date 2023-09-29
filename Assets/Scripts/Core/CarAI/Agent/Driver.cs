@@ -38,7 +38,7 @@ namespace Core.CarAI.Agent
             Mode = Mode.Accident;
         }
 
-        public void Update(float speed)
+        public void Update(float turnAmount, float speed)
         {
             var minBrakeDistance = speed / 2.0f + 2.0f;
             var hits = from item in _hitTesters
@@ -50,7 +50,7 @@ namespace Core.CarAI.Agent
             switch (Mode)
             {
                 case Mode.Driving:
-                    _targetFollow.Update(minBrakeDistance);
+                    _targetFollow.Update(turnAmount, minBrakeDistance);
 
                     var determinatedDirection = DeterminateDirection(
                         new Vector3(
