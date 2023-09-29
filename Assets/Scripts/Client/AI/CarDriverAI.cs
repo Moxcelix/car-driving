@@ -25,7 +25,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     [SerializeField] private Node _endNode;
 
     private CarController _carController;
-    private TargetFollowPID _targetFollow;
+    private TargetFollow _targetFollow;
     private TargetFinder _targetFinder;
     private Driver _driver;
 
@@ -35,9 +35,13 @@ public class CarDriverAI : MonoBehaviour, IControls
     // Neural test.
     // Input:
     // 0 - forward amount
+    // 0 - forward amount sign
     // 1 - turn amount
+    // 1 - turn amount sign
     // 2 - prev forward amount
+    // 2 - prev forward amount sign
     // 3 - prev turn amount
+    // 3 - prev turn amount sign
     // Ouput:
     // 0 - forward amount
     // 1 - turn amount
@@ -66,7 +70,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     {
         TESTLoadNeural();
 
-        _targetFollow = new TargetFollowPID(_car.transform);
+        _targetFollow = new TargetFollow(_car.transform);
         _targetFinder = new TargetFinder();
         _targetFinder.SetDestination(_startNode, _endNode);
         _targetFollow.UseReverse = false;
@@ -197,8 +201,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         while (true)
         {
-            SteerDelta = (_driver.TurnAmount - _car.SteeringWheel.TurnAmount)
-                * Time.unscaledDeltaTime * _steerSpeed;
+            SteerDelta = (_driver.TurnAmount - _car.SteeringWheel.TurnAmount);
+                //* Time.unscaledDeltaTime * _steerSpeed;
 
             _brake = _driver.Brake;
 

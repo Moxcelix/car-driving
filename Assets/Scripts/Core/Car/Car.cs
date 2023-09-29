@@ -96,8 +96,8 @@ namespace Core.Car
 
         private void HandleSteering()
         {
-            _frontLeftWheel.SteerAngle = _steeringWheel.SteerAngle;
-            _frontRightWheel.SteerAngle = _steeringWheel.SteerAngle;
+            _frontLeftWheel.TurnAmount = _steeringWheel.TurnAmount;
+            _frontRightWheel.TurnAmount = _steeringWheel.TurnAmount;
         }
 
         private void HandleEngine()

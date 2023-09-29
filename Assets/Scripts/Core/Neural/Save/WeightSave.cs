@@ -8,7 +8,7 @@ namespace Core.Neural
         private float[,] _weights;
         public double GetWeight(int i, int j)
         {
-            throw new System.NotImplementedException();
+            return _weights[i, j];
         }
 
         public void Load(string path)

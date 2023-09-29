@@ -4,29 +4,30 @@ namespace Core.Car
 {
     public class Wheel : MonoBehaviour
     {
-        private const float c_minTorqueMultiplier = 0.05f;
-
+        [SerializeField] private float _maxAngle = 30.0f;
         [SerializeField] private WheelCollider _collider;
         [SerializeField] private Transform _wheel;
         [SerializeField] private Transform _support;
 
-        public float SteerAngle { get; set; } = 0;
+        public float TurnAmount { get; set; } = 0;
 
         public float RPM { get; private set; } = 0;
 
         private void Update()
         {
+            var angle = TurnAmount * _maxAngle;
+
             _collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             _wheel.SetPositionAndRotation(pos, rot);
 
             if (_support != null)
             {
-                _support.localEulerAngles = new Vector3(0, SteerAngle, 0);
+                _support.localEulerAngles = new Vector3(0, angle, 0);
                 _support.position = pos;
             }
 
-            _collider.steerAngle = SteerAngle;
-            _collider.steerAngle = SteerAngle;
+            _collider.steerAngle = angle;
+            _collider.steerAngle = angle;
 
             RPM = _collider.rpm;
         }
