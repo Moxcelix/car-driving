@@ -64,23 +64,19 @@ namespace Core.Car
 
         public float GetSpeed()
         {
-            return _rigidbody.velocity.magnitude;
+            return Vector3.Dot(
+                    _rigidbody.velocity,
+                    _rigidbody.transform.forward);
         }
 
-        public float GetVelocity()
+        public Vector3 GetVelocity()
         {
-            var project = Vector3.Project(_rigidbody.velocity,
-                _rigidbody.transform.forward);
-            var movementSign = Mathf.Sign(project.x /
-                _rigidbody.transform.forward.x);
-            var v = project.magnitude;
-
-            return v * movementSign;
+            return _rigidbody.velocity;
         }
 
         private float GetResistanceForce()
         {
-            var v = GetVelocity();
+            var v = GetSpeed();
             var airResistance = _engine.MaxTorque / (_maxSpeed * _maxSpeed);
 
             if (Mathf.Abs(v) < c_velocityEps)
@@ -118,12 +114,12 @@ namespace Core.Car
             _transmission.Update(_engine.Torque,
                 _engine.OutputRPM,
                 wheelsRPM,
-                GetVelocity() * 3.6f);
+                GetSpeed() * 3.6f);
         }
 
         private void HandleDashboard()
         {
-            _speedometer.UpdateValue(GetVelocity() * 3.6f);
+            _speedometer.UpdateValue(GetSpeed() * 3.6f);
             _tachometer.UpdateValue(_engine.RPM);
         }
 

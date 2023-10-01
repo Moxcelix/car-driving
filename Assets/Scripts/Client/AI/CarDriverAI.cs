@@ -4,11 +4,9 @@ using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
 using Core.Damage;
 using Core.Neural;
-
-using UnityEngine;
 using System.Collections;
 using System.IO;
-using static UnityEditor.Progress;
+using UnityEngine;
 
 public class CarDriverAI : MonoBehaviour, IControls
 {
@@ -121,11 +119,11 @@ public class CarDriverAI : MonoBehaviour, IControls
             _gasSmoothPressing.Release(Time.deltaTime);
         }
 
-        foreach(var hitTester in _hitTesters)
+        foreach (var hitTester in _hitTesters)
         {
             hitTester.Coefficient = Vector3.Dot(
                 hitTester.transform.forward,
-                _car.GetComponent<Rigidbody>().velocity);
+                _car.GetVelocity());
         }
     }
 
