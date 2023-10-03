@@ -98,7 +98,7 @@ namespace Core.Car
 
         private void HandleEngine()
         {
-            var resistance = GetResistanceForce();
+            var resistance = 0;// GetResistanceForce();
             var wheelsRPM = GetWheelsRPM();
 
             _transmission.Lock = !_engine.Enabled || !_BrakePedal.IsPressed;

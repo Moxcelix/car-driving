@@ -12,7 +12,7 @@ namespace Core.Car
     public class HeadLights
     {
         [SerializeField] private RangeLightFixture _highLight;
-        [SerializeField] private float _dippedLightRange = 0.655f;
+        [SerializeField] private float _dippedLightRange = 0.7f;
 
         public HeadLightState LightState { get; private set; } = HeadLightState.DIPPED;
 

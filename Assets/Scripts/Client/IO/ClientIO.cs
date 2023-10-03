@@ -36,11 +36,15 @@ public class ClientIO :
     private readonly string _switchViewKey = "next_view";
 
     [SerializeField] private float _mouseSensitivity = 2;
+    [SerializeField] private float _steerSensitivity = 0.01f;
+
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 0.5f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(1f, 1.5f);
+    private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 20.0f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 25.0f);
+    private readonly SmoothPressing _rightSteerSmoothPressing = new(1.0f, 10.0f);
+    private readonly SmoothPressing _leftSteerSmoothPressing = new(1.0f, 10.0f);
 
     private readonly float _gasMiddleValue = 0.5f;
     private readonly float _brakeMiddleValue = 0.6f;
@@ -51,8 +55,6 @@ public class ClientIO :
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
 
-    private float _leftSteering = 0;
-    private float _rightSteering = 0;
     private BlinkerState _blinkerState = BlinkerState.None;
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
@@ -115,11 +117,6 @@ public class ClientIO :
 
     void Core.Car.IControls.Update()
     {
-        Gas = _gasSmoothPressing.Value;
-        Brake = _brakeSmoothPressing.Value;
-
-        SteerDelta = _rightSteering - _leftSteering;
-
         if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
@@ -179,6 +176,19 @@ public class ClientIO :
         {
             ParkingBrakeSwitch?.Invoke();
         }
+
+        Gas = Input.GetAxis("GasAxis");
+        Brake = Input.GetAxis("BrakeAxis");
+
+        SteerDelta = Input.GetAxis("TurnAxis");
+        return;
+
+        Gas = _gasSmoothPressing.Value;
+        Brake = _brakeSmoothPressing.Value;
+
+        SteerDelta = _steerSensitivity * (
+            _rightSteerSmoothPressing.Value -
+            _leftSteerSmoothPressing.Value);
     }
 
     private void HandlePlayerInput()
@@ -221,10 +231,23 @@ public class ClientIO :
             _brakeSmoothPressing.Release(deltaTime);
         }
 
-        _rightSteering = Input.GetKey(_controls[_steerRightKey]) ?
-            deltaTime : 0.0f;
-        _leftSteering = Input.GetKey(_controls[_steerLeftKey]) ?
-            deltaTime : 0.0f;
+        if (Input.GetKey(_controls[_steerRightKey]))
+        {
+            _rightSteerSmoothPressing.Press(1.0f, deltaTime);
+        }
+        else
+        {
+            _rightSteerSmoothPressing.Release(deltaTime);
+        }
+
+        if (Input.GetKey(_controls[_steerLeftKey]))
+        {
+            _leftSteerSmoothPressing.Press(1.0f, deltaTime);
+        }
+        else
+        {
+            _leftSteerSmoothPressing.Release(deltaTime);
+        }
     }
 
     private void HandlePauseSwitch()

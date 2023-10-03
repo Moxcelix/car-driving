@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SmoothPressing
 {
     private readonly float _pressSpeed = 0.1f;
@@ -15,25 +17,11 @@ public class SmoothPressing
 
     public void Press(float press, float deltaTime)
     {
-        if (Value < press)
-        {
-            Value += _pressSpeed * deltaTime;
-        }
-        else if (Value > press + _releaseSpeed * deltaTime * 2.0f)
-        {
-            Value -= _releaseSpeed * deltaTime;
-        }
+        Value = Mathf.Lerp(Value, press, _pressSpeed * deltaTime);
     }
 
     public void Release(float deltaTime)
     {
-        if (Value > 0)
-        {
-            Value -= _releaseSpeed * deltaTime;
-        }
-        else
-        {
-            Value = 0;
-        }
+        Value = Mathf.Lerp(Value, 0, _releaseSpeed * deltaTime);
     }
 }
