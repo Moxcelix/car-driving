@@ -111,7 +111,9 @@ namespace Core.Car
                 _transmission.RPM,
                 _transmission.Load);
 
-            _transmission.Update(_engine.Torque,
+            _transmission.Update(
+                _gasPedal.Value,
+                _engine.Torque,
                 _engine.OutputRPM,
                 wheelsRPM,
                 GetSpeed() * 3.6f);

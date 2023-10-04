@@ -17,13 +17,14 @@ namespace Core.Car
         private const float c_speedEps = 0.1f;
 
         [SerializeField] private AnimationCurve _fluidCouplingCurve;
+        [SerializeField] private AnimationCurve _gasReactionCurve;
         [SerializeField] private Gear[] _gears;
         [SerializeField] private float _reverseGearRatio = 3.44f;
         [SerializeField] private float _fluidDamp = 0.9999f;
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
 
-        [SerializeField] private float _accelerationFactor = 1;
+        private float _accelerationFactor = 1;
 
         private RatioShifter _ratioShifter;
         private float _fluidTransition = 0;
@@ -34,8 +35,7 @@ namespace Core.Car
 
         public bool Lock { get; set; }
         public TransmissionMode Mode { get; private set; }
-        public float Torque
-        { get; private set; }
+        public float Torque { get; private set; }
         public float RPM { get; private set; }
         public float Load { get; private set; }
         public float Brake { get; private set; }
@@ -67,7 +67,7 @@ namespace Core.Car
                 return;
             }
 
-            if(mode == Mode)
+            if (mode == Mode)
             {
                 return;
             }
@@ -80,15 +80,22 @@ namespace Core.Car
             }
         }
 
-        public void Update(float inputTorque, float inputRPM,
+        public void Update(float gasValue, float inputTorque, float inputRPM,
             float outputRPM, float speed)
         {
             _speed = speed;
             _ratioShifter.Update();
 
+            UpdateAccelerationFactor(gasValue);
             UpdateTorque(inputTorque, inputRPM, outputRPM);
             UpdateGearShifting(outputRPM);
             UpdateBrake();
+        }
+
+        private void UpdateAccelerationFactor(float acceleration)
+        {
+            _accelerationFactor = 1.0f + 
+                _gasReactionCurve.Evaluate(acceleration);
         }
 
         private void UpdateBrake()
@@ -114,6 +121,8 @@ namespace Core.Car
             Load = 1.0f - _fluidTransition;
             Torque = inputTorque * GetRatio();
             RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
+
+            Debug.Log(Torque);
         }
 
         private void UpdateGearShifting(float rpm)

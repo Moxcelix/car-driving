@@ -3230,6 +3230,39 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    _gasReactionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9352493
+        value: 0.14080133
+        inSlope: 0.17792015
+        outSlope: 0.17792015
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.5531869
+      - serializedVersion: 3
+        time: 1
+        value: 1.1330177
+        inSlope: 3.213259
+        outSlope: 3.213259
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.03658138
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     _gears:
     - _ratio: 4.4
       _minSpeed: 0
@@ -3265,7 +3298,6 @@ MonoBehaviour:
     _fluidDamp: 0.99
     _idlingRMP: 700
     _lastGearRatio: 3.574
-    _accelerationFactor: 1
 --- !u!114 &95110990273813407
 MonoBehaviour:
   m_ObjectHideFlags: 0
