@@ -41,8 +41,8 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 20.0f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 25.0f);
+    private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 4.0f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 4.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(1.0f, 10.0f);
     private readonly SmoothPressing _leftSteerSmoothPressing = new(1.0f, 10.0f);
 
@@ -177,12 +177,13 @@ public class ClientIO :
             ParkingBrakeSwitch?.Invoke();
         }
 
-        Gas = Input.GetAxis("GasAxis");
-        Brake = Input.GetAxis("BrakeAxis");
+        //Gas = Input.GetAxis("GasAxis");
+        //Brake = Input.GetAxis("BrakeAxis");
 
-        SteerDelta = Input.GetAxis("TurnAxis");
-        return;
+        //SteerDelta = Input.GetAxis("TurnAxis");
+        //return;
 
+        Debug.Log(_brakeSmoothPressing.Value);
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SmoothPressing
 {
+    const float sensitivity = 0.01f;
+
     private readonly float _pressSpeed = 0.1f;
     private readonly float _releaseSpeed = 0.1f;
 
@@ -23,5 +25,10 @@ public class SmoothPressing
     public void Release(float deltaTime)
     {
         Value = Mathf.Lerp(Value, 0, _releaseSpeed * deltaTime);
+        
+        if(Value < sensitivity)
+        {
+            Value = 0;
+        }
     }
 }

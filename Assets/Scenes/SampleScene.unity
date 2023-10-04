@@ -5680,6 +5680,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fcd913f347dbe74468bdf3096dd33d8a, type: 2}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fcd913f347dbe74468bdf3096dd33d8a, type: 2}
     - target: {fileID: 95110991171316155, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
       value: 82
@@ -7631,6 +7635,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fcd913f347dbe74468bdf3096dd33d8a, type: 2}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: fcd913f347dbe74468bdf3096dd33d8a, type: 2}
     - target: {fileID: 95110991171316155, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
@@ -10628,6 +10636,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4745a474a9ffa64fb9b40bfbb732c9a, type: 2}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4745a474a9ffa64fb9b40bfbb732c9a, type: 2}
     - target: {fileID: 95110991171316155, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
       value: 82
@@ -13579,6 +13591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KIA Rio X
       objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813423, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _number
+      value: "\u0432464\u043A\u043C"
+      objectReference: {fileID: 0}
     - target: {fileID: 95110990521568255, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_WheelDampingRate
       value: 0.25
@@ -13591,6 +13607,18 @@ PrefabInstance:
       propertyPath: m_WheelDampingRate
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d1b2e080ce9e5246bbf5042281a06ab, type: 2}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 448d15260c84c6046a49f163da724442, type: 2}
     - target: {fileID: 95110991808066963, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_WheelDampingRate
       value: 0.25
