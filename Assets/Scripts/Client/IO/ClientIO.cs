@@ -36,15 +36,15 @@ public class ClientIO :
     private readonly string _switchViewKey = "next_view";
 
     [SerializeField] private float _mouseSensitivity = 2;
-    [SerializeField] private float _steerSensitivity = 0.01f;
+    [SerializeField] private float _steerSensitivity = 0.1f;
 
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
     private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 4.0f);
     private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 4.0f);
-    private readonly SmoothPressing _rightSteerSmoothPressing = new(1.0f, 10.0f);
-    private readonly SmoothPressing _leftSteerSmoothPressing = new(1.0f, 10.0f);
+    private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
+    private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
 
     private readonly float _gasMiddleValue = 0.5f;
     private readonly float _brakeMiddleValue = 0.6f;
@@ -177,19 +177,20 @@ public class ClientIO :
             ParkingBrakeSwitch?.Invoke();
         }
 
-        //Gas = Input.GetAxis("GasAxis");
-        //Brake = Input.GetAxis("BrakeAxis");
+        Gas = Mathf.Max(_gasSmoothPressing.Value, Input.GetAxis("GasAxis"));
+        Brake = Mathf.Max(_brakeSmoothPressing.Value, Input.GetAxis("BrakeAxis"));
 
-        //SteerDelta = Input.GetAxis("TurnAxis");
-        //return;
-
-        Debug.Log(_brakeSmoothPressing.Value);
-        Gas = _gasSmoothPressing.Value;
-        Brake = _brakeSmoothPressing.Value;
-
-        SteerDelta = _steerSensitivity * (
+        var steerDeltaKeyboard = _steerSensitivity * (
             _rightSteerSmoothPressing.Value -
             _leftSteerSmoothPressing.Value);
+
+        var steerDeltaJoystick = Input.GetAxis("TurnAxis");
+
+        SteerDelta =
+            Mathf.Abs(steerDeltaKeyboard) >
+            Mathf.Abs(steerDeltaJoystick) ?
+            steerDeltaKeyboard :
+            steerDeltaJoystick;
     }
 
     private void HandlePlayerInput()

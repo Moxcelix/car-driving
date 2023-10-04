@@ -5948,7 +5948,7 @@ MonoBehaviour:
   _clientUI: {fileID: 2005097618}
   _clientIO:
     _mouseSensitivity: 2
-    _steerSensitivity: 0.01
+    _steerSensitivity: 0.1
   _viewSwitcher:
     _cameras:
     - {fileID: 963194230}

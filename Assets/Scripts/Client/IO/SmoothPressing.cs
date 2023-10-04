@@ -24,9 +24,9 @@ public class SmoothPressing
 
     public void Release(float deltaTime)
     {
-        Value = Mathf.Lerp(Value, 0, _releaseSpeed * deltaTime);
-        
-        if(Value < sensitivity)
+        Value -= _releaseSpeed * deltaTime;
+
+        if (Value < sensitivity)
         {
             Value = 0;
         }
