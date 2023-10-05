@@ -59,7 +59,12 @@ namespace Core.Car
 
         private float SummGas(float mainGas, float additionalGas)
         {
-            return additionalGas + (mainGas * (1.0f -  additionalGas));
+            return additionalGas + (mainGas * (1.0f - additionalGas));
+        }
+
+        private float GetResistance(float outputRPM, float load)
+        {
+            return 1.0f - _resistanceCurve.Evaluate(outputRPM / MaxRPM) * load;
         }
 
         private void UpdateTorque(float localGas, float outputRPM, float load, float deltaTime)
@@ -68,21 +73,13 @@ namespace Core.Car
 
             var idlingGas = _idlingRPM / MaxRPM;
             var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
+            var inputResistance = GetResistance(outputRPM, load);
+            var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load);
 
-            var inputResistance =
-               1.0f - _resistanceCurve.Evaluate(outputRPM / MaxRPM) * load;
-
-            Torque = outputRPM > MaxRPM ?
-                0 :
+            Torque = outputRPM > MaxRPM ? 0.0f :
                 localGas * MaxTorque * inputResistance;
 
-            RPM = Mathf.Lerp(
-                RPM,
-                Mathf.Lerp(
-                    nativeRPM,
-                    outputRPM,
-                    load),
-                deltaTime * _mobility);
+            RPM = Mathf.Lerp(RPM, targetRPM, deltaTime * _mobility);
 
             if (RPM > _cutoffRPM)
             {
