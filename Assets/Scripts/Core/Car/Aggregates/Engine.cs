@@ -36,7 +36,7 @@ namespace Core.Car
         public void Update(float inputGas,
             float outputRPM, float load, float deltaTime)
         {
-            var localGas = GetLocalGas(inputGas);
+            var localGas = GetLocalGas(inputGas) * _starter.RPMValue;
             var idlingGas = _idlingRPM / MaxRPM;
             var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
             var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load) * _starter.RPMValue;

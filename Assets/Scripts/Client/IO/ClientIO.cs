@@ -120,22 +120,26 @@ public class ClientIO :
 
     void Core.Car.IControls.Update()
     {
-        if (Input.GetKeyDown(_controls[_setDrivingModeKey]))
+        if (Input.GetKeyDown(_controls[_setDrivingModeKey]) 
+            || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
         }
 
-        if (Input.GetKeyDown(_controls[_setReverseModeKey]))
+        if (Input.GetKeyDown(_controls[_setReverseModeKey])
+            || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.REVERSE);
         }
 
-        if (Input.GetKeyDown(_controls[_setParkingModeKey]))
+        if (Input.GetKeyDown(_controls[_setParkingModeKey])
+            || Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
         }
 
-        if (Input.GetKeyDown(_controls[_setNeutralModeKey]))
+        if (Input.GetKeyDown(_controls[_setNeutralModeKey]) 
+            || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.NEUTRAL);
         }
@@ -150,12 +154,14 @@ public class ClientIO :
             BlinkerStateSwitch?.Invoke(_blinkerState);
         }
 
-        if (Input.GetKeyDown(_controls[_leftTurnKey]))
+        if (Input.GetKeyDown(_controls[_leftTurnKey]) ||
+            Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
             Toggle(BlinkerState.Left);
         }
 
-        if (Input.GetKeyDown(_controls[_rightTurnKey]))
+        if (Input.GetKeyDown(_controls[_rightTurnKey]) ||
+            Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
             Toggle(BlinkerState.Rigth);
         }
@@ -170,12 +176,14 @@ public class ClientIO :
             HighLightSwitch?.Invoke();
         }
 
-        if (Input.GetKeyDown(_controls[_engineSwitchKey]))
+        if (Input.GetKeyDown(_controls[_engineSwitchKey]) 
+            || Input.GetKeyDown(KeyCode.Joystick1Button9))
         {
             EngineSwitch?.Invoke();
         }
 
-        if (Input.GetKeyDown(_controls[_parkingBrakeKey]))
+        if (Input.GetKeyDown(_controls[_parkingBrakeKey]) || 
+            Input.GetKeyDown(KeyCode.Joystick1Button8))
         {
             ParkingBrakeSwitch?.Invoke();
         }
