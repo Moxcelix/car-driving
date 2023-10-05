@@ -16,18 +16,16 @@ namespace Core.Car
     {
         private const float c_speedEps = 0.1f;
 
-        [SerializeField] private AnimationCurve _fluidCouplingCurve;
+        [SerializeField] private TorqueConverter _torqueConverter;
         [SerializeField] private AnimationCurve _gasReactionCurve;
         [SerializeField] private Gear[] _gears;
         [SerializeField] private float _reverseGearRatio = 3.44f;
-        [SerializeField] private float _fluidDamp = 0.9999f;
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
 
         private float _accelerationFactor = 1;
 
         private RatioShifter _ratioShifter;
-        private float _fluidTransition = 0;
         private float _speed = 0;
         private int _currentGear = 0;
 
@@ -108,23 +106,19 @@ namespace Core.Car
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            if (nativeRPM < _idlingRMP)
-            {
-                _fluidTransition = _fluidCouplingCurve.Evaluate(
-                   (_idlingRMP - nativeRPM) / _idlingRMP);
-            }
-            else
-            {
-                _fluidTransition = Mathf.Lerp(
-                    _fluidTransition, 0, deltaTime * _fluidDamp);
-            }
+            _torqueConverter.Convert(nativeRPM, _idlingRMP, deltaTime);
 
-            Load = 1.0f - _fluidTransition;
-            Torque = inputTorque * GetRatio() * (_ratioShifter.IsShifting ? 0: 1)
-                * (1.0f + _fluidTransition * _fluidTransition * 2.5f);
-            RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
+            Load = 1.0f - _torqueConverter.FluidTransition;
+            Torque = 
+                inputTorque * 
+                GetRatio() * 
+                (_ratioShifter.IsShifting ? 0: 1)*
+               _torqueConverter.GetRatio();
 
-            Debug.Log($"FT = {_fluidTransition}");
+            RPM = Mathf.Lerp(
+                nativeRPM, 
+                inputRPM, 
+                _torqueConverter.FluidTransition);
         }
 
         private void UpdateGearShifting(float rpm)

@@ -3207,30 +3207,33 @@ MonoBehaviour:
     _idlingRPM: 700
     _maxTorque: 200
   _transmission:
-    _fluidCouplingCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    _torqueConverter:
+      _fluidCouplingCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      _fluidDamp: 10
+      _maxRatio: 2.5
     _gasReactionCurve:
       serializedVersion: 2
       m_Curve:
@@ -3254,7 +3257,7 @@ MonoBehaviour:
         outWeight: 0.5531869
       - serializedVersion: 3
         time: 1
-        value: 1.1330177
+        value: 1.499999
         inSlope: 3.213259
         outSlope: 3.213259
         tangentMode: 0
@@ -3296,7 +3299,6 @@ MonoBehaviour:
       _minRPM: 1500
       _maxRPM: 2500
     _reverseGearRatio: 3.44
-    _fluidDamp: 0.5
     _idlingRMP: 700
     _lastGearRatio: 3.574
 --- !u!114 &95110990273813407
