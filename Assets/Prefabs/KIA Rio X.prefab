@@ -3212,10 +3212,10 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -3224,7 +3224,7 @@ MonoBehaviour:
         value: 1
         inSlope: 2
         outSlope: 2
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -3296,7 +3296,7 @@ MonoBehaviour:
       _minRPM: 1500
       _maxRPM: 2500
     _reverseGearRatio: 3.44
-    _fluidDamp: 0.9999
+    _fluidDamp: 0.5
     _idlingRMP: 700
     _lastGearRatio: 3.574
 --- !u!114 &95110990273813407

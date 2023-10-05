@@ -117,7 +117,8 @@ namespace Core.Car
                 _engine.Torque,
                 _engine.OutputRPM,
                 wheelsRPM,
-                GetSpeed() * 3.6f);
+                GetSpeed() * 3.6f,
+                Time.fixedDeltaTime);
         }
 
         private void HandleDashboard()

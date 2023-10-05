@@ -11339,7 +11339,7 @@ Transform:
   m_GameObject: {fileID: 1789380079}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1722.5353, y: 1716.0067, z: 1722.5353}
+  m_LocalScale: {x: 885.10754, y: 881.7529, z: 885.10754}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2081376041}
@@ -13593,12 +13593,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._idlingRPM
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._maxTorque
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _transmission._idlingRMP
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].inSlope
+      value: 0.029649258
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].inSlope
+      value: 4.6806235
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].outSlope
+      value: 0.029649258
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].inWeight
+      value: 0.032507714
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].outSlope
+      value: 4.6806235
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].outWeight
+      value: 0.3057275
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidCouplingCurve.m_Curve.Array.data[0].inSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidCouplingCurve.m_Curve.Array.data[1].inSlope
@@ -13606,7 +13638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidCouplingCurve.m_Curve.Array.data[0].outSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidCouplingCurve.m_Curve.Array.data[1].outSlope

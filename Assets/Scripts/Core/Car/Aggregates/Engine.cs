@@ -42,25 +42,24 @@ namespace Core.Car
             //UpdateTorque(inputGas, feedback);
             //UpdateRPM(outputRPM);
 
-            if (RPM < _idlingRPM)
-            {
-                _baseGas += deltaTime * 0.1f;
-            }
-            else 
-            {
-                _baseGas -= deltaTime * 0.1f;
+            _baseGas = Mathf.Lerp(_baseGas, _idlingRPM > RPM ? 0.1f : 0.0f, deltaTime);
+            //{
+            //    _baseGas = (_idlingRPM - RPM) / MaxRPM;
 
-                if (_baseGas < 0)
-                {
-                    _baseGas = 0;
-                }
-            }
-            
+            //    if (_baseGas < 0)
+            //    {
+            //        _baseGas = 0;
+            //    }
+            //}
+
+            //Debug.Log($"base gas = {_baseGas}");
+
 
             var engineInertia = 10;
             var localGas = _baseGas + (inputGas * (1.0f - _baseGas));
             _nativeGas = Mathf.Lerp(_nativeGas, localGas, deltaTime * engineInertia);
-            var nativeRPM = _nativeGas * _cutoffRPM;
+            var idlingGas = _idlingRPM / MaxRPM;
+            var nativeRPM = (_nativeGas * (1.0f - idlingGas) + idlingGas) * _cutoffRPM;
 
             var inputResistance =
                1.0f - _resistanceCurve.Evaluate(outputRPM / MaxRPM) * load;

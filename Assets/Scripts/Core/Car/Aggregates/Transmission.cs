@@ -81,13 +81,13 @@ namespace Core.Car
         }
 
         public void Update(float gasValue, float inputTorque, float inputRPM,
-            float outputRPM, float speed)
+            float outputRPM, float speed, float deltaTime)
         {
             _speed = speed;
             _ratioShifter.Update();
 
             UpdateAccelerationFactor(gasValue);
-            UpdateTorque(inputTorque, inputRPM, outputRPM);
+            UpdateTorque(inputTorque, inputRPM, outputRPM, deltaTime);
             UpdateGearShifting(outputRPM);
             UpdateBrake();
         }
@@ -104,7 +104,7 @@ namespace Core.Car
         }
 
         private void UpdateTorque(float inputTorque,
-            float inputRPM, float outputRPM)
+            float inputRPM, float outputRPM, float deltaTime)
         {
             var nativeRPM = outputRPM * GetRatio();
 
@@ -115,14 +115,16 @@ namespace Core.Car
             }
             else
             {
-                _fluidTransition *= _fluidDamp;
+                _fluidTransition = Mathf.Lerp(
+                    _fluidTransition, 0, deltaTime * _fluidDamp);
             }
 
             Load = 1.0f - _fluidTransition;
-            Torque = inputTorque * GetRatio() * (_ratioShifter.IsShifting ? 0: 1);
+            Torque = inputTorque * GetRatio() * (_ratioShifter.IsShifting ? 0: 1)
+                * (1.0f + _fluidTransition * _fluidTransition * 2.5f);
             RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
 
-            Debug.Log($"Gear = {_currentGear}");
+            Debug.Log($"FT = {_fluidTransition}");
         }
 
         private void UpdateGearShifting(float rpm)

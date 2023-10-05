@@ -42,8 +42,8 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 4.0f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 400.0f);
+    private readonly SmoothPressing _gasSmoothPressing = new(0.8f, 4.0f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 4.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
     private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
 
