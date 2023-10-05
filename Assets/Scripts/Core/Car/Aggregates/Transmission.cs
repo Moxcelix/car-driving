@@ -23,9 +23,9 @@ namespace Core.Car
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
 
-        private float _accelerationFactor = 1;
-
         private RatioShifter _ratioShifter;
+
+        private float _accelerationFactor = 1;
         private float _speed = 0;
         private int _currentGear = 0;
 

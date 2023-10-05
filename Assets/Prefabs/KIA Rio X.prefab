@@ -3206,6 +3206,8 @@ MonoBehaviour:
     _cutoffRPM: 6500
     _idlingRPM: 700
     _maxTorque: 200
+    _baseGasDose: 0.1
+    _mobility: 10
   _transmission:
     _torqueConverter:
       _fluidCouplingCurve:
@@ -3257,7 +3259,7 @@ MonoBehaviour:
         outWeight: 0.5531869
       - serializedVersion: 3
         time: 1
-        value: 1.499999
+        value: 1.2999983
         inSlope: 3.213259
         outSlope: 3.213259
         tangentMode: 0
