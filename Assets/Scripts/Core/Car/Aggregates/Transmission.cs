@@ -109,15 +109,15 @@ namespace Core.Car
             _torqueConverter.Convert(nativeRPM, _idlingRMP, deltaTime);
 
             Load = 1.0f - _torqueConverter.FluidTransition;
-            Torque = 
-                inputTorque * 
-                GetRatio() * 
-                (_ratioShifter.IsShifting ? 0: 1)*
+            Torque =
+                inputTorque *
+                GetRatio() *
+                _ratioShifter.Load *
                _torqueConverter.GetRatio();
 
             RPM = Mathf.Lerp(
-                nativeRPM, 
-                inputRPM, 
+                nativeRPM,
+                inputRPM,
                 _torqueConverter.FluidTransition);
         }
 
@@ -155,7 +155,7 @@ namespace Core.Car
 
             if (_currentGear < _gears.Length - count)
             {
-                if (_gears[_currentGear + 1].MinSpeed * 
+                if (_gears[_currentGear + 1].MinSpeed *
                     _accelerationFactor > _speed && RPM < 6000)
                 {
                     return;

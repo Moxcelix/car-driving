@@ -11,6 +11,7 @@ namespace Core.Car
 
         public float Value { get; private set; }
         public bool IsShifting => _t > 0f && _t < 1f;
+        public float Load => 2.0f * Mathf.Pow(_t - 0.5f, 2);
 
         public RatioShifter(float initialRatio)
         {

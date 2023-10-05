@@ -39,7 +39,9 @@ namespace Core.Car
             var localGas = GetLocalGas(inputGas);
             var idlingGas = _idlingRPM / MaxRPM;
             var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
-            var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load);
+            var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load) * _starter.RPMValue;
+
+            _starter.Update();
 
             UpdateNativeGas(localGas, deltaTime);
             UpdateBaseGas(deltaTime);

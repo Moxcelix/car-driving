@@ -5534,7 +5534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -7492,7 +7492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -10491,7 +10491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -13598,7 +13598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._maxTorque
-      value: 150
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _transmission._fluidDamp
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._idlingRMP
@@ -13610,7 +13614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].inSlope
-      value: 4.6806235
+      value: 1.8479512
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].outSlope
@@ -13618,11 +13622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].inWeight
-      value: 0.032507714
+      value: 0.044117663
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[1].outSlope
-      value: 4.6806235
+      value: 1.8479512
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].outWeight
@@ -13671,7 +13675,7 @@ PrefabInstance:
     - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d1b2e080ce9e5246bbf5042281a06ab, type: 2}
+      objectReference: {fileID: 2100000, guid: 89fb59cb8c5f90243afbfaa241fda83f, type: 2}
     - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
