@@ -9,35 +9,78 @@ namespace Core.Car
         [SerializeField] private AnimationCurve _differenceCurve;
         [SerializeField] private Starter _starter;
         [SerializeField] private float _maxRPM;
+        [SerializeField] private float _cutoffRPM;
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
 
         private float _baseGas;
         private float _prevRPMDifference;
+        private float _nativeGas = 0;
 
         public Starter Starter => _starter;
         public bool Enabled => _starter.State == EngineState.STARTED;
         public float MaxRPM => _maxRPM;
         public float MaxTorque => _maxTorque;
 
-        public float RPM { get; private set; } 
-        public float OutputRPM { get; private set; } 
-        public float Torque { get; private set; } 
+        public float RPM { get; private set; }
+        public float OutputRPM { get; private set; }
+        public float Torque { get; private set; }
 
         public void Initialize()
         {
-            _baseGas = _idlingRPM / MaxRPM;
             _prevRPMDifference = 0.0f;
         }
 
-        public void Update(float inputGas, float outputRPM, float load)
+        public void Update(float inputGas, float outputRPM, float load, float deltaTime)
         {
-            var feedback = outputRPM * load;
+            //var feedback = outputRPM * load;
 
-            _starter.Update();
+            //Debug.Log(load);
 
-            UpdateTorque(inputGas, feedback);
-            UpdateRPM(outputRPM);
+            //_starter.Update();
+
+            //UpdateTorque(inputGas, feedback);
+            //UpdateRPM(outputRPM);
+
+            if (RPM < _idlingRPM)
+            {
+                _baseGas += deltaTime * 0.1f;
+            }
+            else 
+            {
+                _baseGas -= deltaTime * 0.1f;
+
+                if (_baseGas < 0)
+                {
+                    _baseGas = 0;
+                }
+            }
+            
+
+            var engineInertia = 10;
+            var localGas = _baseGas + (inputGas * (1.0f - _baseGas));
+            _nativeGas = Mathf.Lerp(_nativeGas, localGas, deltaTime * engineInertia);
+            var nativeRPM = _nativeGas * _cutoffRPM;
+
+            var inputResistance =
+               1.0f - _resistanceCurve.Evaluate(outputRPM / MaxRPM) * load;
+
+            Torque = outputRPM > MaxRPM ?
+                0 :
+                localGas * MaxTorque * inputResistance;
+
+            RPM = Mathf.Lerp(
+                RPM,
+                Mathf.Lerp(
+                    nativeRPM,
+                    outputRPM,
+                    load),
+                deltaTime * engineInertia);
+
+            if (RPM > _cutoffRPM)
+            {
+                Torque = 0;
+            }
         }
 
         private void UpdateTorque(float inputGas, float feedback)
@@ -62,7 +105,7 @@ namespace Core.Car
             var multiplier = _differenceCurve.Evaluate(
                 Mathf.Abs((inputDifference - _prevRPMDifference) / MaxRPM));
             var difference = inputDifference * multiplier;
-            
+
             RPM += difference;
 
             _prevRPMDifference = difference;

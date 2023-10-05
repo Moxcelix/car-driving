@@ -109,7 +109,8 @@ namespace Core.Car
 
             _engine.Update(_gasPedal.Value,
                 _transmission.RPM,
-                _transmission.Load);
+                _transmission.Load,
+                Time.fixedDeltaTime);
 
             _transmission.Update(
                 _gasPedal.Value,

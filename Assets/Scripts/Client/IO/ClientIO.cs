@@ -36,13 +36,14 @@ public class ClientIO :
     private readonly string _switchViewKey = "next_view";
 
     [SerializeField] private float _mouseSensitivity = 2;
-    [SerializeField] private float _steerSensitivity = 0.1f;
+    [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
+    [SerializeField] private float _steerSensitivityJoystick = 50.0f;
 
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
     private readonly SmoothPressing _gasSmoothPressing = new(1.5f, 4.0f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 4.0f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 400.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
     private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
 
@@ -56,6 +57,8 @@ public class ClientIO :
     private ViewSwitcher _viewSwitcher;
 
     private BlinkerState _blinkerState = BlinkerState.None;
+
+    private float _steerDelta = 0;
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
@@ -180,17 +183,7 @@ public class ClientIO :
         Gas = Mathf.Max(_gasSmoothPressing.Value, Input.GetAxis("GasAxis"));
         Brake = Mathf.Max(_brakeSmoothPressing.Value, Input.GetAxis("BrakeAxis"));
 
-        var steerDeltaKeyboard = _steerSensitivity * (
-            _rightSteerSmoothPressing.Value -
-            _leftSteerSmoothPressing.Value);
-
-        var steerDeltaJoystick = Input.GetAxis("TurnAxis");
-
-        SteerDelta =
-            Mathf.Abs(steerDeltaKeyboard) >
-            Mathf.Abs(steerDeltaJoystick) ?
-            steerDeltaKeyboard :
-            steerDeltaJoystick;
+        SteerDelta = _steerDelta;
     }
 
     private void HandlePlayerInput()
@@ -250,6 +243,20 @@ public class ClientIO :
         {
             _leftSteerSmoothPressing.Release(deltaTime);
         }
+
+        var steerDeltaKeyboard = _steerSensitivityKeyboard * (
+            _rightSteerSmoothPressing.Value -
+            _leftSteerSmoothPressing.Value);
+
+        var steerDeltaJoystick = 
+            Input.GetAxis("TurnAxis") *
+            deltaTime * 
+            _steerSensitivityJoystick;
+
+        _steerDelta = Mathf.Abs(steerDeltaKeyboard) >
+            Mathf.Abs(steerDeltaJoystick) ?
+            steerDeltaKeyboard :
+            steerDeltaJoystick;
     }
 
     private void HandlePauseSwitch()

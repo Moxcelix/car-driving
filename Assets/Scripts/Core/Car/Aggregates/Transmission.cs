@@ -94,7 +94,7 @@ namespace Core.Car
 
         private void UpdateAccelerationFactor(float acceleration)
         {
-            _accelerationFactor = 1.0f + 
+            _accelerationFactor = 1.0f +
                 _gasReactionCurve.Evaluate(acceleration);
         }
 
@@ -119,10 +119,10 @@ namespace Core.Car
             }
 
             Load = 1.0f - _fluidTransition;
-            Torque = inputTorque * GetRatio();
+            Torque = inputTorque * GetRatio() * (_ratioShifter.IsShifting ? 0: 1);
             RPM = Mathf.Lerp(nativeRPM, inputRPM, _fluidTransition);
 
-            Debug.Log(Torque);
+            Debug.Log($"Gear = {_currentGear}");
         }
 
         private void UpdateGearShifting(float rpm)
@@ -159,7 +159,8 @@ namespace Core.Car
 
             if (_currentGear < _gears.Length - count)
             {
-                if (_gears[_currentGear + 1].MinSpeed > _speed)
+                if (_gears[_currentGear + 1].MinSpeed * 
+                    _accelerationFactor > _speed && RPM < 6000)
                 {
                     return;
                 }
