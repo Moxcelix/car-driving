@@ -3208,6 +3208,7 @@ MonoBehaviour:
     _maxTorque: 200
     _baseGasDose: 0.1
     _mobility: 10
+    _gasEfficiency: 100
   _transmission:
     _torqueConverter:
       _fluidCouplingCurve:

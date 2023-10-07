@@ -14,6 +14,7 @@ namespace Core.Car
         [SerializeField] private float _maxTorque;
         [SerializeField] private float _baseGasDose;
         [SerializeField] private float _mobility;
+        [SerializeField] private float _gasEfficiency;
 
         private float _baseGas;
         private float _nativeGas;
@@ -33,9 +34,26 @@ namespace Core.Car
             _nativeGas = 0.0f;
         }
 
+        private float _targetRPM = 0.0f;
+
         public void Update(float inputGas,
             float outputRPM, float load, float deltaTime)
         {
+            _starter.Update();
+
+            var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
+
+            _targetRPM = Mathf.Lerp(
+                _targetRPM, 
+                SummGas(inputGas, idleGas) * MaxRPM,
+                deltaTime);
+
+
+            RPM = Mathf.Lerp(_targetRPM, outputRPM, SummGas(load, 0.01f));
+            Torque = (_targetRPM - RPM) / MaxRPM * MaxTorque;
+            Debug.Log(load);
+            return;
+
             var localGas = GetLocalGas(inputGas) * _starter.RPMValue;
             var idlingGas = _idlingRPM / MaxRPM;
             var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
@@ -95,7 +113,7 @@ namespace Core.Car
             var inputResistance = GetResistance(outputRPM, load);
 
             Torque = outputRPM > MaxRPM ? 0.0f :
-                localGas * inputResistance * MaxTorque;
+                /*localGas * inputResistance*/ RPM / MaxRPM * MaxTorque + localGas;
         }
     }
 }

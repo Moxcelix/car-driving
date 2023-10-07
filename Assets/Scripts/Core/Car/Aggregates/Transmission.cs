@@ -115,10 +115,11 @@ namespace Core.Car
                 _ratioShifter.Load *
                _torqueConverter.GetRatio();
 
-            RPM = Mathf.Lerp(
-                nativeRPM,
-                inputRPM,
-                _torqueConverter.FluidTransition);
+            RPM = nativeRPM;
+            //Mathf.Lerp(
+                //nativeRPM,
+                //inputRPM,
+                //_torqueConverter.FluidTransition);
         }
 
         private void UpdateGearShifting(float rpm)
