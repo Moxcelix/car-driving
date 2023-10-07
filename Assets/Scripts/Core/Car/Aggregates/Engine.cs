@@ -48,9 +48,8 @@ namespace Core.Car
                 SummGas(inputGas, idleGas) * MaxRPM,
                 deltaTime);
 
-
-            RPM = Mathf.Lerp(_targetRPM, outputRPM, SummGas(load, 0.01f));
-            Torque = (_targetRPM - RPM) / MaxRPM * MaxTorque;
+            RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
+            Torque = (_targetRPM - outputRPM) / MaxRPM * MaxTorque;
             Debug.Log(load);
             return;
 
