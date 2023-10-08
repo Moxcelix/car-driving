@@ -18,7 +18,7 @@ namespace Core.Car
             if (currentRPM < targetRPM)
             {
                 _fluidTransition = _fluidCouplingCurve.Evaluate(
-                   (currentRPM - targetRPM) / targetRPM);
+                   (targetRPM - currentRPM) / targetRPM);
             }
             else
             {
