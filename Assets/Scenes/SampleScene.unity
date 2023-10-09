@@ -5534,7 +5534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -6989,7 +6989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1176126331
 Transform:
   m_ObjectHideFlags: 0
@@ -7590,7 +7590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -10545,7 +10545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22
+      value: -23.99
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10553,7 +10553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.15
+      value: -14.9
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10589,7 +10589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990310809058, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
@@ -11627,6 +11627,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813691827}
   m_CullTransparentMesh: 1
+--- !u!1 &1820933856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 95110990229183672, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 977217801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820933858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820933856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7304b01837006f64d9879501a85dac76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 7d1b2e080ce9e5246bbf5042281a06ab, type: 2}
+  _targetMaterialName: "\u043A\u0443\u0437\u043E\u0432 3"
 --- !u!1 &1822299211
 GameObject:
   m_ObjectHideFlags: 0
@@ -13696,7 +13715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._maxTorque
-      value: 200
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidDamp
@@ -13705,6 +13724,10 @@ PrefabInstance:
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._idlingRMP
       value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _transmission._torqueConverter._maxRatio
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._resistanceCurve.m_Curve.Array.data[0].inSlope

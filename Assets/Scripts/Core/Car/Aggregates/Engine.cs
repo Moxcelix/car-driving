@@ -50,7 +50,7 @@ namespace Core.Car
 
             RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
             Torque = (_targetRPM - outputRPM) / MaxRPM * MaxTorque;
-            Debug.Log(load);
+            //Debug.Log(load);
             return;
 
             var localGas = GetLocalGas(inputGas) * _starter.RPMValue;

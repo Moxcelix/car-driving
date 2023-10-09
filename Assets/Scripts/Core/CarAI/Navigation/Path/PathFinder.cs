@@ -17,8 +17,6 @@ namespace Core.CarAI.Navigation
 
             var path = MakeMinPath(startNode, endNode);
 
-            Debug.Log(path.Count);
-
             return _marks.ContainsKey(endNode) ? path : null;
         }
 

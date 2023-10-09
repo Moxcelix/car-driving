@@ -12,7 +12,7 @@ namespace Core.CarAI.Navigation
         private void OnDrawGizmos()
         {
             const float radius = 0.3f;
-            const float arrowHeadLength = 0.5f;
+            const float arrowHeadLength = 1.5f;
             const float arrowHeadAngle = 30f;
 
             Gizmos.color = Color.yellow;
