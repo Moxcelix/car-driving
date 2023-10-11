@@ -4281,6 +4281,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
   m_PrefabInstance: {fileID: 95110991145400754}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &806107333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 95110991145400754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &808159221
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,6 +10991,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577b5a2635f494a46b9abb61a8428feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1688110530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688110532}
+  - component: {fileID: 1688110531}
+  m_Layer: 0
+  m_Name: TEST
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1688110531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688110530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e20030f9281d334e8a10d82416fc726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _car: {fileID: 806107333}
+--- !u!4 &1688110532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688110530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -32.219326, y: 0.017787933, z: -6.1395855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1731962455
 GameObject:
   m_ObjectHideFlags: 0
@@ -13715,7 +13771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._maxTorque
-      value: 1000
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _transmission._fluidDamp

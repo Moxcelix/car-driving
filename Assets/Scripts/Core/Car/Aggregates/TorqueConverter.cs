@@ -15,15 +15,17 @@ namespace Core.Car
 
         public void Convert(float currentRPM, float targetRPM, float deltaTime)
         {
-            if (currentRPM < targetRPM)
+            if (currentRPM < targetRPM - 50)
             {
-                _fluidTransition = _fluidCouplingCurve.Evaluate(
-                   (targetRPM - currentRPM) / targetRPM);
+                //_fluidTransition = _fluidCouplingCurve.Evaluate(
+                //   (targetRPM - currentRPM) / targetRPM);
+                _fluidTransition = Mathf.Lerp(
+                    _fluidTransition, 1, deltaTime * _fluidDamp);
             }
-            else
+            else if (currentRPM > targetRPM + 50)
             {
                 _fluidTransition = Mathf.Lerp(
-                    _fluidTransition, 0, deltaTime * _fluidDamp);
+                   _fluidTransition, 0, deltaTime * _fluidDamp);
             }
         }
 
