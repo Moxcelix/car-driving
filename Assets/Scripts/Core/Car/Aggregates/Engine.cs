@@ -49,7 +49,7 @@ namespace Core.Car
                 deltaTime);
 
             var l = 1.0f - Mathf.Clamp01((_idlingRPM - outputRPM) / _idlingRPM);
-            RPM = Mathf.Lerp(_targetRPM, outputRPM, l);
+            RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
             Torque = (_targetRPM - outputRPM) / MaxRPM * MaxTorque;
             return;
 

@@ -15,6 +15,7 @@ namespace Core.Car
 
         public void Convert(float currentRPM, float targetRPM, float deltaTime)
         {
+            Debug.Log(_fluidTransition);
             if (currentRPM < targetRPM)
             {
                 _fluidTransition = 1;
