@@ -34,6 +34,7 @@ namespace Core.Car
             _nativeGas = 0.0f;
         }
 
+        private float _torqueRPM = 0.0f;
         private float _targetRPM = 0.0f;
 
         public void Update(float inputGas,
@@ -43,14 +44,14 @@ namespace Core.Car
 
             var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
 
-            _targetRPM = Mathf.Lerp(
-                _targetRPM,
+            _torqueRPM = Mathf.Lerp(
+                _torqueRPM,
                 SummGas(inputGas, idleGas) * MaxRPM,
                 deltaTime);
 
             var l = 1.0f - Mathf.Clamp01((_idlingRPM - outputRPM) / _idlingRPM);
-            RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
-            Torque = (_targetRPM - outputRPM) / MaxRPM * MaxTorque;
+            RPM = Mathf.Lerp(_torqueRPM, outputRPM, load);
+            Torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
             return;
 
             var localGas = GetLocalGas(inputGas) * _starter.RPMValue;
