@@ -34,6 +34,9 @@ public class ClientIO :
     private readonly string _headLightKey = "head_light";
     private readonly string _interactKey = "interact";
     private readonly string _switchViewKey = "next_view";
+    private readonly string _gasJoystickAxis = "GasAxis";
+    private readonly string _brakeJoystickAxis = "BrakeAxis";
+    private readonly string _steerJoystickAxis = "TurnAxis";
 
     [SerializeField] private float _mouseSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
@@ -188,8 +191,10 @@ public class ClientIO :
             ParkingBrakeSwitch?.Invoke();
         }
 
-        Gas = Mathf.Max(_gasSmoothPressing.Value, Input.GetAxis("GasAxis"));
-        Brake = Mathf.Max(_brakeSmoothPressing.Value, Input.GetAxis("BrakeAxis"));
+        Gas = Mathf.Max(_gasSmoothPressing.Value,
+            Input.GetAxis(_gasJoystickAxis));
+        Brake = Mathf.Max(_brakeSmoothPressing.Value, 
+            Input.GetAxis(_brakeJoystickAxis));
 
         SteerDelta = _steerDelta;
     }
@@ -257,7 +262,7 @@ public class ClientIO :
             _leftSteerSmoothPressing.Value);
 
         var steerDeltaJoystick = 
-            Input.GetAxis("TurnAxis") *
+            Input.GetAxis(_steerJoystickAxis) *
             deltaTime * 
             _steerSensitivityJoystick;
 
