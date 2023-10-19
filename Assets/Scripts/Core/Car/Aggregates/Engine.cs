@@ -42,32 +42,29 @@ namespace Core.Car
         {
             _starter.Update();
 
-            var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
-
-            _torqueRPM = Mathf.Lerp(
-                _torqueRPM,
-                SummGas(inputGas, idleGas) * MaxRPM,
-                deltaTime);
-
             var virtualOutputRPM = outputRPM > _idlingRPM ? outputRPM : _idlingRPM;
+            var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
+            var targetRPM = SummGas(inputGas, idleGas) * MaxRPM;
+            var normalRPM = Mathf.Lerp(targetRPM, virtualOutputRPM, load);
 
-            _targetRPM = Mathf.Lerp(_torqueRPM, virtualOutputRPM, load);
+            _torqueRPM = Mathf.Lerp(_torqueRPM, normalRPM, deltaTime);
+            _targetRPM = Mathf.Lerp(_targetRPM, normalRPM, deltaTime);
 
             RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
             Torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
             return;
 
-            var localGas = GetLocalGas(inputGas) * _starter.RPMValue;
-            var idlingGas = _idlingRPM / MaxRPM;
-            var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
-            var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load) * _starter.RPMValue;
+            //var localGas = GetLocalGas(inputGas) * _starter.RPMValue;
+            //var idlingGas = _idlingRPM / MaxRPM;
+            //var nativeRPM = SummGas(_nativeGas, idlingGas) * _cutoffRPM;
+            //var targetRPM = Mathf.Lerp(nativeRPM, outputRPM, load) * _starter.RPMValue;
 
-            _starter.Update();
+            //_starter.Update();
 
-            UpdateNativeGas(localGas, deltaTime);
-            UpdateBaseGas(deltaTime);
-            UpdateTorque(localGas, outputRPM, load);
-            UpdateRPM(targetRPM, deltaTime);
+            //UpdateNativeGas(localGas, deltaTime);
+            //UpdateBaseGas(deltaTime);
+            //UpdateTorque(localGas, outputRPM, load);
+            //UpdateRPM(targetRPM, deltaTime);
         }
 
         private void UpdateNativeGas(float localGas, float deltaTime)
