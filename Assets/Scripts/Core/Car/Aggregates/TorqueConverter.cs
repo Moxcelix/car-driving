@@ -13,38 +13,18 @@ namespace Core.Car
 
         public float FluidTransition => _fluidTransition;
 
-        public void Convert(float currentRPM, float targetRPM, float deltaTime)
+        public void Convert(float currentRPM, float targetRPM, float maxRPM)
         {
-            _fluidTransition = Mathf.Clamp01((targetRPM - currentRPM)/targetRPM);
             Debug.Log(_fluidTransition);
-            return;
+
             if (currentRPM < targetRPM)
             {
                 _fluidTransition = 1;
                 return;
             }
 
-            if (currentRPM > targetRPM * 2)
-            {
-                _fluidTransition = 0;
-                return;
-            }
-
-            _fluidTransition = Mathf.Lerp(1, 0, (currentRPM - targetRPM) / targetRPM);
-            return;
-
-            if (currentRPM < targetRPM - 50)
-            {
-                //_fluidTransition = _fluidCouplingCurve.Evaluate(
-                //   (targetRPM - currentRPM) / targetRPM);
-                _fluidTransition = Mathf.Lerp(
-                    _fluidTransition, 1, deltaTime * _fluidDamp);
-            }
-            else if (currentRPM > targetRPM + 50)
-            {
-                _fluidTransition = Mathf.Lerp(
-                   _fluidTransition, 0, deltaTime * _fluidDamp);
-            }
+            _fluidTransition = 1.0f - Mathf.Sqrt(Mathf.Clamp01(
+                (currentRPM - targetRPM) / (maxRPM - targetRPM)));
         }
 
         public float GetRatio()
