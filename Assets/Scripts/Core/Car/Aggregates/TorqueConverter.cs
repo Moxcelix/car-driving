@@ -23,7 +23,7 @@ namespace Core.Car
                 return;
             }
 
-            _fluidTransition = 1.0f - Mathf.Sqrt(Mathf.Clamp01(
+            _fluidTransition = 1.0f - (Mathf.Clamp01(
                 (currentRPM - targetRPM) / (maxRPM - targetRPM)));
         }
 
