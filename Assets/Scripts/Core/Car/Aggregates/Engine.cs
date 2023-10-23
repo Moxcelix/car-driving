@@ -50,6 +50,8 @@ namespace Core.Car
             _targetRPM = Mathf.Lerp(_targetRPM, targetRPM, deltaTime);
             _targetRPM = Mathf.Lerp(_targetRPM, virtualOutputRPM, load);
 
+            Debug.Log(load);
+
             RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
             Torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
             return;

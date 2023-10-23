@@ -84,6 +84,8 @@ namespace Core.Car
             _speed = speed;
             _ratioShifter.Update();
 
+            _torqueConverter.Switch(_currentGear <= 0);
+
             UpdateAccelerationFactor(gasValue);
             UpdateTorque(inputTorque, inputRPM, outputRPM, deltaTime);
             UpdateGearShifting(outputRPM);
@@ -106,6 +108,7 @@ namespace Core.Car
         {
             var nativeRPM = outputRPM * GetRatio();
 
+            _torqueConverter.Update(deltaTime);
             _torqueConverter.Convert(inputRPM, nativeRPM);
 
             Load = 1.0f - _torqueConverter.FluidTransition;
@@ -116,10 +119,6 @@ namespace Core.Car
                _torqueConverter.GetRatio();
 
             RPM = nativeRPM;
-            //Mathf.Lerp(
-                //nativeRPM,
-                //inputRPM,
-                //_torqueConverter.FluidTransition);
         }
 
         private void UpdateGearShifting(float rpm)
