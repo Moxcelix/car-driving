@@ -125,8 +125,6 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            var targetGeer = 0;
-
             if (Mode != TransmissionMode.DRIVING)
             {
                 _currentGear = 0;
@@ -135,6 +133,7 @@ namespace Core.Car
             }
 
             var currentRPM = rpm * GetRatio();
+            var targetGeer = 0;
 
             if (_ratioShifter.IsShifting)
             {
@@ -147,6 +146,23 @@ namespace Core.Car
             {
                 return;
             }
+
+            targetGeer = GetGearByAcceleration(rpm);
+
+            if (targetGeer == _currentGear)
+            {
+                return;
+            }
+
+            _currentGear = targetGeer;
+            _ratioShifter.Shift(
+                _gears[_currentGear].Ratio,
+                _gears[_currentGear].ShiftSpeed);
+        }
+
+        private int GetGearByAcceleration(float rpm)
+        {
+            var targetGeer = 0;
 
             for (int i = 0; i < _gears.Length; i++)
             {
@@ -161,15 +177,28 @@ namespace Core.Car
                 targetGeer = i;
             }
 
-            if (targetGeer == _currentGear)
+            return targetGeer;
+        }
+
+        private int GetGeerByOptimalValue(float rpm, float optimalValue)
+        {
+            var targetGeer = 0;
+            var prevDifference = Mathf.Abs(optimalValue - rpm * GetRatio());
+
+            for (int i = 0; i < _gears.Length; i++)
             {
-                return;
+                var newRPM = rpm * _gears[i].Ratio * _lastGearRatio;
+
+                var difference = Mathf.Abs(optimalValue - newRPM);
+
+                if(difference < prevDifference)
+                {
+                    prevDifference = difference;
+                    targetGeer = i;
+                }
             }
 
-            _currentGear = targetGeer;
-            _ratioShifter.Shift(
-                _gears[_currentGear].Ratio,
-                _gears[_currentGear].ShiftSpeed);
+            return targetGeer;
         }
 
         private void UpshiftGear(int count)

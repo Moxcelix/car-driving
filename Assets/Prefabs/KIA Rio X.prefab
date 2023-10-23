@@ -3159,6 +3159,7 @@ MonoBehaviour:
     _maxRPM: 7000
     _idlingRPM: 700
     _maxTorque: 200
+    _responsiveness: 10
   _transmission:
     _torqueConverter:
       _maxRPM: 6000

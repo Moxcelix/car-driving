@@ -13,6 +13,7 @@ namespace Core.Car
         [SerializeField] private float _maxRPM;
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
+        [SerializeField] private float _responsiveness;
 
         public Starter Starter => _starter;
         public float MaxRPM => _maxRPM;
@@ -42,8 +43,11 @@ namespace Core.Car
             _targetRPM = Mathf.Lerp(_targetRPM, targetRPM, deltaTime);
             _targetRPM = Mathf.Lerp(_targetRPM, virtualRPM, load);
 
-            RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
-            Torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
+            var rpm = Mathf.Lerp(_targetRPM, outputRPM, load);
+            var torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
+
+            RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
+            Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
 
             if(RPM > _cutoffRPM)
             {
