@@ -46,7 +46,6 @@ namespace Core.Car
 
         private void Awake()
         {
-            _engine.Initialize();
             _transmission.Initialize();
 
             _rigidbody = GetComponent<Rigidbody>();
