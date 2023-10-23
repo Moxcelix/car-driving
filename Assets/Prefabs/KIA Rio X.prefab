@@ -3096,54 +3096,6 @@ MonoBehaviour:
     - {fileID: 95110991873279382}
     - {fileID: 258721993640508341}
   _engine:
-    _resistanceCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.29605103
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0.50543493
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    _differenceCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1.0029541
-        inSlope: -11.306106
-        outSlope: -11.306106
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.62299454
-      - serializedVersion: 3
-        time: 0.037986256
-        value: 0.022457477
-        inSlope: -0.39721477
-        outSlope: -0.39721477
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.57767063
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
     _starter:
       _startEngine:
         serializedVersion: 2
@@ -3202,13 +3154,11 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    _maxRPM: 7000
     _cutoffRPM: 6500
+    _recoveryRPM: 6000
+    _maxRPM: 7000
     _idlingRPM: 700
     _maxTorque: 200
-    _baseGasDose: 0.1
-    _mobility: 10
-    _gasEfficiency: 100
   _transmission:
     _torqueConverter:
       _maxRPM: 6000

@@ -6,8 +6,11 @@ namespace Core.Car
     public class Engine
     {
         [SerializeField] private Starter _starter;
-        [SerializeField] private float _maxRPM;
+        [Header("Cutoff")]
         [SerializeField] private float _cutoffRPM;
+        [SerializeField] private float _recoveryRPM;
+        [Header("Characteristics")]
+        [SerializeField] private float _maxRPM;
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
 
@@ -22,22 +25,35 @@ namespace Core.Car
 
         private float _torqueRPM = 0.0f;
         private float _targetRPM = 0.0f;
+        private bool _cutOff = false;
 
         public void Update(float inputGas,
             float outputRPM, float load, float deltaTime)
         {
             _starter.Update();
 
-            var virtualOutputRPM = outputRPM > _idlingRPM ? outputRPM : _idlingRPM;
+            inputGas = _cutOff ? 0.0f : inputGas;
+
+            var virtualRPM = outputRPM > _idlingRPM ? outputRPM : _idlingRPM;
             var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
             var targetRPM = SummGas(inputGas, idleGas) * MaxRPM;
 
             _torqueRPM = Mathf.Lerp(_torqueRPM, targetRPM, deltaTime);
             _targetRPM = Mathf.Lerp(_targetRPM, targetRPM, deltaTime);
-            _targetRPM = Mathf.Lerp(_targetRPM, virtualOutputRPM, load);
+            _targetRPM = Mathf.Lerp(_targetRPM, virtualRPM, load);
 
             RPM = Mathf.Lerp(_targetRPM, outputRPM, load);
             Torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
+
+            if(RPM > _cutoffRPM)
+            {
+                _cutOff = true;
+            }
+
+            if(RPM < _recoveryRPM)
+            {
+                _cutOff = false;
+            }
         }
 
         private float SummGas(float mainGas, float additionalGas)
