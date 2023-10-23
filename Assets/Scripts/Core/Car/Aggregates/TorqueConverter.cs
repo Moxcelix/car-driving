@@ -23,9 +23,9 @@ namespace Core.Car
 
         public void Update(float deltaTime)
         {
-            _targetCoefficient = 
+            _targetCoefficient =
                 Mathf.Lerp(_targetCoefficient,
-                _state? 1.0f : 0.0f, deltaTime * _fluidDamp);    
+                _state ? 1.0f : 0.0f, deltaTime * _fluidDamp);
         }
 
         public void Convert(float inputRPM, float outputRPM)

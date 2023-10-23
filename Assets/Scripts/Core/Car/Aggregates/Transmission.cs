@@ -86,16 +86,18 @@ namespace Core.Car
 
             _torqueConverter.Switch(_currentGear <= 0);
 
-            UpdateAccelerationFactor(gasValue);
+            UpdateAccelerationFactor(gasValue, deltaTime);
             UpdateTorque(inputTorque, inputRPM, outputRPM, deltaTime);
             UpdateGearShifting(outputRPM);
             UpdateBrake();
         }
 
-        private void UpdateAccelerationFactor(float acceleration)
+        private void UpdateAccelerationFactor(float acceleration, float deltaTime)
         {
-            _accelerationFactor = 1.0f +
-                _gasReactionCurve.Evaluate(acceleration);
+            var factor = 1.0f + _gasReactionCurve.Evaluate(acceleration);
+
+            _accelerationFactor = 
+                Mathf.Lerp(_accelerationFactor, factor, deltaTime);
         }
 
         private void UpdateBrake()
@@ -119,8 +121,6 @@ namespace Core.Car
                _torqueConverter.GetRatio();
 
             RPM = nativeRPM;
-
-            Debug.Log(_currentGear);
         }
 
         private void UpdateGearShifting(float rpm)
