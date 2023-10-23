@@ -106,7 +106,7 @@ namespace Core.Car
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            _torqueConverter.Convert(nativeRPM, _idlingRMP, 6000);
+            _torqueConverter.Convert(inputRPM, nativeRPM);
 
             Load = 1.0f - _torqueConverter.FluidTransition;
             Torque =

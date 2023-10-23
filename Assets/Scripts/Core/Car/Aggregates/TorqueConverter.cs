@@ -6,6 +6,7 @@ namespace Core.Car
     public class TorqueConverter
     {
         [SerializeField] private AnimationCurve _fluidCouplingCurve;
+        [SerializeField] private float _maxRPM = 6000.0f;
         [SerializeField] private float _fluidDamp = 10.0f;
         [SerializeField] private float _maxRatio = 2.5f;
 
@@ -13,18 +14,12 @@ namespace Core.Car
 
         public float FluidTransition => _fluidTransition;
 
-        public void Convert(float currentRPM, float targetRPM, float maxRPM)
+        public void Convert(float inputRPM, float outputRPM)
         {
             Debug.Log(_fluidTransition);
 
-            if (currentRPM < targetRPM)
-            {
-                _fluidTransition = 1;
-                return;
-            }
-
             _fluidTransition = 1.0f - (Mathf.Clamp01(
-                (currentRPM - targetRPM) / (maxRPM - targetRPM)));
+                (inputRPM - outputRPM) / _maxRPM));
         }
 
         public float GetRatio()
