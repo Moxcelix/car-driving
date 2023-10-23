@@ -35,7 +35,8 @@ namespace Core.Car
 
             inputGas = _cutOff ? 0.0f : inputGas;
 
-            var virtualRPM = outputRPM > _idlingRPM ? outputRPM : _idlingRPM;
+            var idlingRPM = _idlingRPM * _starter.RPMValue;
+            var virtualRPM = outputRPM > idlingRPM ? outputRPM : idlingRPM;
             var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
             var targetRPM = SummGas(inputGas, idleGas) * MaxRPM;
 

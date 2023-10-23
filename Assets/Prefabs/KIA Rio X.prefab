@@ -3212,22 +3212,22 @@ MonoBehaviour:
     - _ratio: 1.834
       _minSpeed: 25
       _shiftSpeed: 0.1
-      _minRPM: 900
+      _minRPM: 1000
       _maxRPM: 2500
     - _ratio: 1.392
       _minSpeed: 35
       _shiftSpeed: 0.1
-      _minRPM: 900
+      _minRPM: 1200
       _maxRPM: 2500
     - _ratio: 1
       _minSpeed: 45
       _shiftSpeed: 0.1
-      _minRPM: 900
+      _minRPM: 1300
       _maxRPM: 2500
     - _ratio: 0.774
       _minSpeed: 65
       _shiftSpeed: 0.1
-      _minRPM: 900
+      _minRPM: 1400
       _maxRPM: 2500
     _reverseGearRatio: 3.44
     _idlingRMP: 700
