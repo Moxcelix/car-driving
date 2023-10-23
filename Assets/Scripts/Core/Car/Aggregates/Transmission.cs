@@ -119,10 +119,14 @@ namespace Core.Car
                _torqueConverter.GetRatio();
 
             RPM = nativeRPM;
+
+            Debug.Log(_currentGear);
         }
 
         private void UpdateGearShifting(float rpm)
         {
+            var targetGeer = 0;
+
             if (Mode != TransmissionMode.DRIVING)
             {
                 _currentGear = 0;
@@ -130,27 +134,49 @@ namespace Core.Car
                 return;
             }
 
-            rpm *= GetRatio();
+            var currentRPM = rpm * GetRatio();
 
             if (_ratioShifter.IsShifting)
             {
                 return;
             }
-            if (rpm > _gears[_currentGear].MaxRPM * _accelerationFactor)
+
+            if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
+                currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
+                _speed >= _gears[_currentGear].MinSpeed * _accelerationFactor)
             {
-                UpshiftGear(1);
+                return;
             }
-            else if (rpm < _gears[_currentGear].MinRPM * _accelerationFactor)
+
+            for (int i = 0; i < _gears.Length; i++)
             {
-                DownshiftGear(1);
+                var newRPM = rpm * _gears[i].Ratio * _lastGearRatio;
+
+                if (newRPM < _gears[i].MinRPM * _accelerationFactor ||
+                    _gears[i].MinSpeed * _accelerationFactor > _speed)
+                {
+                    break;
+                }
+
+                targetGeer = i;
             }
+
+            if (targetGeer == _currentGear)
+            {
+                return;
+            }
+
+            _currentGear = targetGeer;
+            _ratioShifter.Shift(
+                _gears[_currentGear].Ratio,
+                _gears[_currentGear].ShiftSpeed);
         }
 
         private void UpshiftGear(int count)
         {
             if (count <= 0)
             {
-                throw new System.ArgumentException();
+                throw new ArgumentException();
             }
 
             if (_currentGear < _gears.Length - count)
