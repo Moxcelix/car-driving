@@ -63,6 +63,7 @@ namespace Core.Car
             HandleDashboard();
             HandleBrakeing();
             HandleLighs();
+            HandleComputer();
         }
 
         public float GetSpeed()
@@ -156,6 +157,11 @@ namespace Core.Car
             _backLights.SetLight(
                 _engine.Enabled &&
                 Transmission.Mode == TransmissionMode.REVERSE);
+        }
+
+        private void HandleComputer()
+        {
+            _computer.Update();
         }
     }
 }
