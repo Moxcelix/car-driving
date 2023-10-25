@@ -33,7 +33,7 @@ namespace Core.Car
                 _computer.Gear.ToString() : string.Empty;
 
             _modeText.text = _computer.TransmissionMode.ToString();
-            _speedText.text = _computer.Speed.ToString();
+            _speedText.text = _computer.Speed.ToString() + " KM/H";
         }
     }
 }
