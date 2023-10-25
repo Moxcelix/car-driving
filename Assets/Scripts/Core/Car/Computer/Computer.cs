@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Core.Car
 {
     public class Computer
@@ -17,9 +19,9 @@ namespace Core.Car
 
         public void Update()
         {
-            Speed = (int)_car.GetSpeed();
+            Speed = (int)Mathf.Abs(_car.GetSpeed() * 3.6f);
             TransmissionMode = _car.Transmission.Mode;
-            Gear = _car.Transmission.CurrentGear;
+            Gear = _car.Transmission.CurrentGear + 1;
         }
     }
 }

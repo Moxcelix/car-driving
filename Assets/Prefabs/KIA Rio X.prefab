@@ -20306,7 +20306,7 @@ GameObject:
   - component: {fileID: 5245428329283481541}
   - component: {fileID: 9063966336315923019}
   m_Layer: 3
-  m_Name: Mode (1)
+  m_Name: Gear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20590,6 +20590,7 @@ GameObject:
   - component: {fileID: 1046640572773128919}
   - component: {fileID: 4338877431918013912}
   - component: {fileID: 577981795802670420}
+  - component: {fileID: 8652291708517233193}
   m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
@@ -20681,6 +20682,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8652291708517233193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374147103460251068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5488b1afd031b4a95cb5f777bc4f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _car: {fileID: 95110990273813404}
+  _speedText: {fileID: 8141608357326098741}
+  _gearText: {fileID: 9063966336315923019}
+  _modeText: {fileID: 5175431201812673947}
 --- !u!1 &7540140667848966895
 GameObject:
   m_ObjectHideFlags: 0
