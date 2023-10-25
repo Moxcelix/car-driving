@@ -15,6 +15,8 @@ namespace Core.Car
 
         public int Gear { get; private set; }
 
+        public float Consumption { get; private set; }
+
         public Computer(Car car)
         {
             _car = car;
@@ -32,6 +34,7 @@ namespace Core.Car
         {
             TransmissionMode = _car.Transmission.Mode;
             Gear = _car.Transmission.CurrentGear + 1;
+            Consumption = _car.GasPedal.Value;
 
             _speedUpdateCounter.Update(Time.fixedDeltaTime);
         }

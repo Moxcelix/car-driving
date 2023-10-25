@@ -5,10 +5,14 @@ namespace Core.Car
 {
     public class Display : MonoBehaviour
     {
+
         [SerializeField] private Car _car;
         [SerializeField] private Text _speedText;
         [SerializeField] private Text _gearText;
         [SerializeField] private Text _modeText;
+
+        [SerializeField] private int _instantaneousConsumptionDevisions;
+        [SerializeField] private Text _instantaneousConsumptionText;
 
         private Computer _computer;
 
@@ -24,6 +28,7 @@ namespace Core.Car
                 _speedText.text = string.Empty;
                 _gearText.text = string.Empty;
                 _modeText.text = string.Empty;
+                _instantaneousConsumptionText.text = string.Empty;
 
                 return;
             }
@@ -34,6 +39,9 @@ namespace Core.Car
 
             _modeText.text = _computer.TransmissionMode.ToString();
             _speedText.text = _computer.Speed.ToString() + " KM/H";
+            _instantaneousConsumptionText.text =
+                new string('=',
+                (int)(_computer.Consumption * _instantaneousConsumptionDevisions));
         }
     }
 }
