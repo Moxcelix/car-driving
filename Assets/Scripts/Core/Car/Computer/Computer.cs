@@ -5,9 +5,11 @@ namespace Core.Car
     public class Computer
     {
         private const float speedUpdateInterval = 0.5f;
+        private const float consumptionUpdateInterval = 0.7f;
 
         private readonly Car _car;
         private readonly Counter _speedUpdateCounter;
+        private readonly Counter _consumptionUpdateCounter;
 
         public float Speed { get; private set; }
 
@@ -22,26 +24,37 @@ namespace Core.Car
             _car = car;
 
             _speedUpdateCounter = new Counter(speedUpdateInterval);
+            _consumptionUpdateCounter = new Counter(consumptionUpdateInterval);
             _speedUpdateCounter.OnCounterEnd += UpdateSpeed;
+            _consumptionUpdateCounter.OnCounterEnd += UpdateConsumption;
         }
 
         ~Computer()
         {
             _speedUpdateCounter.OnCounterEnd -= UpdateSpeed;
+            _consumptionUpdateCounter.OnCounterEnd -= UpdateConsumption;
         }
 
         public void Update()
         {
             TransmissionMode = _car.Transmission.Mode;
             Gear = _car.Transmission.CurrentGear + 1;
-            Consumption = _car.GasPedal.Value;
 
-            _speedUpdateCounter.Update(Time.fixedDeltaTime);
+            _speedUpdateCounter.Update(Time.unscaledDeltaTime);
+            _consumptionUpdateCounter.Update(Time.unscaledDeltaTime);
         }
 
         private void UpdateSpeed()
         {
             Speed = (int)Mathf.Abs(_car.GetSpeed() * 3.6f);
+        }
+
+        private void UpdateConsumption()
+        {
+            Consumption =
+                Mathf.Lerp(
+                    _car.GasPedal.Value,
+                    _car.Engine.RPM / _car.Engine.MaxRPM, 0.8f);
         }
     }
 }
