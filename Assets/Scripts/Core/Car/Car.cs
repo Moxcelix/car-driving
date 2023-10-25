@@ -34,6 +34,7 @@ namespace Core.Car
         [SerializeField] private Transmission _transmission;
 
         private Rigidbody _rigidbody;
+        private Computer _computer;
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BrakePedal => _BrakePedal;
@@ -43,6 +44,7 @@ namespace Core.Car
         public Transmission Transmission => _transmission;
         public TurnLights TurnLights => _turnLights;
         public HeadLights HeadLights => _headLights;
+        public Computer Computer => _computer;
 
         private void Awake()
         {
@@ -50,6 +52,8 @@ namespace Core.Car
 
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
+
+            _computer = new Computer(this);
         }
 
         private void FixedUpdate()

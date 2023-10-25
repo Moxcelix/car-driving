@@ -10,6 +10,11 @@ namespace Core.Car
 
         public int Gear { get; private set; }
 
+        public Computer(Car car)
+        {
+            _car = car;
+        }
+
         public void Update()
         {
             Speed = (int)_car.GetSpeed();
