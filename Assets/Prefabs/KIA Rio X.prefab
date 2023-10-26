@@ -3158,8 +3158,8 @@ MonoBehaviour:
     _cutoffRPM: 6500
     _recoveryRPM: 6000
     _maxRPM: 7000
-    _idlingRPM: 700
-    _maxTorque: 200
+    _idlingRPM: 550
+    _maxTorque: 600
     _responsiveness: 6
   _transmission:
     _torqueConverter:
