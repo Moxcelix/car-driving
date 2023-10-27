@@ -20,6 +20,8 @@ namespace Core.Car
 
         public float Consumption { get; private set; }
 
+        public float Mileage { get; private set; }
+
         public Computer(Car car)
         {
             _car = car;
@@ -41,10 +43,14 @@ namespace Core.Car
         {
             TransmissionMode = _car.Transmission.Mode;
             Gear = _car.Transmission.CurrentGear + 1;
+            Mileage = _mileage.Amount;
 
             _speedUpdateCounter.Update(Time.unscaledDeltaTime);
             _consumptionUpdateCounter.Update(Time.unscaledDeltaTime);
-            _mileage.Update(_car.GetSpeed() / 1000.0f *  Time.unscaledDeltaTime);
+            _mileage.Update(Mathf.Abs(_car.GetSpeed()) /
+                1000.0f *  Time.unscaledDeltaTime);
+
+            Debug.Log(_mileage.Amount);
         }
 
         private void UpdateSpeed()

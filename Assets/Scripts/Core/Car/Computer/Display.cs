@@ -10,6 +10,7 @@ namespace Core.Car
         [SerializeField] private Text _speedText;
         [SerializeField] private Text _gearText;
         [SerializeField] private Text _modeText;
+        [SerializeField] private Text _mileageText;
 
         [SerializeField] private int _instantaneousConsumptionDevisions;
         [SerializeField] private Text _instantaneousConsumptionText;
@@ -28,6 +29,7 @@ namespace Core.Car
                 _speedText.text = string.Empty;
                 _gearText.text = string.Empty;
                 _modeText.text = string.Empty;
+                _mileageText.text = string.Empty;
                 _instantaneousConsumptionText.text = string.Empty;
 
                 return;
@@ -37,6 +39,7 @@ namespace Core.Car
                 _computer.TransmissionMode == TransmissionMode.DRIVING ?
                 _computer.Gear.ToString() : string.Empty;
 
+            _mileageText.text = ((int)_computer.Mileage).ToString() + " KM";
             _modeText.text = _computer.TransmissionMode.ToString();
             _speedText.text = _computer.Speed.ToString() + " KM/H";
             _instantaneousConsumptionText.text =
