@@ -10,6 +10,7 @@ namespace Core.Car
         private readonly Car _car;
         private readonly Counter _speedUpdateCounter;
         private readonly Counter _consumptionUpdateCounter;
+        private readonly Mileage _mileage;
 
         public float Speed { get; private set; }
 
@@ -23,6 +24,7 @@ namespace Core.Car
         {
             _car = car;
 
+            _mileage = new Mileage();
             _speedUpdateCounter = new Counter(speedUpdateInterval);
             _consumptionUpdateCounter = new Counter(consumptionUpdateInterval);
             _speedUpdateCounter.OnCounterEnd += UpdateSpeed;
@@ -42,6 +44,7 @@ namespace Core.Car
 
             _speedUpdateCounter.Update(Time.unscaledDeltaTime);
             _consumptionUpdateCounter.Update(Time.unscaledDeltaTime);
+            _mileage.Update(_car.GetSpeed() / 1000.0f *  Time.unscaledDeltaTime);
         }
 
         private void UpdateSpeed()
