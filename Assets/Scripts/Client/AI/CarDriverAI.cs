@@ -5,9 +5,9 @@ using Core.CarAI.Navigation;
 using Core.Damage;
 using Core.CarMLAgents;
 using System.Collections;
-using System.IO;
 using UnityEngine;
 
+[RequireComponent(typeof(LearningCarAgent))]
 public class CarDriverAI : MonoBehaviour, IControls
 {
     private readonly float _steerSpeed = 2f;
@@ -27,6 +27,8 @@ public class CarDriverAI : MonoBehaviour, IControls
     private TargetFollow _targetFollow;
     private TargetFinder _targetFinder;
     private Driver _driver;
+
+    private LearningCarAgent _learningAgent;
 
     private float _gas = 0.0f;
     private float _brake = 0.0f;
@@ -52,6 +54,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Awake()
     {
+        _learningAgent = GetComponent<LearningCarAgent>();
+
         _targetFollow = new TargetFollow(_car.transform);
         _targetFinder = new TargetFinder();
         _targetFinder.SetDestination(_startNode, _endNode);
@@ -61,6 +65,13 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         _carController = new CarController(this, _car);
         _carController.IsAvailable = true;
+
+        _damageable.OnDamage += _learningAgent.Bump;
+    }
+
+    private void OnDestroy()
+    {
+        _damageable.OnDamage -= _learningAgent.Bump;
     }
 
     private void Start()
@@ -146,9 +157,8 @@ public class CarDriverAI : MonoBehaviour, IControls
                 (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
                 Time.unscaledDeltaTime * _steerSpeed;
 
-            _brake = _driver.Brake;
-
-            _gas = Mathf.Abs(_driver.Acceleration);
+            //_brake = _driver.Brake;
+            //_gas = Mathf.Abs(_driver.Acceleration);
 
             if (_damageable.IsDamaged)
             {
@@ -158,8 +168,10 @@ public class CarDriverAI : MonoBehaviour, IControls
             switch (_driver.Mode)
             {
                 case Mode.Driving:
-                    if (
-                        _driver.Acceleration < 0 &&
+                    _gas = _learningAgent.Gas;
+                    _brake = _learningAgent.Brake;
+
+                    if (_driver.Acceleration < 0 &&
                         _car.Transmission.Mode == TransmissionMode.DRIVING)
                     {
                         _brake = 1;
@@ -168,8 +180,8 @@ public class CarDriverAI : MonoBehaviour, IControls
                         _brake = 0;
                     }
 
-                    if (_driver.Acceleration >= 0
-                        && _car.Transmission.Mode != TransmissionMode.DRIVING)
+                    if (_driver.Acceleration >= 0 && 
+                        _car.Transmission.Mode != TransmissionMode.DRIVING)
                     {
                         _brake = 1;
                         yield return new WaitForSeconds(2.0f);
@@ -178,6 +190,9 @@ public class CarDriverAI : MonoBehaviour, IControls
                     }
                     break;
                 case Mode.Accident:
+                    _gas = 0;
+                    _brake = 0;
+
                     if (_car.Transmission.Mode != TransmissionMode.PARKING)
                     {
                         TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);

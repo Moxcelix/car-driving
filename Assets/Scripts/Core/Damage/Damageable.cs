@@ -6,6 +6,9 @@ namespace Core.Damage
     {
         private const float c_minVelocity = 0.1f;
 
+        public delegate void DamageableDelegate();
+        public event DamageableDelegate OnDamage;
+
         public bool IsDamaged { get; private set; }
 
         private void OnCollisionEnter(Collision collision)
@@ -15,6 +18,8 @@ namespace Core.Damage
             if (collision.relativeVelocity.magnitude > c_minVelocity)
             {
                 IsDamaged = true;
+
+                OnDamage?.Invoke();
             }
         }
     }
