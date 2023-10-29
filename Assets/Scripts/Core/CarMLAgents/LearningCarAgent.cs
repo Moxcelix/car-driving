@@ -9,6 +9,8 @@ namespace Core.CarMLAgents
     {
         private const float positionReachedReward = 1.0f;
         private const float bumpRevard = -0.5f;
+        private const float gasRevard = 0.3f;
+        private const float brakeRevard = -0.01f;
 
         private Hit[] _hits;
         private float _gas;
@@ -37,6 +39,9 @@ namespace Core.CarMLAgents
 
             _gas = actions.ContinuousActions[0];
             _brake = actions.ContinuousActions[1];
+
+            SetReward(_gas * gasRevard);
+            SetReward(_brake * brakeRevard);
         }
     }
 }
