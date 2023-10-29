@@ -3,7 +3,7 @@ using Core.CarAI;
 using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
 using Core.Damage;
-using Core.Neural;
+using Core.CarMLAgents;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -31,21 +31,6 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
-    // Neural test.
-    // Input:
-    // 0 - forward amount
-    // 0 - forward amount sign
-    // 1 - turn amount
-    // 1 - turn amount sign
-    // 2 - prev forward amount
-    // 2 - prev forward amount sign
-    // 3 - prev turn amount
-    // 3 - prev turn amount sign
-    // Ouput:
-    // 0 - forward amount
-    // 1 - turn amount
-    private readonly NeuralNetwork _neuralNetwork = new NeuralNetwork(new int[] { 4, 10, 10, 2 });
-
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
 
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
@@ -67,8 +52,6 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Awake()
     {
-        TESTLoadNeural();
-
         _targetFollow = new TargetFollow(_car.transform);
         _targetFinder = new TargetFinder();
         _targetFinder.SetDestination(_startNode, _endNode);
@@ -131,54 +114,6 @@ public class CarDriverAI : MonoBehaviour, IControls
     {
         Gas = _gasSmoothPressing.Value;
         Brake = _brakeSmoothPressing.Value;
-    }
-
-    private void OnApplicationQuit()
-    {
-        TESTSaveNeural();
-    }
-
-    private void TESTSaveNeural()
-    {
-        var path = "nrl/weight";
-        var extension = ".w";
-
-        for (int i = 0; i < _neuralNetwork.Layers.Length; i++)
-        {
-            var saver = new WeightSave();
-
-            saver.Save(path + i + extension, _neuralNetwork.Layers[i].Weights);
-        }
-    }
-
-    private void TESTLoadNeural()
-    {
-        var path = "nrl/weight";
-        var extension = ".w";
-
-        if (!Directory.Exists("nrl"))
-        {
-            Directory.CreateDirectory("nrl");
-        }
-
-        for (int i = 0; i < _neuralNetwork.Layers.Length; i++)
-        {
-            var name = path + i + extension;
-            if (File.Exists(name))
-            {
-                var saver = new WeightSave();
-
-                saver.Load(path + i + extension);
-
-                _neuralNetwork.Layers[i].InitilizeWeights(saver);
-            }
-            else
-            {
-                var weightsProvider = new RandomWeightProvider();
-
-                _neuralNetwork.Layers[i].InitilizeWeights(weightsProvider);
-            }
-        }
     }
 
     private IEnumerator TESTAI()
