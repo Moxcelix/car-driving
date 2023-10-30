@@ -16,13 +16,24 @@ namespace Core.CarMLAgents
         private float _gas;
         private float _brake;
 
-        public float Gas { get { return _gas; } }
+        public float Gas => _gas;
 
-        public float Brake { get { return _brake; } }
+        public float Brake => _brake;
+
 
         public void Bump()
         {
             SetReward(bumpRevard);
+        }
+
+        public void PositionReach()
+        {
+            SetReward(positionReachedReward);
+        }
+
+        public void UpdateHits(Hit[] hits)
+        {
+            _hits = hits;
         }
 
         public override void CollectObservations(VectorSensor sensor)
