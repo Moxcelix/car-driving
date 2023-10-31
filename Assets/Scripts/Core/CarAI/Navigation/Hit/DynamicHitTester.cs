@@ -18,7 +18,9 @@ namespace Core.CarAI.Navigation
 
         private void Awake()
         {
-            Direction = transform.parent.worldToLocalMatrix.MultiplyVector(transform.forward);
+            Direction = 
+                transform.parent.worldToLocalMatrix.
+                MultiplyVector(transform.forward);
         }
 
         private void Update()

@@ -82,6 +82,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Update()
     {
+        UpdateHits();
+
         var speed = _car.GetSpeed();
         var destinationDistance = speed * speed / 2.0f + 2.0f;
 
@@ -118,6 +120,19 @@ public class CarDriverAI : MonoBehaviour, IControls
             hitTester.Coefficient = Vector3.Dot(
                 hitTester.transform.forward,
                 _car.GetVelocity());
+        }
+    }
+
+    private void UpdateHits()
+    {
+        var hits = new Hit[_hitTesters.Length];
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i] = new Hit()
+            {
+                Distance = _hitTesters[i].HitDistance
+            };
         }
     }
 
@@ -180,7 +195,7 @@ public class CarDriverAI : MonoBehaviour, IControls
                         _brake = 0;
                     }
 
-                    if (_driver.Acceleration >= 0 && 
+                    if (_driver.Acceleration >= 0 &&
                         _car.Transmission.Mode != TransmissionMode.DRIVING)
                     {
                         _brake = 1;
@@ -191,7 +206,7 @@ public class CarDriverAI : MonoBehaviour, IControls
                     break;
                 case Mode.Accident:
                     _gas = 0;
-                    _brake = 0;
+                    _brake = 1;
 
                     if (_car.Transmission.Mode != TransmissionMode.PARKING)
                     {
