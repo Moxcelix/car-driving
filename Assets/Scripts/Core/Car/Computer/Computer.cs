@@ -49,8 +49,6 @@ namespace Core.Car
             _consumptionUpdateCounter.Update(Time.unscaledDeltaTime);
             _mileage.Update(Mathf.Abs(_car.GetSpeed()) /
                 1000.0f *  Time.unscaledDeltaTime);
-
-            Debug.Log(_mileage.Amount);
         }
 
         private void UpdateSpeed()

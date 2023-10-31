@@ -28,7 +28,7 @@ namespace Core.CarAI.Navigation
             IsHited = Physics.Raycast(transform.position,
                 transform.forward, out _hit, _rayLength * Coefficient);
 
-            HitDistance = IsHited ? _hit.distance : float.PositiveInfinity;
+            HitDistance = IsHited ? _hit.distance : _rayLength;
         }
 
         public float GetHit<T>()

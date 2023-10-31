@@ -92,6 +92,8 @@ public class CarDriverAI : MonoBehaviour, IControls
             _car.transform.position) < destinationDistance)
         {
             _targetFinder.NextTarget();
+            _learningAgent.PositionReach();
+            _learningAgent.EndEpisode();
         }
 
         _carController.Update();
@@ -134,6 +136,8 @@ public class CarDriverAI : MonoBehaviour, IControls
                 Distance = _hitTesters[i].HitDistance
             };
         }
+
+        _learningAgent.UpdateHits(hits);
     }
 
     void IControls.Update()

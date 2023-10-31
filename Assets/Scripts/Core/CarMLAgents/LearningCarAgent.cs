@@ -38,6 +38,8 @@ namespace Core.CarMLAgents
 
         public override void CollectObservations(VectorSensor sensor)
         {
+            if (_hits == null) return;
+
             foreach (var hit in _hits)
             {
                 sensor.AddObservation(hit.Distance);
@@ -46,10 +48,12 @@ namespace Core.CarMLAgents
 
         public override void OnActionReceived(ActionBuffers actions)
         {
-            Debug.Log("Action received!");
+            var action = actions.ContinuousActions[0];
 
-            _gas = actions.ContinuousActions[0];
-            _brake = actions.ContinuousActions[1];
+            Debug.Log($"Action received : {action}");
+
+            _gas = action > 0 ? action : 0;
+            _brake = action < 0 ? -action : 0;
 
             SetReward(_gas * gasRevard);
             SetReward(_brake * brakeRevard);
