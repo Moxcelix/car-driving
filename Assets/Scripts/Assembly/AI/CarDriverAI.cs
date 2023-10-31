@@ -33,6 +33,8 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float _gas = 0.0f;
     private float _brake = 0.0f;
 
+    private Vector3 _startPosition;
+
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
 
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
@@ -67,11 +69,16 @@ public class CarDriverAI : MonoBehaviour, IControls
         _carController.IsAvailable = true;
 
         _damageable.OnDamage += _learningAgent.Bump;
+        _damageable.OnDamage += Restart;
+
+        _startPosition = _car.transform.position;
+
     }
 
     private void OnDestroy()
     {
         _damageable.OnDamage -= _learningAgent.Bump;
+        _damageable.OnDamage -= Restart;
     }
 
     private void Start()
@@ -94,6 +101,11 @@ public class CarDriverAI : MonoBehaviour, IControls
             _targetFinder.NextTarget();
             _learningAgent.PositionReach();
             _learningAgent.EndEpisode();
+
+            if (_targetFinder.IsDone)
+            {
+                Restart();
+            }
         }
 
         _carController.Update();
@@ -117,12 +129,18 @@ public class CarDriverAI : MonoBehaviour, IControls
             _gasSmoothPressing.Release(Time.deltaTime);
         }
 
-        foreach (var hitTester in _hitTesters)
-        {
-            hitTester.Coefficient = Vector3.Dot(
-                hitTester.transform.forward,
-                _car.GetVelocity());
-        }
+        //foreach (var hitTester in _hitTesters)
+        //{
+        //    hitTester.Coefficient = Vector3.Dot(
+        //        hitTester.transform.forward,
+        //        _car.GetVelocity());
+        //}
+    }
+
+    private void Restart()
+    {
+        _targetFinder.ResetTarget();
+        _car.transform.position = _startPosition;
     }
 
     private void UpdateHits()
@@ -179,10 +197,10 @@ public class CarDriverAI : MonoBehaviour, IControls
             //_brake = _driver.Brake;
             //_gas = Mathf.Abs(_driver.Acceleration);
 
-            if (_damageable.IsDamaged)
-            {
-                _driver.MakeAccident();
-            }
+            //if (_damageable.IsDamaged)
+            //{
+            //    _driver.MakeAccident();
+            //}
 
             switch (_driver.Mode)
             {

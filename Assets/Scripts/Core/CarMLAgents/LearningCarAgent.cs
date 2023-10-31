@@ -9,7 +9,7 @@ namespace Core.CarMLAgents
     {
         private const float positionReachedReward = 1.0f;
         private const float bumpRevard = -0.5f;
-        private const float gasRevard = 0.3f;
+        private const float gasRevard = 0.03f;
         private const float brakeRevard = -0.01f;
 
         private Hit[] _hits;
@@ -50,7 +50,7 @@ namespace Core.CarMLAgents
         {
             var action = actions.ContinuousActions[0];
 
-            Debug.Log($"Action received : {action}");
+            //Debug.Log($"Action received : {action}");
 
             _gas = action > 0 ? action : 0;
             _brake = action < 0 ? -action : 0;

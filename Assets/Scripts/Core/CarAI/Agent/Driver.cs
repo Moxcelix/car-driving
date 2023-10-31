@@ -38,6 +38,14 @@ namespace Core.CarAI.Agent
             Mode = Mode.Accident;
         }
 
+        public void FreeAccident()
+        {
+            if(Mode == Mode.Accident)
+            {
+                Mode = Mode.Driving;
+            }
+        }
+
         public void Update(float turnAmount, float speed)
         {
             var minBrakeDistance = speed / 2.0f + 2.0f;

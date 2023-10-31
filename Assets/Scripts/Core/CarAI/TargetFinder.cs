@@ -12,6 +12,8 @@ namespace Core.CarAI
 
         private int _currentPathIndex = 0;
 
+        public bool IsDone => _currentPathIndex == _path.Count - 1;
+
         public void SetDestination(Node startNode, Node endNode)
         {
             _pathFinder = new PathFinder();
