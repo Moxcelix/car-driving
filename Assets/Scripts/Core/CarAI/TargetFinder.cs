@@ -32,5 +32,10 @@ namespace Core.CarAI
 
             _currentPathIndex++;
         }
+
+        public void ResetTarget()
+        {
+            _currentPathIndex = 0;
+        }
     }
 }
