@@ -90,6 +90,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private void Update()
     {
         UpdateHits();
+        UpdateSteer();
 
         var speed = _car.GetSpeed();
         var destinationDistance = speed * speed / 2.0f + 2.0f;
@@ -128,13 +129,6 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             _gasSmoothPressing.Release(Time.deltaTime);
         }
-
-        //foreach (var hitTester in _hitTesters)
-        //{
-        //    hitTester.Coefficient = Vector3.Dot(
-        //        hitTester.transform.forward,
-        //        _car.GetVelocity());
-        //}
     }
 
     private void Restart()
@@ -156,6 +150,11 @@ public class CarDriverAI : MonoBehaviour, IControls
         }
 
         _learningAgent.UpdateHits(hits);
+    }
+
+    private void UpdateSteer()
+    {
+        _learningAgent.UpdateSteer(_car.SteeringWheel.TurnAmount);
     }
 
     void IControls.Update()
