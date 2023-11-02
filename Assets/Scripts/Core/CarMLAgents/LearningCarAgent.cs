@@ -1,7 +1,6 @@
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using UnityEngine;
 
 namespace Core.CarMLAgents
 {
@@ -15,6 +14,7 @@ namespace Core.CarMLAgents
         private Hit[] _hits;
         private float _gas;
         private float _brake;
+        private float _steer;
 
         public float Gas => _gas;
 
@@ -31,6 +31,11 @@ namespace Core.CarMLAgents
             SetReward(positionReachedReward);
         }
 
+        public void UpdateSteer(float steer)
+        {
+            _steer = steer;
+        }
+
         public void UpdateHits(Hit[] hits)
         {
             _hits = hits;
@@ -44,6 +49,8 @@ namespace Core.CarMLAgents
             {
                 sensor.AddObservation(hit.Distance);
             }
+
+            sensor.AddObservation(_steer);
         }
 
         public override void OnActionReceived(ActionBuffers actions)
