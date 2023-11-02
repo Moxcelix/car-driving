@@ -1,6 +1,7 @@
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEngine;
 
 namespace Core.CarMLAgents
 {
@@ -57,10 +58,11 @@ namespace Core.CarMLAgents
         {
             var action = actions.ContinuousActions[0];
 
-            //Debug.Log($"Action received : {action}");
-
             _gas = action > 0 ? action : 0;
             _brake = action < 0 ? -action : 0;
+
+            _gas = Mathf.Clamp01(_gas);
+            _brake = Mathf.Clamp01(_brake);
 
             SetReward(_gas * gasRevard);
             SetReward(_brake * brakeRevard);
