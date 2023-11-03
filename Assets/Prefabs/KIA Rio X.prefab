@@ -2998,6 +2998,7 @@ GameObject:
   - component: {fileID: 95110990273813420}
   - component: {fileID: 95110990273813423}
   - component: {fileID: 2100919630}
+  - component: {fileID: 6344335457628947437}
   m_Layer: 3
   m_Name: KIA Rio X
   m_TagString: Untagged
@@ -3811,6 +3812,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 577b5a2635f494a46b9abb61a8428feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6344335457628947437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95110990273813422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d731ad2e96660459e541ef5080d73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &95110990293044055

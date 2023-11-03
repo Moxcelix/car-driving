@@ -22,6 +22,16 @@ public class CarStatistics : MonoBehaviour
         _iteration = 0;
     }
 
+    private void Start()
+    {
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        StartCoroutine(RecordCycle());
+    }
+
     private StatisticsRecord Collect()
     {
         return new StatisticsRecord(
