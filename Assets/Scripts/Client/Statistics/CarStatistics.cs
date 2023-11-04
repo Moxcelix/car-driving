@@ -11,6 +11,7 @@ public class CarStatistics : MonoBehaviour
 
     private Car _car;
     private CarID _carID;
+    private CarDriverAI _driverAI;
     private int _iteration;
 
     private readonly WaitForSeconds _sleep = new WaitForSeconds(0.1f);
@@ -19,9 +20,16 @@ public class CarStatistics : MonoBehaviour
     {
         _car = GetComponent<Car>();
         _carID = GetComponent<CarID>();
+        _driverAI = GetComponentInChildren<CarDriverAI>();
         _iteration = 0;
+
+        _driverAI.OnRestart += NextIteration;
     }
 
+    private void OnDestroy()
+    {
+        _driverAI.OnRestart -= NextIteration;
+    }
     private void Start()
     {
         if (!Directory.Exists(path))
@@ -30,6 +38,11 @@ public class CarStatistics : MonoBehaviour
         }
 
         StartCoroutine(RecordCycle());
+    }
+
+    private void NextIteration()
+    {
+        _iteration++;
     }
 
     private StatisticsRecord Collect()
@@ -68,7 +81,7 @@ public class CarStatistics : MonoBehaviour
             var statistics = Collect();
 
             WriteStatistics(statistics, filePath);
-            
+
             yield return _sleep;
         }
     }

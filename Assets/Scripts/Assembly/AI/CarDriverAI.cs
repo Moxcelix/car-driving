@@ -10,6 +10,9 @@ using UnityEngine;
 [RequireComponent(typeof(LearningCarAgent))]
 public class CarDriverAI : MonoBehaviour, IControls
 {
+    public delegate void RestartDelegate();
+    public event RestartDelegate OnRestart;
+
     private readonly float _steerSpeed = 2f;
 
     private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 100.5f);
@@ -133,6 +136,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Restart()
     {
+        OnRestart?.Invoke();
+
         _targetFinder.ResetTarget();
         _car.transform.position = _startPosition;
     }
@@ -192,14 +197,6 @@ public class CarDriverAI : MonoBehaviour, IControls
             SteerDelta =
                 (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
                 Time.unscaledDeltaTime * _steerSpeed;
-
-            //_brake = _driver.Brake;
-            //_gas = Mathf.Abs(_driver.Acceleration);
-
-            //if (_damageable.IsDamaged)
-            //{
-            //    _driver.MakeAccident();
-            //}
 
             switch (_driver.Mode)
             {
