@@ -13,7 +13,6 @@ namespace Core.Car
         [SerializeField] private Wheel _rearRightWheel;
         [SerializeField] private Wheel _rearLeftWheel;
         [SerializeField] private float _BrakeForce;
-        [SerializeField] private float _maxSpeed;
 
         [Header("Controls")]
         [SerializeField] private SteeringWheel _steeringWheel;
@@ -78,17 +77,6 @@ namespace Core.Car
             return _rigidbody.velocity;
         }
 
-        private float GetResistanceForce()
-        {
-            var v = GetSpeed();
-            var airResistance = _engine.MaxTorque / (_maxSpeed * _maxSpeed);
-
-            if (Mathf.Abs(v) < c_velocityEps)
-                v = 0;
-
-            return airResistance * v * v * Mathf.Sign(v);
-        }
-
         private float GetWheelsRPM()
         {
             return (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
@@ -102,7 +90,7 @@ namespace Core.Car
 
         private void HandleEngine()
         {
-            var resistance = 0;// GetResistanceForce();
+            var resistance = 0;
             var wheelsRPM = GetWheelsRPM();
 
             _transmission.Lock = !_engine.Enabled || !_BrakePedal.IsPressed;
