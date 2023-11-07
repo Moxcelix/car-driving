@@ -3061,8 +3061,7 @@ MonoBehaviour:
   _frontLeftWheel: {fileID: 95110990521568254}
   _rearRightWheel: {fileID: 95110991808066962}
   _rearLeftWheel: {fileID: 95110991060316261}
-  _BrakeForce: 1200
-  _maxSpeed: 150
+  _brakeForce: 1000
   _steeringWheel: {fileID: 95110992036971591}
   _tachometer: {fileID: 95110989943960508}
   _speedometer: {fileID: 95110990173007708}

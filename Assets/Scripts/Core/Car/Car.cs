@@ -12,7 +12,7 @@ namespace Core.Car
         [SerializeField] private Wheel _frontLeftWheel;
         [SerializeField] private Wheel _rearRightWheel;
         [SerializeField] private Wheel _rearLeftWheel;
-        [SerializeField] private float _BrakeForce;
+        [SerializeField] private float _brakeForce;
 
         [Header("Controls")]
         [SerializeField] private SteeringWheel _steeringWheel;
@@ -123,11 +123,11 @@ namespace Core.Car
         {
             var frontBrakeValue =
                 (_BrakePedal.Value +
-                _transmission.Brake) * _BrakeForce;
+                _transmission.Brake) * _brakeForce;
 
             var rearBrakeValue =
                 (_BrakePedal.Value +
-                _parkingBrake.Brake) * _BrakeForce;
+                _parkingBrake.Brake) * _brakeForce;
 
             _frontRightWheel.Brake(frontBrakeValue);
             _frontLeftWheel.Brake(frontBrakeValue);
