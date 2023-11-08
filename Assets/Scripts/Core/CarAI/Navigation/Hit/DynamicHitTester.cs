@@ -16,6 +16,8 @@ namespace Core.CarAI.Navigation
 
         public Vector3 Direction { get; private set; }
 
+        public float MaxDistance => _rayLength;
+
         private void Awake()
         {
             Direction = 

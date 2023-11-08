@@ -11,11 +11,13 @@ namespace Core.CarMLAgents
         private const float bumpRevard = -0.5f;
         private const float gasRevard = 0.03f;
         private const float brakeRevard = -0.01f;
+        private const float distanceRevard = -0.05f;
 
         private Hit[] _hits;
         private float _gas;
         private float _brake;
         private float _steer;
+        private float _distanceSensetivity;
 
         public float Gas => _gas;
 
@@ -40,6 +42,14 @@ namespace Core.CarMLAgents
         public void UpdateHits(Hit[] hits)
         {
             _hits = hits;
+
+            foreach(var hit in _hits)
+            {
+                if(hit.Distance < _distanceSensetivity)
+                {
+                    SetReward(distanceRevard);
+                }
+            }
         }
 
         public override void CollectObservations(VectorSensor sensor)
@@ -63,6 +73,9 @@ namespace Core.CarMLAgents
 
             _gas = Mathf.Clamp01(_gas);
             _brake = Mathf.Clamp01(_brake);
+
+            _distanceSensetivity = 
+                Mathf.Abs(actions.ContinuousActions[1]);
 
             SetReward(_gas * gasRevard);
             SetReward(_brake * brakeRevard);

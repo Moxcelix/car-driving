@@ -150,7 +150,9 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             hits[i] = new Hit()
             {
-                Distance = _hitTesters[i].HitDistance
+                Distance = 
+                    _hitTesters[i].HitDistance /
+                    _hitTesters[i].MaxDistance
             };
         }
 
