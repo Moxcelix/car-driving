@@ -50,7 +50,7 @@ namespace Core.Car
 
             RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
             Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
-            Consumption = inputGas;
+            Consumption = Mathf.Lerp(Consumption, inputGas, deltaTime);
 
             if (RPM > _cutoffRPM)
             {
