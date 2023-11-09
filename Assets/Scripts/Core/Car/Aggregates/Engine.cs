@@ -23,6 +23,7 @@ namespace Core.Car
         public float RPM { get; private set; }
         public float OutputRPM { get; private set; }
         public float Torque { get; private set; }
+        public float Consumption { get; private set; }
 
         private float _torqueRPM = 0.0f;
         private float _targetRPM = 0.0f;
@@ -49,8 +50,9 @@ namespace Core.Car
 
             RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
             Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
+            Consumption = inputGas;
 
-            if(RPM > _cutoffRPM)
+            if (RPM > _cutoffRPM)
             {
                 _cutOff = true;
             }

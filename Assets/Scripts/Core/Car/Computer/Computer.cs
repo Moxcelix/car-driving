@@ -58,10 +58,7 @@ namespace Core.Car
 
         private void UpdateConsumption()
         {
-            Consumption =
-                Mathf.Lerp(
-                    _car.GasPedal.Value,
-                    _car.Engine.RPM / _car.Engine.MaxRPM, 0.8f);
+            Consumption = _car.Engine.Consumption;
         }
     }
 }
