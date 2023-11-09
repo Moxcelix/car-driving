@@ -21,7 +21,6 @@ namespace Core.Car
         public bool Enabled => _starter.State == EngineState.STARTED;
 
         public float RPM { get; private set; }
-        public float OutputRPM { get; private set; }
         public float Torque { get; private set; }
         public float Consumption { get; private set; }
 
