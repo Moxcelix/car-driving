@@ -23,7 +23,10 @@ public class CarStatistics : MonoBehaviour
         _driverAI = GetComponentInChildren<CarDriverAI>();
         _iteration = 0;
 
-        _driverAI.OnRestart += NextIteration;
+        if (_driverAI != null)
+        {
+            _driverAI.OnRestart += NextIteration;
+        }
     }
 
     private void OnDestroy()
