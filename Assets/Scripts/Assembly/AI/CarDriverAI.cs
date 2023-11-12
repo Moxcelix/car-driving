@@ -164,6 +164,14 @@ public class CarDriverAI : MonoBehaviour, IControls
         _learningAgent.UpdateSteer(_car.SteeringWheel.TurnAmount);
     }
 
+    private float GetSteerDelta(float deltaTime)
+    {
+        return (
+            _driver.TurnAmount - 
+            _car.SteeringWheel.TurnAmount) *
+                deltaTime * _steerSpeed;
+    }
+
     void IControls.Update()
     {
         Gas = _gasSmoothPressing.Value;
@@ -196,9 +204,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         while (true)
         {
-            SteerDelta =
-                (_driver.TurnAmount - _car.SteeringWheel.TurnAmount) *
-                Time.unscaledDeltaTime * _steerSpeed;
+            SteerDelta = GetSteerDelta(Time.unscaledDeltaTime);
 
             switch (_driver.Mode)
             {
