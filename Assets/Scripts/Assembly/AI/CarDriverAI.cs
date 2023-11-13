@@ -87,7 +87,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private void Start()
     {
         // TEST
-        StartCoroutine(TESTAI());
+        StartCoroutine(MainAI());
     }
 
     private void Update()
@@ -178,7 +178,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         Brake = _brakeSmoothPressing.Value;
     }
 
-    private IEnumerator TESTAI()
+    private IEnumerator MainAI()
     {
         if (_car.Engine.Starter.State == EngineState.STOPED)
         {
