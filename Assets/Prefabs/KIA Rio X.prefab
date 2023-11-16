@@ -3233,6 +3233,13 @@ MonoBehaviour:
     _reverseGearRatio: 3.44
     _idlingRMP: 700
     _lastGearRatio: 3.574
+  _doors:
+  - {fileID: 95110991893928372}
+  - {fileID: 95110991129292342}
+  - {fileID: 95110991660304191}
+  - {fileID: 95110991303493236}
+  - {fileID: 95110991881084667}
+  - {fileID: 95110992028394789}
 --- !u!114 &95110990273813407
 MonoBehaviour:
   m_ObjectHideFlags: 0

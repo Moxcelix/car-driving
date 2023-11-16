@@ -32,8 +32,12 @@ namespace Core.Car
         [SerializeField] private Engine _engine;
         [SerializeField] private Transmission _transmission;
 
+        [Header("Doors")]
+        [SerializeField] private Door[] _doors;
+
         private Rigidbody _rigidbody;
         private Computer _computer;
+        private CentralLocking _centralLocking;
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BrakePedal => _BrakePedal;
@@ -44,6 +48,7 @@ namespace Core.Car
         public TurnLights TurnLights => _turnLights;
         public HeadLights HeadLights => _headLights;
         public Computer Computer => _computer;
+        public CentralLocking CentralLocking => _centralLocking;
 
         private void Awake()
         {
@@ -53,6 +58,7 @@ namespace Core.Car
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
 
             _computer = new Computer(this);
+            _centralLocking = new CentralLocking(_doors);
         }
 
         private void FixedUpdate()
@@ -63,6 +69,7 @@ namespace Core.Car
             HandleBrakeing();
             HandleLighs();
             HandleComputer();
+            HandleCentralLocking();
         }
 
         public float GetSpeed()
@@ -150,6 +157,11 @@ namespace Core.Car
         private void HandleComputer()
         {
             _computer.Update();
+        }
+
+        private void HandleCentralLocking()
+        {
+            _centralLocking.Update();
         }
     }
 }

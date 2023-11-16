@@ -4,7 +4,7 @@ namespace Core.Car
     {
         private readonly Door[] _doors;
 
-        public bool Locked { get; set; }
+        public bool Locked { get; set; } 
 
         public CentralLocking(Door[] doors)
         {
