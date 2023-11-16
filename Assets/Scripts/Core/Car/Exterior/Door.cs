@@ -20,6 +20,7 @@ namespace Core.Car
         public Vector3 StartAngle => _startAngle;
         public Vector3 EndAngle => _endAngle;
         public OpenState State { get; private set; }
+        public bool IsLocked { get; set; }
 
         public bool IsInteractable => State is OpenState.OPEN or OpenState.CLOSED;
 
@@ -46,6 +47,11 @@ namespace Core.Car
 
         public void Open()
         {
+            if (IsLocked)
+            {
+                return;
+            }
+
             StartCoroutine(_openAnimation.GetAnimationCoroutine());
 
             SetState(OpenState.IS_OPENING);
