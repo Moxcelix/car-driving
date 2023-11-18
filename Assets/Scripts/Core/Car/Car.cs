@@ -38,6 +38,7 @@ namespace Core.Car
         private Rigidbody _rigidbody;
         private Computer _computer;
         private CentralLocking _centralLocking;
+        private Immobilizer _immobilizer;
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BrakePedal => _BrakePedal;
@@ -49,6 +50,7 @@ namespace Core.Car
         public HeadLights HeadLights => _headLights;
         public Computer Computer => _computer;
         public CentralLocking CentralLocking => _centralLocking;
+        public Immobilizer Immobilizer => _immobilizer;
 
         private void Awake()
         {
@@ -59,6 +61,7 @@ namespace Core.Car
 
             _computer = new Computer(this);
             _centralLocking = new CentralLocking(_doors);
+            _immobilizer = new Immobilizer();
         }
 
         private void FixedUpdate()
