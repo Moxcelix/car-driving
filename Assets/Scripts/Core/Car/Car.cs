@@ -61,7 +61,7 @@ namespace Core.Car
 
             _computer = new Computer(this);
             _centralLocking = new CentralLocking(_doors);
-            _immobilizer = new Immobilizer();
+            _immobilizer = new Immobilizer(_engine);
         }
 
         private void FixedUpdate()
