@@ -73,6 +73,7 @@ namespace Core.Car
             HandleLighs();
             HandleComputer();
             HandleCentralLocking();
+            HandleImmobilizer();
         }
 
         public float GetSpeed()
@@ -165,6 +166,11 @@ namespace Core.Car
         private void HandleCentralLocking()
         {
             _centralLocking.Update();
+        }
+
+        private void HandleImmobilizer()
+        {
+            _immobilizer.Update();
         }
     }
 }
