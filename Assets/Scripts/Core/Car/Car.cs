@@ -5,7 +5,6 @@ namespace Core.Car
     [RequireComponent(typeof(Rigidbody))]
     public class Car : MonoBehaviour
     {
-        public const float c_velocityEps = 0.01f;
         [Header("Physics")]
         [SerializeField] private Transform _centerOfMass;
         [SerializeField] private Wheel _frontRightWheel;
