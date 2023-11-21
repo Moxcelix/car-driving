@@ -31,7 +31,10 @@ public class CarStatistics : MonoBehaviour
 
     private void OnDestroy()
     {
-        _driverAI.OnRestart -= NextIteration;
+        if (_driverAI != null)
+        {
+            _driverAI.OnRestart -= NextIteration;
+        }
     }
     private void Start()
     {
