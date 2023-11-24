@@ -14,7 +14,7 @@ public class CarStatistics : MonoBehaviour
     private CarDriverAI _driverAI;
     private int _iteration;
 
-    private readonly WaitForSeconds _sleep = new WaitForSeconds(0.1f);
+    private readonly WaitForSeconds _sleep = new(0.1f);
 
     private void Awake()
     {
