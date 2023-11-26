@@ -51,7 +51,10 @@ namespace Core.Car
 
         public void Update()
         {
-            if (!IsAvailable) return;
+            if (!IsAvailable)
+            {
+                return;
+            }
 
             _controls.Update();
 
