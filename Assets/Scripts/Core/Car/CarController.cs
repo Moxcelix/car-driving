@@ -6,7 +6,7 @@ namespace Core.Car
 
         private readonly Car _car;
 
-        private bool _closed = false;
+        private bool _isClosed = false;
 
         public Car Car => _car;
 
@@ -29,7 +29,7 @@ namespace Core.Car
 
         ~CarController()
         {
-            if (_closed)
+            if (_isClosed)
             {
                 return;
             }
@@ -46,7 +46,7 @@ namespace Core.Car
             _controls.HighLightSwitch = null;
             _controls.EngineSwitch = null;
 
-            _closed = true;
+            _isClosed = true;
         }
 
         public void Update()
