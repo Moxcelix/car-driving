@@ -33,7 +33,6 @@ public class Openable : MonoBehaviour, IInteractive
     {
         Debug.Log($"[{DateTime.Now}] -> {userController} opens {this}.");
 
-        _interactive.Interact
-            ();
+        _interactive.Interact();
     }
 }
