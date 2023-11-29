@@ -51,20 +51,25 @@ namespace Core.Car
             Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
             Consumption = Mathf.Lerp(Consumption, inputGas, deltaTime);
 
-            if (RPM > _cutoffRPM)
-            {
-                _cutOff = true;
-            }
-
-            if(RPM < _recoveryRPM)
-            {
-                _cutOff = false;
-            }
+            UpdateCutoff();
         }
 
         private float SummGas(float mainGas, float additionalGas)
         {
             return additionalGas + (mainGas * (1.0f - additionalGas));
+        }
+
+        private void UpdateCutoff()
+        {
+            if (RPM > _cutoffRPM)
+            {
+                _cutOff = true;
+            }
+
+            if (RPM < _recoveryRPM)
+            {
+                _cutOff = false;
+            }
         }
 
     }
