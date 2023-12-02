@@ -133,8 +133,6 @@ namespace Core.Car
             }
 
             var currentRPM = rpm * GetRatio();
-            var targetGeer = 0;
-
             if (_ratioShifter.IsShifting)
             {
                 return;
@@ -147,8 +145,7 @@ namespace Core.Car
                 return;
             }
 
-            targetGeer = GetGearByAcceleration(rpm);
-
+            int targetGeer = GetGearByAcceleration(rpm);
             if (targetGeer == _currentGear)
             {
                 return;
