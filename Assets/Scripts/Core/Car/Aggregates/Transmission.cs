@@ -22,6 +22,7 @@ namespace Core.Car
         [SerializeField] private float _reverseGearRatio = 3.44f;
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
+        [SerializeField] private float _forcedSwitchRPM = 6000.0f;
 
         private RatioShifter _ratioShifter;
 
@@ -208,7 +209,7 @@ namespace Core.Car
             if (_currentGear < _gears.Length - count)
             {
                 if (_gears[_currentGear + 1].MinSpeed *
-                    _accelerationFactor > _speed && RPM < 6000)
+                    _accelerationFactor > _speed && RPM < _forcedSwitchRPM)
                 {
                     return;
                 }
