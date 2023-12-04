@@ -13,6 +13,11 @@ namespace Core.Cameras
 
         public bool IsMovable => _isMovable;
 
+        private void Awake()
+        {
+            Initialize();
+        }
+
         public void SetMovable(bool state)
         {
             _isMovable = state;
@@ -22,13 +27,13 @@ namespace Core.Cameras
         {
             if (_camera == null)
             {
-                Awake();
+                Initialize();
             }
             _camera.enabled = state;
             _listener.enabled = state;
         }
 
-        private void Awake()
+        private void Initialize()
         {
             _camera = GetComponent<Camera>();
             _listener = GetComponent<AudioListener>();
