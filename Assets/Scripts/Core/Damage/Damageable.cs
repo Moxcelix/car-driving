@@ -13,8 +13,6 @@ namespace Core.Damage
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("boom!");
-
             if (collision.relativeVelocity.magnitude > c_minVelocity)
             {
                 IsDamaged = true;
