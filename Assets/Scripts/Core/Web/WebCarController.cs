@@ -10,6 +10,14 @@ namespace Core.Web
             _car = car;
         }
 
-        public void Update() { }
+        public void Update()
+        {
+            SendData();
+            ReceiveData();
+        }
+
+        private void SendData() { }
+
+        private void ReceiveData() { }
     }
 }
