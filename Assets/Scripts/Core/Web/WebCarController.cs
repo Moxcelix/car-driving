@@ -16,8 +16,14 @@ namespace Core.Web
             ReceiveData();
         }
 
-        private void SendData() { }
+        private void SendData()
+        {
+            // Send
+        }
 
-        private void ReceiveData() { }
+        private void ReceiveData()
+        {
+            // Receive
+        }
     }
 }
