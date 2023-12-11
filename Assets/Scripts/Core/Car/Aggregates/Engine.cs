@@ -9,6 +9,7 @@ namespace Core.Car
         [Header("Cutoff")]
         [SerializeField] private float _cutoffRPM;
         [SerializeField] private float _recoveryRPM;
+        
         [Header("Characteristics")]
         [SerializeField] private float _maxRPM;
         [SerializeField] private float _idlingRPM;
