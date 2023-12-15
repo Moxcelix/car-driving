@@ -29,12 +29,6 @@ namespace Core.Web
             _receiveThread.Start();
         }
 
-        public void Update()
-        {
-            SendData();
-            ReceiveData();
-        }
-
         private void SendData()
         {
             while (_sendThread.IsAlive)
