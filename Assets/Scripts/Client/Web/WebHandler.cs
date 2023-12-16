@@ -8,13 +8,13 @@ public class WebHandler : MonoBehaviour
     private Car _car;
     private WebCarController _webCarController;
 
+    [SerializeField] private int _sendTimeout = 1000;
+    [SerializeField] private int _receiveTimeout = 1000;
+
     private void Awake()
     {
-        var sendTimeout = 10000;
-        var receiveTimeout = 10000;
-
         _car = GetComponent<Car>();
 
-        _webCarController = new WebCarController(_car, sendTimeout, receiveTimeout);
+        _webCarController = new WebCarController(_car, _sendTimeout, _receiveTimeout);
     }
 }
