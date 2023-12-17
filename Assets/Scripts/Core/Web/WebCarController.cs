@@ -17,11 +17,18 @@ namespace Core.Web
         private readonly int _sendTimeout;
         private readonly int _receiveTimeout;
 
-        public WebCarController(Car car, int sendTimeout, int receiveTimeout)
+        private readonly string _sendUrl;
+        private readonly string _receiveUrl;
+
+        public WebCarController(Car car,
+            int sendTimeout, int receiveTimeout,
+            string sendUrl, string receiveUrl)
         {
             _car = car;
             _sendTimeout = sendTimeout;
             _receiveTimeout = receiveTimeout;
+            _sendUrl = sendUrl;
+            _receiveUrl = receiveUrl;
 
             _sendThread = new Thread(SendData);
             _receiveThread = new Thread(ReceiveData);
@@ -36,15 +43,13 @@ namespace Core.Web
             {
                 using (WebClient client = new WebClient())
                 {
-                    string url = "https://api.example.com/data";
-
                     var data = new NameValueCollection
                     {
                         ["param1"] = "value1",
                         ["param2"] = "value2"
                     };
 
-                    byte[] responseBytes = client.UploadValues(url, "POST", data);
+                    byte[] responseBytes = client.UploadValues(_sendUrl, "POST", data);
                     string response = System.Text.Encoding.UTF8.GetString(responseBytes);
 
                     Debug.Log(response);
@@ -60,8 +65,7 @@ namespace Core.Web
             {
                 using (WebClient client = new WebClient())
                 {
-                    string url = "https://api.example.com/data";
-                    string response = client.DownloadString(url);
+                    string response = client.DownloadString(_receiveUrl);
 
                     Debug.Log(response);
                 }
