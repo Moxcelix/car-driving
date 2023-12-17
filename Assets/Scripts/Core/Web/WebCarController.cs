@@ -4,6 +4,8 @@ using System.Threading;
 namespace Core.Web
 {
     using Core.Car;
+    using System.Collections.Specialized;
+    using System.Net;
     using UnityEngine;
 
     public class WebCarController
@@ -33,7 +35,21 @@ namespace Core.Web
         {
             while (_sendThread.IsAlive)
             {
-                Debug.Log("Send some data");
+                using (WebClient client = new WebClient())
+                {
+                    string url = "https://api.example.com/data";
+
+                    var data = new NameValueCollection
+                    {
+                        ["param1"] = "value1",
+                        ["param2"] = "value2"
+                    };
+
+                    byte[] responseBytes = client.UploadValues(url, "POST", data);
+                    string response = System.Text.Encoding.UTF8.GetString(responseBytes);
+
+                    Debug.Log(response);
+                }
 
                 Thread.Sleep(_sendTimeout);
             }
@@ -43,7 +59,13 @@ namespace Core.Web
         {
             while (_receiveThread.IsAlive)
             {
-                Debug.Log("Receive some data");
+                using (WebClient client = new WebClient())
+                {
+                    string url = "https://api.example.com/data";
+                    string response = client.DownloadString(url);
+
+                    Debug.Log(response);
+                }
 
                 Thread.Sleep(_receiveTimeout);
             }
