@@ -32,7 +32,10 @@ namespace Core.Web
 
             _sendThread = new Thread(SendData);
             _receiveThread = new Thread(ReceiveData);
+        }
 
+        public void Start()
+        {
             _sendThread.Start();
             _receiveThread.Start();
         }
