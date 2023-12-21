@@ -15,7 +15,8 @@ namespace Core.Car
         {
             if (IsActive)
             {
-                if (_engine.Starter.IsStarting)
+                if (_engine.Starter.IsStarting || 
+                    _engine.Starter.State == EngineState.STARTED)
                 {
                     _engine.Starter.SetState(EngineState.STOPED);
                 }
