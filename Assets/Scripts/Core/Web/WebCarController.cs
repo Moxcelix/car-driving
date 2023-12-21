@@ -2,6 +2,7 @@ using System.Threading;
 
 namespace Core.Web
 {
+    using Newtonsoft.Json.Linq;
     using System.Net;
     using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Core.Web
         private readonly string _sendUrl;
         private readonly string _receiveUrl;
 
-        private string _sendData = "{}";
+        private string _sendData = string.Empty;
 
         public delegate void CommandDelegate();
         public event CommandDelegate CloseLock;
@@ -59,6 +60,11 @@ namespace Core.Web
             {
                 using (WebClient client = new WebClient())
                 {
+                    if(_sendData == string.Empty)
+                    {
+                        continue;
+                    }
+
                     client.Headers.Add("Content-Type", "application/json");
 
                     string response = client.UploadString(_sendUrl, "POST", _sendData);
@@ -79,9 +85,11 @@ namespace Core.Web
                 {
                     string response = client.DownloadString(_receiveUrl);
 
-                    Debug.Log(response);
+                    JObject jsonObject = JObject.Parse(response);
 
-                    switch (int.Parse(response))
+                    Debug.Log("RESPONSE: " + response);
+
+                    switch ((int)jsonObject["message"])
                     {
                         case 0:
                             break;

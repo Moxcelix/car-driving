@@ -3,6 +3,7 @@
 /[Oo]bj/
 /[Ll]ogs/
 /[Bb]uild/
+/[Ll]inux[Bb]uild/
 /[Uu]ser[Ss]ettings/
 /venv/
 /results/
