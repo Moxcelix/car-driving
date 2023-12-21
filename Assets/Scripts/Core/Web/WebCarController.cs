@@ -4,7 +4,6 @@ namespace Core.Web
 {
     using Newtonsoft.Json.Linq;
     using System.Net;
-    using UnityEngine;
 
     public class WebCarController
     {
@@ -68,8 +67,6 @@ namespace Core.Web
                     client.Headers.Add("Content-Type", "application/json");
 
                     string response = client.UploadString(_sendUrl, "POST", _sendData);
-
-                    Debug.Log(response);
                 }
 
 
@@ -86,8 +83,6 @@ namespace Core.Web
                     string response = client.DownloadString(_receiveUrl);
 
                     JObject jsonObject = JObject.Parse(response);
-
-                    Debug.Log("RESPONSE: " + response);
 
                     switch ((int)jsonObject["message"])
                     {
