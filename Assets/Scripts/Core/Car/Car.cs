@@ -51,6 +51,8 @@ namespace Core.Car
         public CentralLocking CentralLocking => _centralLocking;
         public Immobilizer Immobilizer => _immobilizer;
 
+        public Door[] Doors => _doors;
+
         private void Awake()
         {
             _transmission.Initialize();

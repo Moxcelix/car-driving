@@ -77,6 +77,7 @@ namespace Core.Web
                     string response = client.DownloadString(_receiveUrl);
 
                     Debug.Log(response);
+
                 }
 
                 Thread.Sleep(_receiveTimeout);

@@ -3236,12 +3236,12 @@ MonoBehaviour:
     _lastGearRatio: 3.574
     _forcedSwitchRPM: 6000
   _doors:
-  - {fileID: 95110991893928372}
-  - {fileID: 95110991129292342}
-  - {fileID: 95110991660304191}
-  - {fileID: 95110991303493236}
   - {fileID: 95110991881084667}
+  - {fileID: 95110991660304191}
+  - {fileID: 95110991129292342}
   - {fileID: 95110992028394789}
+  - {fileID: 95110991893928372}
+  - {fileID: 95110991303493236}
 --- !u!114 &95110990273813407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3848,8 +3848,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sendTimeout: 1000
   _receiveTimeout: 1000
-  _sendUrl: 
-  _receiveUrl: 
+  _sendUrl: localhost:8080/telemetry/send/
+  _receiveUrl: localhost:8080/telemetry/get/
+  _id: 0
 --- !u!1 &95110990293044055
 GameObject:
   m_ObjectHideFlags: 0
