@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Core.Carsharing
 {
     using Core.Car;
@@ -50,14 +46,14 @@ namespace Core.Carsharing
 
         private string GetGeoposition(Car car)
         {
-            return 
-                $"{car.gameObject.transform.position.x}, " +
+            return
+                $"{car.gameObject.transform.position.x} " +
                 $"{car.gameObject.transform.position.z}";
         }
 
         private float GetSpeed(Car car)
         {
-            return car.GetSpeed()* 3.6f;
+            return car.GetSpeed() * 3.6f;
         }
 
         private string GetImmobilizerStatus(Car car)

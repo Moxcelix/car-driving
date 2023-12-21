@@ -2,15 +2,11 @@ using System.Threading;
 
 namespace Core.Web
 {
-    using Core.Car;
-    using System.Collections.Specialized;
     using System.Net;
     using UnityEngine;
 
     public class WebCarController
     {
-        private readonly Car _car;
-
         private readonly Thread _sendThread;
         private readonly Thread _receiveThread;
 
@@ -20,11 +16,17 @@ namespace Core.Web
         private readonly string _sendUrl;
         private readonly string _receiveUrl;
 
-        public WebCarController(Car car,
+        private string _sendData = "{}";
+
+        public delegate void CommandDelegate();
+        public event CommandDelegate CloseLock;
+        public event CommandDelegate OpenLock;
+        public event CommandDelegate OpenUnlock;
+
+        public WebCarController(
             int sendTimeout, int receiveTimeout,
             string sendUrl, string receiveUrl)
         {
-            _car = car;
             _sendTimeout = sendTimeout;
             _receiveTimeout = receiveTimeout;
             _sendUrl = sendUrl;
@@ -46,23 +48,24 @@ namespace Core.Web
             _receiveThread.Abort();
         }
 
+        public void SetSendData(string data)
+        {
+            _sendData = data;
+        }
+
         private void SendData()
         {
             while (_sendThread.IsAlive)
             {
                 using (WebClient client = new WebClient())
                 {
-                    var data = new NameValueCollection
-                    {
-                        ["param1"] = "value1",
-                        ["param2"] = "value2"
-                    };
+                    client.Headers.Add("Content-Type", "application/json");
 
-                    byte[] responseBytes = client.UploadValues(_sendUrl, "POST", data);
-                    string response = System.Text.Encoding.UTF8.GetString(responseBytes);
+                    string response = client.UploadString(_sendUrl, "POST", _sendData);
 
                     Debug.Log(response);
                 }
+
 
                 Thread.Sleep(_sendTimeout);
             }
@@ -78,6 +81,21 @@ namespace Core.Web
 
                     Debug.Log(response);
 
+                    switch (int.Parse(response))
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            CloseLock?.Invoke();
+                            break;
+                        case 2:
+                            OpenLock?.Invoke();
+                            break;
+                        case 3:
+                            OpenUnlock?.Invoke();
+                            break;
+
+                    }
                 }
 
                 Thread.Sleep(_receiveTimeout);
