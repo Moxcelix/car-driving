@@ -40,6 +40,12 @@ namespace Core.Web
             _receiveThread.Start();
         }
 
+        public void Stop()
+        {
+            _sendThread.Abort();
+            _receiveThread.Abort();
+        }
+
         private void SendData()
         {
             while (_sendThread.IsAlive)

@@ -2999,6 +2999,7 @@ GameObject:
   - component: {fileID: 95110990273813423}
   - component: {fileID: 2100919630}
   - component: {fileID: 6344335457628947437}
+  - component: {fileID: 1959663465}
   m_Layer: 3
   m_Name: KIA Rio X
   m_TagString: Untagged
@@ -3165,7 +3166,7 @@ MonoBehaviour:
     _torqueConverter:
       _maxRPM: 6000
       _fluidDamp: 10
-      _maxRatio: 2.5
+      _maxRatio: 1
     _gasReactionCurve:
       serializedVersion: 2
       m_Curve:
@@ -3233,6 +3234,7 @@ MonoBehaviour:
     _reverseGearRatio: 3.44
     _idlingRMP: 700
     _lastGearRatio: 3.574
+    _forcedSwitchRPM: 6000
   _doors:
   - {fileID: 95110991893928372}
   - {fileID: 95110991129292342}
@@ -3806,7 +3808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee97b90fa087874aab851e5f4b94cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _number: "\u043E698\u0432\u043C"
+  _number: "\u0432464\u043A\u043C"
   _region: 797
 --- !u!114 &2100919630
 MonoBehaviour:
@@ -3832,6 +3834,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d731ad2e96660459e541ef5080d73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1959663465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95110990273813422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72dc3d5df9cf524ab96e378023faf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sendTimeout: 1000
+  _receiveTimeout: 1000
+  _sendUrl: 
+  _receiveUrl: 
 --- !u!1 &95110990293044055
 GameObject:
   m_ObjectHideFlags: 0

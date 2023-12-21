@@ -14,15 +14,40 @@ public class WebHandler : MonoBehaviour
     [SerializeField] private string _sendUrl;
     [SerializeField] private string _receiveUrl;
 
-    private void Awake()
+    [SerializeField] private int _id;
+
+    private void Start()
     {
         _car = GetComponent<Car>();
+
+        var receiveUrl = GetGetUrl();
+        var sendUrl = GetSendUrl();
 
         _webCarController = new WebCarController(
             _car,
             _sendTimeout, 
             _receiveTimeout,
-            _sendUrl,
-            _receiveUrl);
+            sendUrl,
+            receiveUrl);
+
+        Debug.Log(receiveUrl);
+        Debug.Log(sendUrl);
+
+        _webCarController.Start();
+    }
+
+    private string GetGetUrl()
+    {
+        return "http://" + _receiveUrl + "?car_id=" + _id.ToString();
+    }
+
+    private string GetSendUrl()
+    {
+        return "http://" + _sendUrl;
+    }
+
+    private void OnApplicationQuit()
+    {
+        _webCarController.Stop();
     }
 }
