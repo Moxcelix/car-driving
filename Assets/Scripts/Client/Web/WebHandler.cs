@@ -39,6 +39,10 @@ public class WebHandler : MonoBehaviour
         Debug.Log(receiveUrl);
         Debug.Log(sendUrl);
 
+        _webCarController.OpenLock += OpenLock;
+        _webCarController.CloseLock += CloseLock;
+        _webCarController.OpenUnlock += OpenUnlock;
+
         _webCarController.Start();
 
         StartCoroutine(UpdateTelemetry());
@@ -67,5 +71,23 @@ public class WebHandler : MonoBehaviour
 
             yield return _delay;
         }
+    }
+
+    private void CloseLock()
+    {
+        _car.CentralLocking.Locked = true;
+        _car.Immobilizer.IsActive = true;
+    }
+
+    private void OpenLock()
+    {
+        _car.CentralLocking.Locked = false;
+        _car.Immobilizer.IsActive = true;
+    }
+
+    private void OpenUnlock()
+    {
+        _car.CentralLocking.Locked = false;
+        _car.Immobilizer.IsActive = false;
     }
 }
