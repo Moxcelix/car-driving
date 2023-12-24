@@ -1,10 +1,9 @@
 using System.Threading;
+using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace Core.Web
 {
-    using Newtonsoft.Json.Linq;
-    using System.Net;
-
     public class WebCarController
     {
         private readonly Thread _sendThread;
