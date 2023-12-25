@@ -9,6 +9,9 @@ namespace Core.Carsharing
         private readonly Car _car;
         private readonly int _id;
 
+        private const string on = "on";
+        private const string off = "off";
+
         public Telemetry(Car car, int id)
         {
             _car = car;
@@ -58,12 +61,12 @@ namespace Core.Carsharing
 
         private string GetImmobilizerStatus(Car car)
         {
-            return car.Immobilizer.IsActive ? "on" : "off";
+            return car.Immobilizer.IsActive ? on : off;
         }
 
         private string GetCentralLockingStatus(Car car)
         {
-            return car.CentralLocking.Locked ? "on" : "off";
+            return car.CentralLocking.Locked ? on : off;
         }
     }
 }
