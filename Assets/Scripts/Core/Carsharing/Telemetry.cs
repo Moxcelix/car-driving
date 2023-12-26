@@ -11,6 +11,8 @@ namespace Core.Carsharing
 
         private const string on = "on";
         private const string off = "off";
+        private const string opened = "opened";
+        private const string closed = "closed";
 
         public Telemetry(Car car, int id)
         {
@@ -44,7 +46,7 @@ namespace Core.Carsharing
 
         private string GetDoorStatus(Door door)
         {
-            return door.State == IOpenable.OpenState.CLOSED ? "closed" : "opened";
+            return door.State == IOpenable.OpenState.CLOSED ? closed : opened;
         }
 
         private string GetGeoposition(Car car)
