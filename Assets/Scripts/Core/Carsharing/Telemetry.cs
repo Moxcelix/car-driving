@@ -37,7 +37,8 @@ namespace Core.Carsharing
                     Geoposition = GetGeoposition(_car),
                     Speed = GetSpeed(_car),
                     ImmobilizerStatus = GetImmobilizerStatus(_car),
-                    CentralLockingStatus = GetCentralLockingStatus(_car)
+                    CentralLockingStatus = GetCentralLockingStatus(_car),
+                    ParkingBrakeStatus = GetParkingBrakeStatus(_car)
                 }
             };
 
@@ -69,6 +70,11 @@ namespace Core.Carsharing
         private string GetCentralLockingStatus(Car car)
         {
             return car.CentralLocking.Locked ? on : off;
+        }
+
+        private string GetParkingBrakeStatus(Car car)
+        {
+            return car.ParkingBrake.State == ParkingBrakeState.RAISED ? on : off;
         }
     }
 }

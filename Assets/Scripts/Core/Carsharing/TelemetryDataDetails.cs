@@ -33,5 +33,8 @@ namespace Core.Carsharing
 
         [JsonProperty("central_locking_status")]
         public string CentralLockingStatus { get; set; }
+
+        [JsonProperty("parking_brake_status")]
+        public string ParkingBrakeStatus { get; set; }
     }
 }
