@@ -24,7 +24,7 @@ namespace Core.Carsharing
         {
             TelemetryData telemetryData = new()
             {
-                Timedate = DateTime.UtcNow,
+                Timedate = GetTime(),
                 CarId = _id,
                 Data = new TelemetryDataDetails
                 {
@@ -43,6 +43,11 @@ namespace Core.Carsharing
             };
 
             return JsonConvert.SerializeObject(telemetryData, Formatting.Indented);
+        }
+
+        private DateTime GetTime()
+        {
+            return DateTime.UtcNow;
         }
 
         private string GetDoorStatus(Door door)
