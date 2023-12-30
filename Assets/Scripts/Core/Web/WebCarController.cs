@@ -77,7 +77,7 @@ namespace Core.Web
         {
             while (_receiveThread.IsAlive)
             {
-                using (WebClient client = new WebClient())
+                using (WebClient client = new ())
                 {
                     string response = client.DownloadString(_receiveUrl);
 
