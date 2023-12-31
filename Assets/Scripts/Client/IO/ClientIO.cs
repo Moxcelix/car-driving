@@ -121,9 +121,9 @@ public class ClientIO :
         HandleHelpOpen();
     }
 
-    void Core.Car.IControls.Update()
+    void IControls.Update()
     {
-        if (Input.GetKeyDown(_controls[_setDrivingModeKey]) 
+        if (Input.GetKeyDown(_controls[_setDrivingModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
@@ -141,7 +141,7 @@ public class ClientIO :
             TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
         }
 
-        if (Input.GetKeyDown(_controls[_setNeutralModeKey]) 
+        if (Input.GetKeyDown(_controls[_setNeutralModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
             TransmissionModeSwitch?.Invoke(TransmissionMode.NEUTRAL);
@@ -179,13 +179,13 @@ public class ClientIO :
             HighLightSwitch?.Invoke();
         }
 
-        if (Input.GetKeyDown(_controls[_engineSwitchKey]) 
+        if (Input.GetKeyDown(_controls[_engineSwitchKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button9))
         {
             EngineSwitch?.Invoke();
         }
 
-        if (Input.GetKeyDown(_controls[_parkingBrakeKey]) || 
+        if (Input.GetKeyDown(_controls[_parkingBrakeKey]) ||
             Input.GetKeyDown(KeyCode.Joystick1Button8))
         {
             ParkingBrakeSwitch?.Invoke();
@@ -193,7 +193,7 @@ public class ClientIO :
 
         Gas = Mathf.Max(_gasSmoothPressing.Value,
             Input.GetAxis(_gasJoystickAxis));
-        Brake = Mathf.Max(_brakeSmoothPressing.Value, 
+        Brake = Mathf.Max(_brakeSmoothPressing.Value,
             Input.GetAxis(_brakeJoystickAxis));
 
         SteerDelta = _steerDelta;
@@ -261,9 +261,9 @@ public class ClientIO :
             _rightSteerSmoothPressing.Value -
             _leftSteerSmoothPressing.Value);
 
-        var steerDeltaJoystick = 
+        var steerDeltaJoystick =
             Input.GetAxis(_steerJoystickAxis) *
-            deltaTime * 
+            deltaTime *
             _steerSensitivityJoystick;
 
         _steerDelta = Mathf.Abs(steerDeltaKeyboard) >
