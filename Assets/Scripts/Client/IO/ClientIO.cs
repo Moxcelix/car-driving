@@ -63,6 +63,8 @@ public class ClientIO :
 
     private float _steerDelta = 0;
 
+    // Happy new Year!
+
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
     public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
