@@ -1,6 +1,6 @@
-using System.Threading;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Threading;
 
 namespace Core.Web
 {
@@ -58,14 +58,18 @@ namespace Core.Web
             {
                 using (WebClient client = new WebClient())
                 {
-                    if(_sendData == string.Empty)
+                    if (_sendData == string.Empty)
                     {
                         continue;
                     }
 
                     client.Headers.Add("Content-Type", "application/json");
 
-                    string response = client.UploadString(_sendUrl, "POST", _sendData);
+                    try
+                    {
+                        client.UploadString(_sendUrl, "POST", _sendData);
+                    }
+                    catch { }
                 }
 
 
@@ -77,26 +81,33 @@ namespace Core.Web
         {
             while (_receiveThread.IsAlive)
             {
-                using (WebClient client = new ())
+                using (WebClient client = new())
                 {
-                    string response = client.DownloadString(_receiveUrl);
-
-                    JObject jsonObject = JObject.Parse(response);
-
-                    switch ((int)jsonObject["message"])
+                    try
                     {
-                        case 0:
-                            break;
-                        case 1:
-                            CloseLock?.Invoke();
-                            break;
-                        case 2:
-                            OpenLock?.Invoke();
-                            break;
-                        case 3:
-                            OpenUnlock?.Invoke();
-                            break;
+                        string response = client.DownloadString(_receiveUrl);
 
+                        JObject jsonObject = JObject.Parse(response);
+
+                        switch ((int)jsonObject["message"])
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                CloseLock?.Invoke();
+                                break;
+                            case 2:
+                                OpenLock?.Invoke();
+                                break;
+                            case 3:
+                                OpenUnlock?.Invoke();
+                                break;
+
+                        }
+                    }
+                    catch
+                    {
+                        CloseLock?.Invoke();
                     }
                 }
 

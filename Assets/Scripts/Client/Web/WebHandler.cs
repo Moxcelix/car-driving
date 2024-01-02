@@ -31,7 +31,7 @@ public class WebHandler : MonoBehaviour
         _telemetry = new Telemetry(_car, _id);
 
         _webCarController = new WebCarController(
-            _sendTimeout, 
+            _sendTimeout,
             _receiveTimeout,
             sendUrl,
             receiveUrl);
