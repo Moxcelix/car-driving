@@ -52,6 +52,8 @@ public class ClientIO :
 
     private readonly float _gasMiddleValue = 0.5f;
     private readonly float _brakeMiddleValue = 0.6f;
+    private readonly float _gasMaxValue = 1.0f;
+    private readonly float _brakeMaxValue = 1.0f;
 
     private GameState _gameState;
     private PauseMenu _pauseMenu;
@@ -223,7 +225,7 @@ public class ClientIO :
 
         if (Input.GetKey(_controls[_gasKey]))
         {
-            _gasSmoothPressing.Press(fullPush ? 1.0f : _gasMiddleValue, deltaTime);
+            _gasSmoothPressing.Press(fullPush ? _gasMaxValue : _gasMiddleValue, deltaTime);
         }
         else
         {
@@ -232,7 +234,7 @@ public class ClientIO :
 
         if (Input.GetKey(_controls[_brakeKey]))
         {
-            _brakeSmoothPressing.Press(fullPush ? 1.0f : _brakeMiddleValue, deltaTime);
+            _brakeSmoothPressing.Press(fullPush ? _brakeMaxValue : _brakeMiddleValue, deltaTime);
         }
         else
         {
