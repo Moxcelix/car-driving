@@ -45,13 +45,13 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(0.8f, 4.0f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 4.0f);
+    private readonly SmoothPressing _gasSmoothPressing = new(0.8f, 1.0f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 2.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
     private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
 
     private readonly float _gasMiddleValue = 0.5f;
-    private readonly float _brakeMiddleValue = 0.6f;
+    private readonly float _brakeMiddleValue = 0.4f;
     private readonly float _gasMaxValue = 1.0f;
     private readonly float _brakeMaxValue = 1.0f;
 

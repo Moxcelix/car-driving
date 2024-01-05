@@ -18215,6 +18215,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1959663465, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -18259,9 +18263,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813394, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: MinDistance
+      value: 1.0106201
+      objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_Name
       value: KIA Rio X
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 998d0262cd1954a44b57bdfc8ec1bf4a, type: 2}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.b
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.r
+      value: 0.754717
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
