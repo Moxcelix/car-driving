@@ -19,7 +19,7 @@ public class WebHandler : MonoBehaviour
 
     [SerializeField] private int _id;
 
-    private readonly WaitForSeconds _delay = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _delay = new(1f);
 
     private void Start()
     {
