@@ -21,6 +21,8 @@ public class WebHandler : MonoBehaviour
 
     private readonly WaitForSeconds _delay = new(1f);
 
+    private readonly string _protocol = "http";
+
     private void Start()
     {
         _car = GetComponent<Car>();
@@ -50,12 +52,12 @@ public class WebHandler : MonoBehaviour
 
     private string GetGetUrl()
     {
-        return "http://" + _receiveUrl + "?car_id=" + _id.ToString();
+        return _protocol + "://" + _receiveUrl + "?car_id=" + _id.ToString();
     }
 
     private string GetSendUrl()
     {
-        return "http://" + _sendUrl;
+        return _protocol + "://" + _sendUrl;
     }
 
     private void OnApplicationQuit()
