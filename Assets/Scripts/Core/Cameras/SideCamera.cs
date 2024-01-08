@@ -4,8 +4,8 @@ namespace Core.Cameras
 {
     public class SideCamera : MovableCamera
     {
-        private const float c_minBeta = 2f;
-        private const float c_maxBeta = 3f;
+        private const float c_minBeta = 1.8f;
+        private const float c_maxBeta = 3.141f;
 
         private float _alpha;
         private float _beta;

@@ -3733,6 +3733,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
   m_PrefabInstance: {fileID: 313560030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &340262174
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1959663465, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000018119812
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813394, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: MinDistance
+      value: 1.0106201
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 998d0262cd1954a44b57bdfc8ec1bf4a, type: 2}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.b
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.r
+      value: 0.754717
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
 --- !u!1 &345543822
 GameObject:
   m_ObjectHideFlags: 0
@@ -8564,6 +8645,87 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1008328970
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1959663465, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000018119812
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813394, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: MinDistance
+      value: 1.0106201
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110991171306606, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 998d0262cd1954a44b57bdfc8ec1bf4a, type: 2}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.b
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 95110992021134822, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _color.r
+      value: 0.754717
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
 --- !u!1 &1029823251
 GameObject:
   m_ObjectHideFlags: 0
@@ -9680,8 +9842,8 @@ MonoBehaviour:
   _target: {fileID: 672895531}
   _smoothSpeed: 0.2
   _sensitivity: 0.125
-  _minRadius: 1
-  _maxRadius: 10
+  _minRadius: 3
+  _maxRadius: 20
 --- !u!81 &1119622138
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9715,7 +9877,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -18225,7 +18387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.32
+      value: -17.73
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18233,7 +18395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.679998
+      value: -31.84
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_LocalRotation.w
