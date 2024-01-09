@@ -85,25 +85,10 @@ namespace Core.Web
                 {
                     try
                     {
-                        string response = client.DownloadString(_receiveUrl);
+                        var response = client.DownloadString(_receiveUrl);
+                        var jsonObject = JObject.Parse(response);
 
-                        JObject jsonObject = JObject.Parse(response);
-
-                        switch ((int)jsonObject["message"])
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                CloseLock?.Invoke();
-                                break;
-                            case 2:
-                                OpenLock?.Invoke();
-                                break;
-                            case 3:
-                                OpenUnlock?.Invoke();
-                                break;
-
-                        }
+                        ExecuteCommand((int)jsonObject["message"]);
                     }
                     catch
                     {
@@ -112,6 +97,25 @@ namespace Core.Web
                 }
 
                 Thread.Sleep(_receiveTimeout);
+            }
+        }
+
+        private void ExecuteCommand(int command)
+        {
+            switch (command)
+            {
+                case 0:
+                    break;
+                case 1:
+                    CloseLock?.Invoke();
+                    break;
+                case 2:
+                    OpenLock?.Invoke();
+                    break;
+                case 3:
+                    OpenUnlock?.Invoke();
+                    break;
+
             }
         }
     }
