@@ -19,6 +19,7 @@ namespace Core.Car
         private RatioShifter _ratioShifter;
 
         private bool _lock = false;
+        private bool _manualMode = false;
         private float _accelerationFactor = 1;
         private float _speed = 0;
         private float _gasValue = 0;
@@ -39,6 +40,11 @@ namespace Core.Car
 
         private void Update()
         {
+            if (!_car.Engine.Enabled)
+            {
+                _currentGear = 0;
+            }
+
             _lock = !_car.Engine.Enabled || !_car.BrakePedal.IsPressed;
             CurrentGear = _currentGear;
             IsReverse = Mode == AutomaticTransmissionMode.REVERSE;
@@ -47,7 +53,7 @@ namespace Core.Car
             _gasValue = _car.GasPedal.Value;
 
             _ratioShifter.Update();
-            _torqueConverter.Switch(_currentGear <= 0);
+            _torqueConverter.Switch(_currentGear == 0 && _car.Engine.Enabled);
 
             UpdateAccelerationFactor(_gasValue, Time.deltaTime);
             UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
@@ -55,14 +61,31 @@ namespace Core.Car
             UpdateBrake();
         }
 
+        public override void SwitchUp()
+        {
+            if (_manualMode)
+            {
+                UpshiftGear(1);
+
+                OnModeChange?.Invoke(Mode);
+            }
+            else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.PARKING)
+            {
+                Mode = (AutomaticTransmissionMode)((int)Mode - 1);
+
+                OnModeChange?.Invoke(Mode);
+            }
+        }
+
         public override void SwitchDown()
         {
-            if (_lock)
+            if (_manualMode)
             {
-                return;
-            }
+                DownshiftGear(1);
 
-            if (Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.DRIVING)
+                OnModeChange?.Invoke(Mode);
+            }
+            else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
 
@@ -72,24 +95,19 @@ namespace Core.Car
 
         public override void SwitchLeft()
         {
+            if (!_manualMode && Mode == AutomaticTransmissionMode.DRIVING)
+            {
+                _manualMode = true;
 
+                OnModeChange?.Invoke(Mode);
+            }
         }
 
         public override void SwitchRight()
         {
-
-        }
-
-        public override void SwitchUp()
-        {
-            if (_lock)
+            if (_manualMode && Mode == AutomaticTransmissionMode.DRIVING)
             {
-                return;
-            }
-
-            if (Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.PARKING)
-            {
-                Mode = (AutomaticTransmissionMode)((int)Mode - 1);
+                _manualMode = false;
 
                 OnModeChange?.Invoke(Mode);
             }
@@ -152,6 +170,11 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
+            if (_manualMode)
+            {
+                return;
+            }
+
             if (Mode != AutomaticTransmissionMode.DRIVING)
             {
                 _currentGear = 0;
@@ -234,12 +257,6 @@ namespace Core.Car
 
             if (_currentGear < _gears.Length - count)
             {
-                if (_gears[_currentGear + 1].MinSpeed *
-                    _accelerationFactor > _speed && RPM < _forcedSwitchRPM)
-                {
-                    return;
-                }
-
                 _currentGear += count;
                 _ratioShifter.Shift(
                     _gears[_currentGear].Ratio,

@@ -21,6 +21,7 @@ public class ClientIO :
     private readonly string _brakeKey = "brake";
     private readonly string _switchUpKey = "switch_up";
     private readonly string _switchDownKey = "switch_down";
+
     private readonly string _switchRightKey = "switch_right";
     private readonly string _switchLeftKey = "switch_left";
     private readonly string _steerRightKey = "right_steer";
@@ -37,8 +38,6 @@ public class ClientIO :
     private readonly string _gasJoystickAxis = "GasAxis";
     private readonly string _brakeJoystickAxis = "BrakeAxis";
     private readonly string _steerJoystickAxis = "TurnAxis";
-    private readonly string _switchXJoystickAxis = "SwitchXAxis";
-    private readonly string _switchYJoystickAxis = "SwitchYAxis";
 
     [SerializeField] private float _mouseSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
@@ -51,6 +50,10 @@ public class ClientIO :
     private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 2.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
     private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
+    private readonly JoystickPress _switchUp = new("SwitchYAxis", true);
+    private readonly JoystickPress _switchDown = new("SwitchYAxis", false);
+    private readonly JoystickPress _switchRight = new("SwitchXAxis", true);
+    private readonly JoystickPress _switchLeft = new("SwitchXAxis", false);
 
     private readonly float _gasMiddleValue = 0.5f;
     private readonly float _brakeMiddleValue = 0.5f;
@@ -113,6 +116,11 @@ public class ClientIO :
         this._interactiveRaycast = interactiveRaycast;
         this._viewSwitcher = viewSwitcher;
 
+        _switchUp.OnPress += () => TransmissionSelectorUp?.Invoke();
+        _switchDown.OnPress += () => TransmissionSelectorDown?.Invoke();
+        _switchRight.OnPress += () => TransmissionSelectorRight?.Invoke();
+        _switchLeft.OnPress += () => TransmissionSelectorLeft?.Invoke();
+
         MouseController.SetVisibility(false);
     }
 
@@ -129,6 +137,11 @@ public class ClientIO :
 
     void IControls.Update()
     {
+        _switchUp.Update();
+        _switchDown.Update();
+        _switchRight.Update();
+        _switchLeft.Update();
+
         // Toggle-sus
         void Toggle(BlinkerState state)
         {

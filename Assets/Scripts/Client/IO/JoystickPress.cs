@@ -19,9 +19,9 @@ public class JoystickPress
 
     public void Update()
     {
-        if (Input.GetAxis(_key) * (_isPositive ? 1.0f : -1.0f) > 0.5f)
+        if (Input.GetAxis(_key) * (_isPositive ? 1.0f : -1.0f) > 0f)
         {
-            if (_isPressed)
+            if (!_isPressed)
             {
                 OnPress?.Invoke();
 

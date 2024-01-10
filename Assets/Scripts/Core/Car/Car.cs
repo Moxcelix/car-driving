@@ -55,8 +55,6 @@ namespace Core.Car
 
         private void Awake()
         {
-            //_transmission.Initialize();
-
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
 
