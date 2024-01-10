@@ -9,6 +9,7 @@ namespace Core.Car
         REVERSE,
         NEUTRAL,
         DRIVING,
+        MANUAL,
     }
 
     [System.Serializable]

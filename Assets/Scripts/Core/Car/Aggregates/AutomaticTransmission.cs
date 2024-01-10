@@ -19,7 +19,6 @@ namespace Core.Car
         private RatioShifter _ratioShifter;
 
         private bool _lock = false;
-        private bool _manualMode = false;
         private float _accelerationFactor = 1;
         private float _speed = 0;
         private float _gasValue = 0;
@@ -63,7 +62,7 @@ namespace Core.Car
 
         public override void SwitchUp()
         {
-            if (_manualMode)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
                 UpshiftGear(1);
 
@@ -79,7 +78,7 @@ namespace Core.Car
 
         public override void SwitchDown()
         {
-            if (_manualMode)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
                 DownshiftGear(1);
 
@@ -95,9 +94,9 @@ namespace Core.Car
 
         public override void SwitchLeft()
         {
-            if (!_manualMode && Mode == AutomaticTransmissionMode.DRIVING)
+            if (Mode == AutomaticTransmissionMode.DRIVING)
             {
-                _manualMode = true;
+                Mode = AutomaticTransmissionMode.MANUAL;
 
                 OnModeChange?.Invoke(Mode);
             }
@@ -105,9 +104,9 @@ namespace Core.Car
 
         public override void SwitchRight()
         {
-            if (_manualMode && Mode == AutomaticTransmissionMode.DRIVING)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
-                _manualMode = false;
+                Mode = AutomaticTransmissionMode.DRIVING;
 
                 OnModeChange?.Invoke(Mode);
             }
@@ -121,6 +120,8 @@ namespace Core.Car
                     -_reverseGearRatio * _lastGearRatio,
                 AutomaticTransmissionMode.DRIVING =>
                     _ratioShifter.Value * _lastGearRatio,
+                AutomaticTransmissionMode.MANUAL =>
+                _ratioShifter.Value * _lastGearRatio,
                 _ => 0,
             };
         }
@@ -172,7 +173,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if (_manualMode)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
                 return;
             }

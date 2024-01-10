@@ -11,6 +11,7 @@ namespace Core.Car
         [SerializeField] private LightFixture _r;
         [SerializeField] private LightFixture _n;
         [SerializeField] private LightFixture _d;
+        [SerializeField] private LightFixture _m;
 
         private void Update()
         {
@@ -21,6 +22,7 @@ namespace Core.Car
             _r.SetLight(mode == AutomaticTransmissionMode.REVERSE && enabled);
             _n.SetLight(mode == AutomaticTransmissionMode.NEUTRAL && enabled);
             _d.SetLight(mode == AutomaticTransmissionMode.DRIVING && enabled);
+            _m.SetLight(mode == AutomaticTransmissionMode.MANUAL && enabled);
         }
     }
 }
