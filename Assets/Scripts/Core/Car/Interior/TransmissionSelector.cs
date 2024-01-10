@@ -5,6 +5,7 @@ namespace Core.Car
     public class TransmissionSelector : MonoBehaviour
     {
         [SerializeField] private Car _car;
+        [SerializeField] private AutomaticTransmission _transmission;
      
         [SerializeField] private LightFixture _p;
         [SerializeField] private LightFixture _r;
@@ -13,13 +14,13 @@ namespace Core.Car
 
         private void Update()
         {
-            //var enabled = _car.Engine.Enabled;
-            //var mode = _car.Transmission.Mode;
+            var enabled = _car.Engine.Enabled;
+            var mode = _transmission.Mode;
 
-            //_p.SetLight(mode == AutomaticTransmissionMode.PARKING && enabled);
-            //_r.SetLight(mode == AutomaticTransmissionMode.REVERSE && enabled);
-            //_n.SetLight(mode == AutomaticTransmissionMode.NEUTRAL && enabled);
-            //_d.SetLight(mode == AutomaticTransmissionMode.DRIVING && enabled);
+            _p.SetLight(mode == AutomaticTransmissionMode.PARKING && enabled);
+            _r.SetLight(mode == AutomaticTransmissionMode.REVERSE && enabled);
+            _n.SetLight(mode == AutomaticTransmissionMode.NEUTRAL && enabled);
+            _d.SetLight(mode == AutomaticTransmissionMode.DRIVING && enabled);
         }
     }
 }

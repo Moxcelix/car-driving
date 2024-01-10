@@ -37,6 +37,8 @@ public class ClientIO :
     private readonly string _gasJoystickAxis = "GasAxis";
     private readonly string _brakeJoystickAxis = "BrakeAxis";
     private readonly string _steerJoystickAxis = "TurnAxis";
+    private readonly string _switchXJoystickAxis = "SwitchXAxis";
+    private readonly string _switchYJoystickAxis = "SwitchYAxis";
 
     [SerializeField] private float _mouseSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
@@ -51,7 +53,7 @@ public class ClientIO :
     private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
 
     private readonly float _gasMiddleValue = 0.5f;
-    private readonly float _brakeMiddleValue = 0.4f;
+    private readonly float _brakeMiddleValue = 0.5f;
     private readonly float _gasMaxValue = 1.0f;
     private readonly float _brakeMaxValue = 1.0f;
 
