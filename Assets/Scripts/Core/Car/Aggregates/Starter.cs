@@ -20,6 +20,7 @@ namespace Core.Car
         private float _runningValue;
         private float _runningTransition;
 
+        public bool Ignition { get; private set; } = false;
         public EngineState State { get; private set; } = EngineState.STOPED;
         public float RPMValue => _runningValue;
         public bool IsStarting =>
@@ -31,6 +32,11 @@ namespace Core.Car
 
         public void SetState(EngineState state)
         {
+            if (!Ignition)
+            {
+                state = EngineState.STOPED;
+            }
+
             if (State == state)
             {
                 return;
@@ -43,6 +49,8 @@ namespace Core.Car
 
         public void SwitchState()
         {
+            Ignition = State == EngineState.STOPED;
+
             SetState(State == EngineState.STOPED ?
                 EngineState.STARTED :
                 EngineState.STOPED);
@@ -50,6 +58,11 @@ namespace Core.Car
 
         public void Update()
         {
+            if (!Ignition)
+            {
+                SetState(EngineState.STOPED);
+            }
+
             if (State == EngineState.STARTED && _runningTransition < 1.0f)
             {
                 _runningTransition += c_transitionSpeed * Time.deltaTime;
