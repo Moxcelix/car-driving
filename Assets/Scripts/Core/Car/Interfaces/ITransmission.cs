@@ -13,5 +13,6 @@ namespace Core.Car
         public void SwitchRight();
         public void SwitchLeft();
         public float GetRatio();
+        public void SetValues(float inputTorque, float inputRPM, float outputRPM);
     }
 }

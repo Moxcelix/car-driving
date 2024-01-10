@@ -5,10 +5,10 @@ namespace Core.Car
 {
     public enum AutomaticTransmissionMode
     {
+        PARKING,
+        REVERSE,
         NEUTRAL,
         DRIVING,
-        REVERSE,
-        PARKING
     }
 
     [System.Serializable]
