@@ -4,7 +4,7 @@ namespace Core.Car
     {
         public delegate void ToogleSwitchDelegate();
         public delegate void BlinkerStateSwitchDelegate(BlinkerState state);
-        public delegate void TransmissionModeSwitchDelegate(TransmissionMode mode);
+        public delegate void TransmissionModeSwitchDelegate(AutomaticTransmissionMode mode);
 
         public ToogleSwitchDelegate EngineSwitch { set; }
         public  ToogleSwitchDelegate HighLightSwitch { set; }

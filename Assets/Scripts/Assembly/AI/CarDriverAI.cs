@@ -196,7 +196,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         yield return new WaitForSeconds(2.0f);
 
-        TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
+        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
 
         yield return new WaitForSeconds(2.0f);
 
@@ -213,20 +213,20 @@ public class CarDriverAI : MonoBehaviour, IControls
                     _brake = _learningAgent.Brake;
 
                     if (_driver.Acceleration < 0 &&
-                        _car.Transmission.Mode == TransmissionMode.DRIVING)
+                        _car.Transmission.Mode == AutomaticTransmissionMode.DRIVING)
                     {
                         _brake = 1;
                         yield return new WaitForSeconds(2.0f);
-                        TransmissionModeSwitch?.Invoke(TransmissionMode.REVERSE);
+                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.REVERSE);
                         _brake = 0;
                     }
 
                     if (_driver.Acceleration >= 0 &&
-                        _car.Transmission.Mode != TransmissionMode.DRIVING)
+                        _car.Transmission.Mode != AutomaticTransmissionMode.DRIVING)
                     {
                         _brake = 1;
                         yield return new WaitForSeconds(2.0f);
-                        TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
+                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
                         _brake = 0;
                     }
                     break;
@@ -234,9 +234,9 @@ public class CarDriverAI : MonoBehaviour, IControls
                     _gas = 0;
                     _brake = 1;
 
-                    if (_car.Transmission.Mode != TransmissionMode.PARKING)
+                    if (_car.Transmission.Mode != AutomaticTransmissionMode.PARKING)
                     {
-                        TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
+                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.PARKING);
                     }
                     if (!_car.TurnLights.EmergencyState)
                     {

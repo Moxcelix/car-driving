@@ -9,7 +9,7 @@ namespace Core.Car
         public float Brake { get; set; }
         public float Gas { get; set; }
         public bool EngineState { get; set; }
-        public TransmissionMode TransmissionMode { get; set; }
+        public AutomaticTransmissionMode TransmissionMode { get; set; }
         public BlinkerState BlinkerState { get; set; }
         public bool Emergency { get; set; }
         public float TurnAmount { get; set; }

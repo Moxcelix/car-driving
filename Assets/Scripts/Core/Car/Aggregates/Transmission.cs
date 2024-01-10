@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public enum TransmissionMode
+    public enum AutomaticTransmissionMode
     {
         NEUTRAL,
         DRIVING,
@@ -30,10 +30,10 @@ namespace Core.Car
         private float _speed = 0;
         private int _currentGear = 0;
 
-        public Action<TransmissionMode> OnModeChange;
+        public Action<AutomaticTransmissionMode> OnModeChange;
 
         public bool Lock { get; set; }
-        public TransmissionMode Mode { get; private set; }
+        public AutomaticTransmissionMode Mode { get; private set; }
         public float Torque { get; private set; }
         public float RPM { get; private set; }
         public float Load { get; private set; }
@@ -44,22 +44,22 @@ namespace Core.Car
         {
             _ratioShifter = new RatioShifter(_gears[0].Ratio);
 
-            Mode = TransmissionMode.PARKING;
+            Mode = AutomaticTransmissionMode.PARKING;
         }
 
         public float GetRatio()
         {
             return Mode switch
             {
-                TransmissionMode.REVERSE =>
+                AutomaticTransmissionMode.REVERSE =>
                     -_reverseGearRatio * _lastGearRatio,
-                TransmissionMode.DRIVING =>
+                AutomaticTransmissionMode.DRIVING =>
                     _ratioShifter.Value * _lastGearRatio,
                 _ => 0,
             };
         }
 
-        public void SwitchMode(TransmissionMode mode)
+        public void SwitchMode(AutomaticTransmissionMode mode)
         {
             if (Lock)
             {
@@ -103,7 +103,7 @@ namespace Core.Car
 
         private void UpdateBrake()
         {
-            Brake = Mode == TransmissionMode.PARKING ? 1.0f : 0.0f;
+            Brake = Mode == AutomaticTransmissionMode.PARKING ? 1.0f : 0.0f;
         }
 
         private void UpdateTorque(float inputTorque,
@@ -126,7 +126,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if (Mode != TransmissionMode.DRIVING)
+            if (Mode != AutomaticTransmissionMode.DRIVING)
             {
                 _currentGear = 0;
 

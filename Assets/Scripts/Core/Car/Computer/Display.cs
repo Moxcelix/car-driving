@@ -36,7 +36,7 @@ namespace Core.Car
             }
 
             _gearText.text =
-                _computer.TransmissionMode == TransmissionMode.DRIVING ?
+                _computer.TransmissionMode == AutomaticTransmissionMode.DRIVING ?
                 _computer.Gear.ToString() : string.Empty;
 
             _mileageText.text = ((int)_computer.Mileage).ToString() + " KM";

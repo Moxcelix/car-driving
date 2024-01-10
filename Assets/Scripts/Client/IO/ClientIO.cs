@@ -128,25 +128,25 @@ public class ClientIO :
         if (Input.GetKeyDown(_controls[_setDrivingModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            TransmissionModeSwitch?.Invoke(TransmissionMode.DRIVING);
+            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
         }
 
         if (Input.GetKeyDown(_controls[_setReverseModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            TransmissionModeSwitch?.Invoke(TransmissionMode.REVERSE);
+            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.REVERSE);
         }
 
         if (Input.GetKeyDown(_controls[_setParkingModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
-            TransmissionModeSwitch?.Invoke(TransmissionMode.PARKING);
+            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.PARKING);
         }
 
         if (Input.GetKeyDown(_controls[_setNeutralModeKey])
             || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
-            TransmissionModeSwitch?.Invoke(TransmissionMode.NEUTRAL);
+            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.NEUTRAL);
         }
 
         // Toggle-sus

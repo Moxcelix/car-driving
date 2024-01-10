@@ -14,7 +14,7 @@ namespace Core.Car
 
         public float Speed { get; private set; }
 
-        public TransmissionMode TransmissionMode { get; private set; }
+        public AutomaticTransmissionMode TransmissionMode { get; private set; }
 
         public int Gear { get; private set; }
 

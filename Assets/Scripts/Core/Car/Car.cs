@@ -156,7 +156,7 @@ namespace Core.Car
             _stopLights.SetLight(BrakePedal.Value > 0);
             _backLights.SetLight(
                 _engine.Enabled &&
-                Transmission.Mode == TransmissionMode.REVERSE);
+                Transmission.Mode == AutomaticTransmissionMode.REVERSE);
         }
 
         private void HandleComputer()

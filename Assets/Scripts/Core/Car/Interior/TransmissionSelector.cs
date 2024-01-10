@@ -16,10 +16,10 @@ namespace Core.Car
             var enabled = _car.Engine.Enabled;
             var mode = _car.Transmission.Mode;
 
-            _p.SetLight(mode == TransmissionMode.PARKING && enabled);
-            _r.SetLight(mode == TransmissionMode.REVERSE && enabled);
-            _n.SetLight(mode == TransmissionMode.NEUTRAL && enabled);
-            _d.SetLight(mode == TransmissionMode.DRIVING && enabled);
+            _p.SetLight(mode == AutomaticTransmissionMode.PARKING && enabled);
+            _r.SetLight(mode == AutomaticTransmissionMode.REVERSE && enabled);
+            _n.SetLight(mode == AutomaticTransmissionMode.NEUTRAL && enabled);
+            _d.SetLight(mode == AutomaticTransmissionMode.DRIVING && enabled);
         }
     }
 }
