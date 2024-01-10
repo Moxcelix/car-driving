@@ -12,5 +12,6 @@ namespace Core.Car
         public void SwitchDown();
         public void SwitchRight();
         public void SwitchLeft();
+        public float GetRatio();
     }
 }
