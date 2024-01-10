@@ -9,9 +9,9 @@ public class TransmissionSound
 
     [SerializeField] private AudioClip _modeShift;
 
-    private Transmission _transmission;
+    private ITransmission _transmission;
 
-    public void Initialize(Transmission transmission)
+    public void Initialize(ITransmission transmission)
     {
         _transmission = transmission;
 

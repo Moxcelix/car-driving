@@ -3000,6 +3000,7 @@ GameObject:
   - component: {fileID: 2100919630}
   - component: {fileID: 6344335457628947437}
   - component: {fileID: 1959663465}
+  - component: {fileID: 8904763920680034446}
   m_Layer: 3
   m_Name: KIA Rio X
   m_TagString: Untagged
@@ -3162,79 +3163,7 @@ MonoBehaviour:
     _idlingRPM: 550
     _maxTorque: 600
     _responsiveness: 6
-  _transmission:
-    _torqueConverter:
-      _maxRPM: 6000
-      _fluidDamp: 10
-      _maxRatio: 1
-    _gasReactionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9352493
-        value: 0.14080133
-        inSlope: 0.17792015
-        outSlope: 0.17792015
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.5531869
-      - serializedVersion: 3
-        time: 1
-        value: 1.2999983
-        inSlope: 3.213259
-        outSlope: 3.213259
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.03658138
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    _gears:
-    - _ratio: 4.4
-      _minSpeed: 0
-      _shiftSpeed: 0.02
-      _minRPM: 0
-      _maxRPM: 2000
-    - _ratio: 2.726
-      _minSpeed: 5
-      _shiftSpeed: 0.08
-      _minRPM: 900
-      _maxRPM: 2600
-    - _ratio: 1.834
-      _minSpeed: 25
-      _shiftSpeed: 0.1
-      _minRPM: 1000
-      _maxRPM: 2500
-    - _ratio: 1.392
-      _minSpeed: 35
-      _shiftSpeed: 0.1
-      _minRPM: 1200
-      _maxRPM: 2500
-    - _ratio: 1
-      _minSpeed: 45
-      _shiftSpeed: 0.1
-      _minRPM: 1300
-      _maxRPM: 2500
-    - _ratio: 0.774
-      _minSpeed: 65
-      _shiftSpeed: 0.1
-      _minRPM: 1400
-      _maxRPM: 2500
-    _reverseGearRatio: 3.44
-    _idlingRMP: 700
-    _lastGearRatio: 3.574
-    _forcedSwitchRPM: 6000
+  _transmission: {fileID: 8904763920680034446}
   _doors:
   - {fileID: 95110991881084667}
   - {fileID: 95110991660304191}
@@ -3619,7 +3548,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 1
+  MinDistance: 1.0106201
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -3829,7 +3758,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95110990273813422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18d731ad2e96660459e541ef5080d73f, type: 3}
   m_Name: 
@@ -3841,7 +3770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95110990273813422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c72dc3d5df9cf524ab96e378023faf02, type: 3}
   m_Name: 
@@ -3851,6 +3780,91 @@ MonoBehaviour:
   _sendUrl: localhost:8080/telemetry/send/
   _receiveUrl: localhost:8080/telemetry/get/
   _id: 0
+--- !u!114 &8904763920680034446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95110990273813422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e6387774f41a946ae26187139f3f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _car: {fileID: 95110990273813404}
+  _torqueConverter:
+    _maxRPM: 6000
+    _fluidDamp: 10
+    _maxRatio: 2.5
+  _gasReactionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9352493
+      value: 0.14080133
+      inSlope: 0.17792015
+      outSlope: 0.17792015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5531869
+    - serializedVersion: 3
+      time: 1
+      value: 1.2999983
+      inSlope: 3.213259
+      outSlope: 3.213259
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03658138
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _gears:
+  - _ratio: 4.4
+    _minSpeed: 0
+    _shiftSpeed: 0.02
+    _minRPM: 0
+    _maxRPM: 2000
+  - _ratio: 2.726
+    _minSpeed: 5
+    _shiftSpeed: 0.08
+    _minRPM: 900
+    _maxRPM: 2600
+  - _ratio: 1.834
+    _minSpeed: 25
+    _shiftSpeed: 0.1
+    _minRPM: 1000
+    _maxRPM: 2500
+  - _ratio: 1.392
+    _minSpeed: 35
+    _shiftSpeed: 0.1
+    _minRPM: 1200
+    _maxRPM: 2500
+  - _ratio: 1
+    _minSpeed: 45
+    _shiftSpeed: 0.1
+    _minRPM: 1300
+    _maxRPM: 2500
+  - _ratio: 0.774
+    _minSpeed: 65
+    _shiftSpeed: 0.1
+    _minRPM: 1400
+    _maxRPM: 2500
+  _reverseGearRatio: 3.44
+  _idlingRMP: 800
+  _lastGearRatio: 3.574
+  _forcedSwitchRPM: 6000
 --- !u!1 &95110990293044055
 GameObject:
   m_ObjectHideFlags: 0
@@ -18756,7 +18770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69ecfc45ac3b2641b4456b592a3165f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
   _minLight: -2
   _maxLight: 2.5
   _index: 0

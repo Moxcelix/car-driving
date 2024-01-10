@@ -41,7 +41,7 @@ namespace Core.Car
 
         public void Update()
         {
-            TransmissionMode = _car.Transmission.Mode;
+            /*TransmissionMode = _car.Transmission.Mode;
             Gear = _car.Transmission.CurrentGear + 1;
             Mileage = _mileage.Amount;
 
@@ -49,6 +49,7 @@ namespace Core.Car
             _consumptionUpdateCounter.Update(Time.unscaledDeltaTime);
             _mileage.Update(Mathf.Abs(_car.GetSpeed()) /
                 1000.0f *  Time.unscaledDeltaTime);
+            */
         }
 
         private void UpdateSpeed()

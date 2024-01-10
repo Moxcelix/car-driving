@@ -1,18 +1,24 @@
 
+using System;
+using UnityEngine;
+
 namespace Core.Car
 {
-    public interface ITransmission
+    public abstract class ITransmission : MonoBehaviour
     {
-        public float Torque { get; }
-        public float RPM { get; }
-        public float Load { get; }
-        public float Brake { get; }
-        public int CurrentGear { get; }
-        public void SwitchUp();
-        public void SwitchDown();
-        public void SwitchRight();
-        public void SwitchLeft();
-        public float GetRatio();
-        public void SetValues(float inputTorque, float inputRPM, float outputRPM);
+        public bool IsReverse { get; protected set; }
+        public float Torque { get; protected set; }
+        public float RPM { get; protected set; }
+        public float Load { get; protected set; }
+        public float Brake { get; protected set; }
+        public int CurrentGear { get; protected set; }
+        public abstract void SwitchUp();
+        public abstract void SwitchDown();
+        public abstract void SwitchRight();
+        public abstract void SwitchLeft();
+        public abstract float GetRatio();
+        public abstract void SetValues(float inputTorque, float inputRPM, float outputRPM);
+
+        public Action<AutomaticTransmissionMode> OnModeChange;
     }
 }

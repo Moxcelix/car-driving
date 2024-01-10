@@ -19,10 +19,10 @@ public class ClientIO :
     private readonly string _leaveKey = "leave";
     private readonly string _gasKey = "gas";
     private readonly string _brakeKey = "brake";
-    private readonly string _setDrivingModeKey = "driving";
-    private readonly string _setParkingModeKey = "parking";
-    private readonly string _setReverseModeKey = "reverse";
-    private readonly string _setNeutralModeKey = "neutral";
+    private readonly string _switchUpKey = "switch_up";
+    private readonly string _switchDownKey = "switch_down";
+    private readonly string _switchRightKey = "switch_right";
+    private readonly string _switchLeftKey = "switch_left";
     private readonly string _steerRightKey = "right_steer";
     private readonly string _steerLeftKey = "left_steer";
     private readonly string _engineSwitchKey = "ignition";
@@ -67,10 +67,14 @@ public class ClientIO :
 
     public IControls.ToogleSwitchDelegate EngineSwitch { get; set; }
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
-    public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
     public IControls.ToogleSwitchDelegate HighLightSwitch { get; set; }
     public IControls.ToogleSwitchDelegate EmergencySwitch { get; set; }
     public IControls.ToogleSwitchDelegate ParkingBrakeSwitch { get; set; }
+    public Core.Entity.IControls.SingleActionDelegate Leave { private get; set; }
+    public IControls.ToogleSwitchDelegate TransmissionSelectorUp { get; set; }
+    public IControls.ToogleSwitchDelegate TransmissionSelectorDown { get; set; }
+    public IControls.ToogleSwitchDelegate TransmissionSelectorRight { get; set; }
+    public IControls.ToogleSwitchDelegate TransmissionSelectorLeft { get; set; }
 
     // Car controls.
     public float Gas { get; private set; } = 0;
@@ -95,8 +99,6 @@ public class ClientIO :
     public bool IsRunning { get; private set; }
 
     public bool IsJumping { get; private set; }
-
-    public Core.Entity.IControls.SingleActionDelegate Leave { private get; set; }
 
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
@@ -125,30 +127,6 @@ public class ClientIO :
 
     void IControls.Update()
     {
-        if (Input.GetKeyDown(_controls[_setDrivingModeKey])
-            || Input.GetKeyDown(KeyCode.Joystick1Button0))
-        {
-            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
-        }
-
-        if (Input.GetKeyDown(_controls[_setReverseModeKey])
-            || Input.GetKeyDown(KeyCode.Joystick1Button1))
-        {
-            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.REVERSE);
-        }
-
-        if (Input.GetKeyDown(_controls[_setParkingModeKey])
-            || Input.GetKeyDown(KeyCode.Joystick1Button2))
-        {
-            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.PARKING);
-        }
-
-        if (Input.GetKeyDown(_controls[_setNeutralModeKey])
-            || Input.GetKeyDown(KeyCode.Joystick1Button3))
-        {
-            TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.NEUTRAL);
-        }
-
         // Toggle-sus
         void Toggle(BlinkerState state)
         {
@@ -191,6 +169,26 @@ public class ClientIO :
             Input.GetKeyDown(KeyCode.Joystick1Button8))
         {
             ParkingBrakeSwitch?.Invoke();
+        }
+
+        if (Input.GetKeyDown(_controls[_switchUpKey]))
+        {
+            TransmissionSelectorUp?.Invoke();
+        }
+
+        if (Input.GetKeyDown(_controls[_switchDownKey]))
+        {
+            TransmissionSelectorDown?.Invoke();
+        }
+
+        if (Input.GetKeyDown(_controls[_switchRightKey]))
+        {
+            TransmissionSelectorRight?.Invoke();
+        }
+
+        if (Input.GetKeyDown(_controls[_switchLeftKey]))
+        {
+            TransmissionSelectorLeft?.Invoke();
         }
 
         Gas = Mathf.Max(_gasSmoothPressing.Value,

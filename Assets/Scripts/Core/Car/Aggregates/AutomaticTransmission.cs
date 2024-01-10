@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public class AutomaticTransmission : MonoBehaviour, ITransmission
+    public class AutomaticTransmission : ITransmission
     {
         private const float c_speedEps = 0.1f;
 
@@ -18,6 +18,7 @@ namespace Core.Car
 
         private RatioShifter _ratioShifter;
 
+        private bool _lock = false;
         private float _accelerationFactor = 1;
         private float _speed = 0;
         private float _gasValue = 0;
@@ -28,18 +29,20 @@ namespace Core.Car
 
         public AutomaticTransmissionMode Mode { get; private set; }
 
-        public float Torque { get; private set; }
 
-        public float RPM { get; private set; }
+        private void Start()
+        {
+            _ratioShifter = new RatioShifter(_gears[0].Ratio);
 
-        public float Load { get; private set; }
-
-        public float Brake { get; private set; }
-
-        public int CurrentGear => _currentGear;
+            Mode = AutomaticTransmissionMode.PARKING;
+        }
 
         private void Update()
         {
+            _lock = !_car.Engine.Enabled || !_car.BrakePedal.IsPressed;
+            CurrentGear = _currentGear;
+            IsReverse = Mode == AutomaticTransmissionMode.REVERSE;
+
             _speed = _car.GetSpeed() * 3.6f;
             _gasValue = _car.GasPedal.Value;
 
@@ -52,33 +55,47 @@ namespace Core.Car
             UpdateBrake();
         }
 
-        public void SwitchDown()
+        public override void SwitchDown()
         {
+            if (_lock)
+            {
+                return;
+            }
+
             if (Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
+
+                OnModeChange?.Invoke(Mode);
             }
         }
 
-        public void SwitchLeft()
+        public override void SwitchLeft()
         {
 
         }
 
-        public void SwitchRight()
+        public override void SwitchRight()
         {
 
         }
 
-        public void SwitchUp()
+        public override void SwitchUp()
         {
+            if (_lock)
+            {
+                return;
+            }
+
             if (Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.PARKING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode - 1);
+
+                OnModeChange?.Invoke(Mode);
             }
         }
 
-        public float GetRatio()
+        public override float GetRatio()
         {
             return Mode switch
             {
@@ -95,7 +112,7 @@ namespace Core.Car
             Mode = mode;
         }
 
-        public void SetValues(float inputTorque, float inputRPM, float outputRPM)
+        public override void SetValues(float inputTorque, float inputRPM, float outputRPM)
         {
             _inputTorque = inputTorque;
             _inputRPM = inputRPM;

@@ -29,7 +29,7 @@ namespace Core.Car
 
         [Header("Engine")]
         [SerializeField] private Engine _engine;
-        [SerializeField] private Transmission _transmission;
+        [SerializeField] private ITransmission _transmission;
 
         [Header("Doors")]
         [SerializeField] private Door[] _doors;
@@ -44,7 +44,7 @@ namespace Core.Car
         public ParkingBrake ParkingBrake => _parkingBrake;
         public SteeringWheel SteeringWheel => _steeringWheel;
         public Engine Engine => _engine;
-        public Transmission Transmission => _transmission;
+        public ITransmission Transmission => _transmission;
         public TurnLights TurnLights => _turnLights;
         public HeadLights HeadLights => _headLights;
         public Computer Computer => _computer;
@@ -55,7 +55,7 @@ namespace Core.Car
 
         private void Awake()
         {
-            _transmission.Initialize();
+            //_transmission.Initialize();
 
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.centerOfMass = _centerOfMass.localPosition;
@@ -105,7 +105,6 @@ namespace Core.Car
             var resistance = 0;
             var wheelsRPM = GetWheelsRPM();
 
-            _transmission.Lock = !_engine.Enabled || !_BrakePedal.IsPressed;
             _frontLeftWheel.TransmitTorque(
                 _transmission.Torque - resistance);
             _frontRightWheel.TransmitTorque(
@@ -116,13 +115,10 @@ namespace Core.Car
                 _transmission.Load,
                 Time.fixedDeltaTime);
 
-            _transmission.Update(
-                _gasPedal.Value,
+            _transmission.SetValues(
                 _engine.Torque,
                 _engine.RPM,
-                wheelsRPM,
-                GetSpeed() * 3.6f,
-                Time.fixedDeltaTime);
+                wheelsRPM);
         }
 
         private void HandleDashboard()
@@ -156,7 +152,7 @@ namespace Core.Car
             _stopLights.SetLight(BrakePedal.Value > 0);
             _backLights.SetLight(
                 _engine.Enabled &&
-                Transmission.Mode == AutomaticTransmissionMode.REVERSE);
+                Transmission.IsReverse);
         }
 
         private void HandleComputer()

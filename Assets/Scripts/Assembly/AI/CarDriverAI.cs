@@ -42,13 +42,19 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     public IControls.BlinkerStateSwitchDelegate BlinkerStateSwitch { get; set; }
 
-    public IControls.TransmissionModeSwitchDelegate TransmissionModeSwitch { get; set; }
-
     public IControls.ToogleSwitchDelegate HighLightSwitch { get; set; }
 
     public IControls.ToogleSwitchDelegate EmergencySwitch { get; set; }
 
     public IControls.ToogleSwitchDelegate ParkingBrakeSwitch { get; set; }
+
+    public IControls.ToogleSwitchDelegate TransmissionSelectorUp { set; get; }
+
+    public IControls.ToogleSwitchDelegate TransmissionSelectorDown { set; get; }
+
+    public IControls.ToogleSwitchDelegate TransmissionSelectorRight { set; get; }
+
+    public IControls.ToogleSwitchDelegate TransmissionSelectorLeft { set; get; }
 
     public float Gas { get; private set; }
 
@@ -196,7 +202,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
         yield return new WaitForSeconds(2.0f);
 
-        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
+        //TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
 
         yield return new WaitForSeconds(2.0f);
 
@@ -206,7 +212,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             SteerDelta = GetSteerDelta(Time.unscaledDeltaTime);
 
-            switch (_driver.Mode)
+            /*switch (_driver.Mode)
             {
                 case Mode.Driving:
                     _gas = _learningAgent.Gas;
@@ -244,7 +250,7 @@ public class CarDriverAI : MonoBehaviour, IControls
                     }
 
                     break;
-            }
+            }*/
 
             yield return new WaitForEndOfFrame();
         }

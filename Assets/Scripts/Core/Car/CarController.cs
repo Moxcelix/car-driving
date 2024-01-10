@@ -17,7 +17,11 @@ namespace Core.Car
             this._controls = controls;
             this._car = car;
 
-            controls.TransmissionModeSwitch = car.Transmission.SwitchMode;
+            //controls.TransmissionModeSwitch = car.Transmission.SwitchMode;
+            controls.TransmissionSelectorUp = car.Transmission.SwitchUp;
+            controls.TransmissionSelectorDown = car.Transmission.SwitchDown;
+            controls.TransmissionSelectorRight = car.Transmission.SwitchRight;
+            controls.TransmissionSelectorLeft = car.Transmission.SwitchLeft;
             controls.ParkingBrakeSwitch = car.ParkingBrake.Switch;
             controls.BlinkerStateSwitch = car.TurnLights.SwitchBlinker;
             controls.EmergencySwitch = car.TurnLights.SwitchEmergency;
@@ -39,7 +43,7 @@ namespace Core.Car
 
         public void Close()
         {
-            _controls.TransmissionModeSwitch = null;
+            //_controls.TransmissionModeSwitch = null;
             _controls.ParkingBrakeSwitch = null;
             _controls.BlinkerStateSwitch = null;
             _controls.EmergencySwitch = null;
