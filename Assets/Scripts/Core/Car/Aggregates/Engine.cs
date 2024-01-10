@@ -12,12 +12,14 @@ namespace Core.Car
         
         [Header("Characteristics")]
         [SerializeField] private float _maxRPM;
+        [SerializeField] private float _minRPM;
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
         [SerializeField] private float _responsiveness;
 
         public Starter Starter => _starter;
         public float MaxRPM => _maxRPM;
+        public float MinRPM => _minRPM;
         public float MaxTorque => _maxTorque;
         public bool Enabled => _starter.State == EngineState.STARTED;
 
@@ -34,7 +36,7 @@ namespace Core.Car
         {
             _starter.Update();
 
-            if (!_starter.IsStarting && _starter.State == EngineState.STARTED && RPM < _idlingRPM / 2.0f)
+            if (!_starter.IsStarting && _starter.State == EngineState.STARTED && RPM < _minRPM)
             {
                 _starter.SetState(EngineState.STOPED);
             }

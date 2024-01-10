@@ -147,7 +147,9 @@ namespace Core.Car
 
         private void UpdateBrake()
         {
-            Brake = Mode == AutomaticTransmissionMode.PARKING ? 1.0f : 0.0f;
+            Brake = Mode == AutomaticTransmissionMode.PARKING ||
+               (Mode != AutomaticTransmissionMode.NEUTRAL &&
+               _car.Engine.Starter.State != EngineState.STARTED) ? 1.0f : 0.0f;
         }
 
         private void UpdateTorque(float inputTorque,

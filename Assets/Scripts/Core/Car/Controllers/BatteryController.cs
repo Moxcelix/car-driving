@@ -8,7 +8,7 @@ namespace Core.Car
 
         public override bool Check()
         {
-            return _car.Engine.Starter.IsStarting;
+            return _car.Engine.Starter.IsStarting || _car.Engine.RPM < _car.Engine.MinRPM;
         }
     }
 }
