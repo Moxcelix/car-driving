@@ -19,9 +19,9 @@ public class ClientIO :
     private readonly string _leaveKey = "leave";
     private readonly string _gasKey = "gas";
     private readonly string _brakeKey = "brake";
+    private readonly string _clutchKey = "clutch";
     private readonly string _switchUpKey = "switch_up";
     private readonly string _switchDownKey = "switch_down";
-
     private readonly string _switchRightKey = "switch_right";
     private readonly string _switchLeftKey = "switch_left";
     private readonly string _steerRightKey = "right_steer";
@@ -46,6 +46,7 @@ public class ClientIO :
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
+    private readonly SmoothPressing _clutchSmoothPressing = new(5.0f, 0.2f);
     private readonly SmoothPressing _gasSmoothPressing = new(0.8f, 1.0f);
     private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 2.0f);
     private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
@@ -59,6 +60,7 @@ public class ClientIO :
     private readonly float _brakeMiddleValue = 0.5f;
     private readonly float _gasMaxValue = 1.0f;
     private readonly float _brakeMaxValue = 1.0f;
+    private readonly float _clutchMaxValue = 1.0f;
 
     private GameState _gameState;
     private PauseMenu _pauseMenu;
@@ -85,6 +87,8 @@ public class ClientIO :
     public float Gas { get; private set; } = 0;
 
     public float Brake { get; private set; } = 0;
+
+    public float Clutch { get; private set; } = 0;
 
     public float SteerDelta { get; private set; } = 0;
 
@@ -210,6 +214,7 @@ public class ClientIO :
             Input.GetAxis(_gasJoystickAxis));
         Brake = Mathf.Max(_brakeSmoothPressing.Value,
             Input.GetAxis(_brakeJoystickAxis));
+        Clutch = _clutchSmoothPressing.Value;
 
         SteerDelta = _steerDelta;
     }
@@ -235,6 +240,15 @@ public class ClientIO :
     private void UpdateCarInput(float deltaTime)
     {
         var fullPush = Input.GetKey(_controls[_addPowerKey]);
+
+        if (Input.GetKey(_controls[_clutchKey]))
+        {
+            _clutchSmoothPressing.Press(_clutchMaxValue, deltaTime);
+        }
+        else
+        {
+            _clutchSmoothPressing.Release(deltaTime);
+        }
 
         if (Input.GetKey(_controls[_gasKey]))
         {

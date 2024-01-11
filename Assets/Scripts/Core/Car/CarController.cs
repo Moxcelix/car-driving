@@ -67,6 +67,13 @@ namespace Core.Car
             _car.GasPedal.Value = _controls.Gas;
             _car.BrakePedal.Value = _controls.Brake;
             _car.SteeringWheel.Steer(_controls.SteerDelta);
+
+            var manualTransmission = _car.Transmission as ManualTransmission;
+
+            if(manualTransmission != null)
+            {
+                manualTransmission.ClutchPedal.Value = _controls.Clutch;
+            }
         }
     }
 }

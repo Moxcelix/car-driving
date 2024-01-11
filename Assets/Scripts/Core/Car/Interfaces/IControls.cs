@@ -17,6 +17,7 @@ namespace Core.Car
 
         public float Gas { get; }
         public float Brake { get; }
+        public float Clutch { get; }
         public float SteerDelta { get; }
 
         public void Update();

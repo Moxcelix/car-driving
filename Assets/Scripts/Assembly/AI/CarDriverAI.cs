@@ -60,6 +60,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     public float Brake { get; private set; }
 
+    public float Clutch { get; private set; }
+
     public float SteerDelta { get; private set; }
 
 

@@ -29,6 +29,8 @@ namespace Core.Car
         [SerializeField] private float _lastGearRatio = 3.574f;
         [SerializeField] private float _forcedSwitchRPM = 6000.0f;
 
+        [SerializeField] private Pedal _clutchPedal;
+
         private float _inputTorque = 0;
         private float _inputRPM = 0;
         private float _outputRPM = 0;
@@ -38,14 +40,14 @@ namespace Core.Car
 
         public ManualTransmissionMode Mode { get; private set; } = ManualTransmissionMode.NEUTRAL;
 
+        public Pedal ClutchPedal => _clutchPedal;
+
 
         private void Update()
         {
             CurrentGear = _currentGear;
 
             IsReverse = Mode == ManualTransmissionMode.REVERSE;
-
-            Load = Mode == ManualTransmissionMode.NEUTRAL? 0 : 1;
 
             UpdateGear();
             UpdateSelector();
@@ -195,15 +197,11 @@ namespace Core.Car
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            //_torqueConverter.Update(deltaTime);
-            //_torqueConverter.Convert(inputRPM, nativeRPM);
-
-            //Load = 1.0f - _torqueConverter.FluidTransition;
-            //Torque =
-            //    inputTorque *
-            //    GetRatio() *
-            //    _ratioShifter.Load *
-            //   _torqueConverter.GetRatio();
+            Load = Mode == ManualTransmissionMode.NEUTRAL ? 0 : 1.0f - _clutchPedal.Value;
+            Torque =
+                inputTorque *
+                GetRatio() *
+                (1.0f - _clutchPedal.Value);
 
             RPM = nativeRPM;
         }
