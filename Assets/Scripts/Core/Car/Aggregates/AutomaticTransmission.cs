@@ -66,13 +66,13 @@ namespace Core.Car
             {
                 UpshiftGear(1);
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
             else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.PARKING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode - 1);
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
         }
 
@@ -82,13 +82,13 @@ namespace Core.Car
             {
                 DownshiftGear(1);
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
             else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
         }
 
@@ -98,7 +98,7 @@ namespace Core.Car
             {
                 Mode = AutomaticTransmissionMode.MANUAL;
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
         }
 
@@ -108,7 +108,7 @@ namespace Core.Car
             {
                 Mode = AutomaticTransmissionMode.DRIVING;
 
-                OnModeChange?.Invoke(Mode);
+                OnModeChange?.Invoke();
             }
         }
 

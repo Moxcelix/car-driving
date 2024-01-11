@@ -30,6 +30,7 @@ namespace Core.Car
         [SerializeField] private float _forcedSwitchRPM = 6000.0f;
 
         [SerializeField] private Pedal _clutchPedal;
+        [SerializeField][Range(0.0f, 1.0f)] private float _clutchWear;
 
         private float _inputTorque = 0;
         private float _inputRPM = 0;
@@ -60,6 +61,8 @@ namespace Core.Car
             if (_selectorPosition.y < 1)
             {
                 _selectorPosition.y += 1;
+
+                OnModeChange?.Invoke();
             }
         }
 
@@ -68,10 +71,14 @@ namespace Core.Car
             if (_selectorPosition.y > -1 && _selectorPosition.x > -2)
             {
                 _selectorPosition.y -= 1;
+
+                OnModeChange?.Invoke();
             }
             else if (_selectorPosition.y > 0)
             {
                 _selectorPosition.y -= 1;
+
+                OnModeChange?.Invoke();
             }
         }
 
@@ -85,6 +92,8 @@ namespace Core.Car
             if (_selectorPosition.x > -2)
             {
                 _selectorPosition.x -= 1;
+
+                OnModeChange?.Invoke();
             }
         }
 
@@ -98,6 +107,8 @@ namespace Core.Car
             if (_selectorPosition.x < 1)
             {
                 _selectorPosition.x += 1;
+
+                OnModeChange?.Invoke();
             }
         }
 
@@ -194,7 +205,7 @@ namespace Core.Car
 
         private float GetClutchValue()
         {
-            return Mathf.Clamp01(1.0f - _clutchPedal.Value * 1.2f);
+            return Mathf.Clamp01(1.0f - _clutchPedal.Value * (1.0f + _clutchWear));
         }
 
         private void UpdateTorque(float inputTorque,

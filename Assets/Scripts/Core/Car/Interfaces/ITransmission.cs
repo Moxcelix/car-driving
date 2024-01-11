@@ -19,6 +19,6 @@ namespace Core.Car
         public abstract float GetRatio();
         public abstract void SetValues(float inputTorque, float inputRPM, float outputRPM);
 
-        public Action<AutomaticTransmissionMode> OnModeChange;
+        public Action OnModeChange;
     }
 }

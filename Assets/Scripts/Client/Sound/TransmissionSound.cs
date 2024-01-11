@@ -23,7 +23,7 @@ public class TransmissionSound
         _transmission.OnModeChange -= PlayTransmissionModeSound;
     }
 
-    private void PlayTransmissionModeSound(AutomaticTransmissionMode mode)
+    private void PlayTransmissionModeSound()
     {
         _audioSource.PlayOneShot(_modeShift, 2.0f);
     }
