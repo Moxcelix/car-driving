@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813404, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _engine._minRPM
-      value: 400
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 95110990273813422, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: m_Name

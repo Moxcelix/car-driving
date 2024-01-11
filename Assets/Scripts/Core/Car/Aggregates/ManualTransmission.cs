@@ -192,16 +192,21 @@ namespace Core.Car
             }
         }
 
+        private float GetClutchValue()
+        {
+            return Mathf.Clamp01(1.0f - _clutchPedal.Value * 1.2f);
+        }
+
         private void UpdateTorque(float inputTorque,
             float inputRPM, float outputRPM, float deltaTime)
         {
             var nativeRPM = outputRPM * GetRatio();
 
-            Load = Mode == ManualTransmissionMode.NEUTRAL ? 0 : 1.0f - _clutchPedal.Value;
+            Load = Mode == ManualTransmissionMode.NEUTRAL ? 0 : GetClutchValue();
             Torque =
                 inputTorque *
                 GetRatio() *
-                (1.0f - _clutchPedal.Value);
+                GetClutchValue();
 
             RPM = nativeRPM;
         }

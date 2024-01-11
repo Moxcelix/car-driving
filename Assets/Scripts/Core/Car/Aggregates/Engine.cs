@@ -36,9 +36,16 @@ namespace Core.Car
         {
             _starter.Update();
 
-            if (!_starter.IsStarting && _starter.State == EngineState.STARTED && RPM < _minRPM)
+            if (!_starter.IsStarting)
             {
-                _starter.SetState(EngineState.STOPED);
+                if (_starter.State == EngineState.STARTED && RPM < _minRPM)
+                {
+                    _starter.SetState(EngineState.STOPED);
+                }
+                else if (_starter.State == EngineState.STOPED && RPM > _idlingRPM)
+                {
+                    _starter.SetState(EngineState.STARTED);
+                }
             }
 
             inputGas = _cutOff ? 0.0f : inputGas;
@@ -51,7 +58,12 @@ namespace Core.Car
             _torqueRPM = Mathf.Lerp(_torqueRPM, targetRPM, deltaTime);
             _targetRPM = Mathf.Lerp(_targetRPM, targetRPM, deltaTime);
             _targetRPM = Mathf.Lerp(_targetRPM, virtualRPM, load);
- 
+
+            if (_starter.State == EngineState.STOPED)
+            {
+                _torqueRPM = 0;
+            }
+
             var rpm = Mathf.Lerp(_targetRPM, outputRPM, load);
             var torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
 
