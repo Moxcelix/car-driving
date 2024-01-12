@@ -92,8 +92,6 @@ namespace Core.Car
             if (_selectorPosition.x > -2)
             {
                 _selectorPosition.x -= 1;
-
-                OnModeChange?.Invoke();
             }
         }
 
@@ -107,8 +105,6 @@ namespace Core.Car
             if (_selectorPosition.x < 1)
             {
                 _selectorPosition.x += 1;
-
-                OnModeChange?.Invoke();
             }
         }
 

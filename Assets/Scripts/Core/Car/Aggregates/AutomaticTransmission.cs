@@ -68,7 +68,9 @@ namespace Core.Car
 
                 OnModeChange?.Invoke();
             }
-            else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.PARKING)
+            else if (Mode == AutomaticTransmissionMode.DRIVING ||
+                !_lock && Mathf.Abs(_speed) <= c_speedEps &&
+                Mode != AutomaticTransmissionMode.PARKING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode - 1);
 
@@ -84,7 +86,9 @@ namespace Core.Car
 
                 OnModeChange?.Invoke();
             }
-            else if (!_lock && Mathf.Abs(_speed) <= c_speedEps && Mode != AutomaticTransmissionMode.DRIVING)
+            else if (Mode == AutomaticTransmissionMode.NEUTRAL ||
+                !_lock && Mathf.Abs(_speed) <= c_speedEps && 
+                Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
 
