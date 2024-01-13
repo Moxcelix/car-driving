@@ -3,6 +3,14 @@ using UnityEngine;
 
 namespace Core.Car
 {
+    public enum AutomaticTransmissionMode
+    {
+        PARKING,
+        REVERSE,
+        NEUTRAL,
+        DRIVING,
+        MANUAL,
+    }
     public class AutomaticTransmission : ITransmission
     {
         private const float c_speedEps = 0.1f;

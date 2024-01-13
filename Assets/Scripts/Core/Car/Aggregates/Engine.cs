@@ -52,7 +52,7 @@ namespace Core.Car
 
             var idlingRPM = _idlingRPM * _starter.RPMValue;
             var virtualRPM = outputRPM > idlingRPM ? outputRPM : idlingRPM;
-            var idleGas = _idlingRPM / MaxRPM * _starter.RPMValue;
+            var idleGas = _idlingRPM / MaxRPM;
             var targetRPM = SummGas(inputGas, idleGas) * MaxRPM * _starter.RPMValue;
 
             _torqueRPM = Mathf.Lerp(_torqueRPM, targetRPM, deltaTime);
@@ -66,6 +66,7 @@ namespace Core.Car
 
             var rpm = Mathf.Lerp(_targetRPM, outputRPM, load);
             var torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
+            Debug.Log(torque);
 
             RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
             Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);

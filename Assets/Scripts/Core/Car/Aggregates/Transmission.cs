@@ -3,14 +3,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public enum AutomaticTransmissionMode
-    {
-        PARKING,
-        REVERSE,
-        NEUTRAL,
-        DRIVING,
-        MANUAL,
-    }
+
 
     [System.Serializable]
     public class Transmission
