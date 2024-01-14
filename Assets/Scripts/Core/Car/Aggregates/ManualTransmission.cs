@@ -132,7 +132,7 @@ namespace Core.Car
 
         private void UpdateBrake()
         {
-
+            Brake = 0;
         }
 
         private void UpdateSelector()
@@ -204,8 +204,7 @@ namespace Core.Car
             return Mathf.Clamp01(1.0f - _clutchPedal.Value * (1.0f + _clutchWear));
         }
 
-        private void UpdateTorque(float inputTorque,
-            float inputRPM, float outputRPM, float deltaTime)
+        private void UpdateTorque(float inputTorque, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
 
