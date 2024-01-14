@@ -52,7 +52,7 @@ namespace Core.Car
 
             UpdateGear();
             UpdateSelector();
-            UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
+            UpdateTorque(_inputTorque, _outputRPM);
             UpdateBrake();
         }
 
@@ -132,7 +132,11 @@ namespace Core.Car
 
         private void UpdateBrake()
         {
-            Brake = 0;
+            var resistance = 0.01f;
+            var clutch = GetClutchValue() > 0 ? 0.0f : 1.0f;
+            var neutral = Mode == ManualTransmissionMode.NEUTRAL ? 1.0f : 0.0f;
+
+            Brake = Mathf.Clamp01(clutch + neutral) * resistance;
         }
 
         private void UpdateSelector()

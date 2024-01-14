@@ -8799,7 +8799,7 @@ MonoBehaviour:
   _frontLeftWheel: {fileID: 2572421925041793582}
   _rearRightWheel: {fileID: 2572421926311466050}
   _rearLeftWheel: {fileID: 2572421926654726581}
-  _brakeForce: 1500
+  _brakeForce: 2000
   _steeringWheel: {fileID: 2572421926212707735}
   _tachometer: {fileID: 2572421925520577132}
   _speedometer: {fileID: 2572421925430333068}
@@ -8897,7 +8897,7 @@ MonoBehaviour:
     _recoveryRPM: 6000
     _maxRPM: 7000
     _minRPM: 500
-    _idlingRPM: 600
+    _idlingRPM: 700
     _maxTorque: 600
     _responsiveness: 6
   _transmission: {fileID: 2572421925859850866}
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   _lastGearRatio: 4.176
   _forcedSwitchRPM: 6000
   _clutchPedal: {fileID: 6725525967088368840}
-  _clutchWear: 0.083
+  _clutchWear: 0.281
 --- !u!1 &2572421925873831693
 GameObject:
   m_ObjectHideFlags: 0
