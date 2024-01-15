@@ -215,7 +215,7 @@ public class ClientIO :
              Mathf.Clamp01(Input.GetAxis(_gasJoystickAxis)));
         Brake = Mathf.Max(_brakeSmoothPressing.Value,
              Mathf.Clamp01(Input.GetAxis(_brakeJoystickAxis)));
-        Clutch = Mathf.Max(/*_clutchSmoothPressing.Value,*/
+        Clutch = Mathf.Max(_clutchSmoothPressing.Value,
             Mathf.Clamp01(Input.GetAxis(_clutchJoystickAxis)));
 
         Debug.Log(Input.GetAxis(_clutchJoystickAxis));

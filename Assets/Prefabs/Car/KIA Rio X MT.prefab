@@ -8898,7 +8898,7 @@ MonoBehaviour:
     _maxRPM: 7000
     _minRPM: 500
     _idlingRPM: 700
-    _maxTorque: 600
+    _maxTorque: 500
     _responsiveness: 6
   _transmission: {fileID: 2572421925859850866}
   _doors:
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   _lastGearRatio: 4.176
   _forcedSwitchRPM: 6000
   _clutchPedal: {fileID: 6725525967088368840}
-  _clutchWear: 0.281
+  _clutchWear: 0.222
 --- !u!1 &2572421925873831693
 GameObject:
   m_ObjectHideFlags: 0
