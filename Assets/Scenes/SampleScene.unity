@@ -9372,6 +9372,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: 7d1b2e080ce9e5246bbf5042281a06ab, type: 2}
   _targetMaterialName: "\u043A\u0443\u0437\u043E\u0432 3"
+--- !u!114 &1063375758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+  m_PrefabInstance: {fileID: 3319010361351820810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1067940105
 GameObject:
   m_ObjectHideFlags: 0
@@ -14248,12 +14259,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688110530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e20030f9281d334e8a10d82416fc726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 0}
+  _car: {fileID: 1063375758}
 --- !u!4 &1688110532
 Transform:
   m_ObjectHideFlags: 0
@@ -18282,10 +18293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2572421925859850829, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: m_Drag
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -18347,10 +18354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KIA Rio X AT
       objectReference: {fileID: 0}
-    - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -18394,10 +18397,6 @@ PrefabInstance:
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5641354360519178163, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: m_Drag
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
