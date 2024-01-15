@@ -35,6 +35,7 @@ public class ClientIO :
     private readonly string _headLightKey = "head_light";
     private readonly string _interactKey = "interact";
     private readonly string _switchViewKey = "next_view";
+    private readonly string _clutchJoystickAxis = "ClutchAxis";
     private readonly string _gasJoystickAxis = "GasAxis";
     private readonly string _brakeJoystickAxis = "BrakeAxis";
     private readonly string _steerJoystickAxis = "TurnAxis";
@@ -211,10 +212,13 @@ public class ClientIO :
         }
 
         Gas = Mathf.Max(_gasSmoothPressing.Value,
-            Input.GetAxis(_gasJoystickAxis));
+             Mathf.Clamp01(Input.GetAxis(_gasJoystickAxis)));
         Brake = Mathf.Max(_brakeSmoothPressing.Value,
-            Input.GetAxis(_brakeJoystickAxis));
-        Clutch = _clutchSmoothPressing.Value;
+             Mathf.Clamp01(Input.GetAxis(_brakeJoystickAxis)));
+        Clutch = Mathf.Max(/*_clutchSmoothPressing.Value,*/
+            Mathf.Clamp01(Input.GetAxis(_clutchJoystickAxis)));
+
+        Debug.Log(Input.GetAxis(_clutchJoystickAxis));
 
         SteerDelta = _steerDelta;
     }

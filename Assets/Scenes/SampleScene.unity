@@ -18293,6 +18293,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2572421925859850829, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
       value: 1
