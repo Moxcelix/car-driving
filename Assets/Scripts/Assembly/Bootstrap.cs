@@ -39,7 +39,8 @@ public class Bootstrap : MonoBehaviour
         // User's avatar controller set up.
         _avatarController = new AvatarController(
             entityControls: _clientIO,
-            carControls: _clientIO);
+            carControls: _clientIO,
+            avatarType: AvatarType.OBSERVED);
         _avatarController.ProvideEntityHandling(_playerBody);
 
         // Interactive raycasting set up.
