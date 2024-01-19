@@ -10,6 +10,8 @@ public class AvatarController
 
     public EntityController EntityController { get; private set; }
 
+    public AvatarType AvatarType { get; set; }
+
 
     public AvatarController(
         Core.Entity.IControls entityControls,
