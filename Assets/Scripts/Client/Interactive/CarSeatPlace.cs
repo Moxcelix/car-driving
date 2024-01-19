@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Core.Entity.SeatPlace))]
+[RequireComponent(typeof(Core.Entity.Seatable))]
 [RequireComponent(typeof(Core.Car.Seat))]
-public class Seatable : MonoBehaviour, IInteractive
+public class CarSeatPlace : MonoBehaviour, IInteractive
 {
     [SerializeField] private Core.Car.Door _door;
     [SerializeField] private string _hintText;
 
-    private Core.Entity.SeatPlace _playerSeat;
+    private Core.Entity.Seatable _playerSeat;
     private Core.Car.Seat _carSeat;
     private AvatarController _avatarControler;
 
@@ -19,7 +19,7 @@ public class Seatable : MonoBehaviour, IInteractive
 
     private void Awake()
     {
-        _playerSeat = GetComponent<Core.Entity.SeatPlace>();
+        _playerSeat = GetComponent<Core.Entity.Seatable>();
         _carSeat = GetComponent<Core.Car.Seat>();
 
         _playerSeat.OnSitting += Refresh;

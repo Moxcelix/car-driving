@@ -2,16 +2,16 @@ using System;
 using Core.Car;
 using UnityEngine;
 
-[RequireComponent(typeof(Seatable))]
+[RequireComponent(typeof(CarSeatPlace))]
 public class DriverSeat : MonoBehaviour
 {
     [SerializeField] private Car _car;
 
-    private Seatable _seatable;
+    private CarSeatPlace _seatable;
 
     private void Awake()
     {
-        _seatable = GetComponent<Seatable>();
+        _seatable = GetComponent<CarSeatPlace>();
 
         _seatable.OnAvatarSitting += ProvideCarHandling;
         _seatable.OnAvatarLeaving += DepriveCarHandling;

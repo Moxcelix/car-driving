@@ -1957,7 +1957,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421924920000624}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -3637,7 +3637,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2572421925182994430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04d05d06babfa46b76aa9b89eb8ca3, type: 3}
+  m_Script: {fileID: 11500000, guid: 41fe360c22a249f49a1fd2bd8fef8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _door: {fileID: 2572421925920384751}
@@ -6108,7 +6108,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421925499978010}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -6345,7 +6345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2572421925510339331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04d05d06babfa46b76aa9b89eb8ca3, type: 3}
+  m_Script: {fileID: 11500000, guid: 41fe360c22a249f49a1fd2bd8fef8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _door: {fileID: 2572421926453759974}
@@ -6404,7 +6404,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
@@ -6618,7 +6618,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
@@ -8896,7 +8896,7 @@ MonoBehaviour:
     _cutoffRPM: 6500
     _recoveryRPM: 6000
     _maxRPM: 7000
-    _minRPM: 500
+    _minRPM: 400
     _idlingRPM: 700
     _maxTorque: 500
     _responsiveness: 6
@@ -9474,8 +9474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee97b90fa087874aab851e5f4b94cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _number: "\u0432465\u043A\u043C"
-  _region: 797
+  _number: "\u0432004\u043A\u043E"
+  _region: 56
 --- !u!114 &2513838645370526878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11264,7 +11264,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421926035441516}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -12741,7 +12741,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
@@ -14746,7 +14746,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421926389760132}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -16187,7 +16187,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421926576727059}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -16954,7 +16954,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572421926674038522}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -17279,7 +17279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2572421926696083898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04d05d06babfa46b76aa9b89eb8ca3, type: 3}
+  m_Script: {fileID: 11500000, guid: 41fe360c22a249f49a1fd2bd8fef8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _door: {fileID: 2572421925920384751}
@@ -17549,9 +17549,9 @@ GameObject:
   - component: {fileID: 2572421926769114980}
   - component: {fileID: 2572421926769114983}
   - component: {fileID: 2572421926769114982}
-  - component: {fileID: 2572421926769114977}
   - component: {fileID: 2572421926769114976}
   - component: {fileID: 2572421926769114979}
+  - component: {fileID: 646726745021183361}
   m_Layer: 3
   m_Name: "\u043A\u0440\u0435\u0441\u043B\u043E \u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0435"
   m_TagString: Untagged
@@ -17654,20 +17654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placePoint: {fileID: 2572421926909538517}
   _leavePoint: {fileID: 2572421925830291269}
---- !u!114 &2572421926769114977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2572421926769114781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04d05d06babfa46b76aa9b89eb8ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _door: {fileID: 2572421926400196395}
-  _hintText: "\u0421\u0435\u0441\u0442\u044C"
 --- !u!114 &2572421926769114976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17694,6 +17680,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0056185066, y: 0.0059025385, z: 0.0035894266}
   m_Center: {x: -0.00018373968, y: -2.7303347e-11, z: -0.00065630156}
+--- !u!114 &646726745021183361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421926769114781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fe360c22a249f49a1fd2bd8fef8fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _door: {fileID: 2572421926400196395}
+  _hintText: "\u0421\u0435\u0441\u0442\u044C"
 --- !u!1 &2572421926771833837
 GameObject:
   m_ObjectHideFlags: 0
@@ -19201,8 +19201,8 @@ GameObject:
   - component: {fileID: 2572421926937792382}
   - component: {fileID: 2572421926937792377}
   - component: {fileID: 2572421926937792376}
-  - component: {fileID: 2572421926937792379}
   - component: {fileID: 2572421926937792378}
+  - component: {fileID: 4696950899647295267}
   m_Layer: 3
   m_Name: "\u043A\u0440\u0435\u0441\u043B\u043E \u0448\u0442\u0443\u0440\u043C\u0430\u043D\u0441\u043A\u043E\u0435"
   m_TagString: Untagged
@@ -19305,20 +19305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placePoint: {fileID: 2572421925208224896}
   _leavePoint: {fileID: 2572421925169965109}
---- !u!114 &2572421926937792379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2572421926937792372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04d05d06babfa46b76aa9b89eb8ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _door: {fileID: 2572421926221415669}
-  _hintText: "\u0421\u0435\u0441\u0442\u044C"
 --- !u!65 &2572421926937792378
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19332,6 +19318,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0056185066, y: 0.0059025385, z: 0.0035894266}
   m_Center: {x: -0.00018373968, y: -2.7303347e-11, z: -0.00065630156}
+--- !u!114 &4696950899647295267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421926937792372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fe360c22a249f49a1fd2bd8fef8fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _door: {fileID: 2572421926221415669}
+  _hintText: "\u0421\u0435\u0441\u0442\u044C"
 --- !u!1 &2572421926942747229
 GameObject:
   m_ObjectHideFlags: 0
