@@ -15,10 +15,13 @@ public class AvatarController
 
     public AvatarController(
         Core.Entity.IControls entityControls,
-        Core.Car.IControls carControls)
+        Core.Car.IControls carControls,
+        AvatarType avatarType = AvatarType.REMOTED)
     {
         _carControls = carControls;
         _entityControls = entityControls;
+
+        AvatarType = avatarType;
     }
 
     public void SetMoveAbility(bool state)

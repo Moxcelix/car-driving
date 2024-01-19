@@ -1,5 +1,5 @@
 public enum AvatarType
 {
+    REMOTED,
     OBSERVED,
-    REMOTED
 }
