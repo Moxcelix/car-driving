@@ -6,6 +6,7 @@ using UnityEngine;
 public class DriverSeat : MonoBehaviour
 {
     [SerializeField] private Car _car;
+    [SerializeField] private CarMirrorManager _carMirrors;
 
     private CarSeatPlace _seatable;
 
@@ -16,6 +17,11 @@ public class DriverSeat : MonoBehaviour
         _seatable.OnAvatarSitting += ProvideCarHandling;
         _seatable.OnAvatarLeaving += DepriveCarHandling;
 
+    }
+
+    private void Start()
+    {
+        _carMirrors.SetActive(false);
     }
 
     private void OnDestroy()
@@ -30,6 +36,11 @@ public class DriverSeat : MonoBehaviour
             $" has access to control {_car}");
 
         avatarController.ProvideCarHandling(_car);
+
+        if (avatarController.AvatarType == AvatarType.OBSERVED)
+        {
+            _carMirrors.SetActive(true);
+        }
     }
 
     private void DepriveCarHandling(AvatarController avatarController)
@@ -38,6 +49,11 @@ public class DriverSeat : MonoBehaviour
             $" has lost to control {_car}");
 
         avatarController.DepriveCarHandling();
+
+        if (avatarController.AvatarType == AvatarType.OBSERVED)
+        {
+            _carMirrors.SetActive(false);
+        }
     }
 
 }

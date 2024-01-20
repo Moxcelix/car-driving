@@ -3915,6 +3915,25 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &457497565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2572421925738675560, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+  m_PrefabInstance: {fileID: 1246463170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &457497567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457497565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7304b01837006f64d9879501a85dac76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: d4745a474a9ffa64fb9b40bfbb732c9a, type: 2}
+  _targetMaterialName: "\u043A\u043E\u0440\u043F\u0443\u0441"
 --- !u!1001 &461777609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5242,11 +5261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _number
-      value: "\u0432004\u043A\u043E"
+      value: "\u0432005\u043A\u043E"
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _region
-      value: 56
+      value: 178
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
@@ -5528,11 +5547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _number
-      value: "\u0432004\u043A\u043E"
+      value: "\u0432003\u043A\u043E"
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _region
-      value: 56
+      value: 178
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
@@ -7832,7 +7851,7 @@ Camera:
   field of view: 50
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -10665,6 +10684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KIA Rio X MT (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850878, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
 --- !u!1 &1248182693
@@ -12520,6 +12543,28 @@ Transform:
   m_Father: {fileID: 1789380083}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1455974809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5641354359547261795, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 5700425833179435312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1455974819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455974809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb28ab62aff256242b615a2d4e181182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mirrors:
+  - _texture: {fileID: 8400000, guid: 4580c4e2a0930644bb42daa4f5dc42b3, type: 2}
+    _camera: {fileID: 1960312135}
+  - _texture: {fileID: 8400000, guid: 41a85b720f19561438d483556ee5c614, type: 2}
+    _camera: {fileID: 1743602917}
 --- !u!1 &1482517034
 GameObject:
   m_ObjectHideFlags: 0
@@ -14454,7 +14499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1688110531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14617,6 +14662,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731962455}
   m_CullTransparentMesh: 1
+--- !u!20 &1743602917 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1458556741, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 5700425833179435312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1759683352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16565,6 +16615,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1960312135 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1686494298, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 5700425833179435312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1965079699
 GameObject:
   m_ObjectHideFlags: 0
@@ -18548,6 +18603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KIA Rio X MT
       objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850878, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
 --- !u!1001 &5700425833179435312
@@ -18559,12 +18618,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1458556738, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458556740, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458556741, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Depth
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1686494295, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686494297, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1686494298, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354359547261598, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _carMirrors
+      value: 
+      objectReference: {fileID: 1455974819}
     - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_Name
       value: KIA Rio X AT

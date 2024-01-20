@@ -10,5 +10,6 @@ public class CarMirror
     public void SetActive(bool active)
     {
         _camera.targetTexture = active ? _texture : null;
+        _camera.enabled = active;
     }
 }
