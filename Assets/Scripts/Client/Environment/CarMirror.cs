@@ -14,7 +14,6 @@ public class CarMirror : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _texture = new RenderTexture(128, 128, 1);
-        _meshRenderer.material.mainTexture = _texture;
     }
 
     public void SetActive(bool active)
@@ -23,5 +22,10 @@ public class CarMirror : MonoBehaviour
         _camera.enabled = active;
 
         _meshRenderer.material = active ? _reflectionMaterial : _defaultMaterial;
+
+        if (active)
+        {
+            _meshRenderer.material.mainTexture = _texture;
+        }
     }
 }

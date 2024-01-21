@@ -1836,6 +1836,7 @@ GameObject:
   - component: {fileID: 2572421924896782877}
   - component: {fileID: 2572421924896783075}
   - component: {fileID: 2572421924896783074}
+  - component: {fileID: 4610743682661218162}
   m_Layer: 3
   m_Name: "\u043B\u0435\u0432\u043E\u0435 \u0437\u0435\u0440\u043A\u0430\u043B\u043E.001"
   m_TagString: Untagged
@@ -1909,6 +1910,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4610743682661218162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421924896782876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 8093090206362060468}
+  _defaultMaterial: {fileID: 2100000, guid: 6983a778417e245409511f9bf93b1c81, type: 2}
+  _reflectionMaterial: {fileID: 2100000, guid: 6d3c1148ca87cad4d8e828cf054e45b5, type: 2}
 --- !u!1 &2572421924902693137
 GameObject:
   m_ObjectHideFlags: 0
@@ -12398,6 +12414,7 @@ GameObject:
   - component: {fileID: 2572421926160760838}
   - component: {fileID: 2572421926160760836}
   - component: {fileID: 2572421926160760839}
+  - component: {fileID: 7050792519669791352}
   m_Layer: 3
   m_Name: "\u043F\u0440\u0430\u0432\u043E\u0435 \u0437\u0435\u0440\u043A\u0430\u043B\u043E"
   m_TagString: Untagged
@@ -12471,6 +12488,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7050792519669791352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421926160760833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 4559115677744312479}
+  _defaultMaterial: {fileID: 2100000, guid: 6983a778417e245409511f9bf93b1c81, type: 2}
+  _reflectionMaterial: {fileID: 2100000, guid: 5b723c0da5dc56848833fc758fda033b, type: 2}
 --- !u!1 &2572421926190532732
 GameObject:
   m_ObjectHideFlags: 0
@@ -17795,10 +17827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mirrors:
-  - _texture: {fileID: 8400000, guid: 4580c4e2a0930644bb42daa4f5dc42b3, type: 2}
-    _camera: {fileID: 8093090206362060468}
-  - _texture: {fileID: 8400000, guid: 41a85b720f19561438d483556ee5c614, type: 2}
-    _camera: {fileID: 4559115677744312479}
+  - {fileID: 4610743682661218162}
+  - {fileID: 7050792519669791352}
 --- !u!1 &2572421926771833837
 GameObject:
   m_ObjectHideFlags: 0
