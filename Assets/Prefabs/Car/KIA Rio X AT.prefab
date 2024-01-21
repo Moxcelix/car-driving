@@ -404,6 +404,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95110991992447446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
   m_PrefabInstance: {fileID: 5700425832847715374}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5641354360012721663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 95110991992447441, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 5700425832847715374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7868082256504135554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354360012721663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1458556741}
+  _defaultMaterial: {fileID: 2100000, guid: 6983a778417e245409511f9bf93b1c81, type: 2}
+  _reflectionMaterial: {fileID: 2100000, guid: 5b723c0da5dc56848833fc758fda033b, type: 2}
 --- !u!114 &5641354360090741003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 95110992028394789, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
@@ -434,6 +454,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _door: {fileID: 5641354359249175064}
   _hintText: "\u0421\u0435\u0441\u0442\u044C"
+--- !u!1 &5641354360881674210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 95110990704335820, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+  m_PrefabInstance: {fileID: 5700425832847715374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &94859675360307137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354360881674210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1686494298}
+  _defaultMaterial: {fileID: 2100000, guid: 6983a778417e245409511f9bf93b1c81, type: 2}
+  _reflectionMaterial: {fileID: 2100000, guid: 6d3c1148ca87cad4d8e828cf054e45b5, type: 2}
 --- !u!4 &5641354360881674211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 95110990704335821, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
