@@ -36,12 +36,13 @@ namespace Core.Car
             }
 
             _gearText.text =
-                _computer.TransmissionMode == AutomaticTransmissionMode.DRIVING ||
-                _computer.TransmissionMode == AutomaticTransmissionMode.MANUAL ?
+                _computer.TransmissionMode == AutomaticTransmissionMode.DRIVING.ToString() ||
+                _computer.TransmissionMode == AutomaticTransmissionMode.MANUAL.ToString() ||
+                _computer.TransmissionMode == ManualTransmissionMode.GEAR.ToString() ?
                 _computer.Gear.ToString() : string.Empty;
 
             _mileageText.text = ((int)_computer.Mileage).ToString() + " KM";
-            _modeText.text = _computer.TransmissionMode.ToString();
+            _modeText.text = _computer.TransmissionMode;
             _speedText.text = _computer.Speed.ToString() + " KM/H";
             _instantaneousConsumptionText.text =
                 new string('=',

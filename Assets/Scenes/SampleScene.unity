@@ -1003,6 +1003,25 @@ RectTransform:
   m_AnchoredPosition: {x: 234.27682, y: -89.10463}
   m_SizeDelta: {x: 400.317, y: 117.7768}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &72968669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5641354360429588630, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 1972204880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &72968671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72968669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7304b01837006f64d9879501a85dac76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: fcd913f347dbe74468bdf3096dd33d8a, type: 2}
+  _targetMaterialName: "\u043A\u043E\u0440\u043F\u0443\u0441"
 --- !u!1 &75502752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,6 +3765,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95110990273813378, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
   m_PrefabInstance: {fileID: 313560030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &340092583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5641354359547261795, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 1972204880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &340092585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340092583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb28ab62aff256242b615a2d4e181182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mirrors:
+  - {fileID: 674175993}
+  - {fileID: 1172141553}
 --- !u!1 &345543822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,7 +5263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.15
+      value: -20.74
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6018,6 +6057,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &674175993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 94859675360307137, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 1972204880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679289727
 GameObject:
   m_ObjectHideFlags: 0
@@ -10198,6 +10248,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 69.332, y: 0, z: 0}
+--- !u!114 &1172141553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7868082256504135554, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 1972204880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26479bd15c86e45979f50f1bae98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1176126330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10657,7 +10718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.09
+      value: -14.39
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16772,6 +16833,99 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &1972204880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1458556738, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458556740, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458556741, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686494295, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686494297, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686494298, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354359547261598, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _carMirrors
+      value: 
+      objectReference: {fileID: 340092585}
+    - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X AT (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178113, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _number
+      value: "\u0432465\u043A\u043C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000018119812
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._maxTorque
+      value: 320
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
 --- !u!1 &1978773700
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace Core.Car
 
         public float Speed { get; private set; }
 
-        public AutomaticTransmissionMode TransmissionMode { get; private set; }
+        public string TransmissionMode { get; private set; }
 
         public int Gear { get; private set; }
 
@@ -41,13 +41,19 @@ namespace Core.Car
 
         public void Update()
         {
-            var transmission = _car.Transmission as AutomaticTransmission;
+            var automaticTransmission = _car.Transmission as AutomaticTransmission;
+            var manualTransmission = _car.Transmission as ManualTransmission;
 
-            if(transmission != null)
+            if(automaticTransmission != null)
             {
-                TransmissionMode = transmission.Mode;
+                TransmissionMode = automaticTransmission.Mode.ToString();
             }
-           
+
+            if (manualTransmission != null)
+            {
+                TransmissionMode = manualTransmission.Mode.ToString();
+            }
+
             Gear = _car.Transmission.CurrentGear + 1;
             Mileage = _mileage.Amount;
 
