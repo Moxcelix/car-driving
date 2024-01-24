@@ -15,7 +15,6 @@ namespace Core.Car
         private const float c_transitionSpeed = 0.4f;
 
         [SerializeField] private AnimationCurve _startEngine;
-        [SerializeField] private AnimationCurve _stopEngine;
 
         private float _runningValue;
         private float _runningTransition;
@@ -70,8 +69,8 @@ namespace Core.Car
             }
             if (State == EngineState.STOPED && _runningTransition > 0.0f)
             {
-                _runningTransition -= c_transitionSpeed * Time.deltaTime;
-                _runningValue = _stopEngine.Evaluate(_runningTransition);
+                _runningTransition = 0;
+                _runningValue = 0;
             }
 
             _runningTransition = Mathf.Clamp(_runningTransition, 0.0f, 1.0f);

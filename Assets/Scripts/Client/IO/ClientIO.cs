@@ -218,8 +218,6 @@ public class ClientIO :
         Clutch = Mathf.Max(_clutchSmoothPressing.Value,
             Mathf.Clamp01(Input.GetAxis(_clutchJoystickAxis)));
 
-        Debug.Log(Input.GetAxis(_clutchJoystickAxis));
-
         SteerDelta = _steerDelta;
     }
 
