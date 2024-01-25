@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public abstract class ITransmission : MonoBehaviour
+    public abstract class Transmission : MonoBehaviour
     {
         public bool IsReverse { get; protected set; }
         public float Torque { get; protected set; }

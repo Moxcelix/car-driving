@@ -11,7 +11,7 @@ namespace Core.Car
         DRIVING,
         MANUAL,
     }
-    public class AutomaticTransmission : ITransmission
+    public class AutomaticTransmission : Transmission
     {
         private const float c_speedEps = 0.1f;
 

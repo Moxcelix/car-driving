@@ -9,7 +9,7 @@ namespace Core.Car
         NEUTRAL,
     }
 
-    public class ManualTransmission : ITransmission
+    public class ManualTransmission : Transmission
     {
         [SerializeField] private GameObject _selectorPos_N;
         [SerializeField] private GameObject _selectorPos_NL;

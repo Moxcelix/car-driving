@@ -29,7 +29,7 @@ namespace Core.Car
 
         [Header("Engine")]
         [SerializeField] private Engine _engine;
-        [SerializeField] private ITransmission _transmission;
+        [SerializeField] private Transmission _transmission;
 
         [Header("Doors")]
         [SerializeField] private Door[] _doors;
@@ -44,7 +44,7 @@ namespace Core.Car
         public ParkingBrake ParkingBrake => _parkingBrake;
         public SteeringWheel SteeringWheel => _steeringWheel;
         public Engine Engine => _engine;
-        public ITransmission Transmission => _transmission;
+        public Transmission Transmission => _transmission;
         public TurnLights TurnLights => _turnLights;
         public HeadLights HeadLights => _headLights;
         public Computer Computer => _computer;
