@@ -214,9 +214,16 @@ namespace Core.Car
                 return;
             }
 
-            if(targetGeer > _currentGear && Mode == AutomaticTransmissionMode.MANUAL)
+            if(Mode == AutomaticTransmissionMode.MANUAL)
             {
-                return;
+                if (_currentGear > 0 && RPM < _supportRPM)
+                {
+                    targetGeer = _currentGear - 1;
+                }
+                else
+                {
+                    return;
+                }
             }
 
             _currentGear = targetGeer;
