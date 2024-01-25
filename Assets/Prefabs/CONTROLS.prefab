@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8861340852555596417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8861340852555596416}
+  - component: {fileID: 8861340852555596423}
+  m_Layer: 0
+  m_Name: CONTROLS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8861340852555596416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861340852555596417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.956484, y: -0.15907478, z: -1.5587387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8861340852555596423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861340852555596417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5438a5ee6fa7adc4f9028683ed885be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyValues:
+  - _name: forward
+    _keyCode: 119
+  - _name: back
+    _keyCode: 115
+  - _name: left
+    _keyCode: 97
+  - _name: right
+    _keyCode: 100
+  - _name: jump
+    _keyCode: 32
+  - _name: run
+    _keyCode: 306
+  - _name: leave
+    _keyCode: 304
+  - _name: ignition
+    _keyCode: 116
+  - _name: gas
+    _keyCode: 119
+  - _name: brake
+    _keyCode: 32
+  - _name: left_steer
+    _keyCode: 97
+  - _name: right_steer
+    _keyCode: 100
+  - _name: switch_up
+    _keyCode: 273
+  - _name: switch_down
+    _keyCode: 274
+  - _name: switch_right
+    _keyCode: 275
+  - _name: switch_left
+    _keyCode: 276
+  - _name: parking_brake
+    _keyCode: 114
+  - _name: power
+    _keyCode: 306
+  - _name: left_blinker
+    _keyCode: 44
+  - _name: right_blinker
+    _keyCode: 46
+  - _name: emergency
+    _keyCode: 102
+  - _name: head_light
+    _keyCode: 9
+  - _name: interact
+    _keyCode: 101
+  - _name: next_view
+    _keyCode: 118
+  - _name: clutch
+    _keyCode: 113

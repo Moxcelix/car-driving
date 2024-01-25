@@ -23,6 +23,7 @@ namespace Core.Car
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
         [SerializeField] private float _forcedSwitchRPM = 6000.0f;
+        [SerializeField] private float _supportRPM = 1000.0f;
 
         private RatioShifter _ratioShifter;
 
@@ -60,7 +61,7 @@ namespace Core.Car
             _gasValue = _car.GasPedal.Value;
 
             _ratioShifter.Update();
-            _torqueConverter.Switch(_currentGear == 0 && _car.Engine.Enabled);
+            _torqueConverter.Switch((_currentGear == 0 || RPM < _supportRPM) && _car.Engine.Enabled);
 
             UpdateAccelerationFactor(_gasValue, Time.deltaTime);
             UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
@@ -197,11 +198,12 @@ namespace Core.Car
                 return;
             }
 
-            var currentRPM = rpm * GetRatio();
             if (_ratioShifter.IsShifting)
             {
                 return;
             }
+
+            var currentRPM = rpm * GetRatio();
 
             if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
                 currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
