@@ -186,12 +186,8 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if (Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                return;
-            }
-
-            if (Mode != AutomaticTransmissionMode.DRIVING)
+            if (Mode != AutomaticTransmissionMode.DRIVING && 
+                Mode != AutomaticTransmissionMode.MANUAL)
             {
                 _currentGear = 0;
 
@@ -214,6 +210,11 @@ namespace Core.Car
 
             int targetGeer = GetGearByAcceleration(rpm);
             if (targetGeer == _currentGear)
+            {
+                return;
+            }
+
+            if(targetGeer > _currentGear && Mode == AutomaticTransmissionMode.MANUAL)
             {
                 return;
             }

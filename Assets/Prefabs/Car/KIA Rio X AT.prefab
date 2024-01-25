@@ -328,6 +328,38 @@ PrefabInstance:
       value: 0.754717
       objectReference: {fileID: 0}
     - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[0]._maxRPM
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[1]._maxRPM
+      value: 2200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[1]._minRPM
+      value: 850
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[2]._maxRPM
+      value: 2200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[3]._maxRPM
+      value: 2200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[4]._maxRPM
+      value: 2100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[5]._maxRPM
+      value: 2100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
+      propertyPath: _gears.Array.data[5]._minRPM
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904763920680034446, guid: 768fe952c01780e43a98591ea2dd01ba, type: 3}
       propertyPath: _gears.Array.data[1]._minSpeed
       value: 10
       objectReference: {fileID: 0}
