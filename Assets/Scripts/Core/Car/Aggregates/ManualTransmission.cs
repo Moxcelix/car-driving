@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Core.Car
@@ -133,6 +134,11 @@ namespace Core.Car
             var neutral = Mode == ManualTransmissionMode.NEUTRAL ? 1.0f : 0.0f;
 
             Brake = Mathf.Clamp01(clutch + neutral) * resistance;
+
+            if(_outputRPM < 1)
+            {
+                Brake = 0;
+            }
         }
 
         private void UpdateSelector()
