@@ -27,7 +27,6 @@ namespace Core.Car
         [SerializeField] private float _reverseGearRatio = 3.44f;
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
-        [SerializeField] private float _forcedSwitchRPM = 6000.0f;
 
         [SerializeField] private Pedal _clutchPedal;
         [SerializeField][Range(0.0f, 1.0f)] private float _clutchWear;
@@ -120,15 +119,12 @@ namespace Core.Car
             };
         }
 
-
-
         public override void SetValues(float inputTorque, float inputRPM, float outputRPM)
         {
             _inputTorque = inputTorque;
             _inputRPM = inputRPM;
             _outputRPM = outputRPM;
         }
-
 
         private void UpdateBrake()
         {
