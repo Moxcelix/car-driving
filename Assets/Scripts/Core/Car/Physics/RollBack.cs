@@ -16,7 +16,7 @@ namespace Core.Car
 
             if (Mathf.Abs(torque) < _magnitude)
             {
-                
+                SetToqrque(torque * Mathf.Sin(transform.localEulerAngles.x));
             }
         }
 
