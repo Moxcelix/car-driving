@@ -204,9 +204,18 @@ namespace Core.Car
             return Mathf.Clamp01(1.0f - _clutchPedal.Value * (1.0f + _clutchWear));
         }
 
+        private float GetClutchPowerUpCoefficient()
+        {
+            var inputRPM = _inputRPM;
+            var outputRPM = _outputRPM * GetRatio();
+
+            return inputRPM == 0 ? 1.0f : (inputRPM - outputRPM) / inputRPM + 1.0f;
+        }
+
         private void UpdateTorque(float inputTorque, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
+            var coefficient = GetClutchPowerUpCoefficient();    
 
             Load = Mode == ManualTransmissionMode.NEUTRAL ? 0 : GetClutchValue();
             Torque =
