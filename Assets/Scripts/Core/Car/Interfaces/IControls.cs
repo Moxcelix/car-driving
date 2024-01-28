@@ -20,6 +20,5 @@ namespace Core.Car
         public float Clutch { get; }
         public float SteerDelta { get; }
 
-        public void Update();
     }
 }

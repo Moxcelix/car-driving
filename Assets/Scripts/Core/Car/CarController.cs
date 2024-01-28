@@ -62,8 +62,6 @@ namespace Core.Car
                 return;
             }
 
-            _controls.Update();
-
             _car.GasPedal.Value = _controls.Gas;
             _car.BrakePedal.Value = _controls.Brake;
             _car.SteeringWheel.Steer(_controls.SteerDelta);

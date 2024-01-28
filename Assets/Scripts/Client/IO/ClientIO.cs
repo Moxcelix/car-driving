@@ -140,11 +140,12 @@ public class ClientIO :
         HandleViewSwitching();
         HandlePauseSwitch();
         HandlePlayerInput();
+        HandleCarInput();
         HandleInteract();
         HandleHelpOpen();
     }
 
-    void IControls.Update()
+    private void HandleCarInput()
     {
         _switchUp.Update();
         _switchDown.Update();
