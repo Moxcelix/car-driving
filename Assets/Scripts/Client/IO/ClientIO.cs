@@ -39,6 +39,10 @@ public class ClientIO :
     private readonly string _gasJoystickAxis = "GasAxis";
     private readonly string _brakeJoystickAxis = "BrakeAxis";
     private readonly string _steerJoystickAxis = "TurnAxis";
+    private readonly string _walkForwardJoystickAxis = "WalkForwardAxis";
+    private readonly string _walkSideJoystickAxis = "WalkSideAxis";
+    private readonly string _lookVerticalJoystickAxis = "LookVerticalAxis";
+    private readonly string _lookHorizontalJoystickAxis = "LookHorizontalAxis";
 
     [SerializeField] private float _mouseSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
