@@ -45,6 +45,7 @@ public class ClientIO :
     private readonly string _lookHorizontalJoystickAxis = "LookHorizontalAxis";
 
     [SerializeField] private float _mouseSensitivity = 2;
+    [SerializeField] private float _joystickSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
     [SerializeField] private float _steerSensitivityJoystick = 50.0f;
 
@@ -228,13 +229,25 @@ public class ClientIO :
 
     private void HandlePlayerInput()
     {
-        RotationDeltaX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-        RotationDeltaY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+        float MaxByAbs(float x, float y)
+        {
+            return Mathf.Abs(x) > Mathf.Abs(y) ? x: y;
+        }
 
-        MoveForward = Input.GetKey(_controls[_forwardKey]);
-        MoveBack = Input.GetKey(_controls[_backKey]);
-        MoveRight = Input.GetKey(_controls[_rightKey]);
-        MoveLeft = Input.GetKey(_controls[_leftKey]);
+        var joystickSensitivity = 0.1;
+        RotationDeltaX = MaxByAbs(Input.GetAxis("Mouse X") * _mouseSensitivity,
+            Input.GetAxis(_lookHorizontalJoystickAxis) * _joystickSensitivity);
+        RotationDeltaY = MaxByAbs(Input.GetAxis("Mouse Y") * _mouseSensitivity,
+            Input.GetAxis(_lookVerticalJoystickAxis) * _joystickSensitivity);
+
+        MoveForward = Input.GetKey(_controls[_forwardKey]) || 
+            Input.GetAxis(_walkForwardJoystickAxis) > joystickSensitivity;
+        MoveBack = Input.GetKey(_controls[_backKey]) ||
+            Input.GetAxis(_walkForwardJoystickAxis) < -joystickSensitivity;
+        MoveRight = Input.GetKey(_controls[_rightKey]) ||
+            Input.GetAxis(_walkSideJoystickAxis) > joystickSensitivity;
+        MoveLeft = Input.GetKey(_controls[_leftKey]) || 
+            Input.GetAxis(_walkSideJoystickAxis) < -joystickSensitivity;
         IsRunning = Input.GetKey(_controls[_runKey]);
         IsJumping = Input.GetKey(_controls[_jumpKey]);
 

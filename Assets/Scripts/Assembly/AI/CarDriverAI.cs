@@ -140,6 +140,9 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             _gasSmoothPressing.Release(Time.deltaTime);
         }
+
+        Gas = _gasSmoothPressing.Value;
+        Brake = _brakeSmoothPressing.Value;
     }
 
     private void Restart()
@@ -178,12 +181,6 @@ public class CarDriverAI : MonoBehaviour, IControls
             _driver.TurnAmount - 
             _car.SteeringWheel.TurnAmount) *
                 deltaTime * _steerSpeed;
-    }
-
-    void IControls.Update()
-    {
-        Gas = _gasSmoothPressing.Value;
-        Brake = _brakeSmoothPressing.Value;
     }
 
     private IEnumerator MainAI()
