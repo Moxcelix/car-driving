@@ -5158,10 +5158,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._minRPM
-      value: 400
-      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -8563,6 +8559,7 @@ MonoBehaviour:
   _clientUI: {fileID: 2005097618}
   _clientIO:
     _mouseSensitivity: 2
+    _joystickSensitivity: 2
     _steerSensitivityKeyboard: 0.1
     _steerSensitivityJoystick: 50
   _viewSwitcher:

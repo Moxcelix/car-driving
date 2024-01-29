@@ -30,6 +30,8 @@ namespace Core.Car
         [SerializeField] private float _lastGearRatio = 3.574f;
 
         [SerializeField] private Pedal _clutchPedal;
+        [SerializeField] private AnimationCurve _clutchDisplacement;
+        [SerializeField] private AnimationCurve _clutchFeedback;
         [SerializeField][Range(0.0f, 1.0f)] private float _clutchWear;
 
         private float _inputTorque = 0;
@@ -135,7 +137,7 @@ namespace Core.Car
 
             Brake = Mathf.Clamp01(clutch + neutral) * resistance;
 
-            if(_outputRPM < 1)
+            if (_outputRPM < 1)
             {
                 Brake = 0;
             }
@@ -210,24 +212,18 @@ namespace Core.Car
             return Mathf.Clamp01(1.0f - _clutchPedal.Value * (1.0f + _clutchWear));
         }
 
-        private float GetClutchPowerUpCoefficient()
-        {
-            var inputRPM = _inputRPM;
-            var outputRPM = _outputRPM * GetRatio();
-
-            return inputRPM == 0 ? 1.0f : (inputRPM - outputRPM) / inputRPM + 1.0f;
-        }
-
         private void UpdateTorque(float inputTorque, float outputRPM)
         {
             var nativeRPM = outputRPM * GetRatio();
-            var coefficient = GetClutchPowerUpCoefficient();    
+            var coefficient = _clutchDisplacement.Evaluate(GetClutchValue());
 
-            Load = Mode == ManualTransmissionMode.NEUTRAL ? 0 : GetClutchValue();
+            Load = 
+                Mode == ManualTransmissionMode.NEUTRAL ?
+                0 : _clutchFeedback.Evaluate(GetClutchValue());
             Torque =
+                coefficient *
                 inputTorque *
-                GetRatio() *
-                GetClutchValue();
+                GetRatio();
 
             RPM = nativeRPM;
         }

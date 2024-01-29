@@ -8974,7 +8974,7 @@ MonoBehaviour:
     _cutoffRPM: 6500
     _recoveryRPM: 6000
     _maxRPM: 7000
-    _minRPM: 400
+    _minRPM: 450
     _idlingRPM: 700
     _maxTorque: 400
     _responsiveness: 6
@@ -9624,6 +9624,72 @@ MonoBehaviour:
   _idlingRMP: 800
   _lastGearRatio: 4.176
   _clutchPedal: {fileID: 6725525967088368840}
+  _clutchDisplacement:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4250977
+      value: 0.9364349
+      inSlope: 0.38222072
+      outSlope: 0.38222072
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21415593
+      outWeight: 0.15190484
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _clutchFeedback:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.31443796
+      outSlope: 0.31443796
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.31203866
+    - serializedVersion: 3
+      time: 0.29765305
+      value: 0.25335628
+      inSlope: 2.5521126
+      outSlope: 3.0258553
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.14189364
+      outWeight: 0.063610785
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.023184022
+      outSlope: 0.9843667
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.12764783
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _clutchWear: 0.222
 --- !u!114 &6349624699401190013
 MonoBehaviour:
