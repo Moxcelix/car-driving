@@ -31,28 +31,15 @@ namespace Core.Entity
 
         public void Update()
         {
-            if(_entityBody == null) return;
+            if (_entityBody == null)
+            {
+                return;
+            }
 
-            var forward = IsAvailable && _controls.MoveForward ?
-                Movement.POSITIVE :
-                Movement.NONE;
-
-            var back = IsAvailable && _controls.MoveBack ?
-                Movement.NEGATIVE :
-                Movement.NONE;
-
-            var right = IsAvailable && _controls.MoveRight ?
-                Movement.POSITIVE :
-                Movement.NONE;
-
-            var left = IsAvailable && _controls.MoveLeft ?
-                Movement.NEGATIVE :
-                Movement.NONE;
-
-            var horizontal = (Movement)((int)right + (int)left);
-            var vertical = (Movement)((int)forward + (int)back);
-
-            _entityBody.Move((int)horizontal, (int)vertical);
+            if (IsAvailable)
+            {
+                _entityBody.Move(_controls.MoveSide, _controls.MoveForward);
+            }
 
             _entityBody.IsRunning = IsAvailable && _controls.IsRunning;
             _entityBody.IsJumping = IsAvailable && _controls.IsJumping;
