@@ -103,17 +103,14 @@ public class ClientIO :
 
     public float RotationDeltaY { get; private set; }
 
-    public bool MoveForward { get; private set; }
+    public float MoveForward { get; private set; }
 
-    public bool MoveBack { get; private set; }
-
-    public bool MoveRight { get; private set; }
-
-    public bool MoveLeft { get; private set; }
+    public float MoveSide { get; private set; }
 
     public bool IsRunning { get; private set; }
 
     public bool IsJumping { get; private set; }
+
 
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
@@ -229,25 +226,24 @@ public class ClientIO :
 
     private void HandlePlayerInput()
     {
-        float MaxByAbs(float x, float y)
+        static float MaxByAbs(float x, float y)
         {
             return Mathf.Abs(x) > Mathf.Abs(y) ? x: y;
         }
 
-        var joystickSensitivity = 0.1;
         RotationDeltaX = MaxByAbs(Input.GetAxis("Mouse X") * _mouseSensitivity,
             Input.GetAxis(_lookHorizontalJoystickAxis) * _joystickSensitivity);
         RotationDeltaY = MaxByAbs(Input.GetAxis("Mouse Y") * _mouseSensitivity,
             Input.GetAxis(_lookVerticalJoystickAxis) * _joystickSensitivity);
 
-        MoveForward = Input.GetKey(_controls[_forwardKey]) || 
-            Input.GetAxis(_walkForwardJoystickAxis) > joystickSensitivity;
-        MoveBack = Input.GetKey(_controls[_backKey]) ||
-            Input.GetAxis(_walkForwardJoystickAxis) < -joystickSensitivity;
-        MoveRight = Input.GetKey(_controls[_rightKey]) ||
-            Input.GetAxis(_walkSideJoystickAxis) > joystickSensitivity;
-        MoveLeft = Input.GetKey(_controls[_leftKey]) || 
-            Input.GetAxis(_walkSideJoystickAxis) < -joystickSensitivity;
+        var keyForward = Input.GetKey(_controls[_forwardKey]) ? 1 : 0;
+        var keyBack = Input.GetKey(_controls[_backKey]) ? 1 : 0;
+        var keyRight = Input.GetKey(_controls[_rightKey]) ? 1 : 0;
+        var keyLeft = Input.GetKey(_controls[_leftKey]) ? 1 : 0;
+
+        MoveForward = MaxByAbs(keyForward - keyBack, Input.GetAxis(_walkForwardJoystickAxis));
+        MoveSide = MaxByAbs(keyRight - keyLeft, Input.GetAxis(_walkSideJoystickAxis));
+
         IsRunning = Input.GetKey(_controls[_runKey]);
         IsJumping = Input.GetKey(_controls[_jumpKey]);
 
