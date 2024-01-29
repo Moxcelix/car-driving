@@ -247,7 +247,8 @@ public class ClientIO :
         IsRunning = Input.GetKey(_controls[_runKey]);
         IsJumping = Input.GetKey(_controls[_jumpKey]);
 
-        if (Input.GetKeyDown(_controls[_leaveKey]))
+        if (Input.GetKeyDown(_controls[_leaveKey]) ||
+            Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             Leave?.Invoke();
         }
@@ -342,7 +343,8 @@ public class ClientIO :
         }
 
         if (Input.GetKeyDown(_controls[_interactKey]) ||
-            Input.GetMouseButtonDown(0))
+            Input.GetKeyDown(KeyCode.JoystickButton2) ||
+            Input.GetMouseButtonDown(0)) 
         {
             _interactiveRaycast.TryInteract();
         }
