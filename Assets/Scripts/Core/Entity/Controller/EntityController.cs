@@ -52,7 +52,7 @@ namespace Core.Entity
             var horizontal = (Movement)((int)right + (int)left);
             var vertical = (Movement)((int)forward + (int)back);
 
-            _entityBody.Move(horizontal, vertical);
+            _entityBody.Move((int)horizontal, (int)vertical);
 
             _entityBody.IsRunning = IsAvailable && _controls.IsRunning;
             _entityBody.IsJumping = IsAvailable && _controls.IsJumping;

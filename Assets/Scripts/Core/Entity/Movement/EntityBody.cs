@@ -17,6 +17,7 @@ namespace Core.Entity
         private Vector3 _acceleration;
         private Vector3 _planarVelocity;
         private Vector3 _rotation;
+        private Vector2 _moveTarget;
         private float _verticalVelocity;
 
         public Transform HeadTransform => _headTransform;
@@ -28,6 +29,7 @@ namespace Core.Entity
         {
             _characterController = GetComponent<CharacterController>();
             _planarVelocity = Vector3.zero;
+            _moveTarget = Vector2.zero;
         }
 
         private void Update()
@@ -43,7 +45,11 @@ namespace Core.Entity
                 EnvironmentResistance.Ground :
                 EnvironmentResistance.Air;
             var maxVelocity = _speed *
-                (IsRunning ? _runMultiplier : 1.0f);  
+                (IsRunning ? _runMultiplier : 1.0f) * _moveTarget.magnitude;
+
+            _acceleration = (
+                _moveTarget.y * transform.forward +
+                _moveTarget.x * transform.right).normalized * _climb;
 
             _planarVelocity *= Mathf.Pow(
                 _damping * decreasing, Time.deltaTime);
@@ -69,11 +75,12 @@ namespace Core.Entity
                 + Time.deltaTime * _verticalVelocity * Vector3.up);
         }
 
-        public void Move(Movement horizontal, Movement vertical)
+        public void Move(float horizontal, float vertical)
         {
-            _acceleration = (
-                (int)vertical * transform.forward +
-                (int)horizontal * transform.right).normalized * _climb;
+            _moveTarget = new Vector2(horizontal, vertical);
+            //_acceleration = (
+            //    vertical * transform.forward +
+            //    horizontal * transform.right).normalized * _climb;
         }
 
         public void UpdateView(Vector3 rotationDelta)
