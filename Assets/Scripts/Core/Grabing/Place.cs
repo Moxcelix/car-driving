@@ -6,6 +6,8 @@ namespace Core.Grabing
     {
         public Item Item { get; private set; }
 
+        public bool IsPlaced => Item != null;
+
         public Item TakeItem()
         {
             var item = Item;

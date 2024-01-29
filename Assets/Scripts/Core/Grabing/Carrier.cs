@@ -11,9 +11,33 @@ namespace Core.Grabing
             item.IsTaken = true;
         }
 
+        public void Take(Place place)
+        {
+            if (!place.IsPlaced)
+            {
+                return;
+            }
+
+            Take(place.TakeItem());
+        }
+
         public void Drop()
         {
             Item.IsTaken = false;
+
+            Item = null;
+        }
+
+        public void Drop(Place place)
+        {
+            if (place.IsPlaced)
+            {
+                return;
+            }
+
+            place.PlaceItem(Item);
+
+            Item.IsTaken = true;
 
             Item = null;
         }
