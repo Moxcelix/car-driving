@@ -1,8 +1,17 @@
+using UnityEngine;
+
 namespace Core.Grabing
 {
     public class Carrier
     {
         public Item Item { get; private set; }
+
+        public void Grab(Vector3 position)
+        {
+            if(Item == null) return;
+
+            Item.gameObject.transform.position = position;
+        }
 
         public void Take(Item item)
         {

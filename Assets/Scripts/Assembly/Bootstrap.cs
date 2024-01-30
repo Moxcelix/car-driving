@@ -2,6 +2,7 @@ using Core.Entity;
 using Core.GameManagment;
 using Core.InputManagment;
 using Core.Raycasting;
+using Core.Grabing;
 using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
@@ -23,6 +24,7 @@ public class Bootstrap : MonoBehaviour
     private GameState _gameState;
     private AvatarController _avatarController;
     private InteractiveRaycast _interactiveRaycast;
+    private Carrier _carrier;
 
     /// <summary>
     /// Creating and injecting main dependencies.
@@ -47,12 +49,15 @@ public class Bootstrap : MonoBehaviour
         _interactiveRaycast =
             new InteractiveRaycast(rayCaster, _avatarController);
 
+        // Grabbing set up.
+        _carrier = new Carrier();
+
         // View switcher set up.
         _viewSwitcher.Initialize(_avatarController);
 
         // Client IO set up.
         _clientIO.Initialize(_gameState, _controls,
-            _pauseMenu, _interactiveRaycast, _viewSwitcher);
+            _pauseMenu, _interactiveRaycast, _viewSwitcher, _carrier);
         _clientUI.Initialize(_gameState, _controls,
             _interactiveRaycast);
 

@@ -1,6 +1,7 @@
 using Core.Car;
 using Core.GameManagment;
 using Core.InputManagment;
+using Core.Grabing;
 
 using System;
 using UnityEngine;
@@ -73,6 +74,7 @@ public class ClientIO :
     private Controls _controls;
     private InteractiveRaycast _interactiveRaycast;
     private ViewSwitcher _viewSwitcher;
+    private Carrier _carrier;
 
     private BlinkerState _blinkerState = BlinkerState.None;
 
@@ -115,13 +117,14 @@ public class ClientIO :
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
         InteractiveRaycast interactiveRaycast,
-        ViewSwitcher viewSwitcher)
+        ViewSwitcher viewSwitcher, Carrier carrier)
     {
         this._gameState = gameState;
         this._controls = controls;
         this._pauseMenu = pauseMenu;
         this._interactiveRaycast = interactiveRaycast;
         this._viewSwitcher = viewSwitcher;
+        this._carrier = carrier;
 
         _switchUp.OnPress += () => TransmissionSelectorUp?.Invoke();
         _switchDown.OnPress += () => TransmissionSelectorDown?.Invoke();
@@ -141,6 +144,7 @@ public class ClientIO :
         HandleCarInput();
         HandleInteract();
         HandleHelpOpen();
+        HandleGrabbing();
     }
 
     private void HandleCarInput()
@@ -358,5 +362,10 @@ public class ClientIO :
         {
             _viewSwitcher.Switch();
         }
+    }
+
+    private void HandleGrabbing()
+    {
+
     }
 }

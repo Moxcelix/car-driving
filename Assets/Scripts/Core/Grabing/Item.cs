@@ -7,6 +7,10 @@ namespace Core.Grabing
     {
         private Rigidbody _rigidbody;
 
+        [SerializeField] private string _name;
+
+        public string Hint => $"Взять {_name}";
+
         public bool IsTaken {  get; set; }
 
         private void Awake()
