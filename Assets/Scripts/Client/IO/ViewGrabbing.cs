@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class ViewGrabbing
 {
-    private const float indent = 0.5f;
+    private const float indent = 0.0f;
+    private const float strartIndent = 0.5f;
 
     private readonly Carrier _carrier;
     private readonly Transform _transform;
@@ -18,12 +19,21 @@ public class ViewGrabbing
 
     public void Update()
     {
-        var position = _transform.forward * (_rayLength - indent);
+        if(_carrier.Item == null) return;
 
-        if (Physics.Raycast(_transform.position,
-                _transform.forward, out RaycastHit hit, _rayLength))
+        var position = _transform.position + _transform.forward * (_rayLength - indent);
+
+        if (Physics.Raycast(_transform.position + _transform.forward * strartIndent,
+                _transform.forward, out RaycastHit hit, (_rayLength - strartIndent)))
         {
-            position = hit.point - indent * _transform.forward;
+            if(hit.distance < strartIndent)
+            {
+                position = _transform.position + _transform.forward * strartIndent;
+            }
+            else
+            {
+                position = hit.point - indent * _transform.forward;
+            }
         }
 
         _carrier.Grab(position);

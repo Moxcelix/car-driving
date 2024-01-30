@@ -19,11 +19,13 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private InputSettings _inputSettings;
     [SerializeField] private Help _help;
     [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private Transform _pointOfView;
 
     // Non-serialized members.
     private GameState _gameState;
     private AvatarController _avatarController;
     private InteractiveRaycast _interactiveRaycast;
+    private ViewGrabbing _viewGrabbing;
     private Carrier _carrier;
 
     /// <summary>
@@ -45,12 +47,15 @@ public class Bootstrap : MonoBehaviour
             avatarType: AvatarType.OBSERVED);
         _avatarController.ProvideEntityHandling(_playerBody);
 
+        // Grabbing set up.
+        _carrier = new Carrier();
+
         // Interactive raycasting set up.
         _interactiveRaycast =
             new InteractiveRaycast(rayCaster, _avatarController, _carrier);
 
-        // Grabbing set up.
-        _carrier = new Carrier();
+        // View grabbing set up.
+        _viewGrabbing = new ViewGrabbing(_carrier, _pointOfView, c_rayLength);
 
         // View switcher set up.
         _viewSwitcher.Initialize(_avatarController);
@@ -81,6 +86,7 @@ public class Bootstrap : MonoBehaviour
         _interactiveRaycast.Update();
         _avatarController.Update();
         _viewSwitcher.Update();
+        _viewGrabbing.Update();
 
         _avatarController.SetMoveAbility(_gameState.IsUnpause);
     }

@@ -60,6 +60,13 @@ public class InteractiveRaycast
 
     public void TryGrab()
     {
+        if(_carrier.Item != null)
+        {
+            _carrier.Drop();
+
+            return;
+        }
+
         if(_item is null)
         {
             return;
@@ -84,7 +91,7 @@ public class InteractiveRaycast
     {
         var raycastHit = _raycaster.CheckHit<Item>();
 
-        if (!raycastHit?.IsTaken ?? false)
+        if (raycastHit?.IsTaken ?? false)
         {
             return null;
         }

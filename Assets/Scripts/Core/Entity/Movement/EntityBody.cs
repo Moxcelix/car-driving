@@ -78,9 +78,6 @@ namespace Core.Entity
         public void Move(float horizontal, float vertical)
         {
             _moveTarget = new Vector2(horizontal, vertical);
-            //_acceleration = (
-            //    vertical * transform.forward +
-            //    horizontal * transform.right).normalized * _climb;
         }
 
         public void UpdateView(Vector3 rotationDelta)

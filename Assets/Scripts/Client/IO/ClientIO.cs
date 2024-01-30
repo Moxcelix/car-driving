@@ -351,6 +351,7 @@ public class ClientIO :
             Input.GetMouseButtonDown(0)) 
         {
             _interactiveRaycast.TryInteract();
+            _interactiveRaycast.TryGrab();
         }
     }
 

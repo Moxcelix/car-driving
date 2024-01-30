@@ -8,7 +8,9 @@ namespace Core.Grabing
 
         public void Grab(Vector3 position)
         {
-            if(Item == null) return;
+            if (Item == null) return;
+
+            Item.SetRotation(Vector3.zero);
 
             Item.gameObject.transform.position = position;
         }
@@ -17,7 +19,8 @@ namespace Core.Grabing
         {
             Item = item;
 
-            item.IsTaken = true;
+            Item.IsTaken = true;
+            Item.IsLocked = true;
         }
 
         public void Take(Place place)
@@ -33,6 +36,7 @@ namespace Core.Grabing
         public void Drop()
         {
             Item.IsTaken = false;
+            Item.IsLocked = false;
 
             Item = null;
         }
@@ -47,6 +51,7 @@ namespace Core.Grabing
             place.PlaceItem(Item);
 
             Item.IsTaken = true;
+            Item.IsLocked = true;
 
             Item = null;
         }
