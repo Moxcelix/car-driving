@@ -10,7 +10,6 @@ public class InteractiveRaycast
     private IInteractive _interactive;
     private Item _item;
 
-
     public string Hint { get; private set; }
     public bool IsFocused { get; private set; }
 
@@ -43,9 +42,7 @@ public class InteractiveRaycast
             Hint = string.Empty;
         }
 
-        IsFocused = 
-            _interactive is not null ||
-            _item is not null;
+        IsFocused = _interactive is not null;
     }
 
     public void TryInteract()
