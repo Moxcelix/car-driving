@@ -27,15 +27,10 @@ public class InteractiveRaycast
     public void Update()
     {
         _interactive = CastInteractive();
-        _item = CastItem();
 
         if (_interactive != null)
         {
             Hint = _interactive.Hint;
-        }
-        else if (_item != null)
-        {
-            Hint = _item.Hint;
         }
         else
         {
