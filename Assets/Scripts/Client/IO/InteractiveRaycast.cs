@@ -28,14 +28,7 @@ public class InteractiveRaycast
     {
         _interactive = CastInteractive();
 
-        if (_interactive != null)
-        {
-            Hint = _interactive.Hint;
-        }
-        else
-        {
-            Hint = string.Empty;
-        }
+        Hint = _interactive?.Hint ?? string.Empty;
 
         IsFocused = _interactive is not null;
     }
