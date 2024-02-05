@@ -8,7 +8,6 @@ public class InteractiveRaycast
     private readonly Carrier _carrier;
 
     private IInteractive _interactive;
-    private Item _item;
 
     public string Hint { get; private set; }
     public bool IsFocused { get; private set; }
@@ -21,7 +20,6 @@ public class InteractiveRaycast
         _carrier = carrier;
 
         _interactive = null;
-        _item = null;
     }
 
     public void Update()
@@ -41,23 +39,6 @@ public class InteractiveRaycast
         }
 
         _interactive.Interact(_userController);
-    }
-
-    public void TryGrab()
-    {
-        if(_carrier.Item != null)
-        {
-            _carrier.Drop();
-
-            return;
-        }
-
-        if(_item is null)
-        {
-            return;
-        }
-
-        _carrier.Take(_item);
     }
 
     private IInteractive CastInteractive()
