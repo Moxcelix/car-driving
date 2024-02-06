@@ -5,7 +5,6 @@ public class InteractiveRaycast
 {
     private readonly AvatarController _userController;
     private readonly Raycaster _raycaster;
-    private readonly Carrier _carrier;
 
     private IInteractive _interactive;
 
