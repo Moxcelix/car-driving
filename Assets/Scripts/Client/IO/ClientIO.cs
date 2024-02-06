@@ -73,6 +73,7 @@ public class ClientIO :
     private PauseMenu _pauseMenu;
     private Controls _controls;
     private InteractiveRaycast _interactiveRaycast;
+    private GrabbingRaycast _grabbingRaycast;
     private ViewSwitcher _viewSwitcher;
     private Carrier _carrier;
 
@@ -117,6 +118,7 @@ public class ClientIO :
     public void Initialize(GameState gameState,
         Controls controls, PauseMenu pauseMenu,
         InteractiveRaycast interactiveRaycast,
+        GrabbingRaycast grabbingRaycast,
         ViewSwitcher viewSwitcher, Carrier carrier)
     {
         this._gameState = gameState;
@@ -125,6 +127,7 @@ public class ClientIO :
         this._interactiveRaycast = interactiveRaycast;
         this._viewSwitcher = viewSwitcher;
         this._carrier = carrier;
+        this._grabbingRaycast = grabbingRaycast;
 
         _switchUp.OnPress += () => TransmissionSelectorUp?.Invoke();
         _switchDown.OnPress += () => TransmissionSelectorDown?.Invoke();
@@ -351,7 +354,7 @@ public class ClientIO :
             Input.GetMouseButtonDown(0)) 
         {
             _interactiveRaycast.TryInteract();
-            _interactiveRaycast.TryGrab();
+            _grabbingRaycast.TryGrab();
         }
     }
 

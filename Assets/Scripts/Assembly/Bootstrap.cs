@@ -25,6 +25,7 @@ public class Bootstrap : MonoBehaviour
     private GameState _gameState;
     private AvatarController _avatarController;
     private InteractiveRaycast _interactiveRaycast;
+    private GrabbingRaycast _grabbingRaycast;
     private ViewGrabbing _viewGrabbing;
     private Carrier _carrier;
 
@@ -57,12 +58,17 @@ public class Bootstrap : MonoBehaviour
         // View grabbing set up.
         _viewGrabbing = new ViewGrabbing(_carrier, _pointOfView, c_rayLength);
 
+        // Grabbing raycasting set up.
+        _grabbingRaycast = new GrabbingRaycast(rayCaster, _carrier);
+
         // View switcher set up.
         _viewSwitcher.Initialize(_avatarController);
 
         // Client IO set up.
-        _clientIO.Initialize(_gameState, _controls,
-            _pauseMenu, _interactiveRaycast, _viewSwitcher, _carrier);
+        _clientIO.Initialize(
+            _gameState, _controls,
+            _pauseMenu, _interactiveRaycast, 
+            _grabbingRaycast, _viewSwitcher, _carrier);
         _clientUI.Initialize(_gameState, _controls,
             _interactiveRaycast);
 

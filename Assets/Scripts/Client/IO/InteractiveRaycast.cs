@@ -16,7 +16,6 @@ public class InteractiveRaycast
     {
         _userController = userController;
         _raycaster = raycaster;
-        _carrier = carrier;
 
         _interactive = null;
     }
