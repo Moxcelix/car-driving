@@ -91,6 +91,7 @@ public class Bootstrap : MonoBehaviour
 
         _interactiveRaycast.Update();
         _avatarController.Update();
+        _grabbingRaycast.Update();
         _viewSwitcher.Update();
         _viewGrabbing.Update();
 
