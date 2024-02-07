@@ -185,27 +185,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private IEnumerator MainAI()
     {
-        if (_car.Engine.Starter.State == EngineState.STOPED)
-        {
-            EngineSwitch?.Invoke();
-        }
-
-        if (_car.ParkingBrake.State == ParkingBrakeState.RAISED)
-        {
-            ParkingBrakeSwitch?.Invoke();
-        }
-
-        SteerDelta = 0;
-
-        _brake = 1;
-
-        yield return new WaitForSeconds(2.0f);
-
-        //TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
-
-        yield return new WaitForSeconds(2.0f);
-
-        _brake = 0;
+        yield return StartCar();
 
         while (true)
         {
@@ -253,5 +233,37 @@ public class CarDriverAI : MonoBehaviour, IControls
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private IEnumerator StartCar()
+    {
+        _brake = 1;
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (_car.Engine.Starter.State == EngineState.STOPED)
+        {
+            EngineSwitch?.Invoke();
+
+            yield return new WaitForSeconds(2.0f);
+        }
+
+        if (_car.ParkingBrake.State == ParkingBrakeState.RAISED)
+        {
+            ParkingBrakeSwitch?.Invoke();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            TransmissionSelectorDown?.Invoke();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        _brake = 0;
     }
 }
