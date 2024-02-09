@@ -29,9 +29,9 @@ namespace Core.CarAI.Navigation
                         node.transform.position - direction.normalized * radius);
 
                     var right = Quaternion.LookRotation(direction) *
-                        Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * new Vector3(0, 0, 1);
+                        Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * Vector3.forward;
                     var left = Quaternion.LookRotation(direction) *
-                        Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
+                        Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * Vector3.forward;
                     Gizmos.DrawRay(node.transform.position - direction.normalized * radius,
                         right * arrowHeadLength);
                     Gizmos.DrawRay(node.transform.position - direction.normalized * radius,

@@ -104,7 +104,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         UpdateSteer();
 
         var speed = _car.GetSpeed();
-        var destinationDistance = speed * speed / 10.0f + 1.0f;
+        var destinationDistance = speed * speed / 10.0f + 3.0f;
 
         if (Vector3.Distance(
             _targetFinder.GetTarget().position,
@@ -123,7 +123,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         _carController.Update();
         _driver.Update(_car.SteeringWheel.TurnAmount, speed);
 
-        if (_brake > 0)
+        if (_brake > 0.5f)
         {
             _brakeSmoothPressing.Press(_brake, Time.deltaTime);
         }
@@ -132,7 +132,7 @@ public class CarDriverAI : MonoBehaviour, IControls
             _brakeSmoothPressing.Release(Time.deltaTime);
         }
 
-        if (_gas > 0)
+        if (_gas > 0.5f)
         {
             _gasSmoothPressing.Press(_gas, Time.deltaTime);
         }
@@ -161,7 +161,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             hits[i] = new Hit()
             {
-                Distance = 
+                Distance =
                     _hitTesters[i].HitDistance /
                     _hitTesters[i].MaxDistance
             };
@@ -178,7 +178,7 @@ public class CarDriverAI : MonoBehaviour, IControls
     private float GetSteerDelta(float deltaTime)
     {
         return (
-            _driver.TurnAmount - 
+            _driver.TurnAmount -
             _car.SteeringWheel.TurnAmount) *
                 deltaTime * _steerSpeed;
     }
@@ -191,48 +191,63 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             SteerDelta = GetSteerDelta(Time.unscaledDeltaTime);
 
-            /*switch (_driver.Mode)
+            switch (_driver.Mode)
             {
                 case Mode.Driving:
                     _gas = _learningAgent.Gas;
                     _brake = _learningAgent.Brake;
 
-                    if (_driver.Acceleration < 0 &&
-                        _car.Transmission.Mode == AutomaticTransmissionMode.DRIVING)
+                    if (_driver.Acceleration < 0)
                     {
-                        _brake = 1;
-                        yield return new WaitForSeconds(2.0f);
-                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.REVERSE);
-                        _brake = 0;
+                        yield return SetGear(AutomaticTransmissionMode.REVERSE);
                     }
 
-                    if (_driver.Acceleration >= 0 &&
-                        _car.Transmission.Mode != AutomaticTransmissionMode.DRIVING)
+                    if (_driver.Acceleration >= 0)
                     {
-                        _brake = 1;
-                        yield return new WaitForSeconds(2.0f);
-                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.DRIVING);
-                        _brake = 0;
+                        yield return SetGear(AutomaticTransmissionMode.DRIVING);
                     }
+
                     break;
                 case Mode.Accident:
                     _gas = 0;
                     _brake = 1;
 
-                    if (_car.Transmission.Mode != AutomaticTransmissionMode.PARKING)
-                    {
-                        TransmissionModeSwitch?.Invoke(AutomaticTransmissionMode.PARKING);
-                    }
+                    yield return SetGear(AutomaticTransmissionMode.PARKING);
+
                     if (!_car.TurnLights.EmergencyState)
                     {
                         EmergencySwitch?.Invoke();
                     }
 
                     break;
-            }*/
+            }
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private IEnumerator SetGear(AutomaticTransmissionMode mode)
+    {
+        var at = _car.Transmission as AutomaticTransmission;
+        var d = (int)mode < (int)at.Mode ? 1 : -1;
+
+        if (mode == at.Mode)
+        {
+            yield break;
+        }
+
+        _brake = 1;
+
+        yield return new WaitForSeconds(1.0f);
+
+        for (int i = (int)at.Mode; i < (int)mode; i += 1)
+        {
+            TransmissionSelectorDown?.Invoke();
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        _brake = 0;
     }
 
     private IEnumerator StartCar()
@@ -255,12 +270,7 @@ public class CarDriverAI : MonoBehaviour, IControls
             yield return new WaitForSeconds(0.1f);
         }
 
-        for (int i = 0; i < 3; i++)
-        {
-            TransmissionSelectorDown?.Invoke();
-
-            yield return new WaitForSeconds(0.1f);
-        }
+        yield return SetGear(AutomaticTransmissionMode.DRIVING);
 
         yield return new WaitForSeconds(0.5f);
 
