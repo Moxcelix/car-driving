@@ -12,6 +12,7 @@ namespace Core.CarMLAgents
         private const float gasRevard = 0.05f;
         private const float brakeRevard = -0.01f;
         private const float distanceRevard = -0.05f;
+        private const float timeSpendRevard = -0.01f;
 
         private Hit[] _hits;
         private float _gas;
@@ -22,7 +23,11 @@ namespace Core.CarMLAgents
         public float Gas => _gas;
 
         public float Brake => _brake;
-
+        
+        public void TimeSpend()
+        {
+            SetReward(timeSpendRevard);
+        }
 
         public void Bump()
         {

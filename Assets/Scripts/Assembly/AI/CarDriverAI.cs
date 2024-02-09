@@ -94,8 +94,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void Start()
     {
-        // TEST
         StartCoroutine(MainAI());
+        StartCoroutine(TimeSpend());
     }
 
     private void Update()
@@ -194,6 +194,14 @@ public class CarDriverAI : MonoBehaviour, IControls
             switch (_driver.Mode)
             {
                 case Mode.Driving:
+
+                    if (_car.Engine.Starter.State == EngineState.STOPED)
+                    {
+                        EngineSwitch?.Invoke();
+
+                        yield return new WaitForSeconds(2.0f);
+                    }
+
                     _gas = _learningAgent.Gas;
                     _brake = _learningAgent.Brake;
 
@@ -275,5 +283,17 @@ public class CarDriverAI : MonoBehaviour, IControls
         yield return new WaitForSeconds(0.5f);
 
         _brake = 0;
+    }
+
+    private IEnumerator TimeSpend()
+    {
+        var timeout = new WaitForSeconds(0.5f);
+
+        while (true)
+        {
+            _learningAgent.TimeSpend();
+
+            yield return timeout;
+        }
     }
 }
