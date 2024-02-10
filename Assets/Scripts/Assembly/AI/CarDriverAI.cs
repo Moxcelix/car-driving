@@ -15,8 +15,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private readonly float _steerSpeed = 2f;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 100.5f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(1f, 100.5f);
+    private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 10.5f);
+    private readonly SmoothPressing _brakeSmoothPressing = new(1f, 10.5f);
 
     [SerializeField] private Car _car;
     [SerializeField] private Damageable _damageable;
@@ -104,7 +104,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         UpdateSteer();
 
         var speed = _car.GetSpeed();
-        var destinationDistance = speed * speed / 10.0f + 3.0f;
+        var destinationDistance = speed * speed / 3.0f + 3.0f;
 
         if (Vector3.Distance(
             _targetFinder.GetTarget().position,
