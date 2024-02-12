@@ -18,6 +18,7 @@ namespace Core.CarMLAgents
         private float _gas;
         private float _brake;
         private float _steer;
+        private float _speed;
         private float _distanceSensetivity;
 
         public float Gas => _gas;
@@ -39,9 +40,10 @@ namespace Core.CarMLAgents
             SetReward(positionReachedReward);
         }
 
-        public void UpdateSteer(float steer)
+        public void UpdateParametrs(float steer, float speed)
         {
             _steer = steer;
+            _speed = speed;
         }
 
         public void UpdateHits(Hit[] hits)
@@ -67,6 +69,9 @@ namespace Core.CarMLAgents
             }
 
             sensor.AddObservation(_steer);
+            sensor.AddObservation(_gas);
+            sensor.AddObservation(_brake);
+            sensor.AddObservation(_speed);
         }
 
         public override void OnActionReceived(ActionBuffers actions)

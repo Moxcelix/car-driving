@@ -172,7 +172,7 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private void UpdateSteer()
     {
-        _learningAgent.UpdateSteer(_car.SteeringWheel.TurnAmount);
+        _learningAgent.UpdateParametrs(_car.SteeringWheel.TurnAmount, _car.GetSpeed());
     }
 
     private float GetSteerDelta(float deltaTime)
