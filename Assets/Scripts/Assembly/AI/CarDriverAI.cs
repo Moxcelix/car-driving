@@ -104,7 +104,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         UpdateSteer();
 
         var speed = _car.GetSpeed();
-        var destinationDistance = speed * speed / 3.0f + 3.0f;
+        var destinationDistance = speed * speed / 3.0f + 5.0f;
 
         if (Vector3.Distance(
             _targetFinder.GetTarget().position,
