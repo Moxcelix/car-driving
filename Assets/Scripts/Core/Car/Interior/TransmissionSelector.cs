@@ -7,10 +7,12 @@ namespace Core.Car
     {
         [SerializeField] private Vector2Int _position;
         [SerializeField] private string _literal;
+        [SerializeField] private bool _reflexive;
         [SerializeField] private GameObject _selectorObject;
 
         public Vector2Int Position => _position;
         public string Literal => _literal;
+        public bool Reflexive => _reflexive;
         public GameObject SelectorObject => _selectorObject;
     }
 
@@ -50,9 +52,14 @@ namespace Core.Car
                 return;
             }
 
-            _selector = position;
+            _transmission.SendLiteral(position.Literal);
 
-            _transmission.SendLiteral(_selector.Literal);
+            if(position.Reflexive)
+            {
+                return;
+            }
+
+            _selector = position;
         }
 
         private SelectorPosition GetPosition(Vector2Int position)
