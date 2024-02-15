@@ -23,22 +23,22 @@ namespace Core.Car
 
         public void SwitchUp()
         {
-
+            ChangeValue(Vector2Int.up);
         }
 
         public void SwitchDown()
         {
-
+            ChangeValue(Vector2Int.down);
         }
 
         public void SwitchRight()
         {
-
+            ChangeValue(Vector2Int.right);
         }
 
         public void SwitchLeft()
         {
-
+            ChangeValue(Vector2Int.left);
         }
 
         private void ChangeValue(Vector2Int delta)
