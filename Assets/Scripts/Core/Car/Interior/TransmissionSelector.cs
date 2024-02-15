@@ -19,7 +19,7 @@ namespace Core.Car
         [SerializeField] private Transmission _transmission;
         [SerializeField] private SelectorPosition[] _selectorPositions;
 
-        private Vector2Int _currentPosition = Vector2Int.zero;
+        private SelectorPosition _selector;
 
         public void SwitchUp()
         {
@@ -43,7 +43,16 @@ namespace Core.Car
 
         private void ChangeValue(Vector2Int delta)
         {
+            var position = GetPosition(_selector.Position + delta);
 
+            if (position == null)
+            {
+                return;
+            }
+
+            _selector = position;
+
+            _transmission.SendLiteral(_selector.Literal);
         }
 
         private SelectorPosition GetPosition(Vector2Int position)
