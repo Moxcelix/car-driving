@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Car
 {
-    public class AutomaticTransmissionSelector : MonoBehaviour
+    public class AutomaticTransmissionIndicator : MonoBehaviour
     {
         [SerializeField] private Car _car;
         [SerializeField] private AutomaticTransmission _transmission;

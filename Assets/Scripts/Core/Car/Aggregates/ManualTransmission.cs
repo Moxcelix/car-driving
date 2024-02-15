@@ -229,7 +229,27 @@ namespace Core.Car
 
         public override void SendLiteral(string literal)
         {
-            throw new System.NotImplementedException();
+            switch(literal)
+            {
+                case "n":
+                    _currentGear = 0;
+                    Mode = ManualTransmissionMode.NEUTRAL;
+                    break;
+                case "r":
+                    Mode = ManualTransmissionMode.REVERSE;
+                    _currentGear = 0;
+                    break;
+                default:
+                    if(int.TryParse(literal, out int gear))
+                    {
+                        if(gear >= 0 && gear < _gears.Length)
+                        {
+                            Mode = ManualTransmissionMode.GEAR;
+                            _currentGear = gear;
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
