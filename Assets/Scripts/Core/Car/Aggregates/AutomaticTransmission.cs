@@ -53,7 +53,7 @@ namespace Core.Car
                 _currentGear = 0;
             }
 
-            _lock = !_car.Engine.Enabled || !_car.BrakePedal.IsPressed;
+            _lock = !_car.Engine.Enabled;
             CurrentGear = _currentGear;
             IsReverse = Mode == AutomaticTransmissionMode.REVERSE;
 
@@ -69,7 +69,7 @@ namespace Core.Car
             UpdateBrake();
         }
 
-        public override void SwitchUp()
+        public void SwitchUp()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -87,7 +87,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchDown()
+        public void SwitchDown()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -96,7 +96,7 @@ namespace Core.Car
                 OnModeChange?.Invoke();
             }
             else if (Mode == AutomaticTransmissionMode.NEUTRAL ||
-                !_lock && Mathf.Abs(_speed) <= c_speedEps && 
+                !_lock && Mathf.Abs(_speed) <= c_speedEps &&
                 Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
@@ -105,7 +105,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchLeft()
+        public void SwitchLeft()
         {
             if (Mode == AutomaticTransmissionMode.DRIVING)
             {
@@ -115,7 +115,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchRight()
+        public void SwitchRight()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -186,7 +186,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if (Mode != AutomaticTransmissionMode.DRIVING && 
+            if (Mode != AutomaticTransmissionMode.DRIVING &&
                 Mode != AutomaticTransmissionMode.MANUAL)
             {
                 _currentGear = 0;
@@ -214,7 +214,7 @@ namespace Core.Car
                 return;
             }
 
-            if(Mode == AutomaticTransmissionMode.MANUAL)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
                 if (_currentGear > 0 && RPM < _supportRPM)
                 {
@@ -303,6 +303,67 @@ namespace Core.Car
                     _gears[_currentGear].Ratio,
                     _gears[_currentGear].ShiftSpeed);
             }
+        }
+
+        public override bool SendLiteral(string literal)
+        {
+            if (_lock || Mode == AutomaticTransmissionMode.PARKING && !_car.BrakePedal.IsPressed)
+            {
+                return false;
+            }
+
+            switch (literal)
+            {
+                case "p":
+                    if(Mathf.Abs(_speed) > c_speedEps || !_car.BrakePedal.IsPressed)
+                    {
+                        return false;
+                    }
+                    Mode = AutomaticTransmissionMode.PARKING;
+                    break;
+                case "r":
+                    if (_speed > c_speedEps)
+                    {
+                        return false;
+                    }
+                    Mode = AutomaticTransmissionMode.REVERSE;
+                    break;
+                case "n":
+                    Mode = AutomaticTransmissionMode.NEUTRAL;
+                    break;
+                case "d":
+                    if (_speed < -c_speedEps)
+                    {
+                        return false;
+                    }
+                    Mode = AutomaticTransmissionMode.DRIVING;
+                    break;
+                case "m":
+                    if (Mode != AutomaticTransmissionMode.DRIVING)
+                    {
+                        return false;
+                    }
+                    Mode = AutomaticTransmissionMode.MANUAL;
+                    break;
+                case "+":
+                    if (Mode != AutomaticTransmissionMode.MANUAL)
+                    {
+                        return false;
+                    }
+                    UpshiftGear(1);
+                    break;
+                case "-":
+                    if (Mode != AutomaticTransmissionMode.MANUAL)
+                    {
+                        return false;
+                    }
+                    DownshiftGear(1);
+                    break;
+            }
+
+            OnModeChange?.Invoke();
+
+            return true;
         }
     }
 }

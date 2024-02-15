@@ -14,6 +14,7 @@ namespace Core.Car
         [SerializeField] private float _brakeForce;
 
         [Header("Controls")]
+        [SerializeField] private TransmissionSelector _transmissionSelector;
         [SerializeField] private SteeringWheel _steeringWheel;
         [SerializeField] private Tachometer _tachometer;
         [SerializeField] private Speedometer _speedometer;
@@ -50,6 +51,7 @@ namespace Core.Car
         public Computer Computer => _computer;
         public CentralLocking CentralLocking => _centralLocking;
         public Immobilizer Immobilizer => _immobilizer;
+        public TransmissionSelector TransmissionSelector => _transmissionSelector;
 
         public Door[] Doors => _doors;
 
