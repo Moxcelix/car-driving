@@ -304,5 +304,10 @@ namespace Core.Car
                     _gears[_currentGear].ShiftSpeed);
             }
         }
+
+        public override void SendLiteral(string literal)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

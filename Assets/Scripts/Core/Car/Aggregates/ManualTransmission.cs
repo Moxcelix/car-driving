@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Core.Car
@@ -217,7 +216,7 @@ namespace Core.Car
             var nativeRPM = outputRPM * GetRatio();
             var coefficient = _clutchDisplacement.Evaluate(GetClutchValue());
 
-            Load = 
+            Load =
                 Mode == ManualTransmissionMode.NEUTRAL ?
                 0 : _clutchFeedback.Evaluate(GetClutchValue());
             Torque =
@@ -226,6 +225,11 @@ namespace Core.Car
                 GetRatio();
 
             RPM = nativeRPM;
+        }
+
+        public override void SendLiteral(string literal)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

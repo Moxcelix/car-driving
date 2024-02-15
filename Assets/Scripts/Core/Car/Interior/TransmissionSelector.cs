@@ -19,5 +19,25 @@ namespace Core.Car
         [SerializeField] private SelectorPosition[] _selectorPositions;
 
         private Vector2Int _currentPosition = Vector2Int.zero;
+
+        public void SwitchUp()
+        {
+
+        }
+
+        public void SwitchDown()
+        {
+
+        }
+
+        public void SwitchRight()
+        {
+
+        }
+
+        public void SwitchLeft()
+        {
+
+        }
     }
 }

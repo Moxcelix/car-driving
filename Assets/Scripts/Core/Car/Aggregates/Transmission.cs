@@ -18,6 +18,7 @@ namespace Core.Car
         public abstract void SwitchLeft();
         public abstract float GetRatio();
         public abstract void SetValues(float inputTorque, float inputRPM, float outputRPM);
+        public abstract void SendLiteral(string literal);
 
         public Action OnModeChange;
     }
