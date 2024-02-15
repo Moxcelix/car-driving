@@ -12,10 +12,6 @@ namespace Core.Car
         public float Load { get; protected set; }
         public float Brake { get; protected set; }
         public int CurrentGear { get; protected set; }
-        public abstract void SwitchUp();
-        public abstract void SwitchDown();
-        public abstract void SwitchRight();
-        public abstract void SwitchLeft();
         public abstract float GetRatio();
         public abstract void SetValues(float inputTorque, float inputRPM, float outputRPM);
         public abstract void SendLiteral(string literal);

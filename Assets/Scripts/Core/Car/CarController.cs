@@ -17,10 +17,10 @@ namespace Core.Car
             this._controls = controls;
             this._car = car;
 
-            controls.TransmissionSelectorUp = car.Transmission.SwitchUp;
-            controls.TransmissionSelectorDown = car.Transmission.SwitchDown;
-            controls.TransmissionSelectorRight = car.Transmission.SwitchRight;
-            controls.TransmissionSelectorLeft = car.Transmission.SwitchLeft;
+            controls.TransmissionSelectorUp = car.TransmissionSelector.SwitchUp;
+            controls.TransmissionSelectorDown = car.TransmissionSelector.SwitchDown;
+            controls.TransmissionSelectorRight = car.TransmissionSelector.SwitchRight;
+            controls.TransmissionSelectorLeft = car.TransmissionSelector.SwitchLeft;
             controls.ParkingBrakeSwitch = car.ParkingBrake.Switch;
             controls.BlinkerStateSwitch = car.TurnLights.SwitchBlinker;
             controls.EmergencySwitch = car.TurnLights.SwitchEmergency;

@@ -23,6 +23,19 @@ namespace Core.Car
 
         private SelectorPosition _selector;
 
+        private void Start()
+        {
+            _selector = GetPosition(Vector2Int.zero);
+        }
+
+        private void Update()
+        {
+            foreach (var position in _selectorPositions)
+            {
+                position.SelectorObject.SetActive(position.Position == _selector.Position);
+            }
+        }
+
         public void SwitchUp()
         {
             ChangeValue(Vector2Int.up);

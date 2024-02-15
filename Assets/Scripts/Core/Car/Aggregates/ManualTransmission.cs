@@ -11,18 +11,6 @@ namespace Core.Car
 
     public class ManualTransmission : Transmission
     {
-        [SerializeField] private GameObject _selectorPos_N;
-        [SerializeField] private GameObject _selectorPos_NL;
-        [SerializeField] private GameObject _selectorPos_NLL;
-        [SerializeField] private GameObject _selectorPos_R;
-        [SerializeField] private GameObject _selectorPos_NR;
-        [SerializeField] private GameObject _selectorPos_1;
-        [SerializeField] private GameObject _selectorPos_2;
-        [SerializeField] private GameObject _selectorPos_3;
-        [SerializeField] private GameObject _selectorPos_4;
-        [SerializeField] private GameObject _selectorPos_5;
-        [SerializeField] private GameObject _selectorPos_6;
-
         [SerializeField] private Gear[] _gears;
         [SerializeField] private float _reverseGearRatio = 3.44f;
         [SerializeField] private float _idlingRMP = 800;
@@ -52,61 +40,8 @@ namespace Core.Car
             IsReverse = Mode == ManualTransmissionMode.REVERSE;
 
             UpdateGear();
-            UpdateSelector();
             UpdateTorque(_inputTorque, _outputRPM);
             UpdateBrake();
-        }
-
-        public override void SwitchUp()
-        {
-            if (_selectorPosition.y < 1)
-            {
-                _selectorPosition.y += 1;
-
-                OnModeChange?.Invoke();
-            }
-        }
-
-        public override void SwitchDown()
-        {
-            if (_selectorPosition.y > -1 && _selectorPosition.x > -2)
-            {
-                _selectorPosition.y -= 1;
-
-                OnModeChange?.Invoke();
-            }
-            else if (_selectorPosition.y > 0)
-            {
-                _selectorPosition.y -= 1;
-
-                OnModeChange?.Invoke();
-            }
-        }
-
-        public override void SwitchLeft()
-        {
-            if (_selectorPosition.y != 0)
-            {
-                return;
-            }
-
-            if (_selectorPosition.x > -2)
-            {
-                _selectorPosition.x -= 1;
-            }
-        }
-
-        public override void SwitchRight()
-        {
-            if (_selectorPosition.y != 0)
-            {
-                return;
-            }
-
-            if (_selectorPosition.x < 1)
-            {
-                _selectorPosition.x += 1;
-            }
         }
 
         public override float GetRatio()
@@ -140,21 +75,6 @@ namespace Core.Car
             {
                 Brake = 0;
             }
-        }
-
-        private void UpdateSelector()
-        {
-            _selectorPos_N.SetActive(_selectorPosition == new Vector2Int(0, 0));
-            _selectorPos_NL.SetActive(_selectorPosition == new Vector2Int(-1, 0));
-            _selectorPos_NLL.SetActive(_selectorPosition == new Vector2Int(-2, 0));
-            _selectorPos_R.SetActive(_selectorPosition == new Vector2Int(-2, 1));
-            _selectorPos_NR.SetActive(_selectorPosition == new Vector2Int(1, 0));
-            _selectorPos_1.SetActive(_selectorPosition == new Vector2Int(-1, 1));
-            _selectorPos_2.SetActive(_selectorPosition == new Vector2Int(-1, -1));
-            _selectorPos_3.SetActive(_selectorPosition == new Vector2Int(0, 1));
-            _selectorPos_4.SetActive(_selectorPosition == new Vector2Int(0, -1));
-            _selectorPos_5.SetActive(_selectorPosition == new Vector2Int(1, 1));
-            _selectorPos_6.SetActive(_selectorPosition == new Vector2Int(1, -1));
         }
 
         private void UpdateGear()
@@ -250,6 +170,8 @@ namespace Core.Car
                     }
                     break;
             }
+
+            OnModeChange?.Invoke();
         }
     }
 }

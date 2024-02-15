@@ -69,7 +69,7 @@ namespace Core.Car
             UpdateBrake();
         }
 
-        public override void SwitchUp()
+        public void SwitchUp()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -87,7 +87,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchDown()
+        public void SwitchDown()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -96,7 +96,7 @@ namespace Core.Car
                 OnModeChange?.Invoke();
             }
             else if (Mode == AutomaticTransmissionMode.NEUTRAL ||
-                !_lock && Mathf.Abs(_speed) <= c_speedEps && 
+                !_lock && Mathf.Abs(_speed) <= c_speedEps &&
                 Mode != AutomaticTransmissionMode.DRIVING)
             {
                 Mode = (AutomaticTransmissionMode)((int)Mode + 1);
@@ -105,7 +105,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchLeft()
+        public void SwitchLeft()
         {
             if (Mode == AutomaticTransmissionMode.DRIVING)
             {
@@ -115,7 +115,7 @@ namespace Core.Car
             }
         }
 
-        public override void SwitchRight()
+        public void SwitchRight()
         {
             if (Mode == AutomaticTransmissionMode.MANUAL)
             {
@@ -186,7 +186,7 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
-            if (Mode != AutomaticTransmissionMode.DRIVING && 
+            if (Mode != AutomaticTransmissionMode.DRIVING &&
                 Mode != AutomaticTransmissionMode.MANUAL)
             {
                 _currentGear = 0;
@@ -214,7 +214,7 @@ namespace Core.Car
                 return;
             }
 
-            if(Mode == AutomaticTransmissionMode.MANUAL)
+            if (Mode == AutomaticTransmissionMode.MANUAL)
             {
                 if (_currentGear > 0 && RPM < _supportRPM)
                 {
@@ -307,7 +307,32 @@ namespace Core.Car
 
         public override void SendLiteral(string literal)
         {
-            throw new NotImplementedException();
+            switch (literal)
+            {
+                case "p":
+                    Mode = AutomaticTransmissionMode.PARKING;
+                    break;
+                case "r":
+                    Mode = AutomaticTransmissionMode.REVERSE;
+                    break;
+                case "n":
+                    Mode = AutomaticTransmissionMode.NEUTRAL;
+                    break;
+                case "d":
+                    Mode = AutomaticTransmissionMode.DRIVING;
+                    break;
+                case "m":
+                    Mode = AutomaticTransmissionMode.MANUAL;
+                    break;
+                case "+":
+                    UpshiftGear(1);
+                    break;
+                case "-":
+                    DownshiftGear(1);
+                    break;
+            }
+
+            OnModeChange?.Invoke();
         }
     }
 }
