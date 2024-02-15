@@ -65,7 +65,12 @@ namespace Core.Car
                 return;
             }
 
-            _transmission.SendLiteral(position.Literal);
+            var success = _transmission.SendLiteral(position.Literal);
+
+            if (!success)
+            {
+                return;
+            }
 
             if(position.Reflexive)
             {

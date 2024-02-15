@@ -14,7 +14,7 @@ namespace Core.Car
         public int CurrentGear { get; protected set; }
         public abstract float GetRatio();
         public abstract void SetValues(float inputTorque, float inputRPM, float outputRPM);
-        public abstract void SendLiteral(string literal);
+        public abstract bool SendLiteral(string literal);
 
         public Action OnModeChange;
     }

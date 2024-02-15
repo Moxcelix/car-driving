@@ -26,8 +26,6 @@ namespace Core.Car
         private float _outputRPM = 0;
         private int _currentGear = 0;
 
-        private Vector2Int _selectorPosition = Vector2Int.zero;
-
         public ManualTransmissionMode Mode { get; private set; } = ManualTransmissionMode.NEUTRAL;
 
         public Pedal ClutchPedal => _clutchPedal;
@@ -39,7 +37,6 @@ namespace Core.Car
 
             IsReverse = Mode == ManualTransmissionMode.REVERSE;
 
-            UpdateGear();
             UpdateTorque(_inputTorque, _outputRPM);
             UpdateBrake();
         }
@@ -77,55 +74,6 @@ namespace Core.Car
             }
         }
 
-        private void UpdateGear()
-        {
-            if (_selectorPosition.y == 0)
-            {
-                _currentGear = 0;
-                Mode = ManualTransmissionMode.NEUTRAL;
-            }
-            else if (_selectorPosition.y == 1)
-            {
-                switch (_selectorPosition.x)
-                {
-                    case -2:
-                        Mode = ManualTransmissionMode.REVERSE;
-                        _currentGear = 0;
-                        break;
-                    case -1:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 0;
-                        break;
-                    case 0:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 2;
-                        break;
-                    case 1:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 4;
-                        break;
-                }
-            }
-            else
-            {
-                switch (_selectorPosition.x)
-                {
-                    case -1:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 1;
-                        break;
-                    case 0:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 3;
-                        break;
-                    case 1:
-                        Mode = ManualTransmissionMode.GEAR;
-                        _currentGear = 5;
-                        break;
-                }
-            }
-        }
-
         private float GetClutchValue()
         {
             return Mathf.Clamp01(1.0f - _clutchPedal.Value * (1.0f + _clutchWear));
@@ -147,7 +95,7 @@ namespace Core.Car
             RPM = nativeRPM;
         }
 
-        public override void SendLiteral(string literal)
+        public override bool SendLiteral(string literal)
         {
             switch(literal)
             {
@@ -156,22 +104,33 @@ namespace Core.Car
                     Mode = ManualTransmissionMode.NEUTRAL;
                     break;
                 case "r":
+                    if (Mode != ManualTransmissionMode.NEUTRAL)
+                    {
+                        return false;
+                    }
                     Mode = ManualTransmissionMode.REVERSE;
                     _currentGear = 0;
                     break;
                 default:
+                    if(Mode != ManualTransmissionMode.NEUTRAL)
+                    {
+                        return false;
+                    }
+
                     if(int.TryParse(literal, out int gear))
                     {
-                        if(gear >= 0 && gear < _gears.Length)
+                        if(gear > 0 && gear <= _gears.Length)
                         {
                             Mode = ManualTransmissionMode.GEAR;
-                            _currentGear = gear;
+                            _currentGear = gear - 1;
                         }
                     }
                     break;
             }
 
             OnModeChange?.Invoke();
+
+            return true;
         }
     }
 }
