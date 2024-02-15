@@ -2812,6 +2812,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._maxTorque
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850829, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_IsKinematic
       value: 0
@@ -2866,7 +2870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850878, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _number
@@ -3102,6 +3106,10 @@ PrefabInstance:
       propertyPath: _engine._minRPM
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._maxTorque
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -3152,7 +3160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850878, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850879, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _number
@@ -6033,17 +6041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuSwitcher: {fileID: 1060450250}
---- !u!114 &1063375758 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-  m_PrefabInstance: {fileID: 3319010361351820810}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1065999657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9368,7 +9365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1688110531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9381,7 +9378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e20030f9281d334e8a10d82416fc726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 1063375758}
+  _car: {fileID: 1876717140}
 --- !u!4 &1688110532
 Transform:
   m_ObjectHideFlags: 0
@@ -10276,6 +10273,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nodes:
   - {fileID: 1978773702}
+--- !u!114 &1876717140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 5700425833179435312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1887748126
 GameObject:
   m_ObjectHideFlags: 0
@@ -10871,7 +10879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _engine._maxTorque
-      value: 320
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
@@ -12714,6 +12722,10 @@ PrefabInstance:
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._maxTorque
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}

@@ -13,6 +13,7 @@ namespace Core.Car
         [Header("Characteristics")]
         [SerializeField] private float _maxRPM;
         [SerializeField] private float _minRPM;
+        [SerializeField] private float _deltaRPM;
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
         [SerializeField] private float _responsiveness;
@@ -65,7 +66,7 @@ namespace Core.Car
             }
 
             var rpm = Mathf.Lerp(_targetRPM, outputRPM, load);
-            var torque = (_torqueRPM - outputRPM) / MaxRPM * MaxTorque;
+            var torque = Mathf.Clamp01((_torqueRPM - outputRPM) / _deltaRPM) * MaxTorque;
 
             RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
             Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
