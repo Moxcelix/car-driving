@@ -16,6 +16,7 @@ namespace Core.Car
 
     public class TransmissionSelector : MonoBehaviour
     {
+        [SerializeField] private Transmission _transmission;
         [SerializeField] private SelectorPosition[] _selectorPositions;
 
         private Vector2Int _currentPosition = Vector2Int.zero;
@@ -38,6 +39,24 @@ namespace Core.Car
         public void SwitchLeft()
         {
 
+        }
+
+        private void ChangeValue(Vector2Int delta)
+        {
+
+        }
+
+        private SelectorPosition GetPosition(Vector2Int position)
+        {
+            foreach (var pos in _selectorPositions)
+            {
+                if (pos.Position == position)
+                {
+                    return pos;
+                }
+            }
+
+            return null;
         }
     }
 }
