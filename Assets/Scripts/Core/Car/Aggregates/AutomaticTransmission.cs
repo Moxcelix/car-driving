@@ -13,7 +13,7 @@ namespace Core.Car
     }
     public class AutomaticTransmission : Transmission
     {
-        private const float c_speedEps = 0.1f;
+        private const float c_speedEps = 0.05f;
 
         [SerializeField] private Car _car;
         [SerializeField] private TorqueConverter _torqueConverter;
