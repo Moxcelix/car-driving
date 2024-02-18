@@ -30,11 +30,18 @@ namespace Core.Car
 
         public void Convert(float inputRPM, float outputRPM)
         {
+            if(inputRPM == 0 || outputRPM == 0)
+            {
+                _fluidTransition = 1.0f;
+
+                return;
+            }
+            
             _fluidTransition = 1.0f -
                 Mathf.Pow(
-                    Mathf.Clamp01(
-                        (inputRPM - outputRPM)
-                        / _maxRPM), 2);
+                    Mathf.Clamp01(outputRPM / inputRPM), 2);
+
+            Debug.Log(_fluidTransition);
 
             _fluidTransition *= _targetCoefficient;
         }
