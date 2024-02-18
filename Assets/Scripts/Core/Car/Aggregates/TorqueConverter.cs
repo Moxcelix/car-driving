@@ -36,10 +36,8 @@ namespace Core.Car
 
                 return;
             }
-            
-            _fluidTransition = 1.0f -
-                Mathf.Pow(
-                    Mathf.Clamp01(outputRPM / inputRPM), 2);
+
+            _fluidTransition = 1.0f - Mathf.Clamp01((outputRPM - inputRPM) / inputRPM);
 
             Debug.Log(_fluidTransition);
 
