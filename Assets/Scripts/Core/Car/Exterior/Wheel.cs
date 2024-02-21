@@ -41,11 +41,5 @@ namespace Core.Car
         {
             _collider.brakeTorque = force;
         }
-
-        private float GetWheelSpeed()
-        {
-            return Mathf.Abs(2.0f * Mathf.PI *
-                _collider.radius * _collider.rpm / 60.0f);
-        }
     }
 }
