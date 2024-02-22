@@ -354,7 +354,6 @@ public class ClientIO :
             Input.GetMouseButtonDown(0)) 
         {
             _interactiveRaycast.TryInteract();
-            _grabbingRaycast.TryGrab();
         }
     }
 
@@ -370,6 +369,16 @@ public class ClientIO :
 
     private void HandleGrabbing()
     {
+        if (_gameState.IsPause)
+        {
+            return;
+        }
 
+        if (Input.GetKeyDown(_controls[_interactKey]) ||
+            Input.GetKeyDown(KeyCode.JoystickButton2) ||
+            Input.GetMouseButtonDown(0))
+        {
+            _grabbingRaycast.TryGrab();
+        }
     }
 }
