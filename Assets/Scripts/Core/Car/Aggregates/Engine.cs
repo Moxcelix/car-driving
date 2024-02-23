@@ -37,6 +37,11 @@ namespace Core.Car
             RPM = rpm;
         }
 
+        public float GetSyncState()
+        {
+            return RPM;
+        }
+
         public void Update(float inputGas,
             float outputRPM, float load, float deltaTime)
         {

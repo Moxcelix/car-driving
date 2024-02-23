@@ -23,8 +23,6 @@ namespace Core.Car
 
         private SelectorPosition _selector;
 
-        public Vector2Int Position => _selector.Position;
-
         private void Start()
         {
             _selector = GetPosition(Vector2Int.zero);
@@ -46,6 +44,11 @@ namespace Core.Car
             }
 
             ChangeValue(position - _selector.Position);
+        }
+
+        public Vector2Int GetSyncState()
+        {
+            return _selector.Position;
         }
 
         public void SwitchUp()

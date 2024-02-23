@@ -18,6 +18,21 @@ namespace Core.Car
         public BlinkerState BlinkerState { get; private set; } = BlinkerState.None;
         public bool EmergencyState { get; private set; } = false;
 
+        public void LoadSyncState(BlinkerState blinkerState, bool emergencyState)
+        {
+            SwitchBlinker(blinkerState);
+
+            if (EmergencyState != emergencyState)
+            {
+                SwitchEmergency();
+            }
+        }
+
+        public (BlinkerState, bool) GetSyncState()
+        {
+            return (BlinkerState, EmergencyState);
+        }
+
         public void Update()
         {
             if(BlinkerState == BlinkerState.None && !EmergencyState) 

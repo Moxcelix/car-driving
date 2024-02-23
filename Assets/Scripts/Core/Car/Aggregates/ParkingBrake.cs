@@ -45,6 +45,19 @@ namespace Core.Car
             Brake = State == ParkingBrakeState.LOWERED ? 0.0f : 1.0f;
         }
 
+        public void LoadSyncState(bool state)
+        {
+            if (State == ParkingBrakeState.LOWERED == state)
+            {
+                Switch();
+            }
+        }
+
+        public bool GetSyncState()
+        {
+            return State == ParkingBrakeState.RAISED;
+        }
+
         public void Switch()
         {
             if (State == ParkingBrakeState.LOWERED)

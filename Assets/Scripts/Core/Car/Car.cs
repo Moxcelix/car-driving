@@ -114,31 +114,15 @@ namespace Core.Car
                 manualTransmission.ClutchPedal.Value = _state.Clutch;
             }
             // Sync parking brake.
-            if (_parkingBrake.State
-                == ParkingBrakeState.LOWERED
-                == _state.ParkingBrake)
-            {
-                _parkingBrake.Switch();
-            }
+            _parkingBrake.LoadSyncState(_state.ParkingBrake);
             // Sync steering wheel.
             _steeringWheel.TurnAmount = _state.TurnAmount;
             // Sync blinkers.
-            _turnLights.SwitchBlinker(_state.BlinkerState);
+            _turnLights.LoadSyncState(_state.BlinkerState, _state.Emergency);
             // Sync head lights.
-            if (_headLights.LightState == HeadLightState.DIPPED == _state.HighLight)
-            {
-                _headLights.SwitchHighLight();
-            }
-            // Sync emergency.
-            if (_turnLights.EmergencyState != _state.Emergency)
-            {
-                _turnLights.SwitchEmergency();
-            }
+            _headLights.LoadSyncState(_state.HighLight);
             // Sync engine.
-            if (_engine.Starter.State == EngineState.STOPED == _state.EngineState)
-            {
-                _engine.Starter.SwitchState();
-            }
+            _engine.Starter.LoadSyncState(_state.EngineState);
             _engine.LoadSyncState(_state.RPM);
             // Sync transmission.
             _transmissionSelector.LoadSyncState(_state.TransmissionSelectorPosition);
@@ -163,21 +147,23 @@ namespace Core.Car
                 doorStates[i] = _doors[i].State == IOpenable.OpenState.OPEN;
             }
 
+            var blinkerState = _turnLights.GetSyncState();
+
             var state = new CarState
             {
-                RPM = _engine.RPM,
+                RPM = _engine.GetSyncState(),
                 Speed = GetSpeed(),
                 Brake = _brakePedal.Value,
                 Gas = _gasPedal.Value,
                 Clutch = (_transmission as ManualTransmission)?
                             .ClutchPedal.Value ?? 0.0f,
                 TurnAmount = _steeringWheel.TurnAmount,
-                EngineState = _engine.Starter.State == EngineState.STARTED,
-                ParkingBrake = _parkingBrake.State == ParkingBrakeState.RAISED,
-                HighLight = _headLights.LightState == HeadLightState.HIGH,
-                TransmissionSelectorPosition = _transmissionSelector.Position,
-                BlinkerState = _turnLights.BlinkerState,
-                Emergency = _turnLights.EmergencyState,
+                EngineState = _engine.Starter.GetSyncState(),
+                ParkingBrake = _parkingBrake.GetSyncState(),
+                HighLight = _headLights.GetSyncState(),
+                TransmissionSelectorPosition = _transmissionSelector.GetSyncState(),
+                BlinkerState = blinkerState.Item1,
+                Emergency = blinkerState.Item2,
                 LeftFrontWheel = _frontLeftWheel.GetSyncState(),
                 RightFrontWheel = _frontRightWheel.GetSyncState(),
                 LeftRearWheel = _rearLeftWheel.GetSyncState(),

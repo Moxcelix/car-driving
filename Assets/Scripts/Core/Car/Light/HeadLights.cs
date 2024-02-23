@@ -18,6 +18,19 @@ namespace Core.Car
 
         public bool Enabled { get; set; } = false;
 
+        public void LoadSyncState(bool state)
+        {
+            if (LightState == HeadLightState.DIPPED == state)
+            {
+                SwitchHighLight();
+            }
+        }
+
+        public bool GetSyncState()
+        {
+            return LightState == HeadLightState.HIGH;
+        }
+
         public void Update()
         {
             _highLight.SetRange(LightState == HeadLightState.HIGH ?

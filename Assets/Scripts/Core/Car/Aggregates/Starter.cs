@@ -29,6 +29,19 @@ namespace Core.Car
 
         public Action<EngineState> OnChangeState;
 
+        public void LoadSyncState(bool state)
+        {
+            if(State == EngineState.STOPED == state)
+            {
+                SwitchState();
+            }
+        }
+
+        public bool GetSyncState()
+        {
+            return State == EngineState.STARTED;
+        }
+
         public void SetState(EngineState state)
         {
             if (!Ignition)
