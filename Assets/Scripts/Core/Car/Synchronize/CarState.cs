@@ -8,8 +8,9 @@ namespace Core.Car
         public float Speed { get; set; }
         public float Brake { get; set; }
         public float Gas { get; set; }
+        public float Clutch { get; set; }
         public bool EngineState { get; set; }
-        public AutomaticTransmissionMode TransmissionMode { get; set; }
+        public Vector2 TransmissionSelectorPosition { get; set; }
         public BlinkerState BlinkerState { get; set; }
         public bool Emergency { get; set; }
         public float TurnAmount { get; set; }
@@ -17,5 +18,6 @@ namespace Core.Car
         public Transform LeftRearWheel { get; set; }
         public Transform RightFrontWheel { get; set; }
         public Transform RightRearWheel { get; set; }
+        public bool[] DoorStates { get; set; }
     }
 }
