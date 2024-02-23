@@ -13,7 +13,7 @@ namespace Core.Car
 
         public float RPM { get; private set; } = 0;
 
-        private void Update()
+        public void Handle()
         {
             var angle = TurnAmount * _maxAngle;
 
@@ -32,10 +32,15 @@ namespace Core.Car
             RPM = _collider.rpm;
         }
 
-        public void LoadState(Transform transform)
+        public void LoadSyncState(Transform transform)
         {
-            gameObject.transform.localRotation = transform.localRotation;
-            gameObject.transform.localPosition = transform.localPosition;
+            _wheel.SetLocalPositionAndRotation(
+                transform.localPosition, transform.localRotation);
+        }
+
+        public Transform GetSyncState()
+        {
+            return _wheel;
         }
 
         public void TransmitTorque(float force)

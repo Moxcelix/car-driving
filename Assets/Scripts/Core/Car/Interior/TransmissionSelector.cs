@@ -38,7 +38,7 @@ namespace Core.Car
             }
         }
 
-        public void LoadState(Vector2Int position)
+        public void LoadSyncState(Vector2Int position)
         {
             if(_selector.Position == position)
             {

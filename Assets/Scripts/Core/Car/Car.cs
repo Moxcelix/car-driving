@@ -75,19 +75,20 @@ namespace Core.Car
 
         private void FixedUpdate()
         {
+            UpdateLighs();
+            UpdateDashboard();
+            UpdateComputer();
+            UpdateCentralLocking();
+            UpdateImmobilizer();
+
             if (Syncable)
             {
                 return;
             }
 
-            HandleSteering();
+            HandleWheels();
             HandleEngine();
-            HandleDashboard();
             HandleBrakeing();
-            HandleLighs();
-            HandleComputer();
-            HandleCentralLocking();
-            HandleImmobilizer();
         }
 
         public void Synchronize(CarState state)
@@ -121,9 +122,6 @@ namespace Core.Car
             }
             // Sync steering wheel.
             _steeringWheel.TurnAmount = _state.TurnAmount;
-            // Sync dashboard.
-            _speedometer.UpdateValue(_state.Speed * 3.6f);
-            _tachometer.UpdateValue(_state.RPM);
             // Sync blinkers.
             _turnLights.SwitchBlinker(_state.BlinkerState);
             // Sync head lights.
@@ -141,21 +139,14 @@ namespace Core.Car
             {
                 _engine.Starter.SwitchState();
             }
-            _engine.LoadState(_state.RPM);
+            _engine.LoadSyncState(_state.RPM);
             // Sync transmission.
-            _transmissionSelector.LoadState(_state.TransmissionSelectorPosition);
+            _transmissionSelector.LoadSyncState(_state.TransmissionSelectorPosition);
             // Sync wheels;
-            _frontLeftWheel.TurnAmount = _state.TurnAmount;
-            _frontRightWheel.TurnAmount = _state.TurnAmount;
-            _frontLeftWheel.LoadState(_state.LeftFrontWheel);
-            _frontRightWheel.LoadState(_state.RightFrontWheel);
-            _rearLeftWheel.LoadState(_state.LeftRearWheel);
-            _rearRightWheel.LoadState(_state.RightRearWheel);
-            // Sync doors.
-            for (int i = 0; i < _doors.Length; i++)
-            {
-                _doors[i].LoadState(_state.DoorStates[i]);
-            }
+            _frontLeftWheel.LoadSyncState(_state.LeftFrontWheel);
+            _frontRightWheel.LoadSyncState(_state.RightFrontWheel);
+            _rearLeftWheel.LoadSyncState(_state.LeftRearWheel);
+            _rearRightWheel.LoadSyncState(_state.RightRearWheel);
         }
 
         public CarState GetState()
@@ -163,6 +154,13 @@ namespace Core.Car
             if (Syncable)
             {
                 return null;
+            }
+
+            var doorStates = new bool[_doors.Length];
+
+            for (int i = 0; i < _doors.Length; i++)
+            {
+                doorStates[i] = _doors[i].State == IOpenable.OpenState.OPEN;
             }
 
             var state = new CarState
@@ -173,31 +171,25 @@ namespace Core.Car
                 Gas = _gasPedal.Value,
                 Clutch = (_transmission as ManualTransmission)?
                             .ClutchPedal.Value ?? 0.0f,
+                TurnAmount = _steeringWheel.TurnAmount,
                 EngineState = _engine.Starter.State == EngineState.STARTED,
                 ParkingBrake = _parkingBrake.State == ParkingBrakeState.RAISED,
                 HighLight = _headLights.LightState == HeadLightState.HIGH,
                 TransmissionSelectorPosition = _transmissionSelector.Position,
                 BlinkerState = _turnLights.BlinkerState,
                 Emergency = _turnLights.EmergencyState,
-                LeftFrontWheel = _frontLeftWheel.transform,
-                RightFrontWheel = _frontRightWheel.transform,
-                LeftRearWheel = _rearLeftWheel.transform,
-                RightRearWheel = _rearRightWheel.transform
+                LeftFrontWheel = _frontLeftWheel.GetSyncState(),
+                RightFrontWheel = _frontRightWheel.GetSyncState(),
+                LeftRearWheel = _rearLeftWheel.GetSyncState(),
+                RightRearWheel = _rearRightWheel.GetSyncState(),
             };
-
-            var doorStates = new bool[_doors.Length];
-
-            for (int i = 0; i < _doors.Length; i++)
-            {
-                doorStates[i] = _doors[i].State == IOpenable.OpenState.OPEN;
-            }
 
             return state;
         }
 
         public float GetSpeed()
         {
-            return Syncable ? _state.Speed : Vector3.Dot(
+            return Syncable ? _state?.Speed ?? 0.0f : Vector3.Dot(
                     _rigidbody.velocity,
                     _rigidbody.transform.forward);
         }
@@ -207,10 +199,15 @@ namespace Core.Car
             return (_frontLeftWheel.RPM + _frontRightWheel.RPM) * 0.5f;
         }
 
-        private void HandleSteering()
+        private void HandleWheels()
         {
             _frontLeftWheel.TurnAmount = _steeringWheel.TurnAmount;
             _frontRightWheel.TurnAmount = _steeringWheel.TurnAmount;
+
+            _frontLeftWheel.Handle();
+            _frontRightWheel.Handle();
+            _rearLeftWheel.Handle();
+            _rearRightWheel.Handle();
         }
 
         private void HandleEngine()
@@ -234,7 +231,7 @@ namespace Core.Car
                 wheelsRPM);
         }
 
-        private void HandleDashboard()
+        private void UpdateDashboard()
         {
             _speedometer.UpdateValue(GetSpeed() * 3.6f);
             _tachometer.UpdateValue(_engine.RPM);
@@ -256,7 +253,7 @@ namespace Core.Car
             _rearLeftWheel.Brake(rearBrakeValue);
         }
 
-        private void HandleLighs()
+        private void UpdateLighs()
         {
             _headLights.Enabled = _engine.Enabled;
 
@@ -268,17 +265,17 @@ namespace Core.Car
                 Transmission.IsReverse);
         }
 
-        private void HandleComputer()
+        private void UpdateComputer()
         {
             _computer.Update();
         }
 
-        private void HandleCentralLocking()
+        private void UpdateCentralLocking()
         {
             _centralLocking.Update();
         }
 
-        private void HandleImmobilizer()
+        private void UpdateImmobilizer()
         {
             _immobilizer.Update();
         }

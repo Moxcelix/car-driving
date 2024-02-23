@@ -20,6 +20,5 @@ namespace Core.Car
         public Transform LeftRearWheel { get; set; }
         public Transform RightFrontWheel { get; set; }
         public Transform RightRearWheel { get; set; }
-        public bool[] DoorStates { get; set; }
     }
 }

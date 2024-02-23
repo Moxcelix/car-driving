@@ -14507,7 +14507,7 @@ MonoBehaviour:
   _speedometer: {fileID: 5641354360339710834}
   _parkingBrake: {fileID: 5641354360598315506}
   _gasPedal: {fileID: 5641354359832343416}
-  _BrakePedal: {fileID: 5641354360666490001}
+  _brakePedal: {fileID: 5641354360666490001}
   _turnLights:
     _leftLights:
       _lights:
