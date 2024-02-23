@@ -23,6 +23,8 @@ namespace Core.Car
 
         private SelectorPosition _selector;
 
+        public Vector2Int Position => _selector.Position;
+
         private void Start()
         {
             _selector = GetPosition(Vector2Int.zero);

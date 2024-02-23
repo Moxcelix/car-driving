@@ -152,10 +152,47 @@ namespace Core.Car
             _rearLeftWheel.LoadState(_state.LeftRearWheel);
             _rearRightWheel.LoadState(_state.RightRearWheel);
             // Sync doors.
-            for(int i = 0; i < _doors.Length; i++)
+            for (int i = 0; i < _doors.Length; i++)
             {
                 _doors[i].LoadState(_state.DoorStates[i]);
             }
+        }
+
+        public CarState GetState()
+        {
+            if (Syncable)
+            {
+                return null;
+            }
+
+            var state = new CarState
+            {
+                RPM = _engine.RPM,
+                Speed = GetSpeed(),
+                Brake = _brakePedal.Value,
+                Gas = _gasPedal.Value,
+                Clutch = (_transmission as ManualTransmission)?
+                            .ClutchPedal.Value ?? 0.0f,
+                EngineState = _engine.Starter.State == EngineState.STARTED,
+                ParkingBrake = _parkingBrake.State == ParkingBrakeState.RAISED,
+                HighLight = _headLights.LightState == HeadLightState.HIGH,
+                TransmissionSelectorPosition = _transmissionSelector.Position,
+                BlinkerState = _turnLights.BlinkerState,
+                Emergency = _turnLights.EmergencyState,
+                LeftFrontWheel = _frontLeftWheel.transform,
+                RightFrontWheel = _frontRightWheel.transform,
+                LeftRearWheel = _rearLeftWheel.transform,
+                RightRearWheel = _rearRightWheel.transform
+            };
+
+            var doorStates = new bool[_doors.Length];
+
+            for (int i = 0; i < _doors.Length; i++)
+            {
+                doorStates[i] = _doors[i].State == IOpenable.OpenState.OPEN;
+            }
+
+            return state;
         }
 
         public float GetSpeed()
