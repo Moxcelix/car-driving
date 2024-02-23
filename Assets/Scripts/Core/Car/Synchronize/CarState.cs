@@ -9,6 +9,7 @@ namespace Core.Car
         public float Brake { get; set; }
         public float Gas { get; set; }
         public float Clutch { get; set; }
+        public float ParkingBrake { get; set; }
         public bool EngineState { get; set; }
         public Vector2 TransmissionSelectorPosition { get; set; }
         public BlinkerState BlinkerState { get; set; }
