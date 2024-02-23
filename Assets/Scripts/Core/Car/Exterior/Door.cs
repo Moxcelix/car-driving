@@ -45,6 +45,11 @@ namespace Core.Car
             _collider.enabled = IsInteractable;
         }
 
+        public void LoadState(bool open)
+        {
+            SetState(open ? OpenState.OPEN : OpenState.CLOSED);
+        }
+
         public void Open()
         {
             if (IsLocked)
@@ -81,7 +86,7 @@ namespace Core.Car
 
         private void SetState(OpenState state)
         {
-            if(State == state)
+            if (State == state)
             {
                 return;
             }

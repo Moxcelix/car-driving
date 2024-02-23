@@ -20,7 +20,7 @@ namespace Core.Car
         [SerializeField] private Speedometer _speedometer;
         [SerializeField] private ParkingBrake _parkingBrake;
         [SerializeField] private Pedal _gasPedal;
-        [SerializeField] private Pedal _BrakePedal;
+        [SerializeField] private Pedal _brakePedal;
 
         [Header("Lighting")]
         [SerializeField] private TurnLights _turnLights;
@@ -39,9 +39,12 @@ namespace Core.Car
         private Computer _computer;
         private CentralLocking _centralLocking;
         private Immobilizer _immobilizer;
+        private CarState _state;
+
+        public bool Syncable { get; set; } = false;
 
         public Pedal GasPedal => _gasPedal;
-        public Pedal BrakePedal => _BrakePedal;
+        public Pedal BrakePedal => _brakePedal;
         public ParkingBrake ParkingBrake => _parkingBrake;
         public SteeringWheel SteeringWheel => _steeringWheel;
         public Engine Engine => _engine;
@@ -65,8 +68,18 @@ namespace Core.Car
             _immobilizer = new Immobilizer(_engine);
         }
 
+        private void Update()
+        {
+            _rigidbody.isKinematic = Syncable;
+        }
+
         private void FixedUpdate()
         {
+            if (Syncable)
+            {
+                return;
+            }
+
             HandleSteering();
             HandleEngine();
             HandleDashboard();
@@ -77,16 +90,79 @@ namespace Core.Car
             HandleImmobilizer();
         }
 
-        public float GetSpeed()
+        public void Synchronize(CarState state)
         {
-            return Vector3.Dot(
-                    _rigidbody.velocity,
-                    _rigidbody.transform.forward);
+            if (!Syncable)
+            {
+                _state = null;
+
+                return;
+            }
+
+            _state = state;
+
+            // Sync gas pedal.
+            _gasPedal.Value = _state.Gas;
+            // Sync brake pedal.
+            _brakePedal.Value = _state.Brake;
+            // Sync clutch pedal.
+            var manualTransmission = _transmission as ManualTransmission;
+
+            if (manualTransmission != null)
+            {
+                manualTransmission.ClutchPedal.Value = _state.Clutch;
+            }
+            // Sync parking brake.
+            if (_parkingBrake.State
+                == ParkingBrakeState.LOWERED
+                == _state.ParkingBrake)
+            {
+                _parkingBrake.Switch();
+            }
+            // Sync steering wheel.
+            _steeringWheel.TurnAmount = _state.TurnAmount;
+            // Sync dashboard.
+            _speedometer.UpdateValue(_state.Speed * 3.6f);
+            _tachometer.UpdateValue(_state.RPM);
+            // Sync blinkers.
+            _turnLights.SwitchBlinker(_state.BlinkerState);
+            // Sync head lights.
+            if (_headLights.LightState == HeadLightState.DIPPED == _state.HighLight)
+            {
+                _headLights.SwitchHighLight();
+            }
+            // Sync emergency.
+            if (_turnLights.EmergencyState != _state.Emergency)
+            {
+                _turnLights.SwitchEmergency();
+            }
+            // Sync engine.
+            if (_engine.Starter.State == EngineState.STOPED == _state.EngineState)
+            {
+                _engine.Starter.SwitchState();
+            }
+            _engine.LoadState(_state.RPM);
+            // Sync transmission.
+            _transmissionSelector.LoadState(_state.TransmissionSelectorPosition);
+            // Sync wheels;
+            _frontLeftWheel.TurnAmount = _state.TurnAmount;
+            _frontRightWheel.TurnAmount = _state.TurnAmount;
+            _frontLeftWheel.LoadState(_state.LeftFrontWheel);
+            _frontRightWheel.LoadState(_state.RightFrontWheel);
+            _rearLeftWheel.LoadState(_state.LeftRearWheel);
+            _rearRightWheel.LoadState(_state.RightRearWheel);
+            // Sync doors.
+            for(int i = 0; i < _doors.Length; i++)
+            {
+                _doors[i].LoadState(_state.DoorStates[i]);
+            }
         }
 
-        public Vector3 GetVelocity()
+        public float GetSpeed()
         {
-            return _rigidbody.velocity;
+            return Syncable ? _state.Speed : Vector3.Dot(
+                    _rigidbody.velocity,
+                    _rigidbody.transform.forward);
         }
 
         private float GetWheelsRPM()
@@ -130,11 +206,11 @@ namespace Core.Car
         private void HandleBrakeing()
         {
             var frontBrakeValue =
-                (_BrakePedal.Value +
+                (_brakePedal.Value +
                 _transmission.Brake) * _brakeForce;
 
             var rearBrakeValue =
-                (_BrakePedal.Value +
+                (_brakePedal.Value +
                 _parkingBrake.Brake) * _brakeForce;
 
             _frontRightWheel.Brake(frontBrakeValue);

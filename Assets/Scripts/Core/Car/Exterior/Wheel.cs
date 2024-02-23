@@ -32,6 +32,12 @@ namespace Core.Car
             RPM = _collider.rpm;
         }
 
+        public void LoadState(Transform transform)
+        {
+            gameObject.transform.localRotation = transform.localRotation;
+            gameObject.transform.localPosition = transform.localPosition;
+        }
+
         public void TransmitTorque(float force)
         {
             _collider.motorTorque = force;

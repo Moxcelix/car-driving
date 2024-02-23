@@ -36,6 +36,16 @@ namespace Core.Car
             }
         }
 
+        public void LoadState(Vector2Int position)
+        {
+            if(_selector.Position == position)
+            {
+                return;
+            }
+
+            ChangeValue(position - _selector.Position);
+        }
+
         public void SwitchUp()
         {
             ChangeValue(Vector2Int.up);

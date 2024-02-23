@@ -32,6 +32,11 @@ namespace Core.Car
         private float _targetRPM = 0.0f;
         private bool _cutOff = false;
 
+        public void LoadState(float rpm)
+        {
+            RPM = rpm;
+        }
+
         public void Update(float inputGas,
             float outputRPM, float load, float deltaTime)
         {

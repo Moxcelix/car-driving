@@ -6,7 +6,7 @@ namespace Core.Car
     {
         [SerializeField] private Transform _wheelTransform;
 
-        public float TurnAmount { get; private set; }
+        public float TurnAmount { get; set; }
 
         private void Update()
         {
