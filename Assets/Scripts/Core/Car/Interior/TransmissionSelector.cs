@@ -36,19 +36,21 @@ namespace Core.Car
             }
         }
 
-        public void LoadSyncState(Vector2Int position)
+        public void LoadSyncState((int x, int y) position)
         {
-            if(_selector.Position == position)
+            Vector2Int positionVector = new Vector2Int(position.x, position.y);
+
+            if(_selector.Position == positionVector)
             {
                 return;
             }
 
-            ChangeValue(position - _selector.Position);
+            ChangeValue(positionVector - _selector.Position);
         }
 
-        public Vector2Int GetSyncState()
+        public (int x, int y) GetSyncState()
         {
-            return _selector.Position;
+            return (_selector.Position.x, _selector.Position.y);
         }
 
         public void SwitchUp()

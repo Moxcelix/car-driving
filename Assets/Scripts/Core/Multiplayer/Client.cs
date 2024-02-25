@@ -7,6 +7,9 @@ namespace Core.Multiplayer
 {
     public class Client
     {
+        public delegate void OnDataReceivedDelegate(string data);
+        public event OnDataReceivedDelegate OnDataReceived;
+
         private readonly string _ipAddress;
         private readonly int _port;
 
@@ -49,26 +52,38 @@ namespace Core.Multiplayer
         {
             try
             {
+                if (!_connection.Connected)
+                {
+                    Debug.Log("Соединение с сервером закрыто");
+                    Disconnect();
+                    return;
+                }
+
                 var bytesRead = _stream.EndRead(result);
 
                 if (bytesRead <= 0)
                 {
+                    Debug.Log("Соединение с сервером закрыто");
                     Disconnect();
-
                     return;
                 }
 
                 var message = Encoding.UTF8.GetString(_buffer, 0, bytesRead);
 
-                Debug.Log("Получено сообщение от сервера: " + message);
+                OnDataReceived?.Invoke(message);
 
-                _stream.BeginRead(_buffer, 0, _buffer.Length, ReceiveCallback, null);
+                Debug.Log("Получено сообщение от сервера: " + message);
             }
             catch (Exception exception)
             {
                 Debug.Log("Ошибка чтения данных: " + exception.Message);
-
-                Disconnect();
+            }
+            finally
+            {
+                if (_connection != null && _connection.Connected)
+                {
+                    _stream.BeginRead(_buffer, 0, _buffer.Length, ReceiveCallback, null);
+                }
             }
         }
 

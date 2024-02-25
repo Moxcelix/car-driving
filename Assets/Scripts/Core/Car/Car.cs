@@ -127,13 +127,17 @@ namespace Core.Car
             // Sync transmission.
             _transmissionSelector.LoadSyncState(_state.TransmissionSelectorPosition);
             // Sync wheels;
-            _frontLeftWheel.LoadSyncState(_state.LeftFrontWheel);
-            _frontRightWheel.LoadSyncState(_state.RightFrontWheel);
-            _rearLeftWheel.LoadSyncState(_state.LeftRearWheel);
-            _rearRightWheel.LoadSyncState(_state.RightRearWheel);
+            _frontLeftWheel.LoadSyncState(_state.LeftFrontWheelPosition,
+                _state.LeftFrontWheelRotation);
+            _frontRightWheel.LoadSyncState(_state.RightFrontWheelPosition,
+                _state.RightFrontWheelRotation);
+            _rearLeftWheel.LoadSyncState(_state.LeftRearWheelPosition,
+                _state.LeftRearWheelRotation);
+            _rearRightWheel.LoadSyncState(_state.RightRearWheelPosition,
+                _state.RightRearWheelRotation);
         }
 
-        public CarState GetState()
+        public CarState GetSyncState()
         {
             if (Syncable)
             {
@@ -148,6 +152,10 @@ namespace Core.Car
             }
 
             var blinkerState = _turnLights.GetSyncState();
+            var frontLeftWheelState = _frontLeftWheel.GetSyncState();
+            var frontRightWheelState = _frontRightWheel.GetSyncState();
+            var rearLeftWheelState = _rearLeftWheel.GetSyncState();
+            var rearRightWheelState = _rearRightWheel.GetSyncState();
 
             var state = new CarState
             {
@@ -164,10 +172,14 @@ namespace Core.Car
                 TransmissionSelectorPosition = _transmissionSelector.GetSyncState(),
                 BlinkerState = blinkerState.Item1,
                 Emergency = blinkerState.Item2,
-                LeftFrontWheel = _frontLeftWheel.GetSyncState(),
-                RightFrontWheel = _frontRightWheel.GetSyncState(),
-                LeftRearWheel = _rearLeftWheel.GetSyncState(),
-                RightRearWheel = _rearRightWheel.GetSyncState(),
+                LeftFrontWheelPosition = frontLeftWheelState.position,
+                LeftFrontWheelRotation = frontLeftWheelState.rotation,
+                RightFrontWheelPosition = frontRightWheelState.position,
+                RightFrontWheelRotation = frontRightWheelState.rotation,
+                LeftRearWheelPosition = rearLeftWheelState.position,
+                LeftRearWheelRotation = rearLeftWheelState.rotation,
+                RightRearWheelPosition = rearRightWheelState.position,
+                RightRearWheelRotation = rearRightWheelState.rotation,
             };
 
             return state;

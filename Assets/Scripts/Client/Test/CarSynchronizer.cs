@@ -14,7 +14,7 @@ public class CarSynchronizer : MonoBehaviour
 
     private void Update()
     {
-        _childCar.Synchronize(_parentCar.GetState());   
+        _childCar.Synchronize(_parentCar.GetSyncState());   
         _childCar.transform.SetPositionAndRotation(
             _parentCar.transform.position + Vector3.right * 20.0f, 
             _parentCar.transform.rotation);

@@ -32,15 +32,24 @@ namespace Core.Car
             RPM = _collider.rpm;
         }
 
-        public void LoadSyncState(Transform transform)
+        public void LoadSyncState((float x, float y, float z) position, (float x, float y, float z) rotation)
         {
-            _wheel.SetLocalPositionAndRotation(
-                transform.localPosition, transform.localRotation);
+            var positionVector = new Vector3(position.x, position.y, position.z);
+            var rotationVector = new Vector3(rotation.x, rotation.y, rotation.z);
+
+            _wheel.SetLocalPositionAndRotation(positionVector, Quaternion.Euler(rotationVector));
         }
 
-        public Transform GetSyncState()
+        public ((float x, float y, float z) position,
+            (float x, float y, float z) rotation) GetSyncState()
         {
-            return _wheel;
+
+            return ((_wheel.localPosition.x,
+                    _wheel.localPosition.y,
+                    _wheel.localPosition.z),
+                   (_wheel.localEulerAngles.x,
+                    _wheel.localEulerAngles.y,
+                    _wheel.localEulerAngles.z));
         }
 
         public void TransmitTorque(float force)
