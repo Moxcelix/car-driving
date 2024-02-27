@@ -64,14 +64,32 @@ namespace Core.Multiplayer
             {
                 SyncSendState();
             }
-
-            lock (_lock)
+            else
             {
-                if (_state != null)
+                var data = _client.GetMessage();
+
+                try
                 {
-                    _car.Synchronize(_state);
+                    _state = JsonConvert.DeserializeObject<CarState>(data);
+
+                    if (_state != null)
+                    {
+                        _car.Synchronize(_state);
+                    }
+                }
+                catch
+                {
+                    Debug.Log(data);
                 }
             }
+
+            //lock (_lock)
+            //{
+            //    if (_state != null)
+            //    {
+            //        _car.Synchronize(_state);
+            //    }
+            //}
         }
 
         private void OnDestroy()

@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 583460099}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8793396
+  m_Size: 0.8793395
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9107,7 +9107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ipAddress: 127.0.0.1
   _port: 8082
-  _isLeader: 0
+  _isLeader: 1
   _car: {fileID: 1653603867}
 --- !u!4 &1559072014
 Transform:

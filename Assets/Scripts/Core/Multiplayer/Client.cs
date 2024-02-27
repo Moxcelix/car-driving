@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Core.Multiplayer
 
         private TcpClient _connection;
         private NetworkStream _stream;
+        private StreamReader _reader;
+        private StreamWriter _writer;
 
         private readonly byte[] _buffer = new byte[1024];
 
@@ -30,13 +33,25 @@ namespace Core.Multiplayer
             {
                 _connection = new TcpClient(_ipAddress, _port);
                 _stream = _connection.GetStream();
+                _reader = new StreamReader(_stream);
+                _writer = new StreamWriter(_stream);
 
-                _stream.BeginRead(_buffer, 0, _buffer.Length, ReceiveCallback, null);
+                //_stream.BeginRead(_buffer, 0, _buffer.Length, ReceiveCallback, null);
+
             }
             catch (Exception exception)
             {
                 Debug.Log("Ошибка подключения к серверу: " + exception.Message);
             }
+        }
+
+        public string? GetMessage()
+        {
+            var message = _reader.ReadLine();
+
+            Debug.Log("Получено сообщение от сервера: " + message);
+
+            return message;
         }
 
         public void Disconnect()
@@ -98,9 +113,11 @@ namespace Core.Multiplayer
 
             try
             {
-                var data = Encoding.UTF8.GetBytes(message);
+               // var data = Encoding.UTF8.GetBytes(message);
 
-                _stream.Write(data, 0, data.Length);
+                //_stream.Write(data, 0, data.Length);
+
+                _writer.WriteLine(message);
 
                 Debug.Log("Отправлено сообщение на сервер: " + message);
             }
