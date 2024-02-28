@@ -126,7 +126,7 @@ namespace Core.Car
             _engine.LoadSyncState(_state.RPM);
             // Sync transmission.
             _transmissionSelector.LoadSyncState(_state.TransmissionSelectorPosition);
-            // Sync wheels;
+            // Sync wheels.
             _frontLeftWheel.LoadSyncState(_state.LeftFrontWheelPosition,
                 _state.LeftFrontWheelRotation);
             _frontRightWheel.LoadSyncState(_state.RightFrontWheelPosition,
@@ -135,6 +135,10 @@ namespace Core.Car
                 _state.LeftRearWheelRotation);
             _rearRightWheel.LoadSyncState(_state.RightRearWheelPosition,
                 _state.RightRearWheelRotation);
+            // Sync this.
+            transform.SetPositionAndRotation(
+                new Vector3(state.BodyPosition.x, state.BodyPosition.y, state.BodyPosition.z), 
+                Quaternion.Euler(state.BodyRotation.x, state.BodyRotation.y, state.BodyRotation.z));
         }
 
         public CarState GetSyncState()
@@ -156,6 +160,8 @@ namespace Core.Car
             var frontRightWheelState = _frontRightWheel.GetSyncState();
             var rearLeftWheelState = _rearLeftWheel.GetSyncState();
             var rearRightWheelState = _rearRightWheel.GetSyncState();
+
+            (float x, float y, float z) Vector3ToTuple(Vector3 vector) => (vector.x, vector.y, vector.z);
 
             var state = new CarState
             {
@@ -180,6 +186,8 @@ namespace Core.Car
                 LeftRearWheelRotation = rearLeftWheelState.rotation,
                 RightRearWheelPosition = rearRightWheelState.position,
                 RightRearWheelRotation = rearRightWheelState.rotation,
+                BodyPosition = Vector3ToTuple(transform.position),
+                BodyRotation = Vector3ToTuple(transform.rotation.eulerAngles),
             };
 
             return state;

@@ -72,7 +72,7 @@ namespace Core.Multiplayer
 
                 OnDataReceived?.Invoke(message);
 
-                Debug.Log("Получено сообщение от сервера: " + message);
+                //Debug.Log("Получено сообщение от сервера: " + message);
             }
             catch (Exception exception)
             {
@@ -102,7 +102,7 @@ namespace Core.Multiplayer
 
                 _stream.Write(data, 0, data.Length);
 
-                Debug.Log("Отправлено сообщение на сервер: " + message);
+                //Debug.Log("Отправлено сообщение на сервер: " + message);
             }
             catch (Exception exception)
             {
