@@ -56,6 +56,7 @@ namespace Core.Multiplayer
         private void Start()
         {
             _car.Syncable = !_isLeader;
+            _car.SmoothSync = false;
         }
 
         private void Update()
@@ -69,7 +70,7 @@ namespace Core.Multiplayer
             {
                 if (_state != null)
                 {
-                    _car.Synchronize(_state);
+                    _car.Synchronize(_state, Time.deltaTime);
                 }
             }
         }

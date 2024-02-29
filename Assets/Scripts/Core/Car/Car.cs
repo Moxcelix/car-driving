@@ -42,6 +42,7 @@ namespace Core.Car
         private CarState _state;
 
         public bool Syncable { get; set; } = false;
+        public bool SmoothSync { get; set; } = false;
 
         public Pedal GasPedal => _gasPedal;
         public Pedal BrakePedal => _brakePedal;
@@ -91,7 +92,7 @@ namespace Core.Car
             HandleBrakeing();
         }
 
-        public void Synchronize(CarState state)
+        public void Synchronize(CarState state, float deltaTime = 1)
         {
             if (!Syncable)
             {
@@ -100,7 +101,7 @@ namespace Core.Car
                 return;
             }
 
-            _state = state;
+            _state = SmoothSync && _state != null ? CarState.Lerp(_state, state, deltaTime) : state;
 
             // Sync gas pedal.
             _gasPedal.Value = _state.Gas;
@@ -137,7 +138,7 @@ namespace Core.Car
                 _state.RightRearWheelRotation);
             // Sync this.
             transform.SetPositionAndRotation(
-                new Vector3(state.BodyPosition.x, state.BodyPosition.y, state.BodyPosition.z), 
+                new Vector3(state.BodyPosition.x, state.BodyPosition.y, state.BodyPosition.z),
                 Quaternion.Euler(state.BodyRotation.x, state.BodyRotation.y, state.BodyRotation.z));
         }
 
