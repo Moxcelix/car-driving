@@ -208,7 +208,7 @@ namespace Core.Car
                 return;
             }
 
-            int targetGeer = GetGearByAcceleration(rpm);
+            int targetGeer = GetGearByGasPressure(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
             if (targetGeer == _currentGear)
             {
                 return;
@@ -230,6 +230,69 @@ namespace Core.Car
             _ratioShifter.Shift(
                 _gears[_currentGear].Ratio,
                 _gears[_currentGear].ShiftSpeed);
+        }
+
+        private int GetGearByGasPressure(float rpm, float gas, float brake)
+        {
+            float GetRpm(int i) => rpm * _gears[i].Ratio * _lastGearRatio;
+            bool ValidateGear(int i, float validRpm) => GetRpm(i) >= validRpm;
+            bool ValidateGearByMinimal(int i) => ValidateGear(i, _gears[i].MinRPM);
+            bool ValidateGearByMaximal(int i, float max) => GetRpm(i) <= max;
+
+            if (brake > 0.2f)
+            {
+                if (_currentGear == 0)
+                {
+                    return 0;
+                }
+
+                if (ValidateGearByMinimal(_currentGear - 1))
+                {
+                    return _currentGear - 1;
+                }
+
+                return _currentGear;
+            }
+
+            if (gas < 0.2f)
+            {
+                var targetGear = 0;
+
+                for (int i = 0; i < _gears.Length && ValidateGearByMinimal(i); i++)
+                {
+                    targetGear = i;
+                }
+
+                return targetGear;
+            }
+            else if (gas < 0.7f)
+            {
+                var gasRepresentation = (gas - 0.2f) / (0.7f - 0.2f);
+                var targetGear = 0;
+
+                for (int i = 0; i < _gears.Length && ValidateGear(i, 1000 + 3000 * gasRepresentation); i++)
+                {
+                    targetGear = i;
+                }
+
+                return targetGear;
+            }
+            else
+            {
+                var targetGear = 0;
+
+                for (int i = 0; i < _gears.Length; i++)
+                {
+                    if (ValidateGearByMaximal(i, 5500))
+                    {
+                        targetGear = i;
+
+                        break;
+                    }
+                }
+
+                return targetGear;
+            }
         }
 
         private int GetGearByAcceleration(float rpm)
@@ -254,7 +317,7 @@ namespace Core.Car
 
         private int GetGeerByOptimalValue(float rpm, float optimalValue)
         {
-            var targetGeer = 0;
+            var targetGeer = _currentGear;
             var prevDifference = Mathf.Abs(optimalValue - rpm * GetRatio());
 
             for (int i = 0; i < _gears.Length; i++)
@@ -315,7 +378,7 @@ namespace Core.Car
             switch (literal)
             {
                 case "p":
-                    if(Mathf.Abs(_speed) > c_speedEps || !_car.BrakePedal.IsPressed)
+                    if (Mathf.Abs(_speed) > c_speedEps || !_car.BrakePedal.IsPressed)
                     {
                         return false;
                     }

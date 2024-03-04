@@ -2834,7 +2834,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
-      value: 150
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850829, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_IsKinematic
@@ -3128,7 +3128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
@@ -8885,7 +8885,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559072012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61c708d87a36a846b5f927dda271d51, type: 3}
   m_Name: 
@@ -11086,7 +11086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _engine._maxTorque
-      value: 120
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
@@ -12877,7 +12877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _engine._maxTorque
-      value: 150
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
