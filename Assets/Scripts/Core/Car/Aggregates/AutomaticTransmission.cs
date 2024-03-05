@@ -187,7 +187,8 @@ namespace Core.Car
         private void UpdateGearShifting(float rpm)
         {
             if (Mode != AutomaticTransmissionMode.DRIVING &&
-                Mode != AutomaticTransmissionMode.MANUAL)
+                Mode != AutomaticTransmissionMode.MANUAL &&
+                Mode != AutomaticTransmissionMode.NEUTRAL)
             {
                 _currentGear = 0;
 
@@ -226,11 +227,20 @@ namespace Core.Car
                 }
             }
 
-            _currentGear = targetGeer;
+            if(targetGeer > _currentGear)
+            {
+                _currentGear++;
+            }
+            else
+            {
+                _currentGear--;
+            }
+            //_currentGear = targetGeer;
             _ratioShifter.Shift(
                 _gears[_currentGear].Ratio,
                 _gears[_currentGear].ShiftSpeed);
         }
+
 
         private int GetGearByGasPressure(float rpm, float gas, float brake)
         {
@@ -246,7 +256,7 @@ namespace Core.Car
                     return 0;
                 }
 
-                if (ValidateGearByMinimal(_currentGear - 1))
+                if (ValidateGearByMaximal(_currentGear, _supportRPM))
                 {
                     return _currentGear - 1;
                 }
@@ -270,7 +280,8 @@ namespace Core.Car
                 var gasRepresentation = (gas - 0.2f) / (0.7f - 0.2f);
                 var targetGear = 0;
 
-                for (int i = 0; i < _gears.Length && ValidateGear(i, 1000 + 3000 * gasRepresentation); i++)
+                for (int i = 0; i < _gears.Length && ValidateGear(
+                    i, 1000 + 3000 * gasRepresentation * gasRepresentation); i++)
                 {
                     targetGear = i;
                 }

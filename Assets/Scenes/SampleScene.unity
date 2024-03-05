@@ -2834,7 +2834,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
-      value: 180
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850829, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_IsKinematic
@@ -3128,7 +3128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
-      value: 150
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
@@ -7293,6 +7293,23 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1280057498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+  m_PrefabInstance: {fileID: 1972204880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1280057522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280057498}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1292251918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11024,6 +11041,74 @@ PrefabInstance:
       propertyPath: m_Depth
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].inSlope
+      value: 1.4776275
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].outSlope
+      value: 1.4776275
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 5641354359547261598, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _carMirrors
       value: 
@@ -11086,7 +11171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _engine._maxTorque
-      value: 150
+      value: 170
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
@@ -12823,6 +12908,50 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_Name
       value: KIA Rio X AT
@@ -12877,7 +13006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _engine._maxTorque
-      value: 180
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
