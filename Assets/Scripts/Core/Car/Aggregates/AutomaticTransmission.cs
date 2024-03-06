@@ -69,62 +69,6 @@ namespace Core.Car
             UpdateBrake();
         }
 
-        public void SwitchUp()
-        {
-            if (Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                UpshiftGear(1);
-
-                OnModeChange?.Invoke();
-            }
-            else if (Mode == AutomaticTransmissionMode.DRIVING ||
-                !_lock && Mathf.Abs(_speed) <= c_speedEps &&
-                Mode != AutomaticTransmissionMode.PARKING)
-            {
-                Mode = (AutomaticTransmissionMode)((int)Mode - 1);
-
-                OnModeChange?.Invoke();
-            }
-        }
-
-        public void SwitchDown()
-        {
-            if (Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                DownshiftGear(1);
-
-                OnModeChange?.Invoke();
-            }
-            else if (Mode == AutomaticTransmissionMode.NEUTRAL ||
-                !_lock && Mathf.Abs(_speed) <= c_speedEps &&
-                Mode != AutomaticTransmissionMode.DRIVING)
-            {
-                Mode = (AutomaticTransmissionMode)((int)Mode + 1);
-
-                OnModeChange?.Invoke();
-            }
-        }
-
-        public void SwitchLeft()
-        {
-            if (Mode == AutomaticTransmissionMode.DRIVING)
-            {
-                Mode = AutomaticTransmissionMode.MANUAL;
-
-                OnModeChange?.Invoke();
-            }
-        }
-
-        public void SwitchRight()
-        {
-            if (Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                Mode = AutomaticTransmissionMode.DRIVING;
-
-                OnModeChange?.Invoke();
-            }
-        }
-
         public override float GetRatio()
         {
             return Mode switch
