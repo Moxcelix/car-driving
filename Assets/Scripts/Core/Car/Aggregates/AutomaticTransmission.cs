@@ -225,7 +225,7 @@ namespace Core.Car
                 var targetGear = 0;
 
                 for (int i = 0; i < _gears.Length && ValidateGear(
-                    i, 1000 + 3000 * gasRepresentation * gasRepresentation); i++)
+                    i, 1000 + 2000 * gasRepresentation * gasRepresentation); i++)
                 {
                     targetGear = i;
                 }
