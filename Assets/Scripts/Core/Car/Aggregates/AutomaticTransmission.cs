@@ -99,8 +99,8 @@ namespace Core.Car
         {
             var factor = 1.0f + _gasReactionCurve.Evaluate(acceleration);
 
-            _accelerationFactor =
-                Mathf.Lerp(_accelerationFactor, factor, deltaTime);
+            _accelerationFactor = factor;
+                //Mathf.Lerp(_accelerationFactor, factor, deltaTime);
         }
 
         private void UpdateBrake()
@@ -154,6 +154,7 @@ namespace Core.Car
             }
 
             int targetGeer = GetGearByGasPressure(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
+
             if (targetGeer == _currentGear)
             {
                 return;
@@ -171,7 +172,7 @@ namespace Core.Car
                 }
             }
 
-            if(targetGeer > _currentGear)
+            if (targetGeer > _currentGear)
             {
                 _currentGear++;
             }
@@ -222,10 +223,11 @@ namespace Core.Car
             else if (gas < 0.7f)
             {
                 var gasRepresentation = (gas - 0.2f) / (0.7f - 0.2f);
+                var factor = _gasReactionCurve.Evaluate(gasRepresentation);
                 var targetGear = 0;
 
                 for (int i = 0; i < _gears.Length && ValidateGear(
-                    i, 1000 + 2000 * gasRepresentation * gasRepresentation); i++)
+                    i, 1000 + 2000 * factor); i++)
                 {
                     targetGear = i;
                 }
