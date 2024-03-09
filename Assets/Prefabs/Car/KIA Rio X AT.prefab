@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458556738}
-  m_LocalRotation: {x: 0.5377575, y: -0.45914528, z: -0.4591512, w: 0.5377571}
+  m_LocalRotation: {x: 0.5718211, y: -0.4807272, z: -0.43598476, w: 0.50183606}
   m_LocalPosition: {x: -0.00178, y: 0.0033, z: 0.00081}
   m_LocalScale: {x: 0.0100000035, y: 0.01, z: 0.010000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5641354360012721656}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 9.017, y: -90, z: -90}
+  m_LocalEulerAnglesHint: {x: 8.902, y: -96.752, z: -91.979}
 --- !u!20 &1458556741
 Camera:
   m_ObjectHideFlags: 0
@@ -99,14 +99,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686494295}
-  m_LocalRotation: {x: 0.5993635, y: -0.37518385, z: -0.37518358, w: 0.5993645}
+  m_LocalRotation: {x: 0.62965536, y: -0.40180677, z: -0.34726343, w: 0.567004}
   m_LocalPosition: {x: -0.00072845607, y: -0.001720849, z: 0.00081378943}
   m_LocalScale: {x: 0.010000002, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5641354360881674211}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25.909, y: -90, z: -90}
+  m_LocalEulerAnglesHint: {x: 25.783, y: -97.391, z: -92.171}
 --- !u!20 &1686494298
 Camera:
   m_ObjectHideFlags: 0
@@ -15197,22 +15197,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9352493
-      value: 0.14080133
-      inSlope: 0.17792015
-      outSlope: 0.17792015
+      time: 0.64416564
+      value: 0.16061398
+      inSlope: 0.00902519
+      outSlope: 0.00902519
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.5531869
+      outWeight: 0.143232
     - serializedVersion: 3
       time: 1
-      value: 1.2999983
-      inSlope: 3.213259
-      outSlope: 3.213259
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.03658138
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

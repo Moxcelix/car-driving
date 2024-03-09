@@ -1003,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142855468}
   m_LocalRotation: {x: -0.70710576, y: 0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 0, y: -0.28, z: -0.002}
+  m_LocalPosition: {x: 0, y: -0.486, z: -0.002}
   m_LocalScale: {x: 1.0091418, y: 0.03384194, z: 0.0027408984}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11493,7 +11493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454307006}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.49999854, w: 0.5000015}
-  m_LocalPosition: {x: -0.349, y: 0, z: -0.0024028488}
+  m_LocalPosition: {x: -0.521, y: 0, z: -0.0024028488}
   m_LocalScale: {x: 1.0129812, y: 0.03384194, z: 0.00273051}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15558,82 +15558,6 @@ PrefabInstance:
       propertyPath: m_Depth
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].time
-      value: 0.64416564
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].value
-      value: 0.16061398
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inSlope
-      value: 0.00902519
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outSlope
-      value: 0.00902519
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outWeight
-      value: 0.143232
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[2].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5641354359547261598, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _carMirrors
       value: 
@@ -16884,7 +16808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081376037}
   m_LocalRotation: {x: -0.70710576, y: 0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 0, y: 0.361, z: -0.002}
+  m_LocalPosition: {x: 0, y: 0.471, z: -0.002}
   m_LocalScale: {x: 1.0091418, y: 0.03384194, z: 0.0027408984}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17426,7 +17350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121785918}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.49999854, w: 0.5000015}
-  m_LocalPosition: {x: 0.325, y: 0, z: -0.0024028488}
+  m_LocalPosition: {x: 0.462, y: 0, z: -0.0024028488}
   m_LocalScale: {x: 1.0129812, y: 0.03384194, z: 0.00273051}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17607,50 +17531,6 @@ PrefabInstance:
     - target: {fileID: 1686494297, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[0].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gasReactionCurve.m_Curve.Array.data[1].tangentMode
-      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_Name
