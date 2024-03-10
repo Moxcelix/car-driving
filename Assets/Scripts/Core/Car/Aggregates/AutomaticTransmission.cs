@@ -65,7 +65,7 @@ namespace Core.Car
 
             UpdateAccelerationFactor(_gasValue, Time.deltaTime);
             UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
-            UpdateGearShifting(_outputRPM);
+            UpdateGearShifting(_inputRPM);
             UpdateBrake();
         }
 
@@ -144,18 +144,19 @@ namespace Core.Car
                 return;
             }
 
-            var currentRPM = rpm * GetRatio();
+            //var currentRPM = rpm * GetRatio();
 
-            if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
-                currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
-                _speed >= _gears[_currentGear].MinSpeed * _accelerationFactor)
-            {
-                return;
-            }
+            //if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
+            //    currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
+            //    _speed >= _gears[_currentGear].MinSpeed * _accelerationFactor)
+            //{
+            //    return;
+            //}
 
-            int targetGeer = GetGearByGasPressure(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
 
-            if (targetGeer == _currentGear)
+            int gearDelta = GetGearDeltaByDynamic(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
+
+            if (gearDelta == 0)
             {
                 return;
             }
@@ -164,7 +165,7 @@ namespace Core.Car
             {
                 if (_currentGear > 0 && RPM < _supportRPM)
                 {
-                    targetGeer = _currentGear - 1;
+                    gearDelta = -1;
                 }
                 else
                 {
@@ -172,20 +173,44 @@ namespace Core.Car
                 }
             }
 
-            if (targetGeer > _currentGear)
+            if (_currentGear + gearDelta < 0 || _currentGear + gearDelta >= _gears.Length)
             {
-                _currentGear++;
+                return;
             }
-            else
-            {
-                _currentGear--;
-            }
-            //_currentGear = targetGeer;
+ 
+            _currentGear += gearDelta;
+
             _ratioShifter.Shift(
                 _gears[_currentGear].Ratio,
                 _gears[_currentGear].ShiftSpeed);
         }
 
+
+        private int GetGearDeltaByDynamic(float rpm, float gas, float brake)
+        {
+            var reflection = 0.2f;
+            var acceleration = 0.7f;
+
+            var minRpm = 1000;
+            var maxRpm = 2300;
+
+            //if(gas < reflection)
+            {
+                if(rpm < minRpm)
+                {
+                    return -1;
+                }
+
+                if(rpm > maxRpm)
+                {
+                    return 1;
+                }
+
+                return 0;
+            }
+
+            return 0;
+        }
 
         private int GetGearByGasPressure(float rpm, float gas, float brake)
         {
