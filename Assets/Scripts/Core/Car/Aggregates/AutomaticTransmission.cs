@@ -100,7 +100,7 @@ namespace Core.Car
             var factor = 1.0f + _gasReactionCurve.Evaluate(acceleration);
 
             _accelerationFactor = factor;
-                //Mathf.Lerp(_accelerationFactor, factor, deltaTime);
+            //Mathf.Lerp(_accelerationFactor, factor, deltaTime);
         }
 
         private void UpdateBrake()
@@ -177,7 +177,7 @@ namespace Core.Car
             {
                 return;
             }
- 
+
             _currentGear += gearDelta;
 
             _ratioShifter.Shift(
@@ -191,17 +191,53 @@ namespace Core.Car
             var reflection = 0.2f;
             var acceleration = 0.7f;
 
-            var minRpm = 1000;
-            var maxRpm = 2300;
 
-            //if(gas < reflection)
+
+            if (gas < reflection)
             {
-                if(rpm < minRpm)
+                var minRpm = 1000;
+                var maxRpm = 1500;
+
+                if (rpm < minRpm)
                 {
                     return -1;
                 }
 
-                if(rpm > maxRpm)
+                if (rpm > maxRpm)
+                {
+                    return 1;
+                }
+
+                return 0;
+            }
+            else if (gas < acceleration)
+            {
+                var minRpm = 1500;
+                var maxRpm = 2500;
+
+                if (rpm < minRpm)
+                {
+                    return -1;
+                }
+
+                if (rpm > maxRpm)
+                {
+                    return 1;
+                }
+
+                return 0;
+            }
+            else
+            {
+                var minRpm = 4000;
+                var maxRpm = 5500;
+
+                if (rpm < minRpm)
+                {
+                    return -1;
+                }
+
+                if (rpm > maxRpm)
                 {
                     return 1;
                 }
