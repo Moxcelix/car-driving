@@ -3031,7 +3031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 2572421925041793583}
   _wheel: {fileID: 2572421926392286357}
   _support: {fileID: 0}
@@ -3376,7 +3376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 2572421925092837870}
   _wheel: {fileID: 2572421926341106924}
   _support: {fileID: 0}
@@ -14305,7 +14305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 2572421926311466051}
   _wheel: {fileID: 2572421924852336651}
   _support: {fileID: 0}
@@ -16939,7 +16939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 2572421926654726586}
   _wheel: {fileID: 2572421925811513988}
   _support: {fileID: 0}

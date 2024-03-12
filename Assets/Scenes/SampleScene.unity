@@ -11931,6 +11931,17 @@ MonoBehaviour:
   _startingInstructionText: {fileID: 634460219}
   _maneuveringInstructionText: {fileID: 345543824}
   _endingInstructionText: {fileID: 2029858078}
+--- !u!114 &1518288018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+  m_PrefabInstance: {fileID: 632063572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1520238054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
@@ -12169,7 +12180,7 @@ MonoBehaviour:
   _ipAddress: 127.0.0.1
   _port: 8082
   _isLeader: 0
-  _car: {fileID: 1653603867}
+  _car: {fileID: 1518288018}
 --- !u!4 &1559072014
 Transform:
   m_ObjectHideFlags: 0
@@ -12934,17 +12945,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
---- !u!114 &1653603867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-  m_PrefabInstance: {fileID: 589527823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a853e5965bc8704f8f190275f3c0561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1663333893
 GameObject:
   m_ObjectHideFlags: 0
@@ -17524,21 +17524,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1458556740, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1686494297, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_Name
       value: KIA Rio X AT
-      objectReference: {fileID: 0}
-    - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_RootOrder
@@ -17583,10 +17571,6 @@ PrefabInstance:
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _engine._maxTorque
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}

@@ -65,7 +65,7 @@ namespace Core.Car
 
             UpdateAccelerationFactor(_gasValue, Time.deltaTime);
             UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
-            UpdateGearShifting(_inputRPM);
+            UpdateGearShifting(_outputRPM);
             UpdateBrake();
         }
 
@@ -99,8 +99,8 @@ namespace Core.Car
         {
             var factor = 1.0f + _gasReactionCurve.Evaluate(acceleration);
 
-            _accelerationFactor = factor;
-            //Mathf.Lerp(_accelerationFactor, factor, deltaTime);
+            _accelerationFactor = factor > _accelerationFactor ? 
+                factor : Mathf.Lerp(_accelerationFactor, factor, deltaTime);
         }
 
         private void UpdateBrake()
@@ -130,9 +130,11 @@ namespace Core.Car
 
         private void UpdateGearShifting(float rpm)
         {
+            bool old = true;
+
             if (Mode != AutomaticTransmissionMode.DRIVING &&
-                Mode != AutomaticTransmissionMode.MANUAL &&
-                Mode != AutomaticTransmissionMode.NEUTRAL)
+                    Mode != AutomaticTransmissionMode.MANUAL &&
+                    Mode != AutomaticTransmissionMode.NEUTRAL)
             {
                 _currentGear = 0;
 
@@ -144,41 +146,68 @@ namespace Core.Car
                 return;
             }
 
-            //var currentRPM = rpm * GetRatio();
+            var currentRPM = rpm * GetRatio();
 
-            //if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
-            //    currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
-            //    _speed >= _gears[_currentGear].MinSpeed * _accelerationFactor)
-            //{
-            //    return;
-            //}
-
-
-            int gearDelta = GetGearDeltaByDynamic(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
-
-            if (gearDelta == 0)
+            if (old)
             {
-                return;
-            }
-
-            if (Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                if (_currentGear > 0 && RPM < _supportRPM)
-                {
-                    gearDelta = -1;
-                }
-                else
+                if (currentRPM <= _gears[_currentGear].MaxRPM * _accelerationFactor &&
+                    currentRPM >= _gears[_currentGear].MinRPM * _accelerationFactor &&
+                    _speed >= _gears[_currentGear].MinSpeed * _accelerationFactor)
                 {
                     return;
                 }
-            }
 
-            if (_currentGear + gearDelta < 0 || _currentGear + gearDelta >= _gears.Length)
+                int targetGear = GetGearByGasPressure(rpm, _car.GasPedal.Value, _car.BrakePedal.Value);
+
+                if (targetGear == _currentGear)
+                {
+                    return;
+                }
+
+                if (Mode == AutomaticTransmissionMode.MANUAL)
+                {
+                    if (_currentGear > 0 && RPM < _supportRPM)
+                    {
+                        targetGear = _currentGear - 1;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (targetGear > _currentGear)
+                {
+                    _currentGear++;
+                }
+                else
+                {
+                    _currentGear--;
+                }
+            }
+            else
             {
-                return;
-            }
+                int gearDelta = GetGearDeltaByDynamic(currentRPM, _car.GasPedal.Value, _car.BrakePedal.Value);
 
-            _currentGear += gearDelta;
+                if (Mode == AutomaticTransmissionMode.MANUAL)
+                {
+                    if (_currentGear > 0 && RPM < _supportRPM)
+                    {
+                        gearDelta = -1;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (gearDelta == 0)
+                {
+                    return;
+                }
+
+                _currentGear += gearDelta;
+            }
 
             _ratioShifter.Shift(
                 _gears[_currentGear].Ratio,
@@ -191,61 +220,79 @@ namespace Core.Car
             var reflection = 0.2f;
             var acceleration = 0.7f;
 
-
-
-            if (gas < reflection)
+            int GetShiftVector(float rpm)
             {
-                var minRpm = 1000;
-                var maxRpm = 1500;
-
-                if (rpm < minRpm)
+                if (gas < reflection)
                 {
-                    return -1;
-                }
+                    var minRpm = 1000;
+                    var maxRpm = 1500;
 
-                if (rpm > maxRpm)
+                    if (rpm < minRpm)
+                    {
+                        return -1;
+                    }
+
+                    if (rpm > maxRpm)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+                else if (gas < acceleration)
                 {
-                    return 1;
-                }
+                    var minRpm = 1200;
+                    var maxRpm = 2500;
 
+                    if (rpm < minRpm)
+                    {
+                        return -1;
+                    }
+
+                    if (rpm > maxRpm)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+                else
+                {
+                    var minRpm = 4000;
+                    var maxRpm = 5500;
+
+                    if (rpm < minRpm)
+                    {
+                        return -1;
+                    }
+
+                    if (rpm > maxRpm)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                }
+            }
+
+            var vector = GetShiftVector(rpm);
+
+            if (_currentGear == 0 && vector == -1 ||
+                _currentGear == _gears.Length - 1 && vector == 1)
+            {
                 return 0;
             }
-            else if (gas < acceleration)
+
+            var nextVector = GetShiftVector(rpm /
+                _gears[_currentGear].Ratio * 
+                _gears[_currentGear + vector].Ratio);
+
+            if(nextVector + vector == 0)
             {
-                var minRpm = 1500;
-                var maxRpm = 2500;
-
-                if (rpm < minRpm)
-                {
-                    return -1;
-                }
-
-                if (rpm > maxRpm)
-                {
-                    return 1;
-                }
-
-                return 0;
-            }
-            else
-            {
-                var minRpm = 4000;
-                var maxRpm = 5500;
-
-                if (rpm < minRpm)
-                {
-                    return -1;
-                }
-
-                if (rpm > maxRpm)
-                {
-                    return 1;
-                }
-
                 return 0;
             }
 
-            return 0;
+            return vector;
         }
 
         private int GetGearByGasPressure(float rpm, float gas, float brake)

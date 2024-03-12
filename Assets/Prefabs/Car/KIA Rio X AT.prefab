@@ -2362,7 +2362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 5641354359183481924}
   _wheel: {fileID: 5641354360504854394}
   _support: {fileID: 0}
@@ -9393,7 +9393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 5641354359929133501}
   _wheel: {fileID: 5641354360854529525}
   _support: {fileID: 0}
@@ -14577,7 +14577,7 @@ MonoBehaviour:
     _minRPM: 400
     _deltaRPM: 2000
     _idlingRPM: 700
-    _maxTorque: 400
+    _maxTorque: 200
     _responsiveness: 6
   _transmission: {fileID: 3787501503921523872}
   _doors:
@@ -17282,7 +17282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 5641354360792229841}
   _wheel: {fileID: 5641354359978328427}
   _support: {fileID: 0}
@@ -19669,7 +19669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1e948ac358c4743be09a3bb1d3237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAngle: 30
+  _maxAngle: 36
   _collider: {fileID: 5641354361075401744}
   _wheel: {fileID: 5641354359907881234}
   _support: {fileID: 0}
