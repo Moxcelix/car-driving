@@ -14579,6 +14579,30 @@ MonoBehaviour:
     _idlingRPM: 700
     _maxTorque: 200
     _responsiveness: 6
+    _rpmEfficiency:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.30081177
+        inSlope: 0.78868234
+        outSlope: 0.78868234
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.08918348
+      - serializedVersion: 3
+        time: 1.0038452
+        value: 0.2069397
+        inSlope: -2.2833202
+        outSlope: -2.2833202
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.050002128
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   _transmission: {fileID: 3787501503921523872}
   _doors:
   - {fileID: 5641354359969657557}

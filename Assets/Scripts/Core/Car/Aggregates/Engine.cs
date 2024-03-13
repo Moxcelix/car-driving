@@ -17,6 +17,7 @@ namespace Core.Car
         [SerializeField] private float _idlingRPM;
         [SerializeField] private float _maxTorque;
         [SerializeField] private float _responsiveness;
+        [SerializeField] private AnimationCurve _rpmEfficiency;
 
         public Starter Starter => _starter;
         public float MaxRPM => _maxRPM;
