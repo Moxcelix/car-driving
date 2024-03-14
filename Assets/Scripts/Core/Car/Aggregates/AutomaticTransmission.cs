@@ -56,15 +56,18 @@ namespace Core.Car
             _lock = !_car.Engine.Enabled;
             CurrentGear = _currentGear;
             IsReverse = Mode == AutomaticTransmissionMode.REVERSE;
+        }
 
+        private void FixedUpdate()
+        {
             _speed = _car.GetSpeed() * 3.6f;
             _gasValue = _car.GasPedal.Value;
 
             _ratioShifter.Update();
-            _torqueConverter.Switch((_currentGear == 0 || RPM < _supportRPM) && _car.Engine.Enabled);
+            _torqueConverter.Switch((_currentGear == 0 || RPM < _supportRPM || _car.BrakePedal.Value > 0.5f) && _car.Engine.Enabled);
 
-            UpdateAccelerationFactor(_gasValue, Time.deltaTime);
-            UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.deltaTime);
+            UpdateAccelerationFactor(_gasValue, Time.fixedDeltaTime);
+            UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.fixedDeltaTime);
             UpdateGearShifting(_outputRPM);
             UpdateBrake();
         }
@@ -128,9 +131,10 @@ namespace Core.Car
             RPM = nativeRPM;
         }
 
+
         private void UpdateGearShifting(float rpm)
         {
-            bool old = true;
+            bool old = false;
 
             if (Mode != AutomaticTransmissionMode.DRIVING &&
                     Mode != AutomaticTransmissionMode.MANUAL &&
@@ -214,65 +218,78 @@ namespace Core.Car
                 _gears[_currentGear].ShiftSpeed);
         }
 
-
+        private float _prevRpmValue = 0;
+        private float _prevRpmDelta = 0;
+        private float _timer = 0;
         private int GetGearDeltaByDynamic(float rpm, float gas, float brake)
         {
             var reflection = 0.2f;
             var acceleration = 0.7f;
 
+            var rpmDelta = (RPM - _prevRpmValue);
+            var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
+
+            _prevRpmValue = RPM;
+            _prevRpmDelta = rpmDelta;
+
             int GetShiftVector(float rpm)
             {
-                if (gas < reflection)
+                if(rpm < _gears[_currentGear].MinRPM * _accelerationFactor ||
+                   gas > reflection && _speed < _gears[_currentGear].MinSpeed * _accelerationFactor)
                 {
-                    var minRpm = 1000;
-                    var maxRpm = 1500;
-
-                    if (rpm < minRpm)
-                    {
-                        return -1;
-                    }
-
-                    if (rpm > maxRpm)
-                    {
-                        return 1;
-                    }
-
-                    return 0;
+                    return -1;
                 }
-                else if (gas < acceleration)
+
+                if (gas <= reflection)
                 {
-                    var minRpm = 1200;
-                    var maxRpm = 2500;
-
-                    if (rpm < minRpm)
+                    if(_currentGear == _gears.Length - 1)
                     {
-                        return -1;
+                        return 0;
                     }
 
-                    if (rpm > maxRpm)
+                    if(rpm / _gears[_currentGear].Ratio * _gears[_currentGear + 1].Ratio <
+                        _gears[_currentGear + 1].MinRPM * _accelerationFactor)
                     {
-                        return 1;
+                        return 0;
                     }
-
-                    return 0;
                 }
                 else
                 {
-                    var minRpm = 4000;
-                    var maxRpm = 5500;
-
-                    if (rpm < minRpm)
+                    if (rpm < _gears[_currentGear].MaxRPM * _accelerationFactor)
                     {
-                        return -1;
+                        return 0;
                     }
-
-                    if (rpm > maxRpm)
-                    {
-                        return 1;
-                    }
-
-                    return 0;
                 }
+
+                if (gas <= acceleration)
+                {
+
+                    if (rpmDeltaDelta < 0)
+                    {
+                        _timer += Time.deltaTime;
+
+                        if (_timer > 0.5f)
+                        {
+                            _timer = 0;
+
+                            return 1;
+                        }
+                        return 0;
+                    }
+                    else
+                    {
+                        _timer = 0;
+
+                        return 0;
+                    }
+                }
+
+                return 0;
+            }
+
+            if (rpm > 6000)
+            {
+                return 1;
             }
 
             var vector = GetShiftVector(rpm);
@@ -291,6 +308,7 @@ namespace Core.Car
             {
                 return 0;
             }
+
 
             return vector;
         }

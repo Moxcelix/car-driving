@@ -60,6 +60,8 @@ namespace Core.Car
                 }
             }
 
+            var prevRPM = RPM;
+
             inputGas = _cutOff ? 0.0f : inputGas;
 
             var idlingRPM = _idlingRPM * _starter.RPMValue;
@@ -74,13 +76,29 @@ namespace Core.Car
             if (_starter.State == EngineState.STOPED)
             {
                 _torqueRPM = 0;
+
+                if(targetRPM < _targetRPM)
+                {
+                    _targetRPM = targetRPM;
+                }
             }
 
             var rpm = Mathf.Lerp(_targetRPM, outputRPM, load);
             var torque = Mathf.Clamp((_torqueRPM - outputRPM) / _deltaRPM, -1.0f, 1.0f) * MaxTorque;
+            var efficiency = _rpmEfficiency.Evaluate(RPM / MaxRPM);
+
+            if (rpm < _idlingRPM)
+            {
+                var rpmDelta = (rpm - prevRPM) / deltaTime;
+
+                if (rpmDelta < -MaxRPM - rpm + _idlingRPM)
+                {
+                    _starter.SetState(EngineState.STOPED);
+                }
+            }
 
             RPM = Mathf.Lerp(RPM, rpm, deltaTime * _responsiveness);
-            Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness);
+            Torque = Mathf.Lerp(Torque, torque, deltaTime * _responsiveness) * efficiency;
             Consumption = Mathf.Lerp(Consumption, inputGas, deltaTime);
 
             UpdateCutoff();
