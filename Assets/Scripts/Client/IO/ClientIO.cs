@@ -49,15 +49,15 @@ public class ClientIO :
     [SerializeField] private float _joystickSensitivity = 2;
     [SerializeField] private float _steerSensitivityKeyboard = 0.1f;
     [SerializeField] private float _steerSensitivityJoystick = 50.0f;
+    [SerializeField] private SmoothPressing _clutchSmoothPressing;
+    [SerializeField] private SmoothPressing _gasSmoothPressing;
+    [SerializeField] private SmoothPressing _brakeSmoothPressing;
+    [SerializeField] private SmoothPressing _rightSteerSmoothPressing;
+    [SerializeField] private SmoothPressing _leftSteerSmoothPressing;
 
     private readonly KeyCode _pauseKey = KeyCode.Escape;
     private readonly KeyCode _helpKey = KeyCode.F1;
 
-    private readonly SmoothPressing _clutchSmoothPressing = new(5.0f, 0.5f);
-    private readonly SmoothPressing _gasSmoothPressing = new(2.0f, 1.0f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(2.0f, 2.0f);
-    private readonly SmoothPressing _rightSteerSmoothPressing = new(0.1f, 1.0f);
-    private readonly SmoothPressing _leftSteerSmoothPressing = new(0.1f, 1.0f);
     private readonly JoystickPress _switchUp = new("SwitchYAxis", true);
     private readonly JoystickPress _switchDown = new("SwitchYAxis", false);
     private readonly JoystickPress _switchRight = new("SwitchXAxis", true);

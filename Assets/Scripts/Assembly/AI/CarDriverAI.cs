@@ -15,8 +15,8 @@ public class CarDriverAI : MonoBehaviour, IControls
 
     private readonly float _steerSpeed = 2f;
 
-    private readonly SmoothPressing _gasSmoothPressing = new(0.5f, 10.5f);
-    private readonly SmoothPressing _brakeSmoothPressing = new(1f, 10.5f);
+    [SerializeField] private SmoothPressing _gasSmoothPressing;
+    [SerializeField] private SmoothPressing _brakeSmoothPressing;
 
     [SerializeField] private Car _car;
     [SerializeField] private Damageable _damageable;

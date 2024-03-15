@@ -64,7 +64,10 @@ namespace Core.Car
             _gasValue = _car.GasPedal.Value;
 
             _ratioShifter.Update();
-            _torqueConverter.Switch((_currentGear == 0 || RPM < _supportRPM || _car.BrakePedal.Value > 0.5f) && _car.Engine.Enabled);
+            _torqueConverter.Switch((
+                _currentGear == 0 || 
+                RPM < _supportRPM || 
+                _car.BrakePedal.Value > 0.5f) && _car.Engine.Enabled);
 
             UpdateAccelerationFactor(_gasValue, Time.fixedDeltaTime);
             UpdateTorque(_inputTorque, _inputRPM, _outputRPM, Time.fixedDeltaTime);
