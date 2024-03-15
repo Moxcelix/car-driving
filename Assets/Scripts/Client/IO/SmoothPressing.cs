@@ -7,21 +7,29 @@ public class SmoothPressing
 
     [SerializeField] private float _pressSpeed = 0.1f;
     [SerializeField] private float _releaseSpeed = 0.1f;
+    [SerializeField] private AnimationCurve _pressCurve = AnimationCurve.Linear(0, 0, 1, 1);
+    [SerializeField] private AnimationCurve _releaseCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+    private float _progress;
 
     public float Value { get; private set; }
 
     public void Press(float press, float deltaTime)
     {
-        Value = Mathf.Lerp(Value, press, _pressSpeed * deltaTime);
+        _progress = Mathf.Lerp(_progress, press, _pressSpeed * deltaTime);
+
+        Value = _pressCurve.Evaluate(_progress);
     }
 
     public void Release(float deltaTime)
     {
-        Value -= _releaseSpeed * deltaTime;
+        _progress -= _releaseSpeed * deltaTime;
 
-        if (Value < sensitivity)
+        if (_progress < sensitivity)
         {
-            Value = 0;
+            _progress = 0;
         }
+
+        Value = _releaseCurve.Evaluate(_progress);
     }
 }
