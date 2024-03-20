@@ -35,6 +35,9 @@ namespace Core.Car
         private float _inputRPM = 0;
         private float _outputRPM = 0;
         private int _currentGear = 0;
+        private float _prevRpmValue = 0;
+        private float _prevRpmDelta = 0;
+        private float _timer = 0;
 
         public AutomaticTransmissionMode Mode { get; private set; }
 
@@ -221,9 +224,6 @@ namespace Core.Car
                 _gears[_currentGear].ShiftSpeed);
         }
 
-        private float _prevRpmValue = 0;
-        private float _prevRpmDelta = 0;
-        private float _timer = 0;
         private int GetGearDeltaByDynamic(float rpm, float gas, float brake)
         {
             var reflection = 0.2f;

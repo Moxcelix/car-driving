@@ -15255,7 +15255,7 @@ MonoBehaviour:
     _minSpeed: 0
     _shiftSpeed: 0.02
     _minRPM: 0
-    _maxRPM: 1800
+    _maxRPM: 2200
   - _ratio: 2.726
     _minSpeed: 10
     _shiftSpeed: 0.08
