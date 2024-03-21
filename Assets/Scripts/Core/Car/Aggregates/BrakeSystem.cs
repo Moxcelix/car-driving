@@ -5,9 +5,9 @@ namespace Core.Car
     public class BrakeSystem
     {
         private const float InputSensetivity = 0.05f;
-        private const float SpeedSensetivity = 0.05f;
+        private const float SpeedSensetivity = 5.00f;
         private const float RpmSensetivity = 0.05f;
-        private const float Freequency = 1.00f;
+        private const float Freequency = 30.00f;
 
         private readonly Wheel[] _wheels;
         private readonly float _brakeForce;
@@ -41,7 +41,7 @@ namespace Core.Car
                     speed > SpeedSensetivity &&
                     wheel.RPM < RpmSensetivity)
                 {
-                    press = input * Mathf.Sin(_timer * Freequency);
+                    press = input * (Mathf.Sin(_timer * Freequency) > 0 ? 1 : 0);
 
                     ABS = press;
                 }

@@ -5292,6 +5292,121 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1412564461472822864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5317545831939732082}
+  - component: {fileID: 8468401645593766331}
+  - component: {fileID: 5193459890065455314}
+  - component: {fileID: 2682588245585374246}
+  - component: {fileID: 4543780860915629573}
+  m_Layer: 3
+  m_Name: "\u0430\u0431\u0441"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5317545831939732082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412564461472822864}
+  m_LocalRotation: {x: 0.0000010503659, y: 0.70710677, z: 0.70710677, w: 0.00000086220257}
+  m_LocalPosition: {x: 0.00035897864, y: 0.00011199453, z: 0.00062399736}
+  m_LocalScale: {x: 0.00012199571, y: 0.00012199569, z: 0.000121995705}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5641354360864987409}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+--- !u!33 &8468401645593766331
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412564461472822864}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5193459890065455314
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412564461472822864}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3c7cb72f751cba044a564333e4e8a9d2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2682588245585374246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412564461472822864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69ecfc45ac3b2641b4456b592a3165f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0.078431375, g: 0.049354553, b: 0, a: 1}
+  _minLight: -10
+  _maxLight: 3.3
+  _index: 0
+  _flashSpeed: 40
+  _fadeSpeed: 12
+--- !u!114 &4543780860915629573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412564461472822864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05627b924d5701242887dff33ba057d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2150690835289035055
 GameObject:
   m_ObjectHideFlags: 0
@@ -19969,13 +20084,11 @@ MonoBehaviour:
     _parkingBrakeOn: {fileID: 8300000, guid: 891b2baa746ef42429b6c9c15ebd38f8, type: 3}
     _parkingBrakeOff: {fileID: 8300000, guid: 2256ffb0e946e52479580ba2b99aa06e, type: 3}
   _doorSound:
-    _doorSystemAudioSource: {fileID: 5641354360519178174}
     _audioSource: {fileID: 5641354360519178172}
     _openDoor: {fileID: 8300000, guid: 85e9608a9751279449c9e65625edeb6d, type: 3}
     _closeDoor: {fileID: 8300000, guid: cbe9d313705f3474ca40d3e9a3fb8207, type: 3}
     _slamLid: {fileID: 8300000, guid: 93066f997d91be744a60acbe97d70c07, type: 3}
     _gaslift: {fileID: 8300000, guid: fae433880df36614997d2be17c9dcc6b, type: 3}
-    _openInfoSound: {fileID: 8300000, guid: 51a05e93eba5c0a4c98d36b47f35b855, type: 3}
     _doors:
     - {fileID: 5641354359249175064}
     - {fileID: 5641354359791741713}
@@ -19983,10 +20096,6 @@ MonoBehaviour:
     - {fileID: 5641354360090741003}
     _hood: {fileID: 5641354359359433306}
     _trunk: {fileID: 5641354359956288922}
-    _openControllers:
-    - {fileID: 8992976052363333900}
-    - {fileID: 8992976052363333900}
-    - {fileID: 8992976052363333900}
 --- !u!114 &5641354360519178114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22952,6 +23061,7 @@ Transform:
   - {fileID: 5641354359888154950}
   - {fileID: 5641354360842634336}
   - {fileID: 5641354359392983093}
+  - {fileID: 5317545831939732082}
   m_Father: {fileID: 5641354360393111292}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25581,6 +25691,7 @@ GameObject:
   - component: {fileID: 1682981185472138224}
   - component: {fileID: 8216413723498410884}
   - component: {fileID: 1775653783823485395}
+  - component: {fileID: 7670629178958342227}
   m_Layer: 3
   m_Name: "\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440\u044B"
   m_TagString: Untagged
@@ -25746,6 +25857,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _signalLamp: {fileID: 5641354359436273629}
+  _car: {fileID: 5641354360519178162}
+--- !u!114 &7670629178958342227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594016778135095316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1e7bd278c7cba4ab7602412508ff99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _signalLamp: {fileID: 4543780860915629573}
   _car: {fileID: 5641354360519178162}
 --- !u!1 &7986134177841941975
 GameObject:
