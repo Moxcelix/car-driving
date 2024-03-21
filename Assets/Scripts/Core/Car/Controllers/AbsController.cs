@@ -8,7 +8,7 @@ namespace Core.Car
 
         public override bool Check()
         {
-            return _car.BrakeSystem.ABS > 0;
+            return _car.Engine.Starter.IsStarting || _car.BrakeSystem.ABS > 0;
         }
     }
 }
