@@ -39,23 +39,38 @@ namespace Core.Car
         private Computer _computer;
         private CentralLocking _centralLocking;
         private Immobilizer _immobilizer;
+        private BrakeSystem _brakeSystem;
         private CarState _state;
 
         public bool Syncable { get; set; } = false;
+
         public bool SmoothSync { get; set; } = false;
 
         public Pedal GasPedal => _gasPedal;
+
         public Pedal BrakePedal => _brakePedal;
+
         public ParkingBrake ParkingBrake => _parkingBrake;
+
         public SteeringWheel SteeringWheel => _steeringWheel;
+
         public Engine Engine => _engine;
+
         public Transmission Transmission => _transmission;
+
         public TurnLights TurnLights => _turnLights;
+
         public HeadLights HeadLights => _headLights;
+
         public Computer Computer => _computer;
+
         public CentralLocking CentralLocking => _centralLocking;
+
         public Immobilizer Immobilizer => _immobilizer;
+
         public TransmissionSelector TransmissionSelector => _transmissionSelector;
+
+        public BrakeSystem BrakeSystem => _brakeSystem;
 
         public Door[] Doors => _doors;
 
@@ -67,6 +82,12 @@ namespace Core.Car
             _computer = new Computer(this);
             _centralLocking = new CentralLocking(_doors);
             _immobilizer = new Immobilizer(_engine);
+            _brakeSystem = new BrakeSystem(new Wheel[] {
+                _frontLeftWheel,
+                _frontRightWheel,
+                _rearLeftWheel,
+                _rearRightWheel
+            }, _brakeForce);
         }
 
         private void Update()
@@ -246,18 +267,22 @@ namespace Core.Car
 
         private void HandleBrakeing()
         {
-            var frontBrakeValue =
-                (_brakePedal.Value +
-                _transmission.Brake) * _brakeForce;
+            _brakeSystem.Update(_brakePedal.Value, GetSpeed(), Time.fixedDeltaTime);
 
-            var rearBrakeValue =
-                (_brakePedal.Value +
-                _parkingBrake.Brake) * _brakeForce;
+            var frontBrakeValue = _transmission.Brake * _brakeForce;
+            var rearBrakeValue = _parkingBrake.Brake * _brakeForce;
 
-            _frontRightWheel.Brake(frontBrakeValue);
-            _frontLeftWheel.Brake(frontBrakeValue);
-            _rearRightWheel.Brake(rearBrakeValue);
-            _rearLeftWheel.Brake(rearBrakeValue);
+            if(frontBrakeValue > 0)
+            {
+                _frontRightWheel.Brake(frontBrakeValue);
+                _frontLeftWheel.Brake(frontBrakeValue);
+            }
+
+            if(rearBrakeValue > 0)
+            {
+                _rearRightWheel.Brake(rearBrakeValue);
+                _rearLeftWheel.Brake(rearBrakeValue);
+            }
         }
 
         private void UpdateLighs()
