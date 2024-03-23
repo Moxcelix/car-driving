@@ -229,7 +229,7 @@ namespace Core.Car
             var reflection = 0.2f;
             var acceleration = 0.7f;
 
-            var rpmDelta = (RPM - _prevRpmValue);
+            var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
 
             _prevRpmValue = RPM;
