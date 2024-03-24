@@ -442,7 +442,7 @@ namespace Core.Car
         {
             if (count <= 0)
             {
-                throw new System.ArgumentException();
+                throw new ArgumentException();
             }
 
             if (_currentGear > count - 1)
