@@ -68,8 +68,8 @@ namespace Core.Car
 
             _ratioShifter.Update();
             _torqueConverter.Switch((
-                _currentGear == 0 || 
-                RPM < _supportRPM || 
+                _currentGear == 0 ||
+                RPM < _supportRPM ||
                 _car.BrakePedal.Value > 0.5f) && _car.Engine.Enabled);
 
             UpdateAccelerationFactor(_gasValue, Time.fixedDeltaTime);
@@ -108,7 +108,7 @@ namespace Core.Car
         {
             var factor = 1.0f + _gasReactionCurve.Evaluate(acceleration);
 
-            _accelerationFactor = factor > _accelerationFactor ? 
+            _accelerationFactor = factor > _accelerationFactor ?
                 factor : Mathf.Lerp(_accelerationFactor, factor, deltaTime);
         }
 
@@ -237,7 +237,7 @@ namespace Core.Car
 
             int GetShiftVector(float rpm)
             {
-                if(rpm < _gears[_currentGear].MinRPM * _accelerationFactor ||
+                if (rpm < _gears[_currentGear].MinRPM * _accelerationFactor ||
                    gas > reflection && _speed < _gears[_currentGear].MinSpeed * _accelerationFactor)
                 {
                     return -1;
@@ -245,12 +245,12 @@ namespace Core.Car
 
                 if (gas <= reflection)
                 {
-                    if(_currentGear == _gears.Length - 1)
+                    if (_currentGear == _gears.Length - 1)
                     {
                         return 0;
                     }
 
-                    if(rpm / _gears[_currentGear].Ratio * _gears[_currentGear + 1].Ratio <
+                    if (rpm / _gears[_currentGear].Ratio * _gears[_currentGear + 1].Ratio <
                         _gears[_currentGear + 1].MinRPM * _accelerationFactor)
                     {
                         return 0;
@@ -264,30 +264,37 @@ namespace Core.Car
                     }
                 }
 
-                if (gas <= acceleration)
+                if (rpmDeltaDelta < 0)
                 {
+                    _timer += Time.deltaTime;
 
-                    if (rpmDeltaDelta < 0)
+                    if(gas <= acceleration)
                     {
-                        _timer += Time.deltaTime;
-
                         if (_timer > 0.5f)
                         {
                             _timer = 0;
 
                             return 1;
                         }
-                        return 0;
                     }
                     else
                     {
-                        _timer = 0;
+                        if (_currentGear  < 3 && _timer > 5.0f && rpm > 5500)
+                        {
+                            _timer = 0;
 
-                        return 0;
+                            return 1;
+                        }
                     }
+                    
+                    return 0;
                 }
+                else
+                {
+                    _timer = 0;
 
-                return 0;
+                    return 0;
+                }
             }
 
             if (rpm > 6000)
@@ -304,10 +311,10 @@ namespace Core.Car
             }
 
             var nextVector = GetShiftVector(rpm /
-                _gears[_currentGear].Ratio * 
+                _gears[_currentGear].Ratio *
                 _gears[_currentGear + vector].Ratio);
 
-            if(nextVector + vector == 0)
+            if (nextVector + vector == 0)
             {
                 return 0;
             }

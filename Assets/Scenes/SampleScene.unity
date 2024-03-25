@@ -4388,7 +4388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 45.753296, y: -38.80246}
+  m_AnchoredPosition: {x: 45.753418, y: -38.802734}
   m_SizeDelta: {x: 29.5065, y: 33.604797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600341531
@@ -7304,7 +7304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &949996626 stripped
@@ -20942,6 +20942,30 @@ PrefabInstance:
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[0]._maxRPM
+      value: 2200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[1]._maxRPM
+      value: 2200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[2]._maxRPM
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[3]._maxRPM
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[4]._maxRPM
+      value: 1900
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[5]._maxRPM
+      value: 1900
+      objectReference: {fileID: 0}
     - target: {fileID: 5641354359547261598, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _carMirrors
       value: 
@@ -22951,6 +22975,22 @@ PrefabInstance:
     - target: {fileID: 1749563951, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[2]._maxRPM
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[3]._maxRPM
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[4]._maxRPM
+      value: 1900
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _gears.Array.data[5]._maxRPM
+      value: 1900
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360187531827, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_CastShadows
