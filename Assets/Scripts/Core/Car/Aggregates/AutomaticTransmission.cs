@@ -235,6 +235,15 @@ namespace Core.Car
             _prevRpmValue = RPM;
             _prevRpmDelta = rpmDelta;
 
+            if (rpmDeltaDelta < 0)
+            {
+                _timer += Time.deltaTime;
+            }
+            else
+            {
+                _timer = 0;
+            }
+
             int GetShiftVector(float rpm)
             {
                 if (rpm < _gears[_currentGear].MinRPM * _accelerationFactor ||
@@ -266,9 +275,7 @@ namespace Core.Car
 
                 if (rpmDeltaDelta < 0)
                 {
-                    _timer += Time.deltaTime;
-
-                    if(gas <= acceleration)
+                    if (gas <= acceleration)
                     {
                         if (_timer > 0.5f)
                         {
@@ -279,22 +286,16 @@ namespace Core.Car
                     }
                     else
                     {
-                        if (_currentGear  < 3 && _timer > 5.0f && rpm > 5500)
+                        if (_currentGear < 3 && _timer > 5.0f && rpm > 5500)
                         {
                             _timer = 0;
 
                             return 1;
                         }
                     }
-                    
-                    return 0;
                 }
-                else
-                {
-                    _timer = 0;
 
-                    return 0;
-                }
+                return 0;
             }
 
             if (rpm > 6000)
