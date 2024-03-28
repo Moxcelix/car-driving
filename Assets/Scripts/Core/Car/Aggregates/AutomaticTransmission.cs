@@ -235,7 +235,13 @@ namespace Core.Car
             _prevRpmValue = RPM;
             _prevRpmDelta = rpmDelta;
 
-            if (rpmDeltaDelta < 0)
+            Debug.Log(_timer);
+
+            var timerCondition = rpmDeltaDelta < -1.0f ||
+                rpmDelta < 5.0f &&
+                rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
+
+            if (timerCondition)
             {
                 _timer += Time.deltaTime;
             }
@@ -272,8 +278,8 @@ namespace Core.Car
                         return 0;
                     }
                 }
-
-                if (rpmDeltaDelta < 0)
+                
+                if (timerCondition)
                 {
                     if (gas <= acceleration)
                     {

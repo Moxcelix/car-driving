@@ -20169,8 +20169,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.64416564
-      value: 0.16061398
+      time: 0.6557623
+      value: 0.03982541
       inSlope: 0.00902519
       outSlope: 0.00902519
       tangentMode: 0
@@ -20194,7 +20194,7 @@ MonoBehaviour:
     _minSpeed: 0
     _shiftSpeed: 0.02
     _minRPM: 0
-    _maxRPM: 2200
+    _maxRPM: 1700
   - _ratio: 2.726
     _minSpeed: 10
     _shiftSpeed: 0.08
@@ -20214,12 +20214,12 @@ MonoBehaviour:
     _minSpeed: 45
     _shiftSpeed: 0.1
     _minRPM: 1300
-    _maxRPM: 2100
+    _maxRPM: 1900
   - _ratio: 0.774
     _minSpeed: 65
     _shiftSpeed: 0.1
     _minRPM: 1200
-    _maxRPM: 2100
+    _maxRPM: 1900
   _reverseGearRatio: 3.44
   _idlingRMP: 800
   _lastGearRatio: 3.574

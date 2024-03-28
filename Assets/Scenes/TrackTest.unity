@@ -6105,7 +6105,7 @@ MonoBehaviour:
   _clientIO:
     _mouseSensitivity: 2
     _joystickSensitivity: 2
-    _steerSensitivityKeyboard: 0.1
+    _steerSensitivityKeyboard: 0.0075
     _steerSensitivityJoystick: 50
     _clutchSmoothPressing:
       _pressSpeed: 5
@@ -6279,8 +6279,8 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     _rightSteerSmoothPressing:
-      _pressSpeed: 0.1
-      _releaseSpeed: 1
+      _pressSpeed: 10
+      _releaseSpeed: 10
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -6330,8 +6330,8 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     _leftSteerSmoothPressing:
-      _pressSpeed: 0.1
-      _releaseSpeed: 1
+      _pressSpeed: 10
+      _releaseSpeed: 10
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -18628,19 +18628,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _gears.Array.data[2]._maxRPM
-      value: 2000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _gears.Array.data[3]._maxRPM
-      value: 2000
+      value: 2300
       objectReference: {fileID: 0}
     - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: _gears.Array.data[4]._maxRPM
-      value: 1900
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 3787501503921523872, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
-      propertyPath: _gears.Array.data[5]._maxRPM
-      value: 1900
+      propertyPath: _gears.Array.data[5]._minSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360187531827, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_CastShadows
@@ -18697,6 +18697,42 @@ PrefabInstance:
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].time
+      value: 0.5115365
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].value
+      value: 0.9979124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].value
+      value: 0.84935236
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].inSlope
+      value: 0.017586958
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inSlope
+      value: -0.6387494
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].outSlope
+      value: 0.017586958
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inWeight
+      value: 0.08436326
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].outSlope
+      value: -0.6387494
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178162, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].outWeight
+      value: 0.14595729
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
