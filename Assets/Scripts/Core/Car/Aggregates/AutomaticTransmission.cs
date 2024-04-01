@@ -232,12 +232,15 @@ namespace Core.Car
             var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
 
+            var brakeSensetivity = 0.05f;
+
             _prevRpmValue = RPM;
             _prevRpmDelta = rpmDelta;
 
             Debug.Log(_timer);
 
-            var timerCondition = rpmDeltaDelta < -1.0f ||
+            var timerCondition = brake < brakeSensetivity &&
+                rpmDeltaDelta < -1.0f ||
                 rpmDelta < 5.0f &&
                 rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
 
