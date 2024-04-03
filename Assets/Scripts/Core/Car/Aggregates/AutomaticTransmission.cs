@@ -228,6 +228,8 @@ namespace Core.Car
         {
             var reflection = 0.2f;
             var acceleration = 0.7f;
+            var minRpmDeltaDelta = -1.0f;
+            var minRpmDelta = 5.0f;
 
             var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
@@ -237,11 +239,9 @@ namespace Core.Car
             _prevRpmValue = RPM;
             _prevRpmDelta = rpmDelta;
 
-            Debug.Log(_timer);
-
             var timerCondition = brake < brakeSensetivity &&
-                rpmDeltaDelta < -1.0f ||
-                rpmDelta < 5.0f &&
+                rpmDeltaDelta < minRpmDeltaDelta ||
+                rpmDelta < minRpmDelta &&
                 rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
 
             if (timerCondition)
