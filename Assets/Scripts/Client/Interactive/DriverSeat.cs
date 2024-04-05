@@ -6,7 +6,7 @@ using UnityEngine;
 public class DriverSeat : MonoBehaviour
 {
     [SerializeField] private Car _car;
-    [SerializeField] private CarMirrorManager _carMirrors;
+    [SerializeField] private ObservableManager _carMirrors;
 
     private CarSeatPlace _seatable;
 
@@ -55,5 +55,4 @@ public class DriverSeat : MonoBehaviour
             _carMirrors.SetActive(false);
         }
     }
-
 }
