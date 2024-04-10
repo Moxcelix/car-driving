@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarReflectionProbe : MonoBehaviour
+public class CarReflectionProbe : MonoBehaviour, IObservable
 {
     [SerializeField] private ReflectionProbe _reflectionProbe;
 

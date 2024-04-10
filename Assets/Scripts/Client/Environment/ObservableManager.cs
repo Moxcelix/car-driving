@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObservableManager : MonoBehaviour
+public class ObservableManager : MonoBehaviour, IObservable
 {
     [SerializeField] private CarMirror[] _mirrors;
     [SerializeField] private CarReflectionProbe[] _reflectionProbe;

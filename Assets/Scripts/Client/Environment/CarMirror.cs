@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class CarMirror : MonoBehaviour
+public class CarMirror : MonoBehaviour, IObservable
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Material _defaultMaterial;
