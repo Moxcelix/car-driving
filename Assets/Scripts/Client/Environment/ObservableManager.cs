@@ -6,7 +6,7 @@ public class ObservableManager : MonoBehaviour, IObservable
     [SerializeField] private CarMirror[] _mirrors;
     [SerializeField] private CarReflectionProbe[] _reflectionProbes;
 
-    private readonly List<IObservable> _observables = new List<IObservable>();
+    private readonly List<IObservable> _observables = new();
 
     private void Awake()
     {
