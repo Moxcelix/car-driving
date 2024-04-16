@@ -63,7 +63,7 @@ public class ClientIO :
     private readonly JoystickPress _switchRight = new("SwitchXAxis", true);
     private readonly JoystickPress _switchLeft = new("SwitchXAxis", false);
 
-    private readonly float _gasMiddleValue = 0.4f;
+    private readonly float _gasMiddleValue = 0.32f;
     private readonly float _brakeMiddleValue = 0.6f;
     private readonly float _gasMaxValue = 1.0f;
     private readonly float _brakeMaxValue = 1.0f;
