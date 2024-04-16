@@ -3154,6 +3154,7 @@ GameObject:
   - component: {fileID: 2572421925041793580}
   - component: {fileID: 2572421925041793583}
   - component: {fileID: 2572421925041793582}
+  - component: {fileID: 3753912575600226394}
   m_Layer: 3
   m_Name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0435\u0435 \u043B\u0435\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -3223,6 +3224,21 @@ MonoBehaviour:
   _collider: {fileID: 2572421925041793583}
   _wheel: {fileID: 2572421926392286357}
   _support: {fileID: 0}
+--- !u!114 &3753912575600226394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421925041793577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &2572421925046427300
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,6 +3515,7 @@ GameObject:
   - component: {fileID: 2572421925092837871}
   - component: {fileID: 2572421925092837870}
   - component: {fileID: 2572421925092837865}
+  - component: {fileID: 2791762438359145177}
   m_Layer: 3
   m_Name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0435\u0435 \u043F\u0440\u0430\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -3568,6 +3585,21 @@ MonoBehaviour:
   _collider: {fileID: 2572421925092837870}
   _wheel: {fileID: 2572421926341106924}
   _support: {fileID: 0}
+--- !u!114 &2791762438359145177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421925092837864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &2572421925117387991
 GameObject:
   m_ObjectHideFlags: 0
@@ -14320,6 +14352,7 @@ GameObject:
   - component: {fileID: 2572421926311466048}
   - component: {fileID: 2572421926311466051}
   - component: {fileID: 2572421926311466050}
+  - component: {fileID: 2872799998933433442}
   m_Layer: 3
   m_Name: "\u0417\u0430\u0434\u043D\u0435\u0435 \u043F\u0440\u0430\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -14389,6 +14422,21 @@ MonoBehaviour:
   _collider: {fileID: 2572421926311466051}
   _wheel: {fileID: 2572421924852336651}
   _support: {fileID: 0}
+--- !u!114 &2872799998933433442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421926311466109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &2572421926319940464
 GameObject:
   m_ObjectHideFlags: 0
@@ -16956,6 +17004,7 @@ GameObject:
   - component: {fileID: 2572421926654726587}
   - component: {fileID: 2572421926654726586}
   - component: {fileID: 2572421926654726581}
+  - component: {fileID: 4380055804239034014}
   m_Layer: 3
   m_Name: "\u0417\u0430\u0434\u043D\u0435\u0435 \u043B\u0435\u0432\u043E\u0435 \u043A\u043E\u043B\u0435\u0441\u043E"
   m_TagString: Untagged
@@ -17024,6 +17073,21 @@ MonoBehaviour:
   _collider: {fileID: 2572421926654726586}
   _wheel: {fileID: 2572421925811513988}
   _support: {fileID: 0}
+--- !u!114 &4380055804239034014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572421926654726580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &2572421926670416216
 GameObject:
   m_ObjectHideFlags: 0
@@ -17933,6 +17997,7 @@ MonoBehaviour:
   _mirrors:
   - {fileID: 4610743682661218162}
   - {fileID: 7050792519669791352}
+  _reflectionProbes: []
 --- !u!1 &2572421926771833837
 GameObject:
   m_ObjectHideFlags: 0
