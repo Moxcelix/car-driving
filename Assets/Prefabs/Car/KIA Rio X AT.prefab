@@ -7496,6 +7496,7 @@ GameObject:
   - component: {fileID: 5641354359183481925}
   - component: {fileID: 5641354359183481924}
   - component: {fileID: 5641354359183481931}
+  - component: {fileID: 4933885644516798820}
   m_Layer: 3
   m_Name: "\u0417\u0430\u0434\u043D\u0435\u0435 \u043B\u0435\u0432\u043E\u0435 \u043A\u043E\u043B\u0435\u0441\u043E"
   m_TagString: Untagged
@@ -7564,6 +7565,21 @@ MonoBehaviour:
   _collider: {fileID: 5641354359183481924}
   _wheel: {fileID: 5641354360504854394}
   _support: {fileID: 0}
+--- !u!114 &4933885644516798820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354359183481930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &5641354359202203028
 GameObject:
   m_ObjectHideFlags: 0
@@ -10725,6 +10741,7 @@ MonoBehaviour:
   _mirrors:
   - {fileID: 94859675360307137}
   - {fileID: 7868082256504135554}
+  _reflectionProbes: []
 --- !u!1 &5641354359553371765
 GameObject:
   m_ObjectHideFlags: 0
@@ -14528,6 +14545,7 @@ GameObject:
   - component: {fileID: 5641354359929133502}
   - component: {fileID: 5641354359929133501}
   - component: {fileID: 5641354359929133500}
+  - component: {fileID: 8474273678484414263}
   m_Layer: 3
   m_Name: "\u0417\u0430\u0434\u043D\u0435\u0435 \u043F\u0440\u0430\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -14597,6 +14615,21 @@ MonoBehaviour:
   _collider: {fileID: 5641354359929133501}
   _wheel: {fileID: 5641354360854529525}
   _support: {fileID: 0}
+--- !u!114 &8474273678484414263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354359929133443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &5641354359956288927
 GameObject:
   m_ObjectHideFlags: 0
@@ -22295,6 +22328,7 @@ GameObject:
   - component: {fileID: 5641354360792229842}
   - component: {fileID: 5641354360792229841}
   - component: {fileID: 5641354360792229840}
+  - component: {fileID: 2538517872406433426}
   m_Layer: 3
   m_Name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0435\u0435 \u043B\u0435\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -22364,6 +22398,21 @@ MonoBehaviour:
   _collider: {fileID: 5641354360792229841}
   _wheel: {fileID: 5641354359978328427}
   _support: {fileID: 0}
+--- !u!114 &2538517872406433426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354360792229847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &5641354360794665818
 GameObject:
   m_ObjectHideFlags: 0
@@ -24684,6 +24733,7 @@ GameObject:
   - component: {fileID: 5641354361075401745}
   - component: {fileID: 5641354361075401744}
   - component: {fileID: 5641354361075401751}
+  - component: {fileID: 3739318879899161503}
   m_Layer: 3
   m_Name: "\u041F\u0435\u0440\u0435\u0434\u043D\u0435\u0435 \u043F\u0440\u0430\u0432\u043E\u0435
     \u043A\u043E\u043B\u0435\u0441\u043E"
@@ -24753,6 +24803,21 @@ MonoBehaviour:
   _collider: {fileID: 5641354361075401744}
   _wheel: {fileID: 5641354359907881234}
   _support: {fileID: 0}
+--- !u!114 &3739318879899161503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354361075401750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc784c485c3615f408edb11fcb17e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxForwardStiffness: 1.8
+  _maxSidewaysStiffness: 1.6
+  _maxStiffnessRPM: 700
 --- !u!1 &5641354361104963758
 GameObject:
   m_ObjectHideFlags: 0
