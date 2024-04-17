@@ -7529,7 +7529,7 @@ WheelCollider:
   m_Center: {x: 0, y: -0.05, z: 0}
   m_Radius: 0.33
   m_SuspensionSpring:
-    spring: 90000
+    spring: 50000
     damper: 9000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
@@ -10583,6 +10583,7 @@ GameObject:
   - component: {fileID: 5641354359547261597}
   - component: {fileID: 3473297745692678773}
   - component: {fileID: 2597066932036500243}
+  - component: {fileID: 5663605912897421506}
   m_Layer: 3
   m_Name: "\u043A\u0440\u0435\u0441\u043B\u043E \u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0435"
   m_TagString: Untagged
@@ -10742,6 +10743,23 @@ MonoBehaviour:
   - {fileID: 94859675360307137}
   - {fileID: 7868082256504135554}
   _reflectionProbes: []
+--- !u!114 &5663605912897421506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354359547261795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94d3cc8dcff5c142b945e13715358ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mirrors:
+  - {fileID: 94859675360307137}
+  - {fileID: 7868082256504135554}
+  _reflectionProbes:
+  - {fileID: 4964077919269196701}
 --- !u!1 &5641354359553371765
 GameObject:
   m_ObjectHideFlags: 0
@@ -14579,7 +14597,7 @@ WheelCollider:
   m_Center: {x: 0, y: -0.05, z: 0}
   m_Radius: 0.33
   m_SuspensionSpring:
-    spring: 90000
+    spring: 50000
     damper: 9000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
@@ -22362,7 +22380,7 @@ WheelCollider:
   m_Center: {x: 0, y: -0.05, z: 0}
   m_Radius: 0.33
   m_SuspensionSpring:
-    spring: 90000
+    spring: 50000
     damper: 9000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
@@ -24767,7 +24785,7 @@ WheelCollider:
   m_Center: {x: 0, y: -0.05, z: 0}
   m_Radius: 0.33
   m_SuspensionSpring:
-    spring: 90000
+    spring: 50000
     damper: 9000
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
@@ -24908,6 +24926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5641354361112770239}
   - component: {fileID: 5641354361112770232}
+  - component: {fileID: 4964077919269196701}
   m_Layer: 3
   m_Name: Reflection Probe
   m_TagString: Untagged
@@ -24963,6 +24982,19 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!114 &4964077919269196701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641354361112770238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af12064356ecf0b4a9c2208ff1bbd807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reflectionProbe: {fileID: 5641354361112770232}
 --- !u!1 &5641354361119025449
 GameObject:
   m_ObjectHideFlags: 0
