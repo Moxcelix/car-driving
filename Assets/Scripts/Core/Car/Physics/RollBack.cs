@@ -7,6 +7,7 @@ namespace Core.Car
 
         [SerializeField] private WheelCollider[] _wheelColliders;
 
+        private readonly float _threshold = 0.01f;
         private readonly float _magnitude = 0.1f;
 
 
@@ -22,6 +23,11 @@ namespace Core.Car
 
         private void SetToqrque(float torque)
         {
+            if(torque < _threshold)
+            {
+                return;
+            }
+
             foreach(var wheel in _wheelColliders)
             {
                 wheel.motorTorque = torque;
