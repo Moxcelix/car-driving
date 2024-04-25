@@ -65,6 +65,11 @@ namespace Core.Car.Experimental
 
         private void OnCollisionEnter(Collision collision)
         {
+            if(!enabled)
+            {
+                return;
+            }
+
             if (collision.gameObject.CompareTag(_ignoreTag))
             {
                 return;
@@ -92,6 +97,11 @@ namespace Core.Car.Experimental
 
         private void OnMeshForce(Vector3 originPos, float force)
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             force = Mathf.Clamp01(force);
 
             for (int j = 0; j < _meshfilters.Length; j++)
