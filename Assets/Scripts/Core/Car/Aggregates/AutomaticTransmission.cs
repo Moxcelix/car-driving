@@ -127,7 +127,9 @@ namespace Core.Car
             _torqueConverter.Update(deltaTime);
             _torqueConverter.Convert(inputRPM, nativeRPM);
 
-            Load = 1.0f - _torqueConverter.FluidTransition;
+            Load = (1.0f - _torqueConverter.FluidTransition) * 
+                (Mode == AutomaticTransmissionMode.NEUTRAL || 
+                Mode == AutomaticTransmissionMode.PARKING? 0.0f: 1.0f);
             Torque =
                 inputTorque *
                 GetRatio() *
@@ -143,8 +145,7 @@ namespace Core.Car
             bool old = false;
 
             if (Mode != AutomaticTransmissionMode.DRIVING &&
-                    Mode != AutomaticTransmissionMode.MANUAL &&
-                    Mode != AutomaticTransmissionMode.NEUTRAL)
+                    Mode != AutomaticTransmissionMode.MANUAL)
             {
                 _currentGear = 0;
 
