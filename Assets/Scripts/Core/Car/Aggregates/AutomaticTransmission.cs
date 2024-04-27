@@ -232,6 +232,7 @@ namespace Core.Car
             var minRpmDeltaDelta = -1.0f;
             var minRpmDelta = 5.0f;
             var maxRpm = 6000.0f;
+            var accelerationMaxRpm = 5500.0f;
 
             var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
@@ -297,7 +298,7 @@ namespace Core.Car
                     }
                     else
                     {
-                        if (_currentGear < 3 && _timer > 5.0f && rpm > 5500)
+                        if (_currentGear < 3 && _timer > 5.0f && rpm > accelerationMaxRpm)
                         {
                             _timer = 0;
 
