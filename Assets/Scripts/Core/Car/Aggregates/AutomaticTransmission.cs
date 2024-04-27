@@ -143,15 +143,15 @@ namespace Core.Car
             bool old = false;
 
             if (Mode != AutomaticTransmissionMode.DRIVING &&
-                    Mode != AutomaticTransmissionMode.MANUAL &&
-                    Mode != AutomaticTransmissionMode.NEUTRAL)
+                    Mode != AutomaticTransmissionMode.MANUAL)
             {
                 _currentGear = 0;
 
                 return;
             }
 
-            if (_ratioShifter.IsShifting)
+            if (_ratioShifter.IsShifting //&&
+                   /* Mode != AutomaticTransmissionMode.NEUTRAL*/)
             {
                 return;
             }
