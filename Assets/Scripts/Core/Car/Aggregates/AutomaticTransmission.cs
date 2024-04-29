@@ -153,7 +153,7 @@ namespace Core.Car
                 return;
             }
 
-            if (_ratioShifter.IsShifting)
+            if (_ratioShifter.IsShifting || Mode == AutomaticTransmissionMode.NEUTRAL)
             {
                 return;
             }
