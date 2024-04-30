@@ -234,6 +234,7 @@ namespace Core.Car
             var minRpmDelta = 5.0f;
             var maxRpm = 6000.0f;
             var accelerationMaxRpm = 5500.0f;
+            var timerAccelearationSleep = 0.5f;
 
             var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
@@ -290,7 +291,7 @@ namespace Core.Car
                 {
                     if (gas <= acceleration)
                     {
-                        if (_timer > 0.5f)
+                        if (_timer > timerAccelearationSleep)
                         {
                             _timer = 0;
 
