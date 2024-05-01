@@ -245,9 +245,9 @@ namespace Core.Car
             _prevRpmDelta = rpmDelta;
 
             var timerCondition = brake < brakeSensetivity &&
-                rpmDeltaDelta < minRpmDeltaDelta ||
-                rpmDelta < minRpmDelta &&
-                rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
+                (rpmDeltaDelta < minRpmDeltaDelta ||
+                rpmDelta < minRpmDelta); //&&
+                //rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
 
             if (timerCondition)
             {
