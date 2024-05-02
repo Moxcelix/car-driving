@@ -235,6 +235,7 @@ namespace Core.Car
             var maxRpm = 6000.0f;
             var accelerationMaxRpm = 5500.0f;
             var timerAccelearationSleep = 0.5f;
+            var timerKickdownSleep = 5.0f;
 
             var rpmDelta = RPM - _prevRpmValue;
             var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
@@ -298,7 +299,7 @@ namespace Core.Car
                     }
                     else
                     {
-                        if (_currentGear < 3 && _timer > 5.0f && rpm > accelerationMaxRpm)
+                        if (_currentGear < 3 && _timer > timerKickdownSleep && rpm > accelerationMaxRpm)
                         {
                             _timer = 0;
 
