@@ -5,7 +5,7 @@ namespace Core.Car
     [System.Serializable]
     public class TorqueConverter
     {
-        [SerializeField] private float _maxRPM = 6000.0f;
+        [SerializeField] private float _maxRPM = 7000.0f;
         [SerializeField] private float _fluidDamp = 10.0f;
         [SerializeField] private float _maxRatio = 2.5f;
 
@@ -37,7 +37,7 @@ namespace Core.Car
                 return;
             }
 
-            _fluidTransition = 1.0f - Mathf.Clamp01((outputRPM - inputRPM) / inputRPM);
+            _fluidTransition = 1.0f - Mathf.Pow(Mathf.Clamp01((outputRPM) / (_maxRPM)), 2);
 
             _fluidTransition *= _targetCoefficient;
         }

@@ -24,7 +24,7 @@ namespace Core.Car
         [SerializeField] private float _lastGearRatio = 3.574f;
         [SerializeField] private float _forcedSwitchRPM = 6000.0f;
         [SerializeField] private float _supportRPM = 1000.0f;
-        [SerializeField] private float _firstGearMaxSpeed = 45f;
+        [SerializeField] private float _firstGearMaxSpeed = 40f;
 
         private RatioShifter _ratioShifter;
 
