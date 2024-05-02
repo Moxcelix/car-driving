@@ -20310,7 +20310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _car: {fileID: 5641354360519178162}
   _torqueConverter:
-    _maxRPM: 6000
+    _maxRPM: 7000
+    _idlingRPM: 700
     _fluidDamp: 10
     _maxRatio: 2.5
   _gasReactionCurve:
@@ -20354,14 +20355,14 @@ MonoBehaviour:
     _maxRPM: 1700
   - _ratio: 2.726
     _minSpeed: 10
-    _shiftSpeed: 0.08
+    _shiftSpeed: 0.05
     _minRPM: 850
     _maxRPM: 2200
   - _ratio: 1.834
     _minSpeed: 25
     _shiftSpeed: 0.1
     _minRPM: 1000
-    _maxRPM: 2500
+    _maxRPM: 2200
   - _ratio: 1.392
     _minSpeed: 35
     _shiftSpeed: 0.1
@@ -20382,6 +20383,7 @@ MonoBehaviour:
   _lastGearRatio: 3.574
   _forcedSwitchRPM: 6000
   _supportRPM: 1000
+  _firstGearMaxSpeed: 40
 --- !u!114 &2634101893602950766
 MonoBehaviour:
   m_ObjectHideFlags: 0
