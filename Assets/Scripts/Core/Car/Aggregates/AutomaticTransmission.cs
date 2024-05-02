@@ -24,6 +24,7 @@ namespace Core.Car
         [SerializeField] private float _lastGearRatio = 3.574f;
         [SerializeField] private float _forcedSwitchRPM = 6000.0f;
         [SerializeField] private float _supportRPM = 1000.0f;
+        [SerializeField] private float _firstGearMaxSpeed = 45f;
 
         private RatioShifter _ratioShifter;
 
@@ -299,7 +300,10 @@ namespace Core.Car
                     }
                     else
                     {
-                        if (_currentGear < 3 && _timer > timerKickdownSleep && rpm > accelerationMaxRpm)
+                        if (_currentGear < 3 &&
+                            _timer > timerKickdownSleep &&
+                            rpm > accelerationMaxRpm &&
+                            (_currentGear > 0 || _speed > _firstGearMaxSpeed))
                         {
                             _timer = 0;
 
@@ -311,7 +315,7 @@ namespace Core.Car
                 return 0;
             }
 
-            if (rpm > maxRpm)
+            if (rpm > maxRpm && (_currentGear > 0 || _speed > _firstGearMaxSpeed))
             {
                 return 1;
             }
