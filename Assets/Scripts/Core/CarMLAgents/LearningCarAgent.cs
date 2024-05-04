@@ -10,7 +10,7 @@ namespace Core.CarMLAgents
         private const float positionReachedReward = 1.0f;
         private const float bumpRevard = -0.5f;
         private const float gasRevard = 0.05f;
-        private const float brakeRevard = -0.01f;
+        private const float brakeRevard = -0.02f;
         private const float distanceRevard = -0.05f;
         private const float timeSpendRevard = -0.01f;
         private const int memorySize = 10;
