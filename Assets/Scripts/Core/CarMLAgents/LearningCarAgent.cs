@@ -13,7 +13,9 @@ namespace Core.CarMLAgents
         private const float brakeRevard = -0.01f;
         private const float distanceRevard = -0.05f;
         private const float timeSpendRevard = -0.01f;
+        private const int memorySize = 10;
 
+        private float[] _memory = new float[memorySize];
         private Hit[] _hits;
         private float _gas;
         private float _brake;
@@ -72,6 +74,11 @@ namespace Core.CarMLAgents
             sensor.AddObservation(_gas);
             sensor.AddObservation(_brake);
             sensor.AddObservation(_speed);
+
+            foreach (var bit in _memory)
+            {
+                sensor.AddObservation(bit);
+            }
         }
 
         public override void OnActionReceived(ActionBuffers actions)
@@ -86,6 +93,11 @@ namespace Core.CarMLAgents
 
             _distanceSensetivity = 
                 Mathf.Abs(actions.ContinuousActions[1]);
+
+            for(int i = 0; i < memorySize; i++)
+            {
+                _memory[i] = actions.ContinuousActions[i + 2];
+            }
 
             SetReward(_gas * gasRevard);
             SetReward(_brake * brakeRevard);

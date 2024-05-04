@@ -3749,7 +3749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.03
+      value: 11.42
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3757,7 +3757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -65.62
+      value: -68.09
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20649,7 +20649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1926674631
 Transform:
   m_ObjectHideFlags: 0
@@ -22899,6 +22899,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1899320442}
     m_Modifications:
+    - target: {fileID: 705863096573650339, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
+      propertyPath: _rayLength
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 705863097019478416, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
+      propertyPath: _rayLength
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 705863097515155950, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
+      propertyPath: _rayLength
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 705863097915966688, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
       propertyPath: _car
       value: 
@@ -22978,6 +22990,10 @@ PrefabInstance:
     - target: {fileID: 705863097915966702, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
       propertyPath: m_Name
       value: AI
+      objectReference: {fileID: 0}
+    - target: {fileID: 705863098145480128, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
+      propertyPath: _rayLength
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6239214859227976942, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
       propertyPath: m_Model
