@@ -9198,7 +9198,7 @@ MonoBehaviour:
     _deltaRPM: 2000
     _idlingRPM: 700
     _maxTorque: 400
-    _responsiveness: 6
+    _responsiveness: 7
     _rpmEfficiency:
       serializedVersion: 2
       m_Curve: []

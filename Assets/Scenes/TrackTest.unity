@@ -24999,7 +24999,7 @@ MonoBehaviour:
     _steerSensitivityKeyboard: 0.015
     _steerSensitivityJoystick: 50
     _clutchSmoothPressing:
-      _pressSpeed: 5
+      _pressSpeed: 10
       _releaseSpeed: 0.2
       _pressCurve:
         serializedVersion: 2
