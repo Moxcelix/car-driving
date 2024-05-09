@@ -18794,6 +18794,38 @@ PrefabInstance:
       propertyPath: _engine._maxTorque
       value: 220
       objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].time
+      value: 0.4958657
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].value
+      value: 0.99882793
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].inSlope
+      value: 1.9449313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inSlope
+      value: -0.47206074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].outSlope
+      value: 1.9449313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inWeight
+      value: 0.13045469
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].outSlope
+      value: -0.47206074
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
+      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].outWeight
+      value: 0.046564654
+      objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
       value: 1

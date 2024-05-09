@@ -15,6 +15,7 @@ namespace Core.Car
         [SerializeField] private float _reverseGearRatio = 3.44f;
         [SerializeField] private float _idlingRMP = 800;
         [SerializeField] private float _lastGearRatio = 3.574f;
+        [SerializeField] private float _clutchPowerCoefficient = 5.0f;
 
         [SerializeField] private Pedal _clutchPedal;
         [SerializeField] private AnimationCurve _clutchDisplacement;
@@ -85,14 +86,29 @@ namespace Core.Car
             var displacement = _clutchDisplacement.Evaluate(clutchValue);
             var feedback = _clutchFeedback.Evaluate(clutchValue);
 
+            if(displacement < 0.0f)
+            {
+                displacement = 0.0f;
+            }
+
+            if(feedback < 0.0f)
+            {
+                feedback = 0.0f;
+            }
+
             var nativeRPM = outputRPM * GetRatio();
             var transmitedRPM = displacement * _inputRPM;
             var powerCoefficient = transmitedRPM == 0 ? 0 :
                 Mathf.Lerp(Mathf.Clamp01(
-                    (transmitedRPM - nativeRPM) / transmitedRPM) * 5,
+                    (transmitedRPM - nativeRPM) / transmitedRPM) * _clutchPowerCoefficient,
                     1, feedback);
 
-            Debug.Log(feedback);
+            if(powerCoefficient < displacement)
+            {
+                powerCoefficient = displacement;
+            }
+
+            Debug.Log(powerCoefficient);
            
             Load =
                 Mode == ManualTransmissionMode.NEUTRAL ?
