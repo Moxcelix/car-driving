@@ -82,22 +82,17 @@ namespace Core.Car
         private void UpdateTorque(float inputTorque, float outputRPM)
         {
             var clutchValue = GetClutchValue();
-            var displacement = _clutchDisplacement.Evaluate(GetClutchValue());
-            var feedback = _clutchFeedback.Evaluate(GetClutchValue());
+            var displacement = _clutchDisplacement.Evaluate(clutchValue);
+            var feedback = _clutchFeedback.Evaluate(clutchValue);
 
             var nativeRPM = outputRPM * GetRatio();
-            var coefficient = displacement;
+            var transmitedRPM = displacement * _inputRPM;
+            var powerCoefficient = transmitedRPM == 0 ? 0 :
+                Mathf.Lerp(Mathf.Clamp01(
+                    (transmitedRPM - nativeRPM) / transmitedRPM) * 5,
+                    1, displacement);
 
-            var transmitedRPM = coefficient * _inputRPM;
-            var powerCoefficient = Mathf.Lerp(
-                transmitedRPM == 0 ?
-                0 : 
-                Mathf.Clamp01(
-                    (transmitedRPM - nativeRPM) / transmitedRPM),
-                    1, 
-                    clutchValue);
-
-            Debug.Log(transmitedRPM);
+            Debug.Log(powerCoefficient);
            
             Load =
                 Mode == ManualTransmissionMode.NEUTRAL ?
