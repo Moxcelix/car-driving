@@ -9194,14 +9194,41 @@ MonoBehaviour:
     _cutoffRPM: 6500
     _recoveryRPM: 6000
     _maxRPM: 7000
-    _minRPM: 450
+    _minRPM: 400
     _deltaRPM: 2000
     _idlingRPM: 700
     _maxTorque: 400
-    _responsiveness: 7
+    _responsiveness: 3
     _rpmEfficiency:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.008536184
+        value: 0.59823614
+        inSlope: 0.683112
+        outSlope: 0.683112
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.08282196
+      - serializedVersion: 3
+        time: 0.7816323
+        value: 1.0006628
+        inSlope: -0.022955563
+        outSlope: -0.022955563
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.5149478
+      - serializedVersion: 3
+        time: 1.0029818
+        value: 0.8502679
+        inSlope: -1.5543003
+        outSlope: -1.5543003
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13090433
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -9703,8 +9730,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.021242812
     - serializedVersion: 3
-      time: 0.24684858
-      value: 1.6260015
+      time: 0.21701765
+      value: 1.6915531
       inSlope: -1.9737566
       outSlope: -1.9737566
       tangentMode: 0
@@ -9745,8 +9772,8 @@ MonoBehaviour:
       inWeight: 0.1941425
       outWeight: 0.5203602
     - serializedVersion: 3
-      time: 0.35153013
-      value: 1.0017425
+      time: 0.53243834
+      value: 1.0017387
       inSlope: 3.0047047
       outSlope: 0.03345045
       tangentMode: 1
@@ -9765,7 +9792,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _clutchWear: 0.181
+  _clutchWear: 0.017
 --- !u!114 &6349624699401190013
 MonoBehaviour:
   m_ObjectHideFlags: 0

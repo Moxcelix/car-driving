@@ -8021,10 +8021,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 7d1b2e080ce9e5246bbf5042281a06ab, type: 2}
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._minRPM
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
       value: 220
       objectReference: {fileID: 0}
@@ -18797,74 +18793,6 @@ PrefabInstance:
     - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: _engine._maxTorque
       value: 220
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].time
-      value: -0.008536184
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].time
-      value: 0.7816323
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].time
-      value: 1.0029818
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].value
-      value: 0.59823614
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].value
-      value: 1.0006628
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].value
-      value: 0.8502679
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].inSlope
-      value: 0.683112
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].inSlope
-      value: -0.022955563
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inSlope
-      value: -1.5543003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].outSlope
-      value: 0.683112
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].outSlope
-      value: -0.022955563
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].inWeight
-      value: 0.13090433
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[2].outSlope
-      value: -1.5543003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[0].outWeight
-      value: 0.08282196
-      objectReference: {fileID: 0}
-    - target: {fileID: 2572421925859850828, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
-      propertyPath: _engine._rpmEfficiency.m_Curve.Array.data[1].outWeight
-      value: 0.5149478
       objectReference: {fileID: 0}
     - target: {fileID: 2572421925859850834, guid: 9a1d0069b34f57c478faf0ee45862afe, type: 3}
       propertyPath: m_RootOrder
