@@ -90,9 +90,9 @@ namespace Core.Car
             var powerCoefficient = transmitedRPM == 0 ? 0 :
                 Mathf.Lerp(Mathf.Clamp01(
                     (transmitedRPM - nativeRPM) / transmitedRPM) * 5,
-                    1, displacement);
+                    1, feedback);
 
-            Debug.Log(powerCoefficient);
+            Debug.Log(feedback);
            
             Load =
                 Mode == ManualTransmissionMode.NEUTRAL ?
