@@ -24960,7 +24960,7 @@ MonoBehaviour:
     _steerSensitivityJoystick: 50
     _clutchSmoothPressing:
       _pressSpeed: 10
-      _releaseSpeed: 0.2
+      _releaseSpeed: 0.05
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -24991,30 +24991,30 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1.9534155
-          outSlope: 1.9534155
+          inSlope: 2.8421533
+          outSlope: 2.8421533
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.34956968
-          value: 0.68285483
-          inSlope: 1.7548901
+          time: 0.21219158
+          value: 0.603081
+          inSlope: 0.73131615
           outSlope: 0.26441067
           tangentMode: 1
           weightedMode: 0
-          inWeight: 0.19802025
+          inWeight: 0.2703926
           outWeight: 0.16941701
         - serializedVersion: 3
-          time: 0.5743541
-          value: 0.6980068
-          inSlope: -0.012358415
-          outSlope: -0.012358415
+          time: 0.66335577
+          value: 0.713937
+          inSlope: 0.25503764
+          outSlope: 0.25503764
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.7131291
+          outWeight: 0.4585117
         - serializedVersion: 3
           time: 1
           value: 1
