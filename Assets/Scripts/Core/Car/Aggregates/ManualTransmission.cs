@@ -97,10 +97,10 @@ namespace Core.Car
             }
 
             var nativeRPM = outputRPM * GetRatio();
-            var transmitedRPM = displacement * _inputRPM;
+            var transmitedRPM = _inputRPM;
             var powerCoefficient = transmitedRPM == 0 ? 0 :
                 Mathf.Lerp(Mathf.Clamp01(
-                    (transmitedRPM - nativeRPM) / transmitedRPM) * _clutchPowerCoefficient,
+                    displacement * (transmitedRPM - nativeRPM) / transmitedRPM) * _clutchPowerCoefficient,
                     1, feedback);
 
             if(powerCoefficient < displacement)
