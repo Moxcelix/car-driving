@@ -231,7 +231,6 @@ namespace Core.Car
         {
             var reflection = 0.2f;
             var acceleration = 0.7f;
-            var minRpmDeltaDelta = -1.5f;
             var minRpmDelta = 10.0f - _currentGear * 1.5f;
             var maxRpm = 6000.0f;
             var accelerationMaxRpm = 5500.0f;
@@ -239,7 +238,6 @@ namespace Core.Car
             var timerKickdownSleep = 5.0f;
 
             var rpmDelta = RPM - _prevRpmValue;
-            var rpmDeltaDelta = (rpmDelta - _prevRpmDelta);
 
             var brakeSensetivity = 0.05f;
 
