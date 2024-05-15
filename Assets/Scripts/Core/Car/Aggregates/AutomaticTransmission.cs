@@ -37,7 +37,6 @@ namespace Core.Car
         private float _outputRPM = 0;
         private int _currentGear = 0;
         private float _prevRpmValue = 0;
-        private float _prevRpmDelta = 0;
         private float _timer = 0;
 
         public AutomaticTransmissionMode Mode { get; private set; }
@@ -242,7 +241,6 @@ namespace Core.Car
             var brakeSensetivity = 0.05f;
 
             _prevRpmValue = RPM;
-            _prevRpmDelta = rpmDelta;
 
             var timerCondition = brake < brakeSensetivity &&
                 rpmDelta < minRpmDelta && rpm > _gears[_currentGear].MaxRPM * _accelerationFactor;
