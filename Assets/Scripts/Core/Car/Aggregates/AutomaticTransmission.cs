@@ -41,7 +41,6 @@ namespace Core.Car
 
         public AutomaticTransmissionMode Mode { get; private set; }
 
-
         private void Start()
         {
             _ratioShifter = new RatioShifter(_gears[0].Ratio);
