@@ -2,21 +2,27 @@ using UnityEngine;
 using Core.Car;
 using System.IO;
 using System.Collections;
+using System;
+
 
 [RequireComponent(typeof(Car))]
+[RequireComponent(typeof(CarID))]
 public class TransmissionStatistics : MonoBehaviour
 {
     private const string path = "transmission stats";
+    private const float precision = 0.0001f;
 
     private Car _car;
-    private AutomaticTransmission _transmission;
+    private CarID _carID;
+    private Transmission _transmission;
 
     private readonly WaitForSeconds _sleep = new(0.1f);
 
     private void Awake()
     {
         _car = GetComponent<Car>();
-        _transmission = _car.Transmission as AutomaticTransmission;
+        _carID = GetComponent<CarID>();
+        _transmission = _car.Transmission;
     }
 
 
@@ -31,41 +37,53 @@ public class TransmissionStatistics : MonoBehaviour
     }
 
 
-    private (float speed, float rpm, float gas, float brake, int gear) Collect()
+    private (float speed, float rpm, float gas, float brake, int gear, float consumption) Collect()
     {
-        return (_car.GetSpeed(), _car.Engine.RPM, _car.GasPedal.Value, _car.BrakePedal.Value, _car.Transmission.CurrentGear);
+        var speed = _car.GetSpeed();
+        return (
+            speed < precision ? 0 : speed,
+            _car.Engine.RPM,
+            _car.GasPedal.Value,
+            _car.BrakePedal.Value,
+            _car.Transmission.CurrentGear,
+            _car.Computer.Consumption);
     }
 
     private void WriteStatistics(
-        (float speed, float rpm, float gas, float brake, int gear) record, string file)
+        (float speed,
+        float rpm,
+        float gas,
+        float brake,
+        int gear,
+        float consumption) record,
+        StreamWriter streamWriter)
     {
-        using StreamWriter outputFile = new StreamWriter(file, true);
-
-        outputFile.WriteLine(
+        streamWriter.WriteLine(
             $"{record.speed} " +
             $"{record.rpm} " +
             $"{record.gas} " +
             $"{record.brake} " +
-            $"{record.gear}");
+            $"{record.gear} " +
+            $"{record.consumption}");
     }
 
     private string GetFileName()
     {
-        return $"transmission.stt";
+        return $"transmission {_carID.ID} {DateTime.Now:yyyy-MM-dd HH-mm-ss}.stt";
     }
 
     private IEnumerator RecordCycle()
     {
+        var fileName = GetFileName();
+        var filePath = Path.Combine(path, fileName);
+
+        using StreamWriter outputFile = new StreamWriter(filePath, true);
+        outputFile.WriteLine("Speed RPM Gas Brake GearNumber Consumption");
+
         while (true)
         {
-            if (_transmission.Mode == AutomaticTransmissionMode.MANUAL)
-            {
-                var fileName = GetFileName();
-                var filePath = Path.Combine(path, fileName);
-                var statistics = Collect();
-
-                WriteStatistics(statistics, filePath);
-            }
+            var statistics = Collect();
+            WriteStatistics(statistics, outputFile);
 
             yield return _sleep;
         }

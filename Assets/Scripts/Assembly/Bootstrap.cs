@@ -52,8 +52,7 @@ public class Bootstrap : MonoBehaviour
         _carrier = new Carrier();
 
         // Interactive raycasting set up.
-        _interactiveRaycast =
-            new InteractiveRaycast(rayCaster, _avatarController, _carrier);
+        _interactiveRaycast = new InteractiveRaycast(rayCaster, _avatarController);
 
         // View grabbing set up.
         _viewGrabbing = new ViewGrabbing(_carrier, _pointOfView, c_rayLength);

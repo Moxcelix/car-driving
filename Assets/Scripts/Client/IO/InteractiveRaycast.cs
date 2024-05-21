@@ -12,7 +12,7 @@ public class InteractiveRaycast
     public bool IsFocused { get; private set; }
 
     public InteractiveRaycast(Raycaster raycaster,
-        AvatarController userController, Carrier carrier)
+        AvatarController userController)
     {
         _userController = userController;
         _raycaster = raycaster;

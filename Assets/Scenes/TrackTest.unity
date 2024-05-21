@@ -350,6 +350,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &11059437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11059421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &12918473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8335,6 +8347,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &224710310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224710294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &225728151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19693,7 +19717,6 @@ GameObject:
   - component: {fileID: 672895531}
   - component: {fileID: 672895530}
   - component: {fileID: 672895532}
-  - component: {fileID: 672895534}
   m_Layer: 0
   m_Name: Player
   m_TagString: ignore_car_collision
@@ -19755,22 +19778,6 @@ MonoBehaviour:
   _runMultiplier: 2
   _gravity: 3
   _jumpForce: 6
---- !u!54 &672895534
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672895528}
-  serializedVersion: 2
-  m_Mass: 50
-  m_Drag: 10
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!1001 &677498334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27539,6 +27546,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &1145083498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145083472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1145811075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33419,6 +33438,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &1241036612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241036595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1248182693
 GameObject:
   m_ObjectHideFlags: 0
@@ -33971,6 +34002,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &1280057568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280057498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1280837927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36843,6 +36886,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &1518288043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869255187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1520238054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
@@ -37282,6 +37337,18 @@ MonoBehaviour:
   _verticalForceDamp: 0.1
   _demolitionRange: 0.5
   _impactDirectionManipulator: 0
+--- !u!114 &1567449101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567449084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51330d0cbf0f70748a15c0562d285dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1572866074
 PrefabInstance:
   m_ObjectHideFlags: 0

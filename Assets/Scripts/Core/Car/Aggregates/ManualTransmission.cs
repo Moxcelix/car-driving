@@ -107,8 +107,6 @@ namespace Core.Car
             {
                 powerCoefficient = displacement;
             }
-
-            Debug.Log(powerCoefficient);
            
             Load =
                 Mode == ManualTransmissionMode.NEUTRAL ?
