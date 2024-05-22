@@ -14,7 +14,6 @@ public class TransmissionStatistics : MonoBehaviour
 
     private Car _car;
     private CarID _carID;
-    private Transmission _transmission;
 
     private readonly WaitForSeconds _sleep = new(0.1f);
 
@@ -22,7 +21,6 @@ public class TransmissionStatistics : MonoBehaviour
     {
         _car = GetComponent<Car>();
         _carID = GetComponent<CarID>();
-        _transmission = _car.Transmission;
     }
 
 
