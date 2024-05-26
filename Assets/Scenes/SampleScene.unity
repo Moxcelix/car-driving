@@ -289,6 +289,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
+--- !u!1001 &47828943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1387486589851035849, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X MT (4) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 378.7138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011787415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.8888
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.44301492
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.89651424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -127.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
 --- !u!1 &49120209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2409,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &268235058 stripped
 Transform:
@@ -2405,6 +2462,63 @@ Transform:
   m_Father: {fileID: 1176126331}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &288643350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 394.97784
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011787415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.91653
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233302, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817647953744233338, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X AT (3) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f0a18981996eeb4fbe4cd1ca47b8c74, type: 3}
 --- !u!4 &290058063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
@@ -3094,9 +3208,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: KIA Rio X AT
       objectReference: {fileID: 0}
+    - target: {fileID: 5641354360519178112, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5641354360519178156, guid: 5466702deb79c974fb97200e0e989cbd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3231,7 +3349,7 @@ Transform:
   - {fileID: 1280057544}
   - {fileID: 1261930878}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &452025194 stripped
 Transform:
@@ -5557,14 +5675,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672895528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.45, y: 1.17, z: -27.58}
+  m_LocalPosition: {x: 386.81, y: 1.17, z: -399.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 310604421}
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &672895532
 MonoBehaviour:
@@ -7097,6 +7215,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
   m_PrefabInstance: {fileID: 1104254173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &831969899
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 374.45334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011787415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.85944
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837717, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590862421479837753, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X MT (5) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee3c7b34291437b49bb285ffd361c264, type: 3}
 --- !u!1001 &835825450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7741,7 +7916,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &890205648
 PrefabInstance:
@@ -8536,11 +8711,11 @@ MonoBehaviour:
   _clientIO:
     _mouseSensitivity: 2
     _joystickSensitivity: 2
-    _steerSensitivityKeyboard: 0.1
+    _steerSensitivityKeyboard: 0.015
     _steerSensitivityJoystick: 50
     _clutchSmoothPressing:
-      _pressSpeed: 5
-      _releaseSpeed: 0.2
+      _pressSpeed: 10
+      _releaseSpeed: 0.5
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -8571,38 +8746,20 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1.9534155
-          outSlope: 1.9534155
+          inSlope: 1
+          outSlope: 1
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.34956968
-          value: 0.68285483
-          inSlope: 1.7548901
-          outSlope: 0.26441067
-          tangentMode: 1
-          weightedMode: 0
-          inWeight: 0.19802025
-          outWeight: 0.16941701
-        - serializedVersion: 3
-          time: 0.5743541
-          value: 0.6980068
-          inSlope: -0.012358415
-          outSlope: -0.012358415
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.7131291
+          outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1.4891192
-          outSlope: 1.4891192
-          tangentMode: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.20595515
+          inWeight: 0
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -8710,8 +8867,8 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     _rightSteerSmoothPressing:
-      _pressSpeed: 0.1
-      _releaseSpeed: 1
+      _pressSpeed: 3
+      _releaseSpeed: 10
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -8719,7 +8876,7 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -8727,7 +8884,7 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -8761,8 +8918,8 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     _leftSteerSmoothPressing:
-      _pressSpeed: 0.1
-      _releaseSpeed: 1
+      _pressSpeed: 3
+      _releaseSpeed: 10
       _pressCurve:
         serializedVersion: 2
         m_Curve:
@@ -8770,7 +8927,7 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -8778,7 +8935,7 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -10028,7 +10185,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1119622141
 MonoBehaviour:
@@ -15267,7 +15424,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!1 &1176126330
 GameObject:
@@ -18314,6 +18471,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
+--- !u!1001 &1487227724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2364162258672771033, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X AT Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 390.1131
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011749268
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.92618
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
 --- !u!1 &1503469729
 GameObject:
   m_ObjectHideFlags: 0
@@ -18687,7 +18901,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1560450167 stripped
 Transform:
@@ -19507,6 +19721,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
   m_PrefabInstance: {fileID: 1263023235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1642075256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1801023390460875275, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X AT (2) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 400.26587
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011672974
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.53766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801023390460875303, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d8865ca897fb4d42b8021dbc68859fe, type: 3}
 --- !u!1001 &1643291376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19736,6 +20007,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1677415452
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 384.5826
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011749268
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -402.64786
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245187, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739994546697245231, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X MT (2) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58e0754a790be684bb5964fd1b4a9d84, type: 3}
 --- !u!4 &1677828308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 847147762291694458, guid: dbe43208c714f864296c8ed50ae1d6a1, type: 3}
@@ -19974,7 +20302,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1690566407
 PrefabInstance:
@@ -20948,7 +21276,7 @@ Transform:
   - {fileID: 1454307010}
   - {fileID: 2121785922}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &1793345980
 PrefabInstance:
@@ -22032,7 +22360,7 @@ Transform:
   - {fileID: 258519662}
   - {fileID: 194378346}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1939663522
 PrefabInstance:
@@ -22738,7 +23066,7 @@ RectTransform:
   - {fileID: 730216679}
   - {fileID: 1060450247}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23516,7 +23844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &2078467929 stripped
 Transform:
@@ -23866,6 +24194,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 705863097915966689, guid: acfdde8abd4d7d34bbdc8749bbf9f0d6, type: 3}
   m_PrefabInstance: {fileID: 2105056171}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2108213669
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 405.32617
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0011749268
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -401.95117
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071433, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146839451009071461, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
+      propertyPath: m_Name
+      value: KIA Rio X AT (1) Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6cea623cdd18aec49afa454e5630cedc, type: 3}
 --- !u!1001 &2110701730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24564,7 +24949,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8861340852555596416, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8861340852555596416, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24609,6 +24994,18 @@ PrefabInstance:
     - target: {fileID: 8861340852555596417, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
       propertyPath: m_Name
       value: CONTROLS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
+      propertyPath: _keyValues.Array.size
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
+      propertyPath: _keyValues.Array.data[25]._name
+      value: semi_clutch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
+      propertyPath: _keyValues.Array.data[25]._keyCode
+      value: 122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}

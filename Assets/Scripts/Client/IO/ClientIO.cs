@@ -30,6 +30,7 @@ public class ClientIO :
     private readonly string _engineSwitchKey = "ignition";
     private readonly string _parkingBrakeKey = "parking_brake";
     private readonly string _addPowerKey = "power";
+    private readonly string _semiClutchKey = "semi_clutch";
     private readonly string _leftTurnKey = "left_blinker";
     private readonly string _rightTurnKey = "right_blinker";
     private readonly string _emergencyKey = "emergency";
@@ -68,6 +69,7 @@ public class ClientIO :
     private readonly float _gasMaxValue = 1.0f;
     private readonly float _brakeMaxValue = 1.0f;
     private readonly float _clutchMaxValue = 1.0f;
+    private readonly float _clutchMiddleValue = 0.55f;
 
     private GameState _gameState;
     private PauseMenu _pauseMenu;
@@ -269,9 +271,13 @@ public class ClientIO :
         {
             _clutchSmoothPressing.Press(_clutchMaxValue, deltaTime);
         }
+        else if (Input.GetKey(_controls[_semiClutchKey]))
+        {
+            _clutchSmoothPressing.Press(_clutchMiddleValue, deltaTime);
+        }
         else
         {
-            _clutchSmoothPressing.Release(deltaTime);
+            _clutchSmoothPressing.Release(0, deltaTime);
         }
 
         if (Input.GetKey(_controls[_gasKey]))
@@ -280,7 +286,7 @@ public class ClientIO :
         }
         else
         {
-            _gasSmoothPressing.Release(deltaTime);
+            _gasSmoothPressing.Release(0, deltaTime);
         }
 
         if (Input.GetKey(_controls[_brakeKey]))
@@ -289,7 +295,7 @@ public class ClientIO :
         }
         else
         {
-            _brakeSmoothPressing.Release(deltaTime);
+            _brakeSmoothPressing.Release(0, deltaTime);
         }
 
         if (Input.GetKey(_controls[_steerRightKey]))
@@ -298,7 +304,7 @@ public class ClientIO :
         }
         else
         {
-            _rightSteerSmoothPressing.Release(deltaTime);
+            _rightSteerSmoothPressing.Release(0, deltaTime);
         }
 
         if (Input.GetKey(_controls[_steerLeftKey]))
@@ -307,7 +313,7 @@ public class ClientIO :
         }
         else
         {
-            _leftSteerSmoothPressing.Release(deltaTime);
+            _leftSteerSmoothPressing.Release(0, deltaTime);
         }
 
         var steerDeltaKeyboard = _steerSensitivityKeyboard * (

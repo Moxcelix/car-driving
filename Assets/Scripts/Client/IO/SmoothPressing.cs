@@ -21,13 +21,13 @@ public class SmoothPressing
         Value = _pressCurve.Evaluate(_progress);
     }
 
-    public void Release(float deltaTime)
+    public void Release(float press, float deltaTime)
     {
         _progress -= _releaseSpeed * deltaTime;
 
-        if (_progress < sensitivity)
+        if (_progress < press + sensitivity)
         {
-            _progress = 0;
+            _progress = press;
         }
 
         Value = _releaseCurve.Evaluate(_progress);

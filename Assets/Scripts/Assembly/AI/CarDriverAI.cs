@@ -129,7 +129,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         }
         else
         {
-            _brakeSmoothPressing.Release(Time.deltaTime);
+            _brakeSmoothPressing.Release(0, Time.deltaTime);
         }
 
         if (_gas > 0.5f)
@@ -138,7 +138,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         }
         else
         {
-            _gasSmoothPressing.Release(Time.deltaTime);
+            _gasSmoothPressing.Release(0, Time.deltaTime);
         }
 
         Gas = _gasSmoothPressing.Value;
