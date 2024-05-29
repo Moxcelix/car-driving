@@ -95,3 +95,5 @@ MonoBehaviour:
     _keyCode: 118
   - _name: clutch
     _keyCode: 113
+  - _name: semi_clutch
+    _keyCode: 122

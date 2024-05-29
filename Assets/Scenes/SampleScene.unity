@@ -5849,7 +5849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672895528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 386.81, y: 1.17, z: -399.45}
+  m_LocalPosition: {x: -59, y: 1.17, z: -65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19338,7 +19338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 390.1131
+      value: -61
       objectReference: {fileID: 0}
     - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19346,7 +19346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -402.92618
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 2364162258672771061, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23611,7 +23611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1926674631
 Transform:
   m_ObjectHideFlags: 0
@@ -26270,18 +26270,6 @@ PrefabInstance:
     - target: {fileID: 8861340852555596417, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
       propertyPath: m_Name
       value: CONTROLS
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
-      propertyPath: _keyValues.Array.size
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
-      propertyPath: _keyValues.Array.data[25]._name
-      value: semi_clutch
-      objectReference: {fileID: 0}
-    - target: {fileID: 8861340852555596423, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
-      propertyPath: _keyValues.Array.data[25]._keyCode
-      value: 122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc319fa1c61d12409acf0156240afe5, type: 3}
