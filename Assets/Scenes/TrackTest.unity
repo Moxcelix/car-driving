@@ -30933,6 +30933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 448467663}
     m_Modifications:
+    - target: {fileID: 1145083485, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2364162258672771033, guid: 133a35bf67d769b4caff8f8c4b343e50, type: 3}
       propertyPath: m_Name
       value: KIA Rio X AT
@@ -31000,7 +31004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.03
+      value: 95.8
       objectReference: {fileID: 0}
     - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31008,7 +31012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.85
+      value: -55.1
       objectReference: {fileID: 0}
     - target: {fileID: 1387486589851035877, guid: e9af77bc7299c5649ba7d15a8687fbcc, type: 3}
       propertyPath: m_LocalRotation.w
