@@ -35,7 +35,15 @@ public class TransmissionStatistics : MonoBehaviour
     }
 
 
-    private (float speed, float rpm, float gas, float brake, int gear, float consumption) Collect()
+    private (
+        float speed,
+        float rpm,
+        float gas, 
+        float brake, 
+        int gear, 
+        float consumption,
+        float torque)
+        Collect()
     {
         var speed = _car.GetSpeed();
         return (
@@ -44,7 +52,8 @@ public class TransmissionStatistics : MonoBehaviour
             _car.GasPedal.Value,
             _car.BrakePedal.Value,
             _car.Transmission.CurrentGear,
-            _car.Computer.Consumption);
+            _car.Computer.Consumption,
+            _car.Engine.Torque);
     }
 
     private void WriteStatistics(
@@ -53,7 +62,8 @@ public class TransmissionStatistics : MonoBehaviour
         float gas,
         float brake,
         int gear,
-        float consumption) record,
+        float consumption,
+        float torque) record,
         StreamWriter streamWriter)
     {
         streamWriter.WriteLine(
@@ -62,7 +72,8 @@ public class TransmissionStatistics : MonoBehaviour
             $"{record.gas} " +
             $"{record.brake} " +
             $"{record.gear} " +
-            $"{record.consumption}");
+            $"{record.consumption} " +
+            $"{record.torque}");
     }
 
     private string GetFileName()
@@ -76,7 +87,7 @@ public class TransmissionStatistics : MonoBehaviour
         var filePath = Path.Combine(path, fileName);
 
         using StreamWriter outputFile = new StreamWriter(filePath, true);
-        outputFile.WriteLine("Speed RPM Gas Brake GearNumber Consumption");
+        outputFile.WriteLine("Speed RPM Gas Brake GearNumber Consumption Torque");
 
         while (true)
         {
