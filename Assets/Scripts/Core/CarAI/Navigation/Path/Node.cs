@@ -1,13 +1,19 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Core.CarAI.Navigation
 {
     public class Node : MonoBehaviour
     {
-        [SerializeField] private Node[] _nodes;
+        [SerializeField] private NodeConnection[] _nodes;
 
-        public Node[] Nodes => _nodes;
+        public Node[] Nodes { get; private set; }
+
+        private void Awake()
+        {
+            Nodes = (from node in _nodes select node.Target).ToArray();
+        }
 
         private void OnDrawGizmos()
         {
@@ -22,19 +28,19 @@ namespace Core.CarAI.Navigation
             {
                 try
                 {
-                    var direction = node.transform.position - transform.position;
+                    var direction = node.Target.transform.position - transform.position;
 
                     Gizmos.DrawLine(
                         transform.position + direction.normalized * radius, 
-                        node.transform.position - direction.normalized * radius);
+                        node.Target.transform.position - direction.normalized * radius);
 
                     var right = Quaternion.LookRotation(direction) *
                         Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * Vector3.forward;
                     var left = Quaternion.LookRotation(direction) *
                         Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * Vector3.forward;
-                    Gizmos.DrawRay(node.transform.position - direction.normalized * radius,
+                    Gizmos.DrawRay(node.Target.transform.position - direction.normalized * radius,
                         right * arrowHeadLength);
-                    Gizmos.DrawRay(node.transform.position - direction.normalized * radius,
+                    Gizmos.DrawRay(node.Target.transform.position - direction.normalized * radius,
                         left * arrowHeadLength);
                 }
                 catch (NullReferenceException)
