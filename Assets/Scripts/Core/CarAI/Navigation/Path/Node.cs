@@ -8,11 +8,13 @@ namespace Core.CarAI.Navigation
     {
         [SerializeField] private NodeConnection[] _nodes;
 
-        public Node[] Nodes { get; private set; }
+        public NodeConnection[] Nodes => _nodes;
 
-        private void Awake()
+        private Color GetColor(float t)
         {
-            Nodes = (from node in _nodes select node.Target).ToArray();
+            return t < 0.5f ?
+                Color.Lerp(Color.red, Color.yellow, t * 2) :
+                Color.Lerp(Color.yellow, Color.green, (t - 0.5f) * 2);
         }
 
         private void OnDrawGizmos()
@@ -23,15 +25,17 @@ namespace Core.CarAI.Navigation
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(transform.position, radius);
-
+            
             foreach (var node in _nodes)
             {
                 try
                 {
+                    Gizmos.color = GetColor(node.Priority);
+
                     var direction = node.Target.transform.position - transform.position;
 
                     Gizmos.DrawLine(
-                        transform.position + direction.normalized * radius, 
+                        transform.position + direction.normalized * radius,
                         node.Target.transform.position - direction.normalized * radius);
 
                     var right = Quaternion.LookRotation(direction) *

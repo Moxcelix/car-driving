@@ -22,7 +22,11 @@ namespace Core.CarAI.Navigation
 
         public float GetWeight(Node a, Node b)
         {
-            if (a.Nodes.Contains(b))
+            var connections = from connection in a.Nodes 
+                              where connection.Target == b 
+                              select connection;
+
+            if (connections.Count() > 0)
             {
                 return Vector3.Distance(a.transform.position, b.transform.position);
             }
@@ -75,10 +79,10 @@ namespace Core.CarAI.Navigation
             {
                 foreach (var nextNode in node.Nodes)
                 {
-                    if (!_minInputNode.ContainsKey(nextNode) ||
-                        _marks[node] < _marks[_minInputNode[nextNode]])
+                    if (!_minInputNode.ContainsKey(nextNode.Target) ||
+                        _marks[node] < _marks[_minInputNode[nextNode.Target]])
                     {
-                        _minInputNode[nextNode] = node;
+                        _minInputNode[nextNode.Target] = node;
                     }
                 }
             }
@@ -114,8 +118,8 @@ namespace Core.CarAI.Navigation
                 queue.AddRange(
                     from toQueue
                     in currentNode.Nodes
-                    where !nodes.Contains(toQueue)
-                    select toQueue);
+                    where !nodes.Contains(toQueue.Target)
+                    select toQueue.Target);
 
                 queue.Remove(currentNode);
             }

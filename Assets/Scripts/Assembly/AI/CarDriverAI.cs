@@ -112,7 +112,6 @@ public class CarDriverAI : MonoBehaviour, IControls
         {
             _targetFinder.NextTarget();
             _learningAgent.PositionReach();
-            _learningAgent.EndEpisode();
 
             if (_targetFinder.IsDone)
             {
@@ -150,6 +149,7 @@ public class CarDriverAI : MonoBehaviour, IControls
         OnRestart?.Invoke();
 
         _targetFinder.ResetTarget();
+        _learningAgent.EndEpisode();
         _car.transform.position = _startPosition;
     }
 
