@@ -2,6 +2,7 @@ using UnityEngine;
 using Core.CarAI.Agent;
 using Core.CarAI.Navigation;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.CarAI
 {
@@ -11,6 +12,8 @@ namespace Core.CarAI
         private List<Node> _path;
 
         private int _currentPathIndex = 0;
+
+        public NodeConnection CurrentNodeConnection { get; private set; }
 
         public bool IsDone => _currentPathIndex == _path.Count - 1;
 
@@ -27,10 +30,16 @@ namespace Core.CarAI
 
         public void NextTarget()
         {
-            if(_currentPathIndex >= _path.Count - 1)
+            if (_currentPathIndex >= _path.Count - 1)
             {
                 return;
             }
+
+            var connections = from node in _path[_currentPathIndex].Nodes
+                              where node.Target == _path[_currentPathIndex + 1]
+                              select node;
+
+            CurrentNodeConnection = connections.FirstOrDefault();
 
             _currentPathIndex++;
         }
